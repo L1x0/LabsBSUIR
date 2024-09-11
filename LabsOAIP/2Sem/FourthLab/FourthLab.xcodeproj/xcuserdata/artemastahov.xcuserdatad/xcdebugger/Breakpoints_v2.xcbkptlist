@@ -1,0 +1,1036 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "C9DDCBC6-2F1B-4A41-9197-1C1EEA09D64D"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4572E171-457C-48C6-BD0A-4E4E98454961"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "converToPrefixForm(p, inputString, outString)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3E0F7880-A3CA-4D2B-B156-92805A46D259"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "firtstInStack(p)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "3E0F7880-A3CA-4D2B-B156-92805A46D259 - 19a181ba591b6bf2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44">
+               </Location>
+               <Location
+                  uuid = "3E0F7880-A3CA-4D2B-B156-92805A46D259 - a4a41aef43199b4a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "firtstInStack(Stack*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43">
+               </Location>
+               <Location
+                  uuid = "3E0F7880-A3CA-4D2B-B156-92805A46D259 - a4a41aef43199b4a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "firtstInStack(Stack*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AA53CEDC-39EA-41F5-BE46-5A51A4F81A0A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "inStack(p, in)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "78C8C8C6-71AF-465E-B88B-1AC45D0ED521"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "converToPrefixForm(p, inputString, outString)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "78C8C8C6-71AF-465E-B88B-1AC45D0ED521 - 19a181ba591b9582"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60">
+               </Location>
+               <Location
+                  uuid = "78C8C8C6-71AF-465E-B88B-1AC45D0ED521 - 19a181ba591b9582"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D391C0E7-5402-4039-BF3C-33FD62CBBE4B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "converToPrefixForm(p, inputString, outString)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5CBEE74E-3EB4-4A6A-B62C-9AE51F5CAF91"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "converToPrefixForm(p, inputString, outString)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "625BC7C2-6A9D-40B2-8FF3-FE65EA9A15B0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "converToPrefixForm(p, inputString, outString)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "625BC7C2-6A9D-40B2-8FF3-FE65EA9A15B0 - 19a181ba591b973f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81">
+               </Location>
+               <Location
+                  uuid = "625BC7C2-6A9D-40B2-8FF3-FE65EA9A15B0 - 19a181ba591b96d8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82">
+               </Location>
+               <Location
+                  uuid = "625BC7C2-6A9D-40B2-8FF3-FE65EA9A15B0 - 19a181ba591b973f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81">
+               </Location>
+               <Location
+                  uuid = "625BC7C2-6A9D-40B2-8FF3-FE65EA9A15B0 - 19a181ba591b971e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BCCD732A-05C0-44BA-A0F9-F05A05666970"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "converToPrefixForm(p, inputString, outString)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "907BB384-8B20-4856-98D2-00FDCBBFF703"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "converToPrefixForm(p, inputString, outString)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AF9B92AA-2AE8-4444-9F78-FA95530A651A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "converToPrefixForm(p, inputString, outString)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "AF9B92AA-2AE8-4444-9F78-FA95530A651A - 19a181ba591b9015"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "103"
+                  endingLineNumber = "103">
+               </Location>
+               <Location
+                  uuid = "AF9B92AA-2AE8-4444-9F78-FA95530A651A - 19a181ba591b9015"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "103"
+                  endingLineNumber = "103">
+               </Location>
+               <Location
+                  uuid = "AF9B92AA-2AE8-4444-9F78-FA95530A651A - 19a181ba591b9036"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104">
+               </Location>
+               <Location
+                  uuid = "AF9B92AA-2AE8-4444-9F78-FA95530A651A - 19a181ba591b9074"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102">
+               </Location>
+               <Location
+                  uuid = "AF9B92AA-2AE8-4444-9F78-FA95530A651A - 19a181ba591b9074"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102">
+               </Location>
+               <Location
+                  uuid = "AF9B92AA-2AE8-4444-9F78-FA95530A651A - 19a181ba591b9074"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102">
+               </Location>
+               <Location
+                  uuid = "AF9B92AA-2AE8-4444-9F78-FA95530A651A - 19a181ba591b904b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101">
+               </Location>
+               <Location
+                  uuid = "AF9B92AA-2AE8-4444-9F78-FA95530A651A - 19a181ba591b90cf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "97"
+                  endingLineNumber = "97">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "697C55E7-33F0-4972-984F-24022E811E8F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "converToPrefixForm(p, inputString, outString)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "697C55E7-33F0-4972-984F-24022E811E8F - 19a181ba591b90aa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100">
+               </Location>
+               <Location
+                  uuid = "697C55E7-33F0-4972-984F-24022E811E8F - 19a181ba591b904b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101">
+               </Location>
+               <Location
+                  uuid = "697C55E7-33F0-4972-984F-24022E811E8F - 19a181ba591b9089"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99">
+               </Location>
+               <Location
+                  uuid = "697C55E7-33F0-4972-984F-24022E811E8F - 19a181ba591b9089"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99">
+               </Location>
+               <Location
+                  uuid = "697C55E7-33F0-4972-984F-24022E811E8F - 19a181ba591b9089"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99">
+               </Location>
+               <Location
+                  uuid = "697C55E7-33F0-4972-984F-24022E811E8F - 19a181ba591b910d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "converToPrefixForm(Stack**, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;*)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ECE53632-D81D-4A6A-91C5-5B5EAB4E7914"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "02EDDEFC-0BA3-4867-8716-334B1CB97FC0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "converToPrefixForm(p, inputString, outString)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "98D8FB5D-35F4-4F7B-A5DC-5D476AF1FA05"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "converToPrefixForm(p, inputString, outString)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D27A0E18-5D43-499A-B045-474F8D3E96BB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "converToPrefixForm(p, inputString, outString)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "58E4B676-BDC0-4D79-BB42-C5451AECAC5E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "solveInPrefixForm(str)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "58E4B676-BDC0-4D79-BB42-C5451AECAC5E - 11d2f03c6afb28b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123">
+               </Location>
+               <Location
+                  uuid = "58E4B676-BDC0-4D79-BB42-C5451AECAC5E - 11d2f03c6afb268"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "124"
+                  endingLineNumber = "124">
+               </Location>
+               <Location
+                  uuid = "58E4B676-BDC0-4D79-BB42-C5451AECAC5E - 11d2f03c6afb268"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "124"
+                  endingLineNumber = "124">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "68D730FB-727C-472B-A351-566727618BAC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "solveInPrefixForm(str)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "68D730FB-727C-472B-A351-566727618BAC - 11d2f03c6afb2aa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122">
+               </Location>
+               <Location
+                  uuid = "68D730FB-727C-472B-A351-566727618BAC - 11d2f03c6afb28b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123">
+               </Location>
+               <Location
+                  uuid = "68D730FB-727C-472B-A351-566727618BAC - 11d2f03c6afb28b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CC85D73A-9C54-4890-96EC-F5B59B0E8EC7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "solveInPrefixForm(str)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "CC85D73A-9C54-4890-96EC-F5B59B0E8EC7 - 11d2f03c6afb2cd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121">
+               </Location>
+               <Location
+                  uuid = "CC85D73A-9C54-4890-96EC-F5B59B0E8EC7 - 11d2f03c6afb2aa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122">
+               </Location>
+               <Location
+                  uuid = "CC85D73A-9C54-4890-96EC-F5B59B0E8EC7 - 11d2f03c6afb2aa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "821851AB-8339-411A-BB8B-6080F5094FC8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "solveInPrefixForm(str)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "821851AB-8339-411A-BB8B-6080F5094FC8 - 11d2f03c6afb226"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126">
+               </Location>
+               <Location
+                  uuid = "821851AB-8339-411A-BB8B-6080F5094FC8 - 11d2f03c6afb226"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0FAACF05-08DC-4AC7-8783-3EB89ACB7322"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "solveInPrefixForm(str)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "0FAACF05-08DC-4AC7-8783-3EB89ACB7322 - 11d2f03c6afb10e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150">
+               </Location>
+               <Location
+                  uuid = "0FAACF05-08DC-4AC7-8783-3EB89ACB7322 - 11d2f03c6afb10e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "53172A1D-EF6F-498A-8365-D53995593757"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "solveInPrefixForm(str)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "53172A1D-EF6F-498A-8365-D53995593757 - 11d2f03c6afb1b2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146">
+               </Location>
+               <Location
+                  uuid = "53172A1D-EF6F-498A-8365-D53995593757 - 11d2f03c6afb1b2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4B8AC74A-24E5-4705-823C-04DEE7FE0E21"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "solveInPrefixForm(str)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "4B8AC74A-24E5-4705-823C-04DEE7FE0E21 - 11d2f03c6afb017"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143">
+               </Location>
+               <Location
+                  uuid = "4B8AC74A-24E5-4705-823C-04DEE7FE0E21 - 11d2f03c6afb017"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8784877E-B32A-42C5-BD25-CB69DF876521"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "solveInPrefixForm(str)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "8784877E-B32A-42C5-BD25-CB69DF876521 - 11d2f03c6afb078"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "140"
+                  endingLineNumber = "140">
+               </Location>
+               <Location
+                  uuid = "8784877E-B32A-42C5-BD25-CB69DF876521 - 11d2f03c6afb078"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "140"
+                  endingLineNumber = "140">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F0A2B614-F3FD-43D4-9E52-6DAF4BCA1A16"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FourthLab/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "solveInPrefixForm(str)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "F0A2B614-F3FD-43D4-9E52-6DAF4BCA1A16 - 11d2f03c6afb0dd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "137"
+                  endingLineNumber = "137">
+               </Location>
+               <Location
+                  uuid = "F0A2B614-F3FD-43D4-9E52-6DAF4BCA1A16 - 11d2f03c6afb0dd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "solveInPrefixForm(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt;)"
+                  moduleName = "FourthLab"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemastahov/All_files/styding/LabsOAIP/2Sem/FourthLab/FourthLab/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "137"
+                  endingLineNumber = "137">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
