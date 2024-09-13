@@ -11,10 +11,9 @@ public class Main {
         System.out.println("Введите способ создания словаря (1 - чтение из файла | 2 - чтение первой пары слов из консоли " +
                 "| Любая клавиша - создание пустого словаря:");
 
-        switch (sc.nextByte()) {
-            case 1 -> dictionary = new Dictionary("input.txt");
-            case 2 -> dictionary = new Dictionary();
-            case 3 -> dictionary = new Dictionary(sc.nextLine(), sc.nextLine());
+        switch (sc.next()) {
+            case "1" -> dictionary = new Dictionary("input.txt");
+            case "2" -> dictionary = new Dictionary(sc.nextLine(), sc.nextLine());
             default -> dictionary = new Dictionary();
         }
 
@@ -33,19 +32,19 @@ public class Main {
             System.out.println("7 - Найти слово");
             System.out.println("Любая другая клавиша - Bыход");
 
-            switch (sc.nextByte()) {
-                case 1 -> dictionary.addFromFile("input.txt");
+            switch (sc.next()) {
+                case "1" -> dictionary.addFromFile("input.txt");
 
-                case 2 -> {
+                case "2" -> {
                     dictionary.addFromConsole();
                 }
 
-                case 3 -> {
+                case "3" -> {
                     System.out.println("Какое слово удалить (английское)?");
                     dictionary.remove(sc.next());
                 }
 
-                case 4 -> {
+                case "4" -> {
                     System.out.println("Введите английское слово для замены");
                     String key = sc.next();
 
@@ -53,11 +52,11 @@ public class Main {
                     dictionary.replace(key, sc.next());
                 }
 
-                case 5 -> System.out.println(dictionary.amount());
+                case "5" -> System.out.println(dictionary.amount());
 
-                case 6 -> dictionary.showAll();
+                case "6" -> dictionary.showAll();
 
-                case 7 -> {
+                case "7" -> {
                     System.out.println("Введите слово для поиска");
                     sc.reset();
                     dictionary.get(sc.next());
