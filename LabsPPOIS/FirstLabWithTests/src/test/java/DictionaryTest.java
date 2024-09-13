@@ -1,8 +1,6 @@
 import org.example.Dictionary;
 import org.junit.jupiter.api.Test;
 
-import java.util.Scanner;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DictionaryTest {
@@ -43,8 +41,30 @@ public class DictionaryTest {
         Dictionary d = new Dictionary();
 
         d.add("1", "2");
-        d.replace("1", "2", "3");
+        d.replace("1", "3");
         assertEquals("3", d.get("1"));
     }
 
+    @Test
+    public void testFileInput() {
+        Dictionary d = new Dictionary();
+
+        d.addFromFile("input.txt");
+        assertEquals("2", d.get("1"));
+        assertEquals("4", d.get("3"));
+    }
+
+    @Test
+    public void testGetWhenKeyIsNonexistent() {
+        Dictionary d = new Dictionary();
+
+        assertNull(d.get("1"));
+    }
+
+    @Test
+    public void testGet() {
+        Dictionary d = new Dictionary();
+        d.add("1", "2");
+        assertEquals("2", d.get("1"));
+    }
 }

@@ -1,7 +1,6 @@
 package org.example;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.InputStream;
 import java.util.TreeMap;
 import java.util.Scanner;
 
@@ -13,23 +12,32 @@ public class Dictionary implements Comparable<Dictionary> {
     }
 
     public Dictionary(String filesName) {
+        addFromFile(filesName);
+    }
 
-        try (Scanner sc = new Scanner(new File(filesName))) {
-            while (sc.hasNextLine()) {
-                String[] str = sc.nextLine().split(" ");
+    public void addFromFile(String filesName) {
+        InputStream ioStream = this.getClass()
+                .getClassLoader()
+                .getResourceAsStream(filesName);
 
-                dictionaryTree.put(str[0], str[1]);
-            }
-        } catch (IOException e) {
-            System.out.println("Файл не найден");
+        assert ioStream != null;
+
+        Scanner sc = new Scanner(ioStream);
+        while (sc.hasNextLine()) {
+            String[] str = sc.nextLine().split(" ");
+
+            this.add(str[0], str[1]);
+
         }
     }
+
 
     public Dictionary(String key, String value) {
         this.add(key, value);
     }
 
-    public Dictionary() {}
+    public Dictionary() {
+    }
 
     public void add(String key, String value) {
         if (dictionaryTree.containsKey(key)) {
@@ -40,16 +48,14 @@ public class Dictionary implements Comparable<Dictionary> {
     }
 
     public void addFromConsole() {
+        Scanner sc = new Scanner(System.in);
 
-        Scanner readFromConsole = new Scanner(System.in);
+        System.out.println("Введите слово на английском: ");
+        String str = sc.next();
 
-        System.out.println("Введите слово на английском, а затем чеерез пробел его переводы: ");
+        System.out.println("Введите слово на русском:");
 
-        while (readFromConsole.hasNextLine()) {
-            String[] str = readFromConsole.nextLine().split(" ");
-
-            this.add(str[0], str[1]);
-        }
+        this.add(str, sc.next());
     }
 
     public void remove(String key) {
@@ -57,13 +63,22 @@ public class Dictionary implements Comparable<Dictionary> {
     }
 
     public String get(String key) {
-        System.out.println(key + " - " + dictionaryTree.get(key));
+        if (dictionaryTree.containsKey(key)) {
+            System.out.println(key + " - " + dictionaryTree.get(key));
 
-        return dictionaryTree.get(key);
+            return dictionaryTree.get(key);
+        } else {
+            System.out.println("Такого слова нет");
+
+            return null;
+        }
     }
 
-    public void replace(String key, String oldValue, String newValue) {
-        dictionaryTree.replace(key, oldValue, newValue);
+    public void replace(String key, String newValue) {
+        if (dictionaryTree.containsKey(key))
+            dictionaryTree.replace(key, dictionaryTree.get(key), newValue);
+        else
+            System.out.println("Такого слова нет");
     }
 
     public int amount() {
