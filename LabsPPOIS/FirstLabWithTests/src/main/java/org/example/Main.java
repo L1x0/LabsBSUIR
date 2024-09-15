@@ -36,7 +36,7 @@ public class Main {
                 case "1" -> dictionary.addFromFile("input.txt");
 
                 case "2" -> {
-                    dictionary.addFromConsole();
+ //                   dictionary.addFromConsole();
                 }
 
                 case "3" -> {
@@ -54,7 +54,7 @@ public class Main {
 
                 case "5" -> System.out.println(dictionary.amount());
 
-                case "6" -> dictionary.showAll();
+ //               case "6" -> dictionary.showAll();
 
                 case "7" -> {
                     System.out.println("Введите слово для поиска");

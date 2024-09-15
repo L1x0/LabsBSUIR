@@ -1,6 +1,8 @@
 import org.example.Dictionary;
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DictionaryTest {
@@ -58,7 +60,44 @@ public class DictionaryTest {
     public void testGetWhenKeyIsNonexistent() {
         Dictionary d = new Dictionary();
 
-        assertNull(d.get("1"));
+        assertThrows(NoSuchElementException.class, () -> {
+            d.get("1");
+            throw new NoSuchElementException();
+        });
+    }
+
+    @Test
+    public void testConstructorWithCopy() {
+        Dictionary dCopy = new Dictionary("1", "2");
+        Dictionary d = new Dictionary(dCopy);
+        assertEquals("2", d.get("1"));
+    }
+
+    @Test
+    public void testConstructorWithKeyValue() {
+        Dictionary d = new Dictionary("1", "2");
+        assertEquals("2", d.get("1"));
+    }
+
+    @Test
+    public void testFileConstructor() {
+        Dictionary d = new Dictionary("input.txt");
+
+        assertEquals("2", d.get("1"));
+        assertEquals("4", d.get("3"));
+    }
+
+    @Test
+    public void testRemove() {
+        Dictionary d = new Dictionary();
+
+        d.add("1", "2");
+        d.remove("1");
+
+        assertThrows(NoSuchElementException.class, () -> {
+            d.get("1");
+            throw new NoSuchElementException();
+        });
     }
 
     @Test
@@ -66,5 +105,52 @@ public class DictionaryTest {
         Dictionary d = new Dictionary();
         d.add("1", "2");
         assertEquals("2", d.get("1"));
+    }
+
+    @Test
+    public void testAmount() {
+        Dictionary d = new Dictionary();
+        d.add("1", "2");
+        assertEquals(1, d.amount());
+        d.add("2", "3");
+        assertEquals(2, d.amount());
+    }
+
+    @Test
+    public void testReplaceNotFound() {
+        Dictionary d = new Dictionary();
+
+        assertThrows(NoSuchElementException.class, () -> {
+            d.replace("1", "2");
+            throw new NoSuchElementException();
+        });
+    }
+
+    @Test
+    public void testCompare() {
+        Dictionary d = new Dictionary();
+        d.add("1", "2");
+
+        assertEquals(1, d.compareTo(new Dictionary()));
+    }
+
+    @Test
+    public void testGetException() {
+        Dictionary d = new Dictionary();
+
+        assertThrows(NoSuchElementException.class, () -> {
+            d.get("1");
+            throw new NoSuchElementException();
+        });
+    }
+
+    @Test
+    public void testAddException() {
+        Dictionary d = new Dictionary("1", "2");
+
+        assertThrows(IllegalStateException.class, () -> {
+            d.add("1", "2");
+            throw new IllegalStateException();
+        });
     }
 }

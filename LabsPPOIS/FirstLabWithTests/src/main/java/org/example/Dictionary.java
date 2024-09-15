@@ -1,6 +1,7 @@
 package org.example;
 
 import java.io.InputStream;
+import java.util.NoSuchElementException;
 import java.util.TreeMap;
 import java.util.Scanner;
 
@@ -41,21 +42,10 @@ public class Dictionary implements Comparable<Dictionary> {
 
     public void add(String key, String value) {
         if (dictionaryTree.containsKey(key)) {
-            System.out.println("Это слово уже определено");
+            throw new IllegalStateException("Ключ " + key + " уже существует");
         } else {
             dictionaryTree.put(key, value);
         }
-    }
-
-    public void addFromConsole() {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Введите слово на английском: ");
-        String str = sc.next();
-
-        System.out.println("Введите слово на русском:");
-
-        this.add(str, sc.next());
     }
 
     public void remove(String key) {
@@ -68,9 +58,7 @@ public class Dictionary implements Comparable<Dictionary> {
 
             return dictionaryTree.get(key);
         } else {
-            System.out.println("Такого слова нет");
-
-            return null;
+            throw new NoSuchElementException("Ключ " + key + " не найден в библиотеке");
         }
     }
 
@@ -78,15 +66,15 @@ public class Dictionary implements Comparable<Dictionary> {
         if (dictionaryTree.containsKey(key))
             dictionaryTree.replace(key, dictionaryTree.get(key), newValue);
         else
-            System.out.println("Такого слова нет");
+            throw new NoSuchElementException("Ключ " + key + " не найден в библиотеке");
     }
 
     public int amount() {
         return dictionaryTree.size();
     }
 
-    public void showAll() {
-        System.out.println(dictionaryTree.toString());
+    public String returnAll() {
+        return dictionaryTree.toString();
     }
 
     public TreeMap<String, String> getDictionary() {
