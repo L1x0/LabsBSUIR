@@ -1,8 +1,6 @@
-import org.example.Dictionary;
+import org.FirstLabPPOIS.Dictionary;
 import org.junit.jupiter.api.Test;
-
 import java.util.NoSuchElementException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DictionaryTest {

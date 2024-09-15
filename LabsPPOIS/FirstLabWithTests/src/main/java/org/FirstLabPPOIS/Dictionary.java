@@ -1,4 +1,4 @@
-package org.example;
+package org.FirstLabPPOIS;
 
 import java.io.InputStream;
 import java.util.NoSuchElementException;
