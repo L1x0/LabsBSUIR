@@ -46,15 +46,6 @@ public class DictionaryTest {
     }
 
     @Test
-    public void testFileInput() {
-        Dictionary d = new Dictionary();
-
-        d.addFromFile("input.txt");
-        assertEquals("2", d.get("1"));
-        assertEquals("4", d.get("3"));
-    }
-
-    @Test
     public void testGetWhenKeyIsNonexistent() {
         Dictionary d = new Dictionary();
 
@@ -77,13 +68,6 @@ public class DictionaryTest {
         assertEquals("2", d.get("1"));
     }
 
-    @Test
-    public void testFileConstructor() {
-        Dictionary d = new Dictionary("input.txt");
-
-        assertEquals("2", d.get("1"));
-        assertEquals("4", d.get("3"));
-    }
 
     @Test
     public void testRemove() {
@@ -150,5 +134,20 @@ public class DictionaryTest {
             d.add("1", "2");
             throw new IllegalStateException();
         });
+    }
+
+    @Test
+    public void testToString() {
+        Dictionary d = new Dictionary("1", "2");
+
+        assertEquals("{1=2}", d.toString());
+    }
+
+    @Test
+    public void testKeySet() {
+        Dictionary d = new Dictionary();
+
+        d.add("1", "2");
+        assertEquals("[1]", d.getAllKeys());
     }
 }

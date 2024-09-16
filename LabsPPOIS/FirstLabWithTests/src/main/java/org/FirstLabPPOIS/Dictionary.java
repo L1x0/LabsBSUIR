@@ -1,9 +1,8 @@
 package org.FirstLabPPOIS;
 
-import java.io.InputStream;
 import java.util.NoSuchElementException;
 import java.util.TreeMap;
-import java.util.Scanner;
+
 
 public class Dictionary implements Comparable<Dictionary> {
     private TreeMap<String, String> dictionaryTree = new TreeMap<String, String>();
@@ -11,27 +10,6 @@ public class Dictionary implements Comparable<Dictionary> {
     public Dictionary(Dictionary dictionary) {
         dictionaryTree = dictionary.getDictionary();
     }
-
-    public Dictionary(String filesName) {
-        addFromFile(filesName);
-    }
-
-    public void addFromFile(String filesName) {
-        InputStream ioStream = this.getClass()
-                .getClassLoader()
-                .getResourceAsStream(filesName);
-
-        assert ioStream != null;
-
-        Scanner sc = new Scanner(ioStream);
-        while (sc.hasNextLine()) {
-            String[] str = sc.nextLine().split(" ");
-
-            this.add(str[0], str[1]);
-
-        }
-    }
-
 
     public Dictionary(String key, String value) {
         this.add(key, value);
@@ -73,10 +51,6 @@ public class Dictionary implements Comparable<Dictionary> {
         return dictionaryTree.size();
     }
 
-    public String returnAll() {
-        return dictionaryTree.toString();
-    }
-
     public TreeMap<String, String> getDictionary() {
         return this.dictionaryTree;
     }
@@ -84,6 +58,15 @@ public class Dictionary implements Comparable<Dictionary> {
     @Override
     public int compareTo(Dictionary o) {
         return Integer.compare(dictionaryTree.size(), o.amount());
+    }
+
+    @Override
+    public String toString() {
+        return dictionaryTree.toString();
+    }
+
+    public String getAllKeys() {
+        return dictionaryTree.keySet().toString();
     }
 
 }
