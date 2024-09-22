@@ -1,0 +1,3 @@
+/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/SecondLab/cmake-build-debug/CMakeFiles/SecondLab.dir
+/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/SecondLab/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/SecondLab/cmake-build-debug/CMakeFiles/rebuild_cache.dir
