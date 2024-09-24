@@ -5,7 +5,7 @@ import java.util.TreeMap;
 
 
 public class Dictionary implements Comparable<Dictionary> {
-    private TreeMap<String, String> dictionaryTree = new TreeMap<String, String>();
+    private TreeMap<String, String> dictionaryTree = new TreeMap<>();
 
     public Dictionary(Dictionary dictionary) {
         dictionaryTree = dictionary.getDictionary();

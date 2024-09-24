@@ -1,7 +1,6 @@
 package org.FirstLabPPOIS;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -80,7 +79,7 @@ public class UI {
                     System.out.println("Введите новый перевод:");
 
                     try {
-                        dictionary.replace(key, sc.next());;
+                        dictionary.replace(key, sc.next());
                     } catch (NoSuchElementException e) {
                         System.out.println(e.getMessage());
                     }
