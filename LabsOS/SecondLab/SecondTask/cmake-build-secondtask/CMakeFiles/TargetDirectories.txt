@@ -1,0 +1,3 @@
+/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/SecondLab/SecondTask/cmake-build-secondtask/CMakeFiles/SecondLab.dir
+/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/SecondLab/SecondTask/cmake-build-secondtask/CMakeFiles/edit_cache.dir
+/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/SecondLab/SecondTask/cmake-build-secondtask/CMakeFiles/rebuild_cache.dir
