@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GWF version="2.0">
     <staticSector>
-        <node type="node/const/perm/group" idtf="английский_язык" shapeColor="193" id="2626795786000" parent="0" left="0" top="0" right="246" bottom="41" textColor="164" text_angle="0" text_font="Times New Roman [Arial]" font_size="10" x="685.889" y="378.444" haveBus="false" idtf_pos="0">
+        <node type="node/const/perm/group" idtf="Создатель" shapeColor="193" id="2626795787040" parent="0" left="0" top="0" right="162" bottom="41" textColor="164" text_angle="0" text_font="Times New Roman [Arial]" font_size="10" x="533.667" y="1364" haveBus="false" idtf_pos="0">
+            <content type="0" mime_type="" content_visibility="false" file_name=""/>
+        </node>
+        <node type="node/const/perm/group" idtf="Музыкант" shapeColor="0" id="2626597454288" parent="0" left="0" top="0" right="154" bottom="41" textColor="164" text_angle="0" text_font="Times New Roman [Arial]" font_size="10" x="547.556" y="1232.89" haveBus="false" idtf_pos="0">
+            <content type="0" mime_type="" content_visibility="false" file_name=""/>
+        </node>
+        <node type="node/const/perm/group" idtf="английский_язык" shapeColor="0" id="2626795786000" parent="0" left="0" top="0" right="246" bottom="41" textColor="164" text_angle="0" text_font="Times New Roman [Arial]" font_size="10" x="685.889" y="378.444" haveBus="false" idtf_pos="0">
             <content type="0" mime_type="" content_visibility="false" file_name=""/>
         </node>
         <node type="node/const/perm/group" idtf="русский_язык" shapeColor="0" id="2626795781424" parent="0" left="0" top="0" right="197" bottom="41" textColor="164" text_angle="0" text_font="Times New Roman [Arial]" font_size="10" x="685.333" y="261.222" haveBus="false" idtf_pos="0">
@@ -82,13 +88,7 @@
         <node type="node/const/perm/tuple" idtf="" shapeColor="0" id="2626795780176" parent="0" x="939.222" y="1573.44" haveBus="false" idtf_pos="0">
             <content type="0" mime_type="" content_visibility="false" file_name=""/>
         </node>
-        <node type="node/const/perm/general" idtf="Создатель" shapeColor="0" id="2626795787040" parent="0" left="0" top="0" right="162" bottom="41" textColor="164" text_angle="0" text_font="Times New Roman [Arial]" font_size="10" x="533.667" y="1364" haveBus="false" idtf_pos="0">
-            <content type="0" mime_type="" content_visibility="false" file_name=""/>
-        </node>
         <node type="node/const/perm/relation" idtf="Первый домен*" shapeColor="0" id="2626795786832" parent="0" left="0" top="0" right="217" bottom="41" textColor="164" text_angle="0" text_font="Times New Roman [Arial]" font_size="10" x="428.667" y="1154" haveBus="false" idtf_pos="0">
-            <content type="0" mime_type="" content_visibility="false" file_name=""/>
-        </node>
-        <node type="node/const/perm/general" idtf="Музыкант" shapeColor="0" id="2626597454288" parent="0" left="0" top="0" right="154" bottom="41" textColor="164" text_angle="0" text_font="Times New Roman [Arial]" font_size="10" x="547.556" y="1232.89" haveBus="false" idtf_pos="0">
             <content type="0" mime_type="" content_visibility="false" file_name=""/>
         </node>
         <node type="node/const/perm/relation" idtf="Второй домен*" shapeColor="0" id="2626792414688" parent="0" left="0" top="0" right="220" bottom="41" textColor="164" text_angle="0" text_font="Times New Roman [Arial]" font_size="10" x="461.444" y="1287.33" haveBus="false" idtf_pos="0">
