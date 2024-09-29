@@ -1,0 +1,22 @@
+Definition 
+	<- concept_definition;
+	=> nrel_constant: ... (*
+		-> concept_humans;;
+    	-> concept_territory;;
+	*);
+	=> nrel_broadcast: ... (*
+    	-> [это центральная организация политической власти на определенной территории, обладающая суверенитетом, аппаратом управления обществом и монополией (исключительным правом) на принуждение];;
+	*);;
+
+concept_russian_language -> [это центральная организация политической власти на определенной территории, обладающая суверенитетом, аппаратом управления обществом и монополией (исключительным правом) на принуждение];;
+
+concept_country 
+	<- rrel_key_element: Definition;
+	<|- concept_antisymmetry;
+	<|- concept_functionality;
+	=> nrel_main_identifier: [country];
+	=> nrel_main_identifier: [страна]; 
+	<- rrel_the_relationship_under_study: the_subject_area_of_the_country;
+	-> rrel_exmple: [Беларусь];
+	=> nrel_first_domain: concept_humans;
+	=> nrel_second_domain: concept_territory;;
