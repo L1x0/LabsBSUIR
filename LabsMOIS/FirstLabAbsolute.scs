@@ -1,17 +1,3 @@
-Statement
-	<= nrel_sc_text_translation: ... (*
-		-> rrel_exmple: 
- 			[на территории каждой страны есть своя влать и законы]
- 			(* <- lang_ru;; *);;
-	*);
- 	<= nrel_using_constants: ... (*
-  -> concept_human;;
-    -> concept_territory;;
- *);
- -> rrel_key_sc_element: concept_country;
- <- statement;
- -> [утверждение страна] (* <- lang_ru;; *);;
-
 concept_country
 	<- rrel_key_sc_element : Statement (*
 		<= nrel_sc_text_translation: ... (*
@@ -42,14 +28,14 @@ concept_country
  	-> rrel_key_sc_element: concept_country;;
  *); 
 
- => nrel_main_identifier: [country] (* <- lang_ru;; *);
+ => nrel_main_identifier: [country] (* <- lang_eng;; *);
  => nrel_main_identifier: [страна] (* <- lang_ru;; *);
  <- rrel_the_relationship_under_study: the_subject_area_of_the_country;
- <= rrel_subdividing: ... (*
+ <= nrel_subdividing: ... (*
    -> concept_monarchy;;
    -> concept_republic;;
  *);
- <= rrel_subdividing: ... (*
+ <= nrel_subdividing: ... (*
    -> concept_federation;;
    -> concept_unitary_state;;
  *);
@@ -72,4 +58,4 @@ nrel_measurement_in_years
 
 concept_33_years
  <- concept_age;
- => nrel_measurement_in_years: 10 (* <- concept_number;; *);;
+ => nrel_measurement_in_years: 33 (* <- concept_number;; *);;
