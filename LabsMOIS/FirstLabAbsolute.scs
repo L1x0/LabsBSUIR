@@ -1,19 +1,21 @@
 concept_country
-	<- rrel_key_sc_element : Statement (*
+	<- rrel_key_sc_element : ... (*
 		<= nrel_sc_text_translation: ... (*
 		-> rrel_exmple: 
  			[на территории каждой страны есть своя влать и законы]
  			(* <- lang_ru;; *);;
 		*);;
  		<= nrel_using_constants: ... (*
- 		 -> concept_human;;
-   	 -> concept_territory;;
+			<- sc_node_tuple;;
+ 			 -> concept_govement;;
+			 -> concept_rules;;
+			 -> concept_territory;;
+   	 		-> concept_territory;;
  		*);;
- 		-> rrel_key_sc_element: concept_country;;
  		<- statement;;
- 		-> [утверждение страна] (* <- lang_ru;; *);;
+ 		-> [Утв. страна] (* <- lang_ru;; *);;
 	*);
- 	<- rrel_key_element: Definition (*
+ 	<- rrel_key_element: ... (*
 		<= nrel_sc_text_translation: ... (*
 			-> rrel_exmple: 
  					[это центральная организация политической власти на определенной территории, обладающая суверенитетом, аппаратом управления обществом и монополией (исключительным правом) на принуждение]
@@ -21,11 +23,13 @@ concept_country
 		*);;
 		<- definition;;
  		<= nrel_using_constants: ... (*
-  	-> concept_human;;
-    -> concept_territory;;
-	*);;
- 	-> rrel_main_identifier: [определение страна] (* <- lang_ru;; *);;
- 	-> rrel_key_sc_element: concept_country;;
+			<- sc_node_tuple;;
+  			-> concept_organistion;;
+   	 		-> concept_territory;;
+			-> concept_sovereignty;;
+			-> concept_society;;
+		*);;
+ 	-> rrel_main_identifier: [Опр. страна] (* <- lang_ru;; *);;
  *); 
 
  => nrel_main_identifier: [country] (* <- lang_eng;; *);
@@ -51,7 +55,7 @@ Russia
 Belarus 
   => nrel_location: Europe;
 	=> [Беларусь] (* <- lang_ru;; *); 
- 	=> nrel_age: concept_33_years;;
+ 	=> concept_33_years;;
 
 nrel_measurement_in_years
  <= nrel_inclusion: nrel_measurement;;
