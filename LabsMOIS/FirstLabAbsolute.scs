@@ -9,7 +9,7 @@ concept_country
 			<- sc_node_tuple;;
  			-> concept_govement;;
 			-> concept_rules;;
-			-> concept_territory;;
+			-> concept_country;;
    	 		-> concept_territory;;
  		*);;
  		<- statement;;
@@ -34,7 +34,7 @@ concept_country
 
  => nrel_main_identifier: [country] (* <- lang_eng;; *);
  => nrel_main_identifier: [страна] (* <- lang_ru;; *);
- <- rrel_the_relationship_under_study: the_subject_area_of_the_country;
+ <- rrel_the_concept_under_study: the_subject_area_of_the_country;
  <= nrel_subdividing: ... (*
    -> concept_monarchy;;
    -> concept_republic;;
