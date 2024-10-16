@@ -2,14 +2,14 @@ concept_country
 	<- rrel_key_sc_element : ... (*
 		<= nrel_sc_text_translation: ... (*
 		-> rrel_exmple: 
- 			[на территории каждой страны есть своя влать и законы]
+ 			[на территории каждой страны есть своя влаcть и законы]
  			(* <- lang_ru;; *);;
 		*);;
  		<= nrel_using_constants: ... (*
 			<- sc_node_tuple;;
- 			 -> concept_govement;;
-			 -> concept_rules;;
-			 -> concept_territory;;
+ 			-> concept_govement;;
+			-> concept_rules;;
+			-> concept_territory;;
    	 		-> concept_territory;;
  		*);;
  		<- statement;;
