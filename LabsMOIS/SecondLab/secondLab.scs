@@ -40,12 +40,12 @@ section_subject_domain_of_hymn = [* subject_domain_of_hymn
 	<= nrel_private_subject_domain:
 		subject_domain_music;
 	=> nrel_private_subject_domain:
-		section_subject_domain_of_musical_component (* <- sc_node_struct;; *);
-		section_subject_domain_of_lyrics (* <- sc_node_struct;; *);
-	  	section_subject_domain_of_social_context (* <- sc_node_struct;; *);
-	  	section_subject_domain_of_symbolism (* <- sc_node_struct;; *);
-		section_subject_domain_of_historical_aspect (* <- sc_node_struct;; *);
-	  	section_subject_domain_of_etiquette (* <- sc_node_struct;; *);
+		subject_domain_of_musical_component (* <- sc_node_struct;; *);
+		subject_domain_of_lyrics (* <- sc_node_struct;; *);
+	  	subject_domain_of_social_context (* <- sc_node_struct;; *);
+	  	subject_domain_of_symbolism (* <- sc_node_struct;; *);
+		subject_domain_of_historical_aspect (* <- sc_node_struct;; *);
+	  	subject_domain_of_etiquette (* <- sc_node_struct;; *);
 	<- subject_domain;
 	-> rrel_maximum_studied_object_class: concept_sounds;
 	-> rrel_not_maximum_studied_object_class:
