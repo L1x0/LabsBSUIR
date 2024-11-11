@@ -1,64 +1,121 @@
 section_subject_domain_of_hymn
-	=> [Раздел. Предметная область гимна] (* <- lang_ru;; *);
-	=> [Selection. Subject domain of hymn] (* <- lang_eng;; *);
-	<= nrel_decomposition: ... (*
+	=> nrel_main_idtf: [Раздел. Предметная область гимна] (* <- lang_ru;; *); [Selection. Subject domain of hymn] (* <- lang_eng;; *);
+	<= nrel_decomposition: ... (* 
 		<- sc_node_tuple;;
-		-> section_subject_domain_of_musical_component (* <- sc_node_struct;; *);;
-		-> section_subject_domain_of_lyrics (* <- sc_node_struct;; *);;
-		-> section_subject_domain_of_social_context (* <- sc_node_struct;; *);;
-		-> section_subject_domain_of_symbolism (* <- sc_node_struct;; *);;
-		-> section_subject_domain_of_historical_aspect (* <- sc_node_struct;; *);;
-		-> section_subject_domain_of_etiquette (* <- sc_node_struct;; *);;
-		-> section_subject_domain_of_musical_form (* <- sc_node_struct;; *);;
-		-> section_subject_domain_of_harmony_and_melody (* <- sc_node_struct;; *);;
-		-> section_subject_domain_of_rhythm_and_meter (* <- sc_node_struct;; *);;
-		-> section_subject_domain_of_vocal_technique (* <- sc_node_struct;; *);;
-		-> section_subject_domain_of_arrangement_and_instrumentation (* <- sc_node_struct;; *);;
-		-> section_subject_domain_of_genre_affiliation (* <- sc_node_struct;; *);;
-		-> section_subject_domain_of_history_of_music (* <- sc_node_struct;; *);;
-		-> section_subject_domain_of_musical_symbols_and_metaphors (* <- sc_node_struct;; *);;
-		-> section_subject_domain_of_performance_practice (* <- sc_node_struct;; *);;
-		-> section_subject_domain_of_music_psychology (* <- sc_node_struct;; *);;
+		-> section_subject_domain_of_musical_component;;
+		-> section_subject_domain_of_lyrics;;
+		-> section_subject_domain_of_social_context;;
+		-> section_subject_domain_of_symbolism;;
+		-> section_subject_domain_of_historical_aspect;;
+		-> section_subject_domain_of_etiquette;;
 	*);
-	<- rrel_key_elements: ... (*
-		<- sc_node_tuple;;
+	<- rrel_key_elements: ...
+	(*	<- sc_node_tuple;;
 		-> melody;;
 		-> lyrics;;
 		-> rhythm;;
 		-> harmony;;
-		-> form;;
-		-> key_signature;;
-		-> arrangement;;
-		-> emotional_climax;;
-		-> ritual_performance;;
-		-> symbolism;;
-	*);;
+		-> form;;	*);;
 
 section_subject_domain_of_hymn = [* subject_domain_of_hymn
-	=> nrel_main_idtf: [Предметная область гимна] (*<- lang_ru;;*);[Subject domain of pets](*<- lang_en;;*);
+	=> nrel_main_idtf: [Предметная область гимна] (*<- lang_ru;;*);[Subject domain of hymn](*<- lang_en;;*);
     <- sc_node_struct;
 	<= nrel_private_subject_domain:
 		subject_domain_music;
 	=> nrel_private_subject_domain:
-		subject_domain_of_musical_component (* <- sc_node_struct;; *);
-		subject_domain_of_lyrics (* <- sc_node_struct;; *);
-	  	subject_domain_of_social_context (* <- sc_node_struct;; *);
-	  	subject_domain_of_symbolism (* <- sc_node_struct;; *);
-		subject_domain_of_historical_aspect (* <- sc_node_struct;; *);
-	  	subject_domain_of_etiquette (* <- sc_node_struct;; *);
+		subject_domain_of_musical_component;
+		subject_domain_of_lyrics;
+	  subject_domain_of_social_context;
+		subject_domain_of_symbolism;
+		subject_domain_of_historical_aspect;
+  	subject_domain_of_etiquette;
 	<- subject_domain;
 	-> rrel_maximum_studied_object_class: concept_sounds;
 	-> rrel_not_maximum_studied_object_class:
 		concept_melody;
 		concept_rythm;
-	-> rrel_explored_relation: nrel_melody_to_lyrics;
+	-> rrel_explored_relation:
+		nrel_melody_to_lyrics;
 		nrel_harmony_to_melody;
 		nrel_rhythm_to_form;
 		nrel_arrangement_to_performance;
-		nrel_lyrics_to_symbolism;
-		nrel_emotional_climax_to_performance;
-		nrel_melody_to_key_signature;
-		nrel_form_to_arrangement;
-		nrel_symbolism_to_cultural_context;
-		nrel_ritual_performance_to_social_context;;
+		nrel_lyrics_to_symbolism;;
 *];;
+
+section_subject_domain_of_musical_component = [*
+                               => nrel_main_idtf:[Раздел. Предметная область музыкальных компонентов] (*<- lang_ru;;*);[Section. Subject domain of musical components](*<- lang_en;;*);;*];;  
+
+section_subject_domain_of_lyrics = [*
+                               => nrel_main_idtf:[Раздел. Предметная область лирики] (*<- lang_ru;;*);[Section. Subject domain of lyrics](*<- lang_en;;*);;*];;  															 
+
+section_subject_domain_of_social_context = [*
+                               => nrel_main_idtf:[Раздел. Предметная социального контекста] (*<- lang_ru;;*);[Section. Subject domain of social context](*<- lang_en;;*);;*];; 
+
+section_subject_domain_of_symbolism = [*
+                               => nrel_main_idtf:[Раздел. Предметная социального символизма] (*<- lang_ru;;*);[Section. Subject domain of social symbolism](*<- lang_en;;*);;*];; 
+
+section_subject_domain_of_historical_aspect = [*
+                               => nrel_main_idtf:[Раздел. Предметная исторического аспекта] (*<- lang_ru;;*);[Section. Subject domain of historical aspect](*<- lang_en;;*);;*];; 
+
+section_subject_domain_of_etiquette = [*
+                               => nrel_main_idtf:[Раздел. Предметная этикета] (*<- lang_ru;;*);[Section. Subject domain of etiquette](*<- lang_en;;*);;*];; 
+
+
+
+nrel_melody_to_lyrics  <- sc_node_norole_relation; 
+                               => nrel_main_idtf:[лиричность мелодии*] (*<- lang_ru;;*);[melody to lyrics](*<- lang_en;;*);;
+
+
+nrel_harmony_to_melody  <- sc_node_norole_relation; 
+                               => nrel_main_idtf:[гармоничность мелодии*] (*<- lang_ru;;*);[hormony to lyrics](*<- lang_en;;*);;
+
+nrel_rhythm_to_form  <- sc_node_norole_relation; 
+                               => nrel_main_idtf:[форма ритма*] (*<- lang_ru;;*);[rhytm to form](*<- lang_en;;*);;
+
+nrel_arrangement_to_performance  <- sc_node_norole_relation; 
+                               => nrel_main_idtf:[аранжировка к выступлению*] (*<- lang_ru;;*);[arrangement to performance](*<- lang_en;;*);;
+
+nrel_lyrics_to_symbolism  <- sc_node_norole_relation; 
+                               => nrel_main_idtf:[лирика символизма*] (*<- lang_ru;;*);[lyrics to symbolism](*<- lang_en;;*);;
+
+														
+
+
+subject_domain_of_musical_component => nrel_main_idtf:[Предметная область музыкальных компонентов] (*<- lang_ru;;*);[Subject domain of musical components](*<- lang_en;;*);<- sc_node_struct;;  
+
+subject_domain_of_lyrics => nrel_main_idtf:[Предметная область лирики] (*<- lang_ru;;*);[Subject domain of lyrics](*<- lang_en;;*);<- sc_node_struct;;  															 
+
+subject_domain_of_social_context => nrel_main_idtf:[Предметная область социального контекста] (*<- lang_ru;;*);[Subject domain of social context](*<- lang_en;;*);<- sc_node_struct;; 
+
+subject_domain_of_symbolism => nrel_main_idtf:[Предметная область социального символизма] (*<- lang_ru;;*);[Subject domain of social symbolism](*<- lang_en;;*);<- sc_node_struct;; 
+
+subject_domain_of_historical_aspect => nrel_main_idtf:[Предметная область исторического аспекта] (*<- lang_ru;;*);[Subject domain of historical aspect](*<- lang_en;;*);<- sc_node_struct;; 
+
+subject_domain_of_etiquette => nrel_main_idtf:[Предметная область этикета] (*<- lang_ru;;*);[Subject domain of etiquette](*<- lang_en;;*);<- sc_node_struct;; 
+
+subject_domain_music => nrel_main_idtf:[Предметная область музыки] (*<- lang_ru;;*);[Subject domain of music](*<- lang_en;;*);<- sc_node_struct;; 
+
+
+
+concept_melody <- sc_node_class;
+                => nrel_main_idtf:[мелодия] (*<- lang_ru;;*);[melody](*<- lang_en;;*);;
+
+concept_rythm <- sc_node_class;
+                => nrel_main_idtf:[ритм] (*<- lang_ru;;*);[rhythm](*<- lang_en;;*);;
+
+concept_sounds <- sc_node_class;
+                => nrel_main_idtf:[звуки] (*<- lang_ru;;*);[sounds](*<- lang_en;;*);;
+
+
+lyrics => nrel_main_idtf:[лирика] (*<- lang_ru;;*);[lyrics](*<- lang_en;;*);<- sc_node_struct;;  
+
+melody => nrel_main_idtf:[мелодия] (*<- lang_ru;;*);[melody](*<- lang_en;;*);<- sc_node_struct;;  															 
+
+rhythm => nrel_main_idtf:[ритм] (*<- lang_ru;;*);[rhythm](*<- lang_en;;*);<- sc_node_struct;; 
+
+harmony => nrel_main_idtf:[гармония] (*<- lang_ru;;*);[harmony](*<- lang_en;;*);<- sc_node_struct;; 
+
+form => nrel_main_idtf:[форма] (*<- lang_ru;;*);[form](*<- lang_en;;*);<- sc_node_struct;; 
+
+								
+																							
