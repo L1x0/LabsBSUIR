@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="by.astakhau.otis.HelloController">
+    <!-- Верхняя панель с кнопками -->
+    <top>
+        <HBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Button text="Добавить вершину" onAction="#onAddVertex"/>
+            <Button text="Удалить вершину" onAction="#onDeleteVertex"/>
+            <Button text="Добавить ребро" onAction="#onAddEdge"/>
+            <Button text="Удалить ребро" onAction="#onDeleteEdge"/>
+            <Button text="Цвет графа" onAction="#onColorGraph"/>
+        </HBox>
+    </top>
+    
+    <!-- Центр для отображения графа -->
+    <center>
+        <Pane fx:id="graphPane" style="-fx-background-color: #f0f0f0;">
+            <!-- Графические элементы будут добавляться динамически -->
+        </Pane>
+    </center>
+    
+    <!-- Нижняя панель для отображения результатов -->
+    <bottom>
+        <HBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label fx:id="statusLabel" text="Готов."/>
+        </HBox>
+    </bottom>
+    
+    <!-- Правая боковая панель для дополнительной информации и функций -->
+    <right>
+        <VBox spacing="10" prefWidth="300">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="Информация о графе" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+            <TextArea fx:id="infoArea" editable="false" wrapText="true" prefHeight="200"/>
+            
+            <Button text="Показать матрицу смежности" onAction="#onShowAdjacencyMatrix"/>
+            <Button text="Проверить связность" onAction="#onCheckConnected"/>
+            <Button text="Сделать граф связным" onAction="#onMakeConnected"/>
+            <Button text="Найти гамильтонов цикл" onAction="#onFindHamiltonianCycle"/>
+            <Button text="Вычислить диаметр, радиус и центр" onAction="#onComputeGraphProperties"/>
+            <Button text="Вычислить тензорное произведение" onAction="#onComputeTensorProduct"/>
+            <Button text="Вычислить декартово произведение" onAction="#onComputeCartesianProduct"/>
+        </VBox>
+    </right>
+</BorderPane>
