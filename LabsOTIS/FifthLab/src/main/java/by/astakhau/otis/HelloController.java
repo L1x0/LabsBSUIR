@@ -15,6 +15,8 @@ import javafx.scene.text.Text;
 
 import java.util.*;
 
+import javafx.application.Platform;
+
 public class HelloController {
     @FXML
     private Pane graphPane;
@@ -28,6 +30,21 @@ public class HelloController {
     private List<Vertex> vertices = new ArrayList<>();
     private List<Edge> edges = new ArrayList<>();
     private boolean isGreen = true; // Флаг для переключения цвета
+
+    private int[][] firstGraphMatrix;
+    private int[][] secondGraphMatrix;
+    private List<String> firstGraphVertices; // Сохраняем метки вершин
+    private List<String> secondGraphVertices;
+    private boolean isFirstGraphSaved = false;
+
+    @FXML
+    public void initialize() {
+        // Устанавливаем Platform.setImplicitExit(true) для корректного завершения
+        Platform.setImplicitExit(true);
+        
+        // Инициализируем остальные компоненты
+        graphPane.setFocusTraversable(true);
+    }
 
     @FXML
     protected void onAddVertex() {
@@ -516,15 +533,89 @@ public class HelloController {
 
     @FXML
     protected void onComputeTensorProduct() {
-        // Для простоты предполагаем, что одна графовая структура используется как единичный граф
-        // В реальном приложении потребуется выбор двух разных графов или сохранение нескольких графов
-        showAlert("Информация", "Функция тензорного произведения пока не реализована.");
+        if (firstGraphMatrix == null || secondGraphMatrix == null) {
+            showAlert("Ошибка", "Необходимо сохранить оба графа.");
+            return;
+        }
+
+        int n1 = firstGraphMatrix.length;
+        int n2 = secondGraphMatrix.length;
+        int[][] result = new int[n1 * n2][n1 * n2];
+
+        // Вычисление тензорного произведения
+        for (int i1 = 0; i1 < n1; i1++) {
+            for (int j1 = 0; j1 < n1; j1++) {
+                for (int i2 = 0; i2 < n2; i2++) {
+                    for (int j2 = 0; j2 < n2; j2++) {
+                        result[i1 * n2 + i2][j1 * n2 + j2] = 
+                            firstGraphMatrix[i1][j1] * secondGraphMatrix[i2][j2];
+                    }
+                }
+            }
+        }
+
+        displayProductMatrix(result, "Тензорное произведение");
     }
 
     @FXML
     protected void onComputeCartesianProduct() {
-        // Аналогично, предполагаем, что тензорное произведение не реализовано
-        showAlert("Информация", "Функция декартова произведения пока не реализована.");
+        if (firstGraphMatrix == null || secondGraphMatrix == null) {
+            showAlert("Ошибка", "Необходимо сохранить оба графа.");
+            return;
+        }
+
+        int n1 = firstGraphMatrix.length;
+        int n2 = secondGraphMatrix.length;
+        int[][] result = new int[n1 * n2][n1 * n2];
+
+        // Вычисление декартова произведения
+        for (int i1 = 0; i1 < n1; i1++) {
+            for (int j1 = 0; j1 < n1; j1++) {
+                for (int i2 = 0; i2 < n2; i2++) {
+                    for (int j2 = 0; j2 < n2; j2++) {
+                        if (i1 == j1 && secondGraphMatrix[i2][j2] == 1) {
+                            result[i1 * n2 + i2][j1 * n2 + j2] = 1;
+                        }
+                        if (firstGraphMatrix[i1][j1] == 1 && i2 == j2) {
+                            result[i1 * n2 + i2][j1 * n2 + j2] = 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        displayProductMatrix(result, "Декартово произведение");
+    }
+
+    private void displayProductMatrix(int[][] matrix, String title) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(title).append(":\n\n");
+
+        // Создаем метки для вершин произведения
+        List<String> productVertices = new ArrayList<>();
+        for (String v1 : firstGraphVertices) {
+            for (String v2 : secondGraphVertices) {
+                productVertices.add(v1 + v2);
+            }
+        }
+
+        // Выводим заголовок
+        sb.append("\t");
+        for (String vertex : productVertices) {
+            sb.append(vertex).append("\t");
+        }
+        sb.append("\n");
+
+        // Выводим матрицу
+        for (int i = 0; i < matrix.length; i++) {
+            sb.append(productVertices.get(i)).append("\t");
+            for (int j = 0; j < matrix[i].length; j++) {
+                sb.append(matrix[i][j]).append("\t");
+            }
+            sb.append("\n");
+        }
+
+        infoArea.setText(sb.toString());
     }
 
     // Вспомогательные методы
@@ -698,4 +789,56 @@ public class HelloController {
     // По этой причине, эти функции пока не реализованы и отображают соответствующие уведомления.
 
     // Закрытые классы Vertex и Edge уже определены выше
+
+    // Добавляем метод для сохранения графа
+    @FXML
+    protected void onSaveGraph() {
+        if (vertices.isEmpty()) {
+            showAlert("Ошибка", "Граф пуст.");
+            return;
+        }
+
+        // Создаем матрицу смежности текущего графа
+        int n = vertices.size();
+        int[][] adjMatrix = new int[n][n];
+        List<String> vertexLabels = new ArrayList<>();
+        Map<String, Integer> vertexIndex = new HashMap<>();
+
+        for (int i = 0; i < n; i++) {
+            vertexLabels.add(vertices.get(i).getLabel());
+            vertexIndex.put(vertices.get(i).getLabel(), i);
+        }
+
+        for (Edge edge : edges) {
+            int i = vertexIndex.get(edge.getStart().getLabel());
+            int j = vertexIndex.get(edge.getEnd().getLabel());
+            adjMatrix[i][j] = 1;
+            adjMatrix[j][i] = 1;
+        }
+
+        if (!isFirstGraphSaved) {
+            // Сохраняем первый граф
+            firstGraphMatrix = adjMatrix;
+            firstGraphVertices = vertexLabels;
+            isFirstGraphSaved = true;
+            statusLabel.setText("Первый граф сохранен");
+            
+            // Очищаем текущий граф
+            clearCurrentGraph();
+        } else {
+            // Сохраняем второй граф
+            secondGraphMatrix = adjMatrix;
+            secondGraphVertices = vertexLabels;
+            statusLabel.setText("Второй граф сохранен");
+            
+            // Активируем кнопки произведений
+            // (это нужно реализовать в FXML)
+        }
+    }
+
+    private void clearCurrentGraph() {
+        graphPane.getChildren().clear();
+        vertices.clear();
+        edges.clear();
+    }
 }

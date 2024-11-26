@@ -22,6 +22,7 @@
             <Button text="Добавить ребро" onAction="#onAddEdge"/>
             <Button text="Удалить ребро" onAction="#onDeleteEdge"/>
             <Button text="Цвет графа" onAction="#onColorGraph"/>
+            <Button text="Сохранить граф" onAction="#onSaveGraph"/>
         </HBox>
     </top>
     
