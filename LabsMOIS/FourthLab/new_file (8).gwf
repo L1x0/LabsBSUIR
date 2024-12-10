@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<GWF version="2.0">
+    <staticSector>
+       <contour type="" idtf="" shapeColor="255" id="185" parent="0" left="0" top="0" right="16.125" bottom="25" textColor="164" text_angle="0" text_font="Times New Roman [Arial]" font_size="10">
+           <points>
+               <point x="362.8629332574601" y="341.08008333562094"/>
+               <point x="373.8629332574601" y="456.08008333562094"/>
+               <point x="909.8629332574598" y="435.08008333562094"/>
+               <point x="903.8629332574598" y="344.08008333562094"/>
+           </points>
+       </contour>
+       <node type="node/const/perm/group" idtf="concept_rock_music" shapeColor="0" id="180" parent="185" left="0" top="0" right="16.125" bottom="25" textColor="164" text_angle="0" text_font="Times New Roman [Arial]" font_size="10" x="611.8629332574601" y="399.08008333562094" haveBus="false" idtf_pos="0">
+           <content type="0" mime_type="" content_visibility="false" file_name=""/>
+       </node>
+       <node type="node/const/perm/group" idtf="concept_music" shapeColor="0" id="181" parent="185" left="0" top="0" right="16.125" bottom="25" textColor="164" text_angle="0" text_font="Times New Roman [Arial]" font_size="10" x="421.8629332574601" y="403.08008333562094" haveBus="false" idtf_pos="0">
+           <content type="0" mime_type="" content_visibility="false" file_name=""/>
+       </node>
+       <node type="node/var/perm/general" idtf="" shapeColor="0" id="182" parent="185" left="0" top="0" right="16.125" bottom="25" textColor="164" text_angle="0" text_font="Times New Roman [Arial]" font_size="10" x="853.8629332574598" y="400.08008333562094" haveBus="false" idtf_pos="0">
+           <content type="0" mime_type="" content_visibility="false" file_name=""/>
+       </node>
+       <arc type="pair/var/pos/perm/orient/membership" idtf="" shapeColor="0" id="183" parent="185" id_b="181" id_e="180" b_x="441.8585025972185" b_y="402.6591239802013" e_x="591.8673639175221" e_y="399.50104268250755" dotBBalance="0" dotEBalance="0">
+           <points/>
+       </arc>
+       <arc type="pair/var/pos/perm/orient/membership" idtf="" shapeColor="0" id="184" parent="185" id_b="180" id_e="182" b_x="631.8627625062834" b_y="399.1627272580337" e_x="833.8631040086416" e_y="399.9974394119614" dotBBalance="0" dotEBalance="0">
+           <points/>
+       </arc>
+    </staticSector>
+</GWF>
