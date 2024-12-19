@@ -6,8 +6,8 @@ public class Main {
         ArrayList<Integer> list = generateRandomList();
         ArrayList<Integer> NegativeList = getNegativeValuesFromList(list);
 
-        for (Integer integer : NegativeList) {
-            System.out.println(integer);
+        for (int  integer : NegativeList) {
+            System.out.print(integer + "  ");
         }
     }
 

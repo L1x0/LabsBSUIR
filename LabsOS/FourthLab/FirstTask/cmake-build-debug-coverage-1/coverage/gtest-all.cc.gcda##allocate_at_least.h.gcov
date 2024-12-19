@@ -1,0 +1,99 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__memory/allocate_at_least.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___MEMORY_ALLOCATE_AT_LEAST_H
+        -:   10:#define _LIBCPP___MEMORY_ALLOCATE_AT_LEAST_H
+        -:   11:
+        -:   12:#include <__config>
+        -:   13:#include <__memory/allocator_traits.h>
+        -:   14:#include <cstddef>
+        -:   15:
+        -:   16:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   17:#  pragma GCC system_header
+        -:   18:#endif
+        -:   19:
+        -:   20:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   21:
+        -:   22:#if _LIBCPP_STD_VER >= 23
+        -:   23:template <class _Pointer>
+        -:   24:struct allocation_result {
+        -:   25:  _Pointer ptr;
+        -:   26:  size_t count;
+        -:   27:};
+        -:   28:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(allocation_result);
+        -:   29:
+        -:   30:template <class _Alloc>
+        -:   31:[[nodiscard]] _LIBCPP_HIDE_FROM_ABI constexpr allocation_result<typename allocator_traits<_Alloc>::pointer>
+        -:   32:allocate_at_least(_Alloc& __alloc, size_t __n) {
+        -:   33:  if constexpr (requires { __alloc.allocate_at_least(__n); }) {
+        -:   34:    return __alloc.allocate_at_least(__n);
+        -:   35:  } else {
+        -:   36:    return {__alloc.allocate(__n), __n};
+        -:   37:  }
+        -:   38:}
+        -:   39:
+        -:   40:template <class _Alloc>
+        -:   41:[[nodiscard]] _LIBCPP_HIDE_FROM_ABI constexpr auto __allocate_at_least(_Alloc& __alloc, size_t __n) {
+        -:   42:  return std::allocate_at_least(__alloc, __n);
+        -:   43:}
+        -:   44:#else
+        -:   45:template <class _Pointer>
+        -:   46:struct __allocation_result {
+        -:   47:  _Pointer ptr;
+        -:   48:  size_t count;
+        -:   49:};
+        -:   50:
+        -:   51:template <class _Alloc>
+        -:   52:_LIBCPP_NODISCARD _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR
+        -:   53:    __allocation_result<typename allocator_traits<_Alloc>::pointer>
+function _ZNSt3__119__allocate_at_leastB8ne180100INS_9allocatorIPcEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS6_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__119__allocate_at_leastB8ne180100INS_9allocatorINS_12basic_stringIcNS_11char_traitsIcEENS1_IcEEEEEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERSA_m called 72 returned 100% blocks executed 100%
+function _ZNSt3__119__allocate_at_leastB8ne180100INS_9allocatorIcEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS5_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__119__allocate_at_leastB8ne180100INS_9allocatorIN7testing14TestPartResultEEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS7_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__119__allocate_at_leastB8ne180100INS_9allocatorIdEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS5_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__119__allocate_at_leastB8ne180100INS_9allocatorINS_6vectorIdNS1_IdEEEEEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS8_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__119__allocate_at_leastB8ne180100INS_9allocatorIN7testing8internal13edit_distance8EditTypeEEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS9_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__119__allocate_at_leastB8ne180100INS_9allocatorINS_6vectorIN7testing8internal13edit_distance8EditTypeENS1_IS6_EEEEEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERSC_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__119__allocate_at_leastB8ne180100INS_9allocatorImEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS5_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__119__allocate_at_leastB8ne180100INS_9allocatorIN7testing12TestPropertyEEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS7_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__119__allocate_at_leastB8ne180100INS_9allocatorIPN7testing8TestInfoEEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS8_m called 24 returned 100% blocks executed 100%
+function _ZNSt3__119__allocate_at_leastB8ne180100INS_9allocatorIiEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS5_m called 30 returned 100% blocks executed 100%
+function _ZNSt3__119__allocate_at_leastB8ne180100INS_9allocatorIPN7testing17TestEventListenerEEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS8_m called 6 returned 100% blocks executed 100%
+function _ZNSt3__119__allocate_at_leastB8ne180100INS_9allocatorIPN7testing11EnvironmentEEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS8_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__119__allocate_at_leastB8ne180100INS_9allocatorIN7testing8internal9TraceInfoEEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS8_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__119__allocate_at_leastB8ne180100INS_9allocatorIPN7testing9TestSuiteEEEEENS_19__allocation_resultINS_16allocator_traitsIT_E7pointerEEERS8_m called 6 returned 100% blocks executed 100%
+      138:   54:    __allocate_at_least(_Alloc& __alloc, size_t __n) {
+      138:   55:  return {__alloc.allocate(__n), __n};
+    $$$$$:   55-block  0
+       72:   55-block  1
+    $$$$$:   55-block  2
+    $$$$$:   55-block  3
+    $$$$$:   55-block  4
+    $$$$$:   55-block  5
+    $$$$$:   55-block  6
+    $$$$$:   55-block  7
+    $$$$$:   55-block  8
+    $$$$$:   55-block  9
+       24:   55-block 10
+       30:   55-block 11
+        6:   55-block 12
+    $$$$$:   55-block 13
+    $$$$$:   55-block 14
+        6:   55-block 15
+        -:   56:}
+        -:   57:
+        -:   58:#endif // _LIBCPP_STD_VER >= 23
+        -:   59:
+        -:   60:_LIBCPP_END_NAMESPACE_STD
+        -:   61:
+        -:   62:#endif // _LIBCPP___MEMORY_ALLOCATE_AT_LEAST_H

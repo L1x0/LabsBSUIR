@@ -1,0 +1,82 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/reverse.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___ALGORITHM_REVERSE_H
+        -:   10:#define _LIBCPP___ALGORITHM_REVERSE_H
+        -:   11:
+        -:   12:#include <__algorithm/iter_swap.h>
+        -:   13:#include <__algorithm/iterator_operations.h>
+        -:   14:#include <__config>
+        -:   15:#include <__iterator/iterator_traits.h>
+        -:   16:#include <__utility/move.h>
+        -:   17:
+        -:   18:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   19:#  pragma GCC system_header
+        -:   20:#endif
+        -:   21:
+        -:   22:_LIBCPP_PUSH_MACROS
+        -:   23:#include <__undef_macros>
+        -:   24:
+        -:   25:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   26:
+        -:   27:template <class _AlgPolicy, class _BidirectionalIterator>
+        -:   28:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 void
+        -:   29:__reverse_impl(_BidirectionalIterator __first, _BidirectionalIterator __last, bidirectional_iterator_tag) {
+        -:   30:  while (__first != __last) {
+        -:   31:    if (__first == --__last)
+        -:   32:      break;
+        -:   33:    _IterOps<_AlgPolicy>::iter_swap(__first, __last);
+        -:   34:    ++__first;
+        -:   35:  }
+        -:   36:}
+        -:   37:
+        -:   38:template <class _AlgPolicy, class _RandomAccessIterator>
+        -:   39:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 void
+function _ZNSt3__114__reverse_implB8ne180100INS_17_ClassicAlgPolicyENS_11__wrap_iterIPN7testing8internal13edit_distance8EditTypeEEEEEvT0_S9_NS_26random_access_iterator_tagE called 0 returned 0% blocks executed 0%
+    #####:   40:__reverse_impl(_RandomAccessIterator __first, _RandomAccessIterator __last, random_access_iterator_tag) {
+    #####:   41:  if (__first != __last)
+    $$$$$:   41-block  0
+    $$$$$:   41-block  1
+    #####:   42:    for (; __first < --__last; ++__first)
+    $$$$$:   42-block  0
+    $$$$$:   42-block  1
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   42-block  2
+    #####:   43:      _IterOps<_AlgPolicy>::iter_swap(__first, __last);
+    $$$$$:   43-block  0
+    $$$$$:   43-block  1
+    #####:   44:}
+    $$$$$:   44-block  0
+        -:   45:
+        -:   46:template <class _AlgPolicy, class _BidirectionalIterator, class _Sentinel>
+function _ZNSt3__19__reverseB8ne180100INS_17_ClassicAlgPolicyENS_11__wrap_iterIPN7testing8internal13edit_distance8EditTypeEEES8_EEvT0_T1_ called 0 returned 0% blocks executed 0%
+    #####:   47:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 void __reverse(_BidirectionalIterator __first, _Sentinel __last) {
+        -:   48:  using _IterCategory = typename _IterOps<_AlgPolicy>::template __iterator_category<_BidirectionalIterator>;
+    #####:   49:  std::__reverse_impl<_AlgPolicy>(std::move(__first), std::move(__last), _IterCategory());
+    #####:   50:}
+    $$$$$:   50-block  0
+        -:   51:
+        -:   52:template <class _BidirectionalIterator>
+        -:   53:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 void
+function _ZNSt3__17reverseB8ne180100INS_11__wrap_iterIPN7testing8internal13edit_distance8EditTypeEEEEEvT_S8_ called 0 returned 0% blocks executed 0%
+    #####:   54:reverse(_BidirectionalIterator __first, _BidirectionalIterator __last) {
+    #####:   55:  std::__reverse<_ClassicAlgPolicy>(std::move(__first), std::move(__last));
+    #####:   56:}
+    $$$$$:   56-block  0
+        -:   57:
+        -:   58:_LIBCPP_END_NAMESPACE_STD
+        -:   59:
+        -:   60:_LIBCPP_POP_MACROS
+        -:   61:
+        -:   62:#endif // _LIBCPP___ALGORITHM_REVERSE_H

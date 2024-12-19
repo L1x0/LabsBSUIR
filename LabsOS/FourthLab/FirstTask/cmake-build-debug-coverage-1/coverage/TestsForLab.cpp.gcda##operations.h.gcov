@@ -1,0 +1,540 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__functional/operations.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/CMakeFiles/tests_for_lab.dir/TestsForLab.cpp.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/CMakeFiles/tests_for_lab.dir/TestsForLab.cpp.gcda
+        -:    0:Runs:6
+        -:    0:Programs:1
+        -:    1:// -*- C++ -*-
+        -:    2://===----------------------------------------------------------------------===//
+        -:    3://
+        -:    4:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    5:// See https://llvm.org/LICENSE.txt for license information.
+        -:    6:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    7://
+        -:    8://===----------------------------------------------------------------------===//
+        -:    9:
+        -:   10:#ifndef _LIBCPP___FUNCTIONAL_OPERATIONS_H
+        -:   11:#define _LIBCPP___FUNCTIONAL_OPERATIONS_H
+        -:   12:
+        -:   13:#include <__config>
+        -:   14:#include <__functional/binary_function.h>
+        -:   15:#include <__functional/unary_function.h>
+        -:   16:#include <__type_traits/integral_constant.h>
+        -:   17:#include <__type_traits/operation_traits.h>
+        -:   18:#include <__utility/forward.h>
+        -:   19:
+        -:   20:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   21:#  pragma GCC system_header
+        -:   22:#endif
+        -:   23:
+        -:   24:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   25:
+        -:   26:// Arithmetic operations
+        -:   27:
+        -:   28:#if _LIBCPP_STD_VER >= 14
+        -:   29:template <class _Tp = void>
+        -:   30:#else
+        -:   31:template <class _Tp>
+        -:   32:#endif
+        -:   33:struct _LIBCPP_TEMPLATE_VIS plus : __binary_function<_Tp, _Tp, _Tp> {
+        -:   34:  typedef _Tp __result_type; // used by valarray
+        -:   35:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI _Tp operator()(const _Tp& __x, const _Tp& __y) const {
+        -:   36:    return __x + __y;
+        -:   37:  }
+        -:   38:};
+        -:   39:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(plus);
+        -:   40:
+        -:   41:// The non-transparent std::plus specialization is only equivalent to a raw plus
+        -:   42:// operator when we don't perform an implicit conversion when calling it.
+        -:   43:template <class _Tp>
+        -:   44:struct __desugars_to<__plus_tag, plus<_Tp>, _Tp, _Tp> : true_type {};
+        -:   45:
+        -:   46:template <class _Tp, class _Up>
+        -:   47:struct __desugars_to<__plus_tag, plus<void>, _Tp, _Up> : true_type {};
+        -:   48:
+        -:   49:#if _LIBCPP_STD_VER >= 14
+        -:   50:template <>
+        -:   51:struct _LIBCPP_TEMPLATE_VIS plus<void> {
+        -:   52:  template <class _T1, class _T2>
+        -:   53:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_T1&& __t, _T2&& __u) const
+        -:   54:      noexcept(noexcept(std::forward<_T1>(__t) + std::forward<_T2>(__u)))
+        -:   55:          -> decltype(std::forward<_T1>(__t) + std::forward<_T2>(__u)) {
+        -:   56:    return std::forward<_T1>(__t) + std::forward<_T2>(__u);
+        -:   57:  }
+        -:   58:  typedef void is_transparent;
+        -:   59:};
+        -:   60:#endif
+        -:   61:
+        -:   62:#if _LIBCPP_STD_VER >= 14
+        -:   63:template <class _Tp = void>
+        -:   64:#else
+        -:   65:template <class _Tp>
+        -:   66:#endif
+        -:   67:struct _LIBCPP_TEMPLATE_VIS minus : __binary_function<_Tp, _Tp, _Tp> {
+        -:   68:  typedef _Tp __result_type; // used by valarray
+        -:   69:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI _Tp operator()(const _Tp& __x, const _Tp& __y) const {
+        -:   70:    return __x - __y;
+        -:   71:  }
+        -:   72:};
+        -:   73:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(minus);
+        -:   74:
+        -:   75:#if _LIBCPP_STD_VER >= 14
+        -:   76:template <>
+        -:   77:struct _LIBCPP_TEMPLATE_VIS minus<void> {
+        -:   78:  template <class _T1, class _T2>
+        -:   79:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_T1&& __t, _T2&& __u) const
+        -:   80:      noexcept(noexcept(std::forward<_T1>(__t) - std::forward<_T2>(__u)))
+        -:   81:          -> decltype(std::forward<_T1>(__t) - std::forward<_T2>(__u)) {
+        -:   82:    return std::forward<_T1>(__t) - std::forward<_T2>(__u);
+        -:   83:  }
+        -:   84:  typedef void is_transparent;
+        -:   85:};
+        -:   86:#endif
+        -:   87:
+        -:   88:#if _LIBCPP_STD_VER >= 14
+        -:   89:template <class _Tp = void>
+        -:   90:#else
+        -:   91:template <class _Tp>
+        -:   92:#endif
+        -:   93:struct _LIBCPP_TEMPLATE_VIS multiplies : __binary_function<_Tp, _Tp, _Tp> {
+        -:   94:  typedef _Tp __result_type; // used by valarray
+        -:   95:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI _Tp operator()(const _Tp& __x, const _Tp& __y) const {
+        -:   96:    return __x * __y;
+        -:   97:  }
+        -:   98:};
+        -:   99:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(multiplies);
+        -:  100:
+        -:  101:#if _LIBCPP_STD_VER >= 14
+        -:  102:template <>
+        -:  103:struct _LIBCPP_TEMPLATE_VIS multiplies<void> {
+        -:  104:  template <class _T1, class _T2>
+        -:  105:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_T1&& __t, _T2&& __u) const
+        -:  106:      noexcept(noexcept(std::forward<_T1>(__t) * std::forward<_T2>(__u)))
+        -:  107:          -> decltype(std::forward<_T1>(__t) * std::forward<_T2>(__u)) {
+        -:  108:    return std::forward<_T1>(__t) * std::forward<_T2>(__u);
+        -:  109:  }
+        -:  110:  typedef void is_transparent;
+        -:  111:};
+        -:  112:#endif
+        -:  113:
+        -:  114:#if _LIBCPP_STD_VER >= 14
+        -:  115:template <class _Tp = void>
+        -:  116:#else
+        -:  117:template <class _Tp>
+        -:  118:#endif
+        -:  119:struct _LIBCPP_TEMPLATE_VIS divides : __binary_function<_Tp, _Tp, _Tp> {
+        -:  120:  typedef _Tp __result_type; // used by valarray
+        -:  121:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI _Tp operator()(const _Tp& __x, const _Tp& __y) const {
+        -:  122:    return __x / __y;
+        -:  123:  }
+        -:  124:};
+        -:  125:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(divides);
+        -:  126:
+        -:  127:#if _LIBCPP_STD_VER >= 14
+        -:  128:template <>
+        -:  129:struct _LIBCPP_TEMPLATE_VIS divides<void> {
+        -:  130:  template <class _T1, class _T2>
+        -:  131:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_T1&& __t, _T2&& __u) const
+        -:  132:      noexcept(noexcept(std::forward<_T1>(__t) / std::forward<_T2>(__u)))
+        -:  133:          -> decltype(std::forward<_T1>(__t) / std::forward<_T2>(__u)) {
+        -:  134:    return std::forward<_T1>(__t) / std::forward<_T2>(__u);
+        -:  135:  }
+        -:  136:  typedef void is_transparent;
+        -:  137:};
+        -:  138:#endif
+        -:  139:
+        -:  140:#if _LIBCPP_STD_VER >= 14
+        -:  141:template <class _Tp = void>
+        -:  142:#else
+        -:  143:template <class _Tp>
+        -:  144:#endif
+        -:  145:struct _LIBCPP_TEMPLATE_VIS modulus : __binary_function<_Tp, _Tp, _Tp> {
+        -:  146:  typedef _Tp __result_type; // used by valarray
+        -:  147:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI _Tp operator()(const _Tp& __x, const _Tp& __y) const {
+        -:  148:    return __x % __y;
+        -:  149:  }
+        -:  150:};
+        -:  151:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(modulus);
+        -:  152:
+        -:  153:#if _LIBCPP_STD_VER >= 14
+        -:  154:template <>
+        -:  155:struct _LIBCPP_TEMPLATE_VIS modulus<void> {
+        -:  156:  template <class _T1, class _T2>
+        -:  157:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_T1&& __t, _T2&& __u) const
+        -:  158:      noexcept(noexcept(std::forward<_T1>(__t) % std::forward<_T2>(__u)))
+        -:  159:          -> decltype(std::forward<_T1>(__t) % std::forward<_T2>(__u)) {
+        -:  160:    return std::forward<_T1>(__t) % std::forward<_T2>(__u);
+        -:  161:  }
+        -:  162:  typedef void is_transparent;
+        -:  163:};
+        -:  164:#endif
+        -:  165:
+        -:  166:#if _LIBCPP_STD_VER >= 14
+        -:  167:template <class _Tp = void>
+        -:  168:#else
+        -:  169:template <class _Tp>
+        -:  170:#endif
+        -:  171:struct _LIBCPP_TEMPLATE_VIS negate : __unary_function<_Tp, _Tp> {
+        -:  172:  typedef _Tp __result_type; // used by valarray
+        -:  173:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI _Tp operator()(const _Tp& __x) const { return -__x; }
+        -:  174:};
+        -:  175:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(negate);
+        -:  176:
+        -:  177:#if _LIBCPP_STD_VER >= 14
+        -:  178:template <>
+        -:  179:struct _LIBCPP_TEMPLATE_VIS negate<void> {
+        -:  180:  template <class _Tp>
+        -:  181:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_Tp&& __x) const
+        -:  182:      noexcept(noexcept(-std::forward<_Tp>(__x))) -> decltype(-std::forward<_Tp>(__x)) {
+        -:  183:    return -std::forward<_Tp>(__x);
+        -:  184:  }
+        -:  185:  typedef void is_transparent;
+        -:  186:};
+        -:  187:#endif
+        -:  188:
+        -:  189:// Bitwise operations
+        -:  190:
+        -:  191:#if _LIBCPP_STD_VER >= 14
+        -:  192:template <class _Tp = void>
+        -:  193:#else
+        -:  194:template <class _Tp>
+        -:  195:#endif
+        -:  196:struct _LIBCPP_TEMPLATE_VIS bit_and : __binary_function<_Tp, _Tp, _Tp> {
+        -:  197:  typedef _Tp __result_type; // used by valarray
+        -:  198:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI _Tp operator()(const _Tp& __x, const _Tp& __y) const {
+        -:  199:    return __x & __y;
+        -:  200:  }
+        -:  201:};
+        -:  202:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(bit_and);
+        -:  203:
+        -:  204:#if _LIBCPP_STD_VER >= 14
+        -:  205:template <>
+        -:  206:struct _LIBCPP_TEMPLATE_VIS bit_and<void> {
+        -:  207:  template <class _T1, class _T2>
+        -:  208:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_T1&& __t, _T2&& __u) const
+        -:  209:      noexcept(noexcept(std::forward<_T1>(__t) & std::forward<_T2>(__u)))
+        -:  210:          -> decltype(std::forward<_T1>(__t) & std::forward<_T2>(__u)) {
+        -:  211:    return std::forward<_T1>(__t) & std::forward<_T2>(__u);
+        -:  212:  }
+        -:  213:  typedef void is_transparent;
+        -:  214:};
+        -:  215:#endif
+        -:  216:
+        -:  217:#if _LIBCPP_STD_VER >= 14
+        -:  218:template <class _Tp = void>
+        -:  219:struct _LIBCPP_TEMPLATE_VIS bit_not : __unary_function<_Tp, _Tp> {
+        -:  220:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI _Tp operator()(const _Tp& __x) const { return ~__x; }
+        -:  221:};
+        -:  222:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(bit_not);
+        -:  223:
+        -:  224:template <>
+        -:  225:struct _LIBCPP_TEMPLATE_VIS bit_not<void> {
+        -:  226:  template <class _Tp>
+        -:  227:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_Tp&& __x) const
+        -:  228:      noexcept(noexcept(~std::forward<_Tp>(__x))) -> decltype(~std::forward<_Tp>(__x)) {
+        -:  229:    return ~std::forward<_Tp>(__x);
+        -:  230:  }
+        -:  231:  typedef void is_transparent;
+        -:  232:};
+        -:  233:#endif
+        -:  234:
+        -:  235:#if _LIBCPP_STD_VER >= 14
+        -:  236:template <class _Tp = void>
+        -:  237:#else
+        -:  238:template <class _Tp>
+        -:  239:#endif
+        -:  240:struct _LIBCPP_TEMPLATE_VIS bit_or : __binary_function<_Tp, _Tp, _Tp> {
+        -:  241:  typedef _Tp __result_type; // used by valarray
+        -:  242:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI _Tp operator()(const _Tp& __x, const _Tp& __y) const {
+        -:  243:    return __x | __y;
+        -:  244:  }
+        -:  245:};
+        -:  246:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(bit_or);
+        -:  247:
+        -:  248:#if _LIBCPP_STD_VER >= 14
+        -:  249:template <>
+        -:  250:struct _LIBCPP_TEMPLATE_VIS bit_or<void> {
+        -:  251:  template <class _T1, class _T2>
+        -:  252:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_T1&& __t, _T2&& __u) const
+        -:  253:      noexcept(noexcept(std::forward<_T1>(__t) | std::forward<_T2>(__u)))
+        -:  254:          -> decltype(std::forward<_T1>(__t) | std::forward<_T2>(__u)) {
+        -:  255:    return std::forward<_T1>(__t) | std::forward<_T2>(__u);
+        -:  256:  }
+        -:  257:  typedef void is_transparent;
+        -:  258:};
+        -:  259:#endif
+        -:  260:
+        -:  261:#if _LIBCPP_STD_VER >= 14
+        -:  262:template <class _Tp = void>
+        -:  263:#else
+        -:  264:template <class _Tp>
+        -:  265:#endif
+        -:  266:struct _LIBCPP_TEMPLATE_VIS bit_xor : __binary_function<_Tp, _Tp, _Tp> {
+        -:  267:  typedef _Tp __result_type; // used by valarray
+        -:  268:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI _Tp operator()(const _Tp& __x, const _Tp& __y) const {
+        -:  269:    return __x ^ __y;
+        -:  270:  }
+        -:  271:};
+        -:  272:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(bit_xor);
+        -:  273:
+        -:  274:#if _LIBCPP_STD_VER >= 14
+        -:  275:template <>
+        -:  276:struct _LIBCPP_TEMPLATE_VIS bit_xor<void> {
+        -:  277:  template <class _T1, class _T2>
+        -:  278:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_T1&& __t, _T2&& __u) const
+        -:  279:      noexcept(noexcept(std::forward<_T1>(__t) ^ std::forward<_T2>(__u)))
+        -:  280:          -> decltype(std::forward<_T1>(__t) ^ std::forward<_T2>(__u)) {
+        -:  281:    return std::forward<_T1>(__t) ^ std::forward<_T2>(__u);
+        -:  282:  }
+        -:  283:  typedef void is_transparent;
+        -:  284:};
+        -:  285:#endif
+        -:  286:
+        -:  287:// Comparison operations
+        -:  288:
+        -:  289:#if _LIBCPP_STD_VER >= 14
+        -:  290:template <class _Tp = void>
+        -:  291:#else
+        -:  292:template <class _Tp>
+        -:  293:#endif
+        -:  294:struct _LIBCPP_TEMPLATE_VIS equal_to : __binary_function<_Tp, _Tp, bool> {
+        -:  295:  typedef bool __result_type; // used by valarray
+        -:  296:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI bool operator()(const _Tp& __x, const _Tp& __y) const {
+        -:  297:    return __x == __y;
+        -:  298:  }
+        -:  299:};
+        -:  300:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(equal_to);
+        -:  301:
+        -:  302:#if _LIBCPP_STD_VER >= 14
+        -:  303:template <>
+        -:  304:struct _LIBCPP_TEMPLATE_VIS equal_to<void> {
+        -:  305:  template <class _T1, class _T2>
+        -:  306:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_T1&& __t, _T2&& __u) const
+        -:  307:      noexcept(noexcept(std::forward<_T1>(__t) == std::forward<_T2>(__u)))
+        -:  308:          -> decltype(std::forward<_T1>(__t) == std::forward<_T2>(__u)) {
+        -:  309:    return std::forward<_T1>(__t) == std::forward<_T2>(__u);
+        -:  310:  }
+        -:  311:  typedef void is_transparent;
+        -:  312:};
+        -:  313:#endif
+        -:  314:
+        -:  315:// The non-transparent std::equal_to specialization is only equivalent to a raw equality
+        -:  316:// comparison when we don't perform an implicit conversion when calling it.
+        -:  317:template <class _Tp>
+        -:  318:struct __desugars_to<__equal_tag, equal_to<_Tp>, _Tp, _Tp> : true_type {};
+        -:  319:
+        -:  320:// In the transparent case, we do not enforce that
+        -:  321:template <class _Tp, class _Up>
+        -:  322:struct __desugars_to<__equal_tag, equal_to<void>, _Tp, _Up> : true_type {};
+        -:  323:
+        -:  324:#if _LIBCPP_STD_VER >= 14
+        -:  325:template <class _Tp = void>
+        -:  326:#else
+        -:  327:template <class _Tp>
+        -:  328:#endif
+        -:  329:struct _LIBCPP_TEMPLATE_VIS not_equal_to : __binary_function<_Tp, _Tp, bool> {
+        -:  330:  typedef bool __result_type; // used by valarray
+        -:  331:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI bool operator()(const _Tp& __x, const _Tp& __y) const {
+        -:  332:    return __x != __y;
+        -:  333:  }
+        -:  334:};
+        -:  335:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(not_equal_to);
+        -:  336:
+        -:  337:#if _LIBCPP_STD_VER >= 14
+        -:  338:template <>
+        -:  339:struct _LIBCPP_TEMPLATE_VIS not_equal_to<void> {
+        -:  340:  template <class _T1, class _T2>
+        -:  341:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_T1&& __t, _T2&& __u) const
+        -:  342:      noexcept(noexcept(std::forward<_T1>(__t) != std::forward<_T2>(__u)))
+        -:  343:          -> decltype(std::forward<_T1>(__t) != std::forward<_T2>(__u)) {
+        -:  344:    return std::forward<_T1>(__t) != std::forward<_T2>(__u);
+        -:  345:  }
+        -:  346:  typedef void is_transparent;
+        -:  347:};
+        -:  348:#endif
+        -:  349:
+        -:  350:#if _LIBCPP_STD_VER >= 14
+        -:  351:template <class _Tp = void>
+        -:  352:#else
+        -:  353:template <class _Tp>
+        -:  354:#endif
+        -:  355:struct _LIBCPP_TEMPLATE_VIS less : __binary_function<_Tp, _Tp, bool> {
+        -:  356:  typedef bool __result_type; // used by valarray
+function _ZNKSt3__14lessIPvEclB8ne180100ERKS1_S4_ called 24 returned 100% blocks executed 100%
+       24:  357:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI bool operator()(const _Tp& __x, const _Tp& __y) const {
+       24:  358:    return __x < __y;
+       24:  358-block  0
+        -:  359:  }
+        -:  360:};
+        -:  361:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(less);
+        -:  362:
+        -:  363:#if _LIBCPP_STD_VER >= 14
+        -:  364:template <>
+        -:  365:struct _LIBCPP_TEMPLATE_VIS less<void> {
+        -:  366:  template <class _T1, class _T2>
+        -:  367:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_T1&& __t, _T2&& __u) const
+        -:  368:      noexcept(noexcept(std::forward<_T1>(__t) < std::forward<_T2>(__u)))
+        -:  369:          -> decltype(std::forward<_T1>(__t) < std::forward<_T2>(__u)) {
+        -:  370:    return std::forward<_T1>(__t) < std::forward<_T2>(__u);
+        -:  371:  }
+        -:  372:  typedef void is_transparent;
+        -:  373:};
+        -:  374:#endif
+        -:  375:
+        -:  376:#if _LIBCPP_STD_VER >= 14
+        -:  377:template <class _Tp = void>
+        -:  378:#else
+        -:  379:template <class _Tp>
+        -:  380:#endif
+        -:  381:struct _LIBCPP_TEMPLATE_VIS less_equal : __binary_function<_Tp, _Tp, bool> {
+        -:  382:  typedef bool __result_type; // used by valarray
+        -:  383:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI bool operator()(const _Tp& __x, const _Tp& __y) const {
+        -:  384:    return __x <= __y;
+        -:  385:  }
+        -:  386:};
+        -:  387:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(less_equal);
+        -:  388:
+        -:  389:#if _LIBCPP_STD_VER >= 14
+        -:  390:template <>
+        -:  391:struct _LIBCPP_TEMPLATE_VIS less_equal<void> {
+        -:  392:  template <class _T1, class _T2>
+        -:  393:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_T1&& __t, _T2&& __u) const
+        -:  394:      noexcept(noexcept(std::forward<_T1>(__t) <= std::forward<_T2>(__u)))
+        -:  395:          -> decltype(std::forward<_T1>(__t) <= std::forward<_T2>(__u)) {
+        -:  396:    return std::forward<_T1>(__t) <= std::forward<_T2>(__u);
+        -:  397:  }
+        -:  398:  typedef void is_transparent;
+        -:  399:};
+        -:  400:#endif
+        -:  401:
+        -:  402:#if _LIBCPP_STD_VER >= 14
+        -:  403:template <class _Tp = void>
+        -:  404:#else
+        -:  405:template <class _Tp>
+        -:  406:#endif
+        -:  407:struct _LIBCPP_TEMPLATE_VIS greater_equal : __binary_function<_Tp, _Tp, bool> {
+        -:  408:  typedef bool __result_type; // used by valarray
+        -:  409:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI bool operator()(const _Tp& __x, const _Tp& __y) const {
+        -:  410:    return __x >= __y;
+        -:  411:  }
+        -:  412:};
+        -:  413:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(greater_equal);
+        -:  414:
+        -:  415:#if _LIBCPP_STD_VER >= 14
+        -:  416:template <>
+        -:  417:struct _LIBCPP_TEMPLATE_VIS greater_equal<void> {
+        -:  418:  template <class _T1, class _T2>
+        -:  419:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_T1&& __t, _T2&& __u) const
+        -:  420:      noexcept(noexcept(std::forward<_T1>(__t) >= std::forward<_T2>(__u)))
+        -:  421:          -> decltype(std::forward<_T1>(__t) >= std::forward<_T2>(__u)) {
+        -:  422:    return std::forward<_T1>(__t) >= std::forward<_T2>(__u);
+        -:  423:  }
+        -:  424:  typedef void is_transparent;
+        -:  425:};
+        -:  426:#endif
+        -:  427:
+        -:  428:#if _LIBCPP_STD_VER >= 14
+        -:  429:template <class _Tp = void>
+        -:  430:#else
+        -:  431:template <class _Tp>
+        -:  432:#endif
+        -:  433:struct _LIBCPP_TEMPLATE_VIS greater : __binary_function<_Tp, _Tp, bool> {
+        -:  434:  typedef bool __result_type; // used by valarray
+        -:  435:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI bool operator()(const _Tp& __x, const _Tp& __y) const {
+        -:  436:    return __x > __y;
+        -:  437:  }
+        -:  438:};
+        -:  439:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(greater);
+        -:  440:
+        -:  441:#if _LIBCPP_STD_VER >= 14
+        -:  442:template <>
+        -:  443:struct _LIBCPP_TEMPLATE_VIS greater<void> {
+        -:  444:  template <class _T1, class _T2>
+        -:  445:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_T1&& __t, _T2&& __u) const
+        -:  446:      noexcept(noexcept(std::forward<_T1>(__t) > std::forward<_T2>(__u)))
+        -:  447:          -> decltype(std::forward<_T1>(__t) > std::forward<_T2>(__u)) {
+        -:  448:    return std::forward<_T1>(__t) > std::forward<_T2>(__u);
+        -:  449:  }
+        -:  450:  typedef void is_transparent;
+        -:  451:};
+        -:  452:#endif
+        -:  453:
+        -:  454:// Logical operations
+        -:  455:
+        -:  456:#if _LIBCPP_STD_VER >= 14
+        -:  457:template <class _Tp = void>
+        -:  458:#else
+        -:  459:template <class _Tp>
+        -:  460:#endif
+        -:  461:struct _LIBCPP_TEMPLATE_VIS logical_and : __binary_function<_Tp, _Tp, bool> {
+        -:  462:  typedef bool __result_type; // used by valarray
+        -:  463:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI bool operator()(const _Tp& __x, const _Tp& __y) const {
+        -:  464:    return __x && __y;
+        -:  465:  }
+        -:  466:};
+        -:  467:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(logical_and);
+        -:  468:
+        -:  469:#if _LIBCPP_STD_VER >= 14
+        -:  470:template <>
+        -:  471:struct _LIBCPP_TEMPLATE_VIS logical_and<void> {
+        -:  472:  template <class _T1, class _T2>
+        -:  473:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_T1&& __t, _T2&& __u) const
+        -:  474:      noexcept(noexcept(std::forward<_T1>(__t) && std::forward<_T2>(__u)))
+        -:  475:          -> decltype(std::forward<_T1>(__t) && std::forward<_T2>(__u)) {
+        -:  476:    return std::forward<_T1>(__t) && std::forward<_T2>(__u);
+        -:  477:  }
+        -:  478:  typedef void is_transparent;
+        -:  479:};
+        -:  480:#endif
+        -:  481:
+        -:  482:#if _LIBCPP_STD_VER >= 14
+        -:  483:template <class _Tp = void>
+        -:  484:#else
+        -:  485:template <class _Tp>
+        -:  486:#endif
+        -:  487:struct _LIBCPP_TEMPLATE_VIS logical_not : __unary_function<_Tp, bool> {
+        -:  488:  typedef bool __result_type; // used by valarray
+        -:  489:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI bool operator()(const _Tp& __x) const { return !__x; }
+        -:  490:};
+        -:  491:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(logical_not);
+        -:  492:
+        -:  493:#if _LIBCPP_STD_VER >= 14
+        -:  494:template <>
+        -:  495:struct _LIBCPP_TEMPLATE_VIS logical_not<void> {
+        -:  496:  template <class _Tp>
+        -:  497:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_Tp&& __x) const
+        -:  498:      noexcept(noexcept(!std::forward<_Tp>(__x))) -> decltype(!std::forward<_Tp>(__x)) {
+        -:  499:    return !std::forward<_Tp>(__x);
+        -:  500:  }
+        -:  501:  typedef void is_transparent;
+        -:  502:};
+        -:  503:#endif
+        -:  504:
+        -:  505:#if _LIBCPP_STD_VER >= 14
+        -:  506:template <class _Tp = void>
+        -:  507:#else
+        -:  508:template <class _Tp>
+        -:  509:#endif
+        -:  510:struct _LIBCPP_TEMPLATE_VIS logical_or : __binary_function<_Tp, _Tp, bool> {
+        -:  511:  typedef bool __result_type; // used by valarray
+        -:  512:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI bool operator()(const _Tp& __x, const _Tp& __y) const {
+        -:  513:    return __x || __y;
+        -:  514:  }
+        -:  515:};
+        -:  516:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(logical_or);
+        -:  517:
+        -:  518:#if _LIBCPP_STD_VER >= 14
+        -:  519:template <>
+        -:  520:struct _LIBCPP_TEMPLATE_VIS logical_or<void> {
+        -:  521:  template <class _T1, class _T2>
+        -:  522:  _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI auto operator()(_T1&& __t, _T2&& __u) const
+        -:  523:      noexcept(noexcept(std::forward<_T1>(__t) || std::forward<_T2>(__u)))
+        -:  524:          -> decltype(std::forward<_T1>(__t) || std::forward<_T2>(__u)) {
+        -:  525:    return std::forward<_T1>(__t) || std::forward<_T2>(__u);
+        -:  526:  }
+        -:  527:  typedef void is_transparent;
+        -:  528:};
+        -:  529:#endif
+        -:  530:
+        -:  531:_LIBCPP_END_NAMESPACE_STD
+        -:  532:
+        -:  533:#endif // _LIBCPP___FUNCTIONAL_OPERATIONS_H

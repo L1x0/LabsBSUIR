@@ -1,0 +1,548 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__iterator/wrap_iter.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// -*- C++ -*-
+        -:    2://===----------------------------------------------------------------------===//
+        -:    3://
+        -:    4:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    5:// See https://llvm.org/LICENSE.txt for license information.
+        -:    6:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    7://
+        -:    8://===----------------------------------------------------------------------===//
+        -:    9:
+        -:   10:#ifndef _LIBCPP___ITERATOR_WRAP_ITER_H
+        -:   11:#define _LIBCPP___ITERATOR_WRAP_ITER_H
+        -:   12:
+        -:   13:#include <__config>
+        -:   14:#include <__iterator/iterator_traits.h>
+        -:   15:#include <__memory/addressof.h>
+        -:   16:#include <__memory/pointer_traits.h>
+        -:   17:#include <__type_traits/enable_if.h>
+        -:   18:#include <__type_traits/is_convertible.h>
+        -:   19:#include <cstddef>
+        -:   20:
+        -:   21:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   22:#  pragma GCC system_header
+        -:   23:#endif
+        -:   24:
+        -:   25:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   26:
+        -:   27:template <class _Iter>
+        -:   28:class __wrap_iter {
+        -:   29:public:
+        -:   30:  typedef _Iter iterator_type;
+        -:   31:  typedef typename iterator_traits<iterator_type>::value_type value_type;
+        -:   32:  typedef typename iterator_traits<iterator_type>::difference_type difference_type;
+        -:   33:  typedef typename iterator_traits<iterator_type>::pointer pointer;
+        -:   34:  typedef typename iterator_traits<iterator_type>::reference reference;
+        -:   35:  typedef typename iterator_traits<iterator_type>::iterator_category iterator_category;
+        -:   36:#if _LIBCPP_STD_VER >= 20
+        -:   37:  typedef contiguous_iterator_tag iterator_concept;
+        -:   38:#endif
+        -:   39:
+        -:   40:private:
+        -:   41:  iterator_type __i_;
+        -:   42:
+        -:   43:public:
+function _ZNSt3__111__wrap_iterIPPN7testing8TestInfoEEC1B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPPN7testing8TestInfoEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+    #####:   44:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 __wrap_iter() _NOEXCEPT : __i_() {}
+    $$$$$:   44-block  0
+    $$$$$:   44-block  1
+        -:   45:  template <class _Up, __enable_if_t<is_convertible<_Up, iterator_type>::value, int> = 0>
+function _ZNSt3__111__wrap_iterIPKcEC1B8ne180100IPcLi0EEERKNS0_IT_EE called 12 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEC1B8ne180100IPS6_Li0EEERKNS0_IT_EE called 24 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKPN7testing17TestEventListenerEEC1B8ne180100IPS3_Li0EEERKNS0_IT_EE called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPKPN7testing9TestSuiteEEC1B8ne180100IPS3_Li0EEERKNS0_IT_EE called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPKcEC2B8ne180100IPcLi0EEERKNS0_IT_EE called 12 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEC2B8ne180100IPS6_Li0EEERKNS0_IT_EE called 24 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKPN7testing17TestEventListenerEEC2B8ne180100IPS3_Li0EEERKNS0_IT_EE called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPKPN7testing9TestSuiteEEC2B8ne180100IPS3_Li0EEERKNS0_IT_EE called 0 returned 0% blocks executed 0%
+       72:   46:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 __wrap_iter(const __wrap_iter<_Up>& __u) _NOEXCEPT
+       72:   47:      : __i_(__u.base()) {}
+       12:   47-block  0
+       24:   47-block  1
+    $$$$$:   47-block  2
+    $$$$$:   47-block  3
+       12:   47-block  4
+       24:   47-block  5
+    $$$$$:   47-block  6
+    $$$$$:   47-block  7
+function _ZNKSt3__111__wrap_iterIPKcEdeB8ne180100Ev called 900 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPcEdeB8ne180100Ev called 666 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEdeB8ne180100Ev called 156 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPKN7testing8internal13edit_distance8EditTypeEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__wrap_iterIPKPN7testing9TestSuiteEEdeB8ne180100Ev called 30 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPPN7testing9TestSuiteEEdeB8ne180100Ev called 66 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPPN7testing8TestInfoEEdeB8ne180100Ev called 96 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEdeB8ne180100Ev called 30 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPPN7testing8internal30ParameterizedTestSuiteInfoBaseEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__wrap_iterIPN7testing8internal13edit_distance8EditTypeEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__wrap_iterIPN7testing12TestPropertyEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__wrap_iterIPKN7testing14TestPartResultEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__wrap_iterIPKPN7testing8TestInfoEEdeB8ne180100Ev called 360 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPKPN7testing17TestEventListenerEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__wrap_iterIPKPN7testing11EnvironmentEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__wrap_iterIPPN7testing11EnvironmentEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+     2304:   48:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 reference operator*() const _NOEXCEPT { return *__i_; }
+      900:   48-block  0
+      666:   48-block  1
+      156:   48-block  2
+    $$$$$:   48-block  3
+       30:   48-block  4
+       66:   48-block  5
+       96:   48-block  6
+       30:   48-block  7
+    $$$$$:   48-block  8
+    $$$$$:   48-block  9
+    $$$$$:   48-block 10
+    $$$$$:   48-block 11
+      360:   48-block 12
+    $$$$$:   48-block 13
+    $$$$$:   48-block 14
+    $$$$$:   48-block 15
+function _ZNKSt3__111__wrap_iterIPN7testing12TestPropertyEEptB8ne180100Ev called 0 returned 0% blocks executed 0%
+    #####:   49:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pointer operator->() const _NOEXCEPT {
+    #####:   50:    return std::__to_address(__i_);
+    $$$$$:   50-block  0
+        -:   51:  }
+function _ZNSt3__111__wrap_iterIPKcEppB8ne180100Ev called 876 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEppB8ne180100Ev called 156 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKN7testing8internal13edit_distance8EditTypeEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPKPN7testing9TestSuiteEEppB8ne180100Ev called 30 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPPN7testing8TestInfoEEppB8ne180100Ev called 72 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPPN7testing9TestSuiteEEppB8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEppB8ne180100Ev called 48 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPcEppB8ne180100Ev called 618 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPPN7testing8internal30ParameterizedTestSuiteInfoBaseEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPN7testing8internal13edit_distance8EditTypeEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPN7testing12TestPropertyEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPKN7testing14TestPartResultEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPKPN7testing8TestInfoEEppB8ne180100Ev called 360 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKPN7testing17TestEventListenerEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPKPN7testing11EnvironmentEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+     2166:   52:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 __wrap_iter& operator++() _NOEXCEPT {
+     2166:   53:    ++__i_;
+     2166:   54:    return *this;
+      876:   54-block  0
+      156:   54-block  1
+    $$$$$:   54-block  2
+       30:   54-block  3
+       72:   54-block  4
+        6:   54-block  5
+       48:   54-block  6
+      618:   54-block  7
+    $$$$$:   54-block  8
+    $$$$$:   54-block  9
+    $$$$$:   54-block 10
+    $$$$$:   54-block 11
+      360:   54-block 12
+    $$$$$:   54-block 13
+    $$$$$:   54-block 14
+        -:   55:  }
+function _ZNSt3__111__wrap_iterIPcEppB8ne180100Ei called 618 returned 100% blocks executed 100%
+      618:   56:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 __wrap_iter operator++(int) _NOEXCEPT {
+      618:   57:    __wrap_iter __tmp(*this);
+      618:   58:    ++(*this);
+      618:   59:    return __tmp;
+      618:   59-block  0
+        -:   60:  }
+        -:   61:
+function _ZNSt3__111__wrap_iterIPcEmmB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEmmB8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPN7testing8internal13edit_distance8EditTypeEEmmB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPPN7testing8TestInfoEEmmB8ne180100Ev called 30 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPPN7testing9TestSuiteEEmmB8ne180100Ev called 60 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPPN7testing11EnvironmentEEmmB8ne180100Ev called 0 returned 0% blocks executed 0%
+       96:   62:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 __wrap_iter& operator--() _NOEXCEPT {
+       96:   63:    --__i_;
+       96:   64:    return *this;
+    $$$$$:   64-block  0
+        6:   64-block  1
+    $$$$$:   64-block  2
+       30:   64-block  3
+       60:   64-block  4
+    $$$$$:   64-block  5
+        -:   65:  }
+        -:   66:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 __wrap_iter operator--(int) _NOEXCEPT {
+        -:   67:    __wrap_iter __tmp(*this);
+        -:   68:    --(*this);
+        -:   69:    return __tmp;
+        -:   70:  }
+function _ZNKSt3__111__wrap_iterIPKN7testing8internal13edit_distance8EditTypeEEplB8ne180100El called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__wrap_iterIPPN7testing17TestEventListenerEEplB8ne180100El called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__wrap_iterIPPN7testing9TestSuiteEEplB8ne180100El called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__wrap_iterIPcEplB8ne180100El called 6 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEplB8ne180100El called 36 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEplB8ne180100El called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__wrap_iterIPPN7testing8TestInfoEEplB8ne180100El called 0 returned 0% blocks executed 0%
+       42:   71:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 __wrap_iter operator+(difference_type __n) const _NOEXCEPT {
+       42:   72:    __wrap_iter __w(*this);
+       42:   73:    __w += __n;
+       42:   74:    return __w;
+    $$$$$:   74-block  0
+    $$$$$:   74-block  1
+    $$$$$:   74-block  2
+        6:   74-block  3
+       36:   74-block  4
+    $$$$$:   74-block  5
+    $$$$$:   74-block  6
+        -:   75:  }
+function _ZNSt3__111__wrap_iterIPcEpLB8ne180100El called 54 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEpLB8ne180100El called 36 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKN7testing8internal13edit_distance8EditTypeEEpLB8ne180100El called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPPN7testing17TestEventListenerEEpLB8ne180100El called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPPN7testing9TestSuiteEEpLB8ne180100El called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEpLB8ne180100El called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPPN7testing8TestInfoEEpLB8ne180100El called 0 returned 0% blocks executed 0%
+       90:   76:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 __wrap_iter& operator+=(difference_type __n) _NOEXCEPT {
+       90:   77:    __i_ += __n;
+       90:   78:    return *this;
+       54:   78-block  0
+       36:   78-block  1
+    $$$$$:   78-block  2
+    $$$$$:   78-block  3
+    $$$$$:   78-block  4
+    $$$$$:   78-block  5
+    $$$$$:   78-block  6
+        -:   79:  }
+        -:   80:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 __wrap_iter operator-(difference_type __n) const _NOEXCEPT {
+        -:   81:    return *this + (-__n);
+        -:   82:  }
+        -:   83:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 __wrap_iter& operator-=(difference_type __n) _NOEXCEPT {
+        -:   84:    *this += -__n;
+        -:   85:    return *this;
+        -:   86:  }
+        -:   87:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 reference operator[](difference_type __n) const _NOEXCEPT {
+        -:   88:    return __i_[__n];
+        -:   89:  }
+        -:   90:
+function _ZNKSt3__111__wrap_iterIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEE4baseB8ne180100Ev called 288 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPKcE4baseB8ne180100Ev called 1218 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPcE4baseB8ne180100Ev called 750 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEE4baseB8ne180100Ev called 564 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPKN7testing8internal13edit_distance8EditTypeEE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__wrap_iterIPN7testing12TestPropertyEE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__wrap_iterIPPN7testing8internal30ParameterizedTestSuiteInfoBaseEE4baseB8ne180100Ev called 12 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPPN7testing17TestEventListenerEE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__wrap_iterIPKPN7testing9TestSuiteEE4baseB8ne180100Ev called 120 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPPN7testing9TestSuiteEE4baseB8ne180100Ev called 24 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPPN7testing8TestInfoEE4baseB8ne180100Ev called 180 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPN7testing8internal13edit_distance8EditTypeEE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__wrap_iterIPKN7testing14TestPartResultEE4baseB8ne180100Ev called 120 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPKPN7testing8TestInfoEE4baseB8ne180100Ev called 840 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPKPN7testing17TestEventListenerEE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__wrap_iterIPKPN7testing11EnvironmentEE4baseB8ne180100Ev called 24 returned 100% blocks executed 100%
+function _ZNKSt3__111__wrap_iterIPPN7testing11EnvironmentEE4baseB8ne180100Ev called 12 returned 100% blocks executed 100%
+     4152:   91:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 iterator_type base() const _NOEXCEPT { return __i_; }
+      288:   91-block  0
+     1218:   91-block  1
+      750:   91-block  2
+      564:   91-block  3
+    $$$$$:   91-block  4
+    $$$$$:   91-block  5
+       12:   91-block  6
+    $$$$$:   91-block  7
+      120:   91-block  8
+       24:   91-block  9
+      180:   91-block 10
+    $$$$$:   91-block 11
+      120:   91-block 12
+      840:   91-block 13
+    $$$$$:   91-block 14
+       24:   91-block 15
+       12:   91-block 16
+        -:   92:
+        -:   93:private:
+function _ZNSt3__111__wrap_iterIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEC1B8ne180100ES7_ called 156 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEC2B8ne180100ES7_ called 156 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPPN7testing8internal30ParameterizedTestSuiteInfoBaseEEC1B8ne180100ES5_ called 12 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPPN7testing8internal30ParameterizedTestSuiteInfoBaseEEC2B8ne180100ES5_ called 12 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPcEC1B8ne180100ES1_ called 696 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPcEC2B8ne180100ES1_ called 696 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKcEC1B8ne180100ES2_ called 66 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKcEC2B8ne180100ES2_ called 66 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEC1B8ne180100ES8_ called 228 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEC2B8ne180100ES8_ called 228 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPN7testing8internal13edit_distance8EditTypeEEC1B8ne180100ES5_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPN7testing8internal13edit_distance8EditTypeEEC2B8ne180100ES5_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPKN7testing8internal13edit_distance8EditTypeEEC1B8ne180100ES6_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPKN7testing8internal13edit_distance8EditTypeEEC2B8ne180100ES6_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPN7testing12TestPropertyEEC1B8ne180100ES3_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPN7testing12TestPropertyEEC2B8ne180100ES3_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPKN7testing14TestPartResultEEC1B8ne180100ES4_ called 120 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKN7testing14TestPartResultEEC2B8ne180100ES4_ called 120 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKPN7testing8TestInfoEEC1B8ne180100ES5_ called 444 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKPN7testing8TestInfoEEC2B8ne180100ES5_ called 444 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPPN7testing8TestInfoEEC1B8ne180100ES4_ called 24 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPPN7testing8TestInfoEEC2B8ne180100ES4_ called 24 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKPN7testing17TestEventListenerEEC1B8ne180100ES5_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPKPN7testing17TestEventListenerEEC2B8ne180100ES5_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPPN7testing17TestEventListenerEEC1B8ne180100ES4_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPPN7testing17TestEventListenerEEC2B8ne180100ES4_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__111__wrap_iterIPKPN7testing9TestSuiteEEC1B8ne180100ES5_ called 84 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKPN7testing9TestSuiteEEC2B8ne180100ES5_ called 84 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKPN7testing11EnvironmentEEC1B8ne180100ES5_ called 24 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPKPN7testing11EnvironmentEEC2B8ne180100ES5_ called 24 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPPN7testing9TestSuiteEEC1B8ne180100ES4_ called 72 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPPN7testing9TestSuiteEEC2B8ne180100ES4_ called 72 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPPN7testing11EnvironmentEEC1B8ne180100ES4_ called 12 returned 100% blocks executed 100%
+function _ZNSt3__111__wrap_iterIPPN7testing11EnvironmentEEC2B8ne180100ES4_ called 12 returned 100% blocks executed 100%
+     3876:   94:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 explicit __wrap_iter(iterator_type __x) _NOEXCEPT : __i_(__x) {}
+      156:   94-block  0
+      156:   94-block  1
+       12:   94-block  2
+       12:   94-block  3
+      696:   94-block  4
+      696:   94-block  5
+       66:   94-block  6
+       66:   94-block  7
+      228:   94-block  8
+      228:   94-block  9
+    $$$$$:   94-block 10
+    $$$$$:   94-block 11
+    $$$$$:   94-block 12
+    $$$$$:   94-block 13
+    $$$$$:   94-block 14
+    $$$$$:   94-block 15
+      120:   94-block 16
+      120:   94-block 17
+      444:   94-block 18
+      444:   94-block 19
+       24:   94-block 20
+       24:   94-block 21
+    $$$$$:   94-block 22
+    $$$$$:   94-block 23
+    $$$$$:   94-block 24
+    $$$$$:   94-block 25
+       84:   94-block 26
+       84:   94-block 27
+       24:   94-block 28
+       24:   94-block 29
+       72:   94-block 30
+       72:   94-block 31
+       12:   94-block 32
+       12:   94-block 33
+        -:   95:
+        -:   96:  template <class _Up>
+        -:   97:  friend class __wrap_iter;
+        -:   98:  template <class _CharT, class _Traits, class _Alloc>
+        -:   99:  friend class basic_string;
+        -:  100:  template <class _Tp, class _Alloc>
+        -:  101:  friend class _LIBCPP_TEMPLATE_VIS vector;
+        -:  102:  template <class _Tp, size_t>
+        -:  103:  friend class _LIBCPP_TEMPLATE_VIS span;
+        -:  104:};
+        -:  105:
+        -:  106:template <class _Iter1>
+        -:  107:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR bool
+function _ZNSt3__1eqB8ne180100IPcEEbRKNS_11__wrap_iterIT_EES6_ called 54 returned 100% blocks executed 100%
+function _ZNSt3__1eqB8ne180100IPKN7testing8internal13edit_distance8EditTypeEEEbRKNS_11__wrap_iterIT_EESB_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__1eqB8ne180100IPN7testing12TestPropertyEEEbRKNS_11__wrap_iterIT_EES8_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__1eqB8ne180100IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEbRKNS_11__wrap_iterIT_EESC_ called 48 returned 100% blocks executed 100%
+function _ZNSt3__1eqB8ne180100IPKcEEbRKNS_11__wrap_iterIT_EES7_ called 288 returned 100% blocks executed 100%
+function _ZNSt3__1eqB8ne180100IPPN7testing8internal30ParameterizedTestSuiteInfoBaseEEEbRKNS_11__wrap_iterIT_EESA_ called 6 returned 100% blocks executed 100%
+function _ZNSt3__1eqB8ne180100IPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEbRKNS_11__wrap_iterIT_EESD_ called 270 returned 100% blocks executed 100%
+function _ZNSt3__1eqB8ne180100IPKPN7testing9TestSuiteEEEbRKNS_11__wrap_iterIT_EESA_ called 60 returned 100% blocks executed 100%
+function _ZNSt3__1eqB8ne180100IPPN7testing9TestSuiteEEEbRKNS_11__wrap_iterIT_EES9_ called 12 returned 100% blocks executed 100%
+function _ZNSt3__1eqB8ne180100IPPN7testing8TestInfoEEEbRKNS_11__wrap_iterIT_EES9_ called 84 returned 100% blocks executed 100%
+function _ZNSt3__1eqB8ne180100IPN7testing8internal13edit_distance8EditTypeEEEbRKNS_11__wrap_iterIT_EESA_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__1eqB8ne180100IPKN7testing14TestPartResultEEEbRKNS_11__wrap_iterIT_EES9_ called 60 returned 100% blocks executed 100%
+function _ZNSt3__1eqB8ne180100IPKPN7testing8TestInfoEEEbRKNS_11__wrap_iterIT_EESA_ called 420 returned 100% blocks executed 100%
+function _ZNSt3__1eqB8ne180100IPKPN7testing17TestEventListenerEEEbRKNS_11__wrap_iterIT_EESA_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__1eqB8ne180100IPKPN7testing11EnvironmentEEEbRKNS_11__wrap_iterIT_EESA_ called 12 returned 100% blocks executed 100%
+function _ZNSt3__1eqB8ne180100IPPN7testing11EnvironmentEEEbRKNS_11__wrap_iterIT_EES9_ called 6 returned 100% blocks executed 100%
+     1320:  108:operator==(const __wrap_iter<_Iter1>& __x, const __wrap_iter<_Iter1>& __y) _NOEXCEPT {
+     1320:  109:  return __x.base() == __y.base();
+       54:  109-block  0
+    $$$$$:  109-block  1
+    $$$$$:  109-block  2
+       48:  109-block  3
+      288:  109-block  4
+        6:  109-block  5
+      270:  109-block  6
+       60:  109-block  7
+       12:  109-block  8
+       84:  109-block  9
+    $$$$$:  109-block 10
+       60:  109-block 11
+      420:  109-block 12
+    $$$$$:  109-block 13
+       12:  109-block 14
+        6:  109-block 15
+        -:  110:}
+        -:  111:
+        -:  112:template <class _Iter1, class _Iter2>
+        -:  113:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR bool
+function _ZNSt3__1eqB8ne180100IPKcPcEEbRKNS_11__wrap_iterIT_EERKNS4_IT0_EE called 624 returned 100% blocks executed 100%
+function _ZNSt3__1eqB8ne180100IPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEPS6_EEbRKNS_11__wrap_iterIT_EERKNSA_IT0_EE called 0 returned 0% blocks executed 0%
+      624:  114:operator==(const __wrap_iter<_Iter1>& __x, const __wrap_iter<_Iter2>& __y) _NOEXCEPT {
+      624:  115:  return __x.base() == __y.base();
+      624:  115-block  0
+    $$$$$:  115-block  1
+        -:  116:}
+        -:  117:
+        -:  118:template <class _Iter1>
+        -:  119:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 bool
+function _ZNSt3__1ltB8ne180100IPN7testing8internal13edit_distance8EditTypeEEEbRKNS_11__wrap_iterIT_EESA_ called 0 returned 0% blocks executed 0%
+    #####:  120:operator<(const __wrap_iter<_Iter1>& __x, const __wrap_iter<_Iter1>& __y) _NOEXCEPT {
+    #####:  121:  return __x.base() < __y.base();
+    $$$$$:  121-block  0
+        -:  122:}
+        -:  123:
+        -:  124:template <class _Iter1, class _Iter2>
+        -:  125:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 bool
+        -:  126:operator<(const __wrap_iter<_Iter1>& __x, const __wrap_iter<_Iter2>& __y) _NOEXCEPT {
+        -:  127:  return __x.base() < __y.base();
+        -:  128:}
+        -:  129:
+        -:  130:template <class _Iter1>
+        -:  131:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR bool
+function _ZNSt3__1neB8ne180100IPKcEEbRKNS_11__wrap_iterIT_EES7_ called 288 returned 100% blocks executed 100%
+function _ZNSt3__1neB8ne180100IPKN7testing8internal13edit_distance8EditTypeEEEbRKNS_11__wrap_iterIT_EESB_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__1neB8ne180100IPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEbRKNS_11__wrap_iterIT_EESD_ called 270 returned 100% blocks executed 100%
+function _ZNSt3__1neB8ne180100IPKPN7testing9TestSuiteEEEbRKNS_11__wrap_iterIT_EESA_ called 60 returned 100% blocks executed 100%
+function _ZNSt3__1neB8ne180100IPPN7testing9TestSuiteEEEbRKNS_11__wrap_iterIT_EES9_ called 12 returned 100% blocks executed 100%
+function _ZNSt3__1neB8ne180100IPPN7testing8TestInfoEEEbRKNS_11__wrap_iterIT_EES9_ called 78 returned 100% blocks executed 100%
+function _ZNSt3__1neB8ne180100IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEbRKNS_11__wrap_iterIT_EESC_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__1neB8ne180100IPcEEbRKNS_11__wrap_iterIT_EES6_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__1neB8ne180100IPPN7testing8internal30ParameterizedTestSuiteInfoBaseEEEbRKNS_11__wrap_iterIT_EESA_ called 6 returned 100% blocks executed 100%
+function _ZNSt3__1neB8ne180100IPN7testing8internal13edit_distance8EditTypeEEEbRKNS_11__wrap_iterIT_EESA_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__1neB8ne180100IPN7testing12TestPropertyEEEbRKNS_11__wrap_iterIT_EES8_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__1neB8ne180100IPKN7testing14TestPartResultEEEbRKNS_11__wrap_iterIT_EES9_ called 60 returned 100% blocks executed 100%
+function _ZNSt3__1neB8ne180100IPKPN7testing8TestInfoEEEbRKNS_11__wrap_iterIT_EESA_ called 420 returned 100% blocks executed 100%
+function _ZNSt3__1neB8ne180100IPKPN7testing17TestEventListenerEEEbRKNS_11__wrap_iterIT_EESA_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__1neB8ne180100IPKPN7testing11EnvironmentEEEbRKNS_11__wrap_iterIT_EESA_ called 12 returned 100% blocks executed 100%
+function _ZNSt3__1neB8ne180100IPPN7testing11EnvironmentEEEbRKNS_11__wrap_iterIT_EES9_ called 6 returned 100% blocks executed 100%
+     1212:  132:operator!=(const __wrap_iter<_Iter1>& __x, const __wrap_iter<_Iter1>& __y) _NOEXCEPT {
+     1212:  133:  return !(__x == __y);
+      288:  133-block  0
+    $$$$$:  133-block  1
+      270:  133-block  2
+       60:  133-block  3
+       12:  133-block  4
+       78:  133-block  5
+    $$$$$:  133-block  6
+    $$$$$:  133-block  7
+        6:  133-block  8
+    $$$$$:  133-block  9
+    $$$$$:  133-block 10
+       60:  133-block 11
+      420:  133-block 12
+    $$$$$:  133-block 13
+       12:  133-block 14
+        6:  133-block 15
+        -:  134:}
+        -:  135:
+        -:  136:template <class _Iter1, class _Iter2>
+        -:  137:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR bool
+function _ZNSt3__1neB8ne180100IPKcPcEEbRKNS_11__wrap_iterIT_EERKNS4_IT0_EE called 624 returned 100% blocks executed 100%
+function _ZNSt3__1neB8ne180100IPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEPS6_EEbRKNS_11__wrap_iterIT_EERKNSA_IT0_EE called 0 returned 0% blocks executed 0%
+      624:  138:operator!=(const __wrap_iter<_Iter1>& __x, const __wrap_iter<_Iter2>& __y) _NOEXCEPT {
+      624:  139:  return !(__x == __y);
+      624:  139-block  0
+    $$$$$:  139-block  1
+        -:  140:}
+        -:  141:
+        -:  142:template <class _Iter1>
+        -:  143:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR bool
+        -:  144:operator>(const __wrap_iter<_Iter1>& __x, const __wrap_iter<_Iter1>& __y) _NOEXCEPT {
+        -:  145:  return __y < __x;
+        -:  146:}
+        -:  147:
+        -:  148:template <class _Iter1, class _Iter2>
+        -:  149:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR bool
+        -:  150:operator>(const __wrap_iter<_Iter1>& __x, const __wrap_iter<_Iter2>& __y) _NOEXCEPT {
+        -:  151:  return __y < __x;
+        -:  152:}
+        -:  153:
+        -:  154:template <class _Iter1>
+        -:  155:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR bool
+        -:  156:operator>=(const __wrap_iter<_Iter1>& __x, const __wrap_iter<_Iter1>& __y) _NOEXCEPT {
+        -:  157:  return !(__x < __y);
+        -:  158:}
+        -:  159:
+        -:  160:template <class _Iter1, class _Iter2>
+        -:  161:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR bool
+        -:  162:operator>=(const __wrap_iter<_Iter1>& __x, const __wrap_iter<_Iter2>& __y) _NOEXCEPT {
+        -:  163:  return !(__x < __y);
+        -:  164:}
+        -:  165:
+        -:  166:template <class _Iter1>
+        -:  167:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR bool
+        -:  168:operator<=(const __wrap_iter<_Iter1>& __x, const __wrap_iter<_Iter1>& __y) _NOEXCEPT {
+        -:  169:  return !(__y < __x);
+        -:  170:}
+        -:  171:
+        -:  172:template <class _Iter1, class _Iter2>
+        -:  173:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR bool
+        -:  174:operator<=(const __wrap_iter<_Iter1>& __x, const __wrap_iter<_Iter2>& __y) _NOEXCEPT {
+        -:  175:  return !(__y < __x);
+        -:  176:}
+        -:  177:
+        -:  178:template <class _Iter1, class _Iter2>
+        -:  179:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14
+        -:  180:#ifndef _LIBCPP_CXX03_LANG
+        -:  181:    auto
+function _ZNSt3__1miB8ne180100IPKcS2_EEDTmicldtfp_4baseEcldtfp0_4baseEERKNS_11__wrap_iterIT_EERKNS4_IT0_EE called 6 returned 100% blocks executed 100%
+function _ZNSt3__1miB8ne180100IPKN7testing8internal13edit_distance8EditTypeES6_EEDTmicldtfp_4baseEcldtfp0_4baseEERKNS_11__wrap_iterIT_EERKNS8_IT0_EE called 0 returned 0% blocks executed 0%
+function _ZNSt3__1miB8ne180100IPKcPcEEDTmicldtfp_4baseEcldtfp0_4baseEERKNS_11__wrap_iterIT_EERKNS5_IT0_EE called 6 returned 100% blocks executed 100%
+function _ZNSt3__1miB8ne180100IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEES7_EEDTmicldtfp_4baseEcldtfp0_4baseEERKNS_11__wrap_iterIT_EERKNS9_IT0_EE called 18 returned 100% blocks executed 100%
+function _ZNSt3__1miB8ne180100IPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEPS6_EEDTmicldtfp_4baseEcldtfp0_4baseEERKNS_11__wrap_iterIT_EERKNSB_IT0_EE called 24 returned 100% blocks executed 100%
+function _ZNSt3__1miB8ne180100IPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEES8_EEDTmicldtfp_4baseEcldtfp0_4baseEERKNS_11__wrap_iterIT_EERKNSA_IT0_EE called 0 returned 0% blocks executed 0%
+function _ZNSt3__1miB8ne180100IPPN7testing8TestInfoES4_EEDTmicldtfp_4baseEcldtfp0_4baseEERKNS_11__wrap_iterIT_EERKNS6_IT0_EE called 6 returned 100% blocks executed 100%
+function _ZNSt3__1miB8ne180100IPKPN7testing17TestEventListenerES5_EEDTmicldtfp_4baseEcldtfp0_4baseEERKNS_11__wrap_iterIT_EERKNS7_IT0_EE called 0 returned 0% blocks executed 0%
+function _ZNSt3__1miB8ne180100IPKPN7testing9TestSuiteEPS3_EEDTmicldtfp_4baseEcldtfp0_4baseEERKNS_11__wrap_iterIT_EERKNS8_IT0_EE called 0 returned 0% blocks executed 0%
+       60:  182:    operator-(const __wrap_iter<_Iter1>& __x,
+        -:  183:              const __wrap_iter<_Iter2>& __y) _NOEXCEPT->decltype(__x.base() - __y.base())
+        -:  184:#else
+        -:  185:    typename __wrap_iter<_Iter1>::difference_type
+        -:  186:    operator-(const __wrap_iter<_Iter1>& __x, const __wrap_iter<_Iter2>& __y) _NOEXCEPT
+        -:  187:#endif // C++03
+        -:  188:{
+       60:  189:  return __x.base() - __y.base();
+        6:  189-block  0
+    $$$$$:  189-block  1
+        6:  189-block  2
+       18:  189-block  3
+       24:  189-block  4
+    $$$$$:  189-block  5
+        6:  189-block  6
+    $$$$$:  189-block  7
+    $$$$$:  189-block  8
+        -:  190:}
+        -:  191:
+        -:  192:template <class _Iter1>
+        -:  193:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 __wrap_iter<_Iter1>
+        -:  194:operator+(typename __wrap_iter<_Iter1>::difference_type __n, __wrap_iter<_Iter1> __x) _NOEXCEPT {
+        -:  195:  __x += __n;
+        -:  196:  return __x;
+        -:  197:}
+        -:  198:
+        -:  199:#if _LIBCPP_STD_VER <= 17
+        -:  200:template <class _It>
+        -:  201:struct __libcpp_is_contiguous_iterator<__wrap_iter<_It> > : true_type {};
+        -:  202:#endif
+        -:  203:
+        -:  204:template <class _It>
+        -:  205:struct _LIBCPP_TEMPLATE_VIS pointer_traits<__wrap_iter<_It> > {
+        -:  206:  typedef __wrap_iter<_It> pointer;
+        -:  207:  typedef typename pointer_traits<_It>::element_type element_type;
+        -:  208:  typedef typename pointer_traits<_It>::difference_type difference_type;
+        -:  209:
+function _ZNSt3__114pointer_traitsINS_11__wrap_iterIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEE10to_addressB8ne180100ES9_ called 108 returned 100% blocks executed 100%
+function _ZNSt3__114pointer_traitsINS_11__wrap_iterIPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEE10to_addressB8ne180100ESA_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114pointer_traitsINS_11__wrap_iterIPPN7testing8TestInfoEEEE10to_addressB8ne180100ES6_ called 0 returned 0% blocks executed 0%
+      108:  210:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR static element_type* to_address(pointer __w) _NOEXCEPT {
+      108:  211:    return std::__to_address(__w.base());
+      108:  211-block  0
+    $$$$$:  211-block  1
+    $$$$$:  211-block  2
+        -:  212:  }
+        -:  213:};
+        -:  214:
+        -:  215:_LIBCPP_END_NAMESPACE_STD
+        -:  216:
+        -:  217:#endif // _LIBCPP___ITERATOR_WRAP_ITER_H

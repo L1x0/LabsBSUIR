@@ -1,0 +1,989 @@
+        -:    0:Source:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/TestsForLab.cpp
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/CMakeFiles/tests_for_lab.dir/TestsForLab.cpp.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/CMakeFiles/tests_for_lab.dir/TestsForLab.cpp.gcda
+        -:    0:Runs:6
+        -:    0:Programs:1
+        -:    1://
+        -:    2:// Created by Артём Астахов on 15.12.24.
+        -:    3://
+        -:    4:#include <gtest/gtest.h>
+        -:    5:#include "memory_manager.h"
+        -:    6:
+function _ZN41MemoryManagerTest_AllocateDeallocate_Test8TestBodyEv called 1 returned 100% blocks executed 32%
+function _ZN41MemoryManagerTest_AllocateDeallocate_TestD1Ev called 1 returned 100% blocks executed 100%
+function _ZN41MemoryManagerTest_AllocateDeallocate_TestD0Ev called 1 returned 100% blocks executed 100%
+function _ZN41MemoryManagerTest_AllocateDeallocate_TestC1Ev called 1 returned 100% blocks executed 100%
+function _ZN41MemoryManagerTest_AllocateDeallocate_TestC2Ev called 1 returned 100% blocks executed 100%
+function _ZN41MemoryManagerTest_AllocateDeallocate_TestD2Ev called 1 returned 100% blocks executed 100%
+       12:    7:TEST(MemoryManagerTest, AllocateDeallocate) {
+        6:    7-block  0
+branch  0 taken 6
+branch  1 taken 0
+        6:    7-block  1
+branch  2 taken 6
+branch  3 taken 0
+        6:    7-block  2
+branch  4 taken 6
+branch  5 taken 0
+        6:    7-block  3
+branch  6 taken 6
+branch  7 taken 0
+        6:    7-block  4
+branch  8 taken 6
+branch  9 taken 0
+        6:    7-block  5
+branch 10 taken 6
+branch 11 taken 0
+        6:    7-block  6
+branch 12 taken 6
+branch 13 taken 0
+        6:    7-block  7
+branch 14 taken 6
+branch 15 taken 0
+        6:    7-block  8
+    $$$$$:    7-block  9
+    $$$$$:    7-block 10
+    $$$$$:    7-block 11
+    $$$$$:    7-block 12
+    $$$$$:    7-block 13
+    $$$$$:    7-block 14
+    $$$$$:    7-block 15
+    $$$$$:    7-block 16
+        1:    7-block 17
+        1:    7-block 18
+        1:    7-block 19
+        1:    7-block 20
+        1:    7-block 21
+        1:    8:    MemoryManager manager(1024);
+        -:    9:
+        1:   10:    void* block1 = manager.allocate(128);
+        1:   10-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   11:    void* block2 = manager.allocate(256);
+        1:   11-block  0
+branch  0 taken 1
+branch  1 taken 0
+        -:   12:
+        1:   13:    ASSERT_NE(block1, nullptr);
+        1:   13-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   13-block  1
+branch  2 taken 1
+branch  3 taken 0
+        1:   13-block  2
+branch  4 taken 1
+branch  5 taken 0
+        1:   13-block  3
+    $$$$$:   13-block  4
+branch  6 never executed
+branch  7 never executed
+    $$$$$:   13-block  5
+branch  8 never executed
+branch  9 never executed
+    $$$$$:   13-block  6
+branch 10 never executed
+branch 11 never executed
+    $$$$$:   13-block  7
+branch 12 never executed
+branch 13 never executed
+    $$$$$:   13-block  8
+    $$$$$:   13-block  9
+    $$$$$:   13-block 10
+        1:   13-block 11
+        1:   13-block 12
+branch 14 taken 1
+branch 15 taken 0
+    $$$$$:   13-block 13
+        1:   14:    ASSERT_NE(block2, nullptr);
+        1:   14-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   14-block  1
+branch  2 taken 1
+branch  3 taken 0
+        1:   14-block  2
+branch  4 taken 0
+branch  5 taken 1
+        1:   14-block  3
+    $$$$$:   14-block  4
+branch  6 never executed
+branch  7 never executed
+    $$$$$:   14-block  5
+branch  8 never executed
+branch  9 never executed
+    $$$$$:   14-block  6
+branch 10 never executed
+branch 11 never executed
+    $$$$$:   14-block  7
+branch 12 never executed
+branch 13 never executed
+    $$$$$:   14-block  8
+    $$$$$:   14-block  9
+    $$$$$:   14-block 10
+        1:   14-block 11
+        1:   14-block 12
+branch 14 taken 1
+branch 15 taken 0
+    $$$$$:   14-block 13
+        -:   15:
+        1:   16:    manager.deallocate(block1);
+        1:   16-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   17:    manager.deallocate(block2);
+        1:   17-block  0
+branch  0 taken 1
+branch  1 taken 0
+        -:   18:
+        1:   19:    ASSERT_NO_THROW(manager.printStatus());
+        1:   19-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   19-block  1
+branch  2 taken 1
+branch  3 taken 0
+        1:   19-block  2
+branch  4 taken 1
+branch  5 taken 0
+        1:   19-block  3
+branch  6 taken 1
+branch  7 taken 0
+        1:   19-block  4
+branch  8 taken 1
+branch  9 taken 0
+        1:   19-block  5
+    $$$$$:   19-block  6
+branch 10 never executed
+branch 11 never executed
+    $$$$$:   19-block  7
+branch 12 never executed
+branch 13 never executed
+    $$$$$:   19-block  8
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   19-block  9
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   19-block 10
+branch 18 never executed
+branch 19 never executed
+    $$$$$:   19-block 11
+branch 20 never executed
+branch 21 never executed
+    $$$$$:   19-block 12
+branch 22 never executed
+branch 23 never executed
+    $$$$$:   19-block 13
+branch 24 never executed
+branch 25 never executed
+    $$$$$:   19-block 14
+branch 26 never executed
+branch 27 never executed
+    $$$$$:   19-block 15
+branch 28 never executed
+branch 29 never executed
+        1:   19-block 16
+    $$$$$:   19-block 17
+branch 30 never executed
+branch 31 never executed
+    $$$$$:   19-block 18
+    $$$$$:   19-block 19
+    $$$$$:   19-block 20
+branch 32 never executed
+branch 33 never executed
+    $$$$$:   19-block 21
+        1:   19-block 22
+    $$$$$:   19-block 23
+    $$$$$:   19-block 24
+branch 34 never executed
+branch 35 never executed
+    $$$$$:   19-block 25
+branch 36 never executed
+branch 37 never executed
+    $$$$$:   19-block 26
+branch 38 never executed
+branch 39 never executed
+    $$$$$:   19-block 27
+branch 40 never executed
+branch 41 never executed
+    $$$$$:   19-block 28
+    $$$$$:   19-block 29
+    $$$$$:   19-block 30
+    $$$$$:   19-block 31
+        1:   19-block 32
+        1:   19-block 33
+branch 42 taken 0
+branch 43 taken 1
+    $$$$$:   19-block 34
+    $$$$$:   19-block 35
+        1:   20:}
+    $$$$$:   20-block  0
+    $$$$$:   20-block  1
+    $$$$$:   20-block  2
+    $$$$$:   20-block  3
+    $$$$$:   20-block  4
+    $$$$$:   20-block  5
+    $$$$$:   20-block  6
+    $$$$$:   20-block  7
+    $$$$$:   20-block  8
+    $$$$$:   20-block  9
+        1:   20-block 10
+        1:   20-block 11
+branch  0 taken 0
+branch  1 taken 1
+        1:   20-block 12
+    $$$$$:   20-block 13
+    $$$$$:   20-block 14
+        -:   21:
+function _ZN32MemoryManagerTest_WriteRead_Test8TestBodyEv called 1 returned 100% blocks executed 45%
+function _ZN32MemoryManagerTest_WriteRead_TestD1Ev called 1 returned 100% blocks executed 100%
+function _ZN32MemoryManagerTest_WriteRead_TestD0Ev called 1 returned 100% blocks executed 100%
+function _ZN32MemoryManagerTest_WriteRead_TestC1Ev called 1 returned 100% blocks executed 100%
+function _ZN32MemoryManagerTest_WriteRead_TestC2Ev called 1 returned 100% blocks executed 100%
+function _ZN32MemoryManagerTest_WriteRead_TestD2Ev called 1 returned 100% blocks executed 100%
+       12:   22:TEST(MemoryManagerTest, WriteRead) {
+        6:   22-block  0
+branch  0 taken 6
+branch  1 taken 0
+        6:   22-block  1
+branch  2 taken 6
+branch  3 taken 0
+        6:   22-block  2
+branch  4 taken 6
+branch  5 taken 0
+        6:   22-block  3
+branch  6 taken 6
+branch  7 taken 0
+        6:   22-block  4
+branch  8 taken 6
+branch  9 taken 0
+        6:   22-block  5
+branch 10 taken 6
+branch 11 taken 0
+        6:   22-block  6
+branch 12 taken 6
+branch 13 taken 0
+        6:   22-block  7
+branch 14 taken 6
+branch 15 taken 0
+        6:   22-block  8
+    $$$$$:   22-block  9
+    $$$$$:   22-block 10
+    $$$$$:   22-block 11
+    $$$$$:   22-block 12
+    $$$$$:   22-block 13
+    $$$$$:   22-block 14
+    $$$$$:   22-block 15
+    $$$$$:   22-block 16
+        1:   22-block 17
+        1:   22-block 18
+        1:   22-block 19
+        1:   22-block 20
+        1:   22-block 21
+        1:   23:    MemoryManager manager(512);
+        -:   24:
+        1:   25:    void* block = manager.allocate(128);
+        1:   25-block  0
+branch  0 taken 1
+branch  1 taken 0
+        -:   26:
+        1:   27:    std::string data = "Test Data";
+        1:   27-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   28:    manager.write(block, data.c_str(), data.size() + 1);
+        1:   28-block  0
+branch  0 taken 1
+branch  1 taken 0
+        -:   29:
+        -:   30:    char buffer[128];
+        1:   31:    manager.read(block, buffer, data.size() + 1);
+        1:   31-block  0
+branch  0 taken 1
+branch  1 taken 0
+        -:   32:
+        1:   33:    ASSERT_STREQ(buffer, data.c_str());
+        1:   33-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   33-block  1
+branch  2 taken 1
+branch  3 taken 0
+        1:   33-block  2
+branch  4 taken 0
+branch  5 taken 1
+        1:   33-block  3
+    $$$$$:   33-block  4
+branch  6 never executed
+branch  7 never executed
+    $$$$$:   33-block  5
+branch  8 never executed
+branch  9 never executed
+    $$$$$:   33-block  6
+branch 10 never executed
+branch 11 never executed
+    $$$$$:   33-block  7
+branch 12 never executed
+branch 13 never executed
+    $$$$$:   33-block  8
+    $$$$$:   33-block  9
+    $$$$$:   33-block 10
+        1:   33-block 11
+        1:   33-block 12
+branch 14 taken 1
+branch 15 taken 0
+    $$$$$:   33-block 13
+        -:   34:
+        1:   35:    manager.deallocate(block);
+        1:   35-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   36:}
+    $$$$$:   36-block  0
+    $$$$$:   36-block  1
+    $$$$$:   36-block  2
+    $$$$$:   36-block  3
+        1:   36-block  4
+        1:   36-block  5
+branch  0 taken 0
+branch  1 taken 1
+        1:   36-block  6
+    $$$$$:   36-block  7
+    $$$$$:   36-block  8
+    $$$$$:   36-block  9
+        -:   37:
+function _ZN48MemoryManagerTest_AllocateMoreThanAvailable_Test8TestBodyEv called 1 returned 100% blocks executed 29%
+function _ZN48MemoryManagerTest_AllocateMoreThanAvailable_TestD1Ev called 1 returned 100% blocks executed 100%
+function _ZN48MemoryManagerTest_AllocateMoreThanAvailable_TestD0Ev called 1 returned 100% blocks executed 100%
+function _ZN48MemoryManagerTest_AllocateMoreThanAvailable_TestC1Ev called 1 returned 100% blocks executed 100%
+function _ZN48MemoryManagerTest_AllocateMoreThanAvailable_TestC2Ev called 1 returned 100% blocks executed 100%
+function _ZN48MemoryManagerTest_AllocateMoreThanAvailable_TestD2Ev called 1 returned 100% blocks executed 100%
+       12:   38:TEST(MemoryManagerTest, AllocateMoreThanAvailable) {
+        6:   38-block  0
+branch  0 taken 6
+branch  1 taken 0
+        6:   38-block  1
+branch  2 taken 6
+branch  3 taken 0
+        6:   38-block  2
+branch  4 taken 6
+branch  5 taken 0
+        6:   38-block  3
+branch  6 taken 6
+branch  7 taken 0
+        6:   38-block  4
+branch  8 taken 6
+branch  9 taken 0
+        6:   38-block  5
+branch 10 taken 6
+branch 11 taken 0
+        6:   38-block  6
+branch 12 taken 6
+branch 13 taken 0
+        6:   38-block  7
+branch 14 taken 6
+branch 15 taken 0
+        6:   38-block  8
+    $$$$$:   38-block  9
+    $$$$$:   38-block 10
+    $$$$$:   38-block 11
+    $$$$$:   38-block 12
+    $$$$$:   38-block 13
+    $$$$$:   38-block 14
+    $$$$$:   38-block 15
+    $$$$$:   38-block 16
+        1:   38-block 17
+        1:   38-block 18
+        1:   38-block 19
+        1:   38-block 20
+        1:   38-block 21
+        1:   39:    MemoryManager manager(128);
+        -:   40:
+        2:   41:    ASSERT_THROW(manager.allocate(256), std::runtime_error);
+        1:   41-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   41-block  1
+branch  2 taken 1
+branch  3 taken 0
+        1:   41-block  2
+branch  4 taken 1
+branch  5 taken 0
+        1:   41-block  3
+branch  6 taken 1
+branch  7 taken 0
+        1:   41-block  4
+branch  8 taken 0
+branch  9 taken 1
+    $$$$$:   41-block  5
+        1:   41-block  6
+branch 10 taken 1
+branch 11 taken 0
+        1:   41-block  7
+branch 12 taken 1
+branch 13 taken 0
+        1:   41-block  8
+        1:   41-block  9
+branch 14 taken 1
+branch 15 taken 0
+    $$$$$:   41-block 10
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   41-block 11
+    $$$$$:   41-block 12
+branch 18 never executed
+branch 19 never executed
+    $$$$$:   41-block 13
+branch 20 never executed
+branch 21 never executed
+    $$$$$:   41-block 14
+branch 22 never executed
+branch 23 never executed
+    $$$$$:   41-block 15
+branch 24 never executed
+branch 25 never executed
+    $$$$$:   41-block 16
+branch 26 never executed
+branch 27 never executed
+    $$$$$:   41-block 17
+branch 28 never executed
+branch 29 never executed
+    $$$$$:   41-block 18
+branch 30 never executed
+branch 31 never executed
+    $$$$$:   41-block 19
+branch 32 never executed
+branch 33 never executed
+    $$$$$:   41-block 20
+branch 34 never executed
+branch 35 never executed
+    $$$$$:   41-block 21
+branch 36 never executed
+branch 37 never executed
+    $$$$$:   41-block 22
+    $$$$$:   41-block 23
+branch 38 never executed
+branch 39 never executed
+    $$$$$:   41-block 24
+    $$$$$:   41-block 25
+    $$$$$:   41-block 26
+branch 40 never executed
+branch 41 never executed
+    $$$$$:   41-block 27
+        1:   41-block 28
+    $$$$$:   41-block 29
+    $$$$$:   41-block 30
+branch 42 never executed
+branch 43 never executed
+    $$$$$:   41-block 31
+branch 44 never executed
+branch 45 never executed
+    $$$$$:   41-block 32
+branch 46 never executed
+branch 47 never executed
+    $$$$$:   41-block 33
+    $$$$$:   41-block 34
+    $$$$$:   41-block 35
+        1:   41-block 36
+        1:   41-block 37
+branch 48 taken 0
+branch 49 taken 1
+    $$$$$:   41-block 38
+        2:   42:}
+    $$$$$:   42-block  0
+        1:   42-block  1
+    $$$$$:   42-block  2
+    $$$$$:   42-block  3
+        1:   42-block  4
+        1:   42-block  5
+branch  0 taken 0
+branch  1 taken 1
+        1:   42-block  6
+    $$$$$:   42-block  7
+    $$$$$:   42-block  8
+        -:   43:
+function _ZN40MemoryManagerTest_WriteExceedsBlock_Test8TestBodyEv called 1 returned 100% blocks executed 30%
+function _ZN40MemoryManagerTest_WriteExceedsBlock_TestD1Ev called 1 returned 100% blocks executed 100%
+function _ZN40MemoryManagerTest_WriteExceedsBlock_TestD0Ev called 1 returned 100% blocks executed 100%
+function _ZN40MemoryManagerTest_WriteExceedsBlock_TestC1Ev called 1 returned 100% blocks executed 100%
+function _ZN40MemoryManagerTest_WriteExceedsBlock_TestC2Ev called 1 returned 100% blocks executed 100%
+function _ZN40MemoryManagerTest_WriteExceedsBlock_TestD2Ev called 1 returned 100% blocks executed 100%
+       12:   44:TEST(MemoryManagerTest, WriteExceedsBlock) {
+        6:   44-block  0
+branch  0 taken 6
+branch  1 taken 0
+        6:   44-block  1
+branch  2 taken 6
+branch  3 taken 0
+        6:   44-block  2
+branch  4 taken 6
+branch  5 taken 0
+        6:   44-block  3
+branch  6 taken 6
+branch  7 taken 0
+        6:   44-block  4
+branch  8 taken 6
+branch  9 taken 0
+        6:   44-block  5
+branch 10 taken 6
+branch 11 taken 0
+        6:   44-block  6
+branch 12 taken 6
+branch 13 taken 0
+        6:   44-block  7
+branch 14 taken 6
+branch 15 taken 0
+        6:   44-block  8
+    $$$$$:   44-block  9
+    $$$$$:   44-block 10
+    $$$$$:   44-block 11
+    $$$$$:   44-block 12
+    $$$$$:   44-block 13
+    $$$$$:   44-block 14
+    $$$$$:   44-block 15
+    $$$$$:   44-block 16
+        1:   44-block 17
+        1:   44-block 18
+        1:   44-block 19
+        1:   44-block 20
+        1:   44-block 21
+        1:   45:    MemoryManager manager(128);
+        -:   46:
+        1:   47:    void* block = manager.allocate(64);
+        1:   47-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   48:    char data[128] = {0};
+        -:   49:
+        2:   50:    ASSERT_THROW(manager.write(block, data, 128), std::runtime_error);
+        1:   50-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   50-block  1
+branch  2 taken 1
+branch  3 taken 0
+        1:   50-block  2
+branch  4 taken 1
+branch  5 taken 0
+        1:   50-block  3
+branch  6 taken 1
+branch  7 taken 0
+        1:   50-block  4
+branch  8 taken 0
+branch  9 taken 1
+    $$$$$:   50-block  5
+        1:   50-block  6
+branch 10 taken 1
+branch 11 taken 0
+        1:   50-block  7
+branch 12 taken 1
+branch 13 taken 0
+        1:   50-block  8
+        1:   50-block  9
+branch 14 taken 1
+branch 15 taken 0
+    $$$$$:   50-block 10
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   50-block 11
+    $$$$$:   50-block 12
+branch 18 never executed
+branch 19 never executed
+    $$$$$:   50-block 13
+branch 20 never executed
+branch 21 never executed
+    $$$$$:   50-block 14
+branch 22 never executed
+branch 23 never executed
+    $$$$$:   50-block 15
+branch 24 never executed
+branch 25 never executed
+    $$$$$:   50-block 16
+branch 26 never executed
+branch 27 never executed
+    $$$$$:   50-block 17
+branch 28 never executed
+branch 29 never executed
+    $$$$$:   50-block 18
+branch 30 never executed
+branch 31 never executed
+    $$$$$:   50-block 19
+branch 32 never executed
+branch 33 never executed
+    $$$$$:   50-block 20
+branch 34 never executed
+branch 35 never executed
+    $$$$$:   50-block 21
+branch 36 never executed
+branch 37 never executed
+    $$$$$:   50-block 22
+    $$$$$:   50-block 23
+branch 38 never executed
+branch 39 never executed
+    $$$$$:   50-block 24
+    $$$$$:   50-block 25
+    $$$$$:   50-block 26
+branch 40 never executed
+branch 41 never executed
+    $$$$$:   50-block 27
+        1:   50-block 28
+    $$$$$:   50-block 29
+    $$$$$:   50-block 30
+branch 42 never executed
+branch 43 never executed
+    $$$$$:   50-block 31
+branch 44 never executed
+branch 45 never executed
+    $$$$$:   50-block 32
+branch 46 never executed
+branch 47 never executed
+    $$$$$:   50-block 33
+    $$$$$:   50-block 34
+    $$$$$:   50-block 35
+        1:   50-block 36
+        1:   50-block 37
+branch 48 taken 1
+branch 49 taken 0
+    $$$$$:   50-block 38
+    $$$$$:   50-block 39
+        -:   51:
+        1:   52:    manager.deallocate(block);
+        1:   52-block  0
+branch  0 taken 1
+branch  1 taken 0
+        2:   53:}
+    $$$$$:   53-block  0
+    $$$$$:   53-block  1
+        1:   53-block  2
+    $$$$$:   53-block  3
+    $$$$$:   53-block  4
+        1:   53-block  5
+        1:   53-block  6
+branch  0 taken 0
+branch  1 taken 1
+        1:   53-block  7
+    $$$$$:   53-block  8
+    $$$$$:   53-block  9
+        -:   54:
+function _ZN39MemoryManagerTest_DoubleDeallocate_Test8TestBodyEv called 1 returned 100% blocks executed 30%
+function _ZN39MemoryManagerTest_DoubleDeallocate_TestD1Ev called 1 returned 100% blocks executed 100%
+function _ZN39MemoryManagerTest_DoubleDeallocate_TestD0Ev called 1 returned 100% blocks executed 100%
+function _ZN39MemoryManagerTest_DoubleDeallocate_TestC1Ev called 1 returned 100% blocks executed 100%
+function _ZN39MemoryManagerTest_DoubleDeallocate_TestC2Ev called 1 returned 100% blocks executed 100%
+function _ZN39MemoryManagerTest_DoubleDeallocate_TestD2Ev called 1 returned 100% blocks executed 100%
+       12:   55:TEST(MemoryManagerTest, DoubleDeallocate) {
+        6:   55-block  0
+branch  0 taken 6
+branch  1 taken 0
+        6:   55-block  1
+branch  2 taken 6
+branch  3 taken 0
+        6:   55-block  2
+branch  4 taken 6
+branch  5 taken 0
+        6:   55-block  3
+branch  6 taken 6
+branch  7 taken 0
+        6:   55-block  4
+branch  8 taken 6
+branch  9 taken 0
+        6:   55-block  5
+branch 10 taken 6
+branch 11 taken 0
+        6:   55-block  6
+branch 12 taken 6
+branch 13 taken 0
+        6:   55-block  7
+branch 14 taken 6
+branch 15 taken 0
+        6:   55-block  8
+    $$$$$:   55-block  9
+    $$$$$:   55-block 10
+    $$$$$:   55-block 11
+    $$$$$:   55-block 12
+    $$$$$:   55-block 13
+    $$$$$:   55-block 14
+    $$$$$:   55-block 15
+    $$$$$:   55-block 16
+        1:   55-block 17
+        1:   55-block 18
+        1:   55-block 19
+        1:   55-block 20
+        1:   55-block 21
+        1:   56:    MemoryManager manager(128);
+        -:   57:
+        1:   58:    void* block = manager.allocate(64);
+        1:   58-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   59:    manager.deallocate(block);
+        1:   59-block  0
+branch  0 taken 1
+branch  1 taken 0
+        -:   60:
+        2:   61:    ASSERT_THROW(manager.deallocate(block), std::runtime_error);
+        1:   61-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   61-block  1
+branch  2 taken 1
+branch  3 taken 0
+        1:   61-block  2
+branch  4 taken 1
+branch  5 taken 0
+        1:   61-block  3
+branch  6 taken 1
+branch  7 taken 0
+        1:   61-block  4
+branch  8 taken 0
+branch  9 taken 1
+    $$$$$:   61-block  5
+        1:   61-block  6
+branch 10 taken 1
+branch 11 taken 0
+        1:   61-block  7
+branch 12 taken 1
+branch 13 taken 0
+        1:   61-block  8
+        1:   61-block  9
+branch 14 taken 0
+branch 15 taken 1
+    $$$$$:   61-block 10
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   61-block 11
+    $$$$$:   61-block 12
+branch 18 never executed
+branch 19 never executed
+    $$$$$:   61-block 13
+branch 20 never executed
+branch 21 never executed
+    $$$$$:   61-block 14
+branch 22 never executed
+branch 23 never executed
+    $$$$$:   61-block 15
+branch 24 never executed
+branch 25 never executed
+    $$$$$:   61-block 16
+branch 26 never executed
+branch 27 never executed
+    $$$$$:   61-block 17
+branch 28 never executed
+branch 29 never executed
+    $$$$$:   61-block 18
+branch 30 never executed
+branch 31 never executed
+    $$$$$:   61-block 19
+branch 32 never executed
+branch 33 never executed
+    $$$$$:   61-block 20
+branch 34 never executed
+branch 35 never executed
+    $$$$$:   61-block 21
+branch 36 never executed
+branch 37 never executed
+    $$$$$:   61-block 22
+    $$$$$:   61-block 23
+branch 38 never executed
+branch 39 never executed
+    $$$$$:   61-block 24
+    $$$$$:   61-block 25
+    $$$$$:   61-block 26
+branch 40 never executed
+branch 41 never executed
+    $$$$$:   61-block 27
+        1:   61-block 28
+    $$$$$:   61-block 29
+    $$$$$:   61-block 30
+branch 42 never executed
+branch 43 never executed
+    $$$$$:   61-block 31
+branch 44 never executed
+branch 45 never executed
+    $$$$$:   61-block 32
+branch 46 never executed
+branch 47 never executed
+    $$$$$:   61-block 33
+    $$$$$:   61-block 34
+    $$$$$:   61-block 35
+        1:   61-block 36
+        1:   61-block 37
+branch 48 taken 0
+branch 49 taken 1
+    $$$$$:   61-block 38
+    $$$$$:   61-block 39
+        2:   62:}
+    $$$$$:   62-block  0
+    $$$$$:   62-block  1
+        1:   62-block  2
+    $$$$$:   62-block  3
+    $$$$$:   62-block  4
+        1:   62-block  5
+        1:   62-block  6
+branch  0 taken 0
+branch  1 taken 1
+        1:   62-block  7
+    $$$$$:   62-block  8
+    $$$$$:   62-block  9
+        -:   63:
+function _ZN34MemoryManagerTest_PrintStatus_Test8TestBodyEv called 1 returned 100% blocks executed 41%
+function _ZN34MemoryManagerTest_PrintStatus_TestD1Ev called 1 returned 100% blocks executed 100%
+function _ZN34MemoryManagerTest_PrintStatus_TestD0Ev called 1 returned 100% blocks executed 100%
+function _ZN34MemoryManagerTest_PrintStatus_TestC1Ev called 1 returned 100% blocks executed 100%
+function _ZN34MemoryManagerTest_PrintStatus_TestC2Ev called 1 returned 100% blocks executed 100%
+function _ZN34MemoryManagerTest_PrintStatus_TestD2Ev called 1 returned 100% blocks executed 100%
+       12:   64:TEST(MemoryManagerTest, PrintStatus) {
+        6:   64-block  0
+branch  0 taken 6
+branch  1 taken 0
+        6:   64-block  1
+branch  2 taken 6
+branch  3 taken 0
+        6:   64-block  2
+branch  4 taken 6
+branch  5 taken 0
+        6:   64-block  3
+branch  6 taken 6
+branch  7 taken 0
+        6:   64-block  4
+branch  8 taken 6
+branch  9 taken 0
+        6:   64-block  5
+branch 10 taken 6
+branch 11 taken 0
+        6:   64-block  6
+branch 12 taken 6
+branch 13 taken 0
+        6:   64-block  7
+branch 14 taken 6
+branch 15 taken 0
+        6:   64-block  8
+    $$$$$:   64-block  9
+    $$$$$:   64-block 10
+    $$$$$:   64-block 11
+    $$$$$:   64-block 12
+    $$$$$:   64-block 13
+    $$$$$:   64-block 14
+    $$$$$:   64-block 15
+    $$$$$:   64-block 16
+        1:   64-block 17
+        1:   64-block 18
+        1:   64-block 19
+        1:   64-block 20
+        1:   64-block 21
+        1:   65:    MemoryManager manager(512);
+        -:   66:
+        1:   67:    void* block1 = manager.allocate(128);
+        1:   67-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   68:    void* block2 = manager.allocate(64);
+        1:   68-block  0
+branch  0 taken 1
+branch  1 taken 0
+        -:   69:
+        1:   70:    testing::internal::CaptureStdout();
+        1:   70-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   71:    manager.printStatus();
+        1:   71-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   72:    std::string output = testing::internal::GetCapturedStdout();
+        1:   72-block  0
+branch  0 taken 1
+branch  1 taken 0
+        -:   73:
+        1:   74:    ASSERT_TRUE(output.find("128 байт") != std::string::npos);
+        1:   74-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   74-block  1
+branch  2 taken 1
+branch  3 taken 0
+        1:   74-block  2
+branch  4 taken 0
+branch  5 taken 1
+        1:   74-block  3
+    $$$$$:   74-block  4
+branch  6 never executed
+branch  7 never executed
+    $$$$$:   74-block  5
+branch  8 never executed
+branch  9 never executed
+    $$$$$:   74-block  6
+branch 10 never executed
+branch 11 never executed
+    $$$$$:   74-block  7
+branch 12 never executed
+branch 13 never executed
+    $$$$$:   74-block  8
+    $$$$$:   74-block  9
+    $$$$$:   74-block 10
+    $$$$$:   74-block 11
+        1:   74-block 12
+        1:   74-block 13
+branch 14 taken 1
+branch 15 taken 0
+    $$$$$:   74-block 14
+        1:   75:    ASSERT_TRUE(output.find("64 байт") != std::string::npos);
+        1:   75-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   75-block  1
+branch  2 taken 1
+branch  3 taken 0
+        1:   75-block  2
+branch  4 taken 0
+branch  5 taken 1
+        1:   75-block  3
+    $$$$$:   75-block  4
+branch  6 never executed
+branch  7 never executed
+    $$$$$:   75-block  5
+branch  8 never executed
+branch  9 never executed
+    $$$$$:   75-block  6
+branch 10 never executed
+branch 11 never executed
+    $$$$$:   75-block  7
+branch 12 never executed
+branch 13 never executed
+    $$$$$:   75-block  8
+    $$$$$:   75-block  9
+    $$$$$:   75-block 10
+    $$$$$:   75-block 11
+        1:   75-block 12
+        1:   75-block 13
+branch 14 taken 1
+branch 15 taken 0
+    $$$$$:   75-block 14
+        -:   76:
+        1:   77:    manager.deallocate(block1);
+        1:   77-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   78:    manager.deallocate(block2);
+        1:   78-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   79:}
+    $$$$$:   79-block  0
+    $$$$$:   79-block  1
+    $$$$$:   79-block  2
+    $$$$$:   79-block  3
+    $$$$$:   79-block  4
+    $$$$$:   79-block  5
+    $$$$$:   79-block  6
+    $$$$$:   79-block  7
+        1:   79-block  8
+        1:   79-block  9
+branch  0 taken 0
+branch  1 taken 1
+        1:   79-block 10
+    $$$$$:   79-block 11
+    $$$$$:   79-block 12
+    $$$$$:   79-block 13

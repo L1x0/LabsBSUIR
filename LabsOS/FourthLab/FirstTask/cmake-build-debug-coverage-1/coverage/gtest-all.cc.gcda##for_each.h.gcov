@@ -1,0 +1,102 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/for_each.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// -*- C++ -*-
+        -:    2://===----------------------------------------------------------------------===//
+        -:    3://
+        -:    4:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    5:// See https://llvm.org/LICENSE.txt for license information.
+        -:    6:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    7://
+        -:    8://===----------------------------------------------------------------------===//
+        -:    9:
+        -:   10:#ifndef _LIBCPP___ALGORITHM_FOR_EACH_H
+        -:   11:#define _LIBCPP___ALGORITHM_FOR_EACH_H
+        -:   12:
+        -:   13:#include <__algorithm/for_each_segment.h>
+        -:   14:#include <__config>
+        -:   15:#include <__iterator/segmented_iterator.h>
+        -:   16:#include <__ranges/movable_box.h>
+        -:   17:#include <__type_traits/enable_if.h>
+        -:   18:#include <__utility/in_place.h>
+        -:   19:#include <__utility/move.h>
+        -:   20:
+        -:   21:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   22:#  pragma GCC system_header
+        -:   23:#endif
+        -:   24:
+        -:   25:_LIBCPP_PUSH_MACROS
+        -:   26:#include <__undef_macros>
+        -:   27:
+        -:   28:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   29:
+        -:   30:template <class _InputIterator, class _Function>
+        -:   31:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 _Function
+function _ZNSt3__18for_eachB8ne180100INS_16reverse_iteratorINS_11__wrap_iterIPPN7testing11EnvironmentEEEEEPFvS5_EEET0_T_SC_SB_ called 6 returned 100% blocks executed 60%
+function _ZNSt3__18for_eachB8ne180100INS_11__wrap_iterIPKPN7testing9TestSuiteEEEPFvS4_EEET0_T_SB_SA_ called 6 returned 100% blocks executed 100%
+function _ZNSt3__18for_eachB8ne180100INS_11__wrap_iterIPKPN7testing8TestInfoEEEPFvS4_EEET0_T_SB_SA_ called 6 returned 100% blocks executed 100%
+function _ZNSt3__18for_eachB8ne180100INS_11__wrap_iterIPKPN7testing17TestEventListenerEEEPFvS4_EEET0_T_SB_SA_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__18for_eachB8ne180100INS_11__wrap_iterIPKPN7testing11EnvironmentEEEPFvS4_EEET0_T_SB_SA_ called 12 returned 100% blocks executed 60%
+       30:   32:for_each(_InputIterator __first, _InputIterator __last, _Function __f) {
+       72:   33:  for (; __first != __last; ++__first)
+        6:   33-block  0
+        6:   33-block  1
+branch  0 taken 0
+branch  1 taken 6
+    $$$$$:   33-block  2
+        6:   33-block  3
+       12:   33-block  4
+branch  2 taken 6
+branch  3 taken 6
+        6:   33-block  5
+        6:   33-block  6
+       42:   33-block  7
+branch  4 taken 36
+branch  5 taken 6
+       36:   33-block  8
+    $$$$$:   33-block  9
+    $$$$$:   33-block 10
+branch  6 never executed
+branch  7 never executed
+    $$$$$:   33-block 11
+       12:   33-block 12
+       12:   33-block 13
+branch  8 taken 0
+branch  9 taken 12
+    $$$$$:   33-block 14
+       42:   34:    __f(*__first);
+    $$$$$:   34-block  0
+        6:   34-block  1
+       36:   34-block  2
+    $$$$$:   34-block  3
+    $$$$$:   34-block  4
+       30:   35:  return __f;
+        6:   35-block  0
+        6:   35-block  1
+        6:   35-block  2
+    $$$$$:   35-block  3
+       12:   35-block  4
+        -:   36:}
+        -:   37:
+        -:   38:// __movable_box is available in C++20, but is actually a copyable-box, so optimization is only correct in C++23
+        -:   39:#if _LIBCPP_STD_VER >= 23
+        -:   40:template <class _SegmentedIterator, class _Function>
+        -:   41:  requires __is_segmented_iterator<_SegmentedIterator>::value
+        -:   42:_LIBCPP_HIDE_FROM_ABI constexpr _Function
+        -:   43:for_each(_SegmentedIterator __first, _SegmentedIterator __last, _Function __func) {
+        -:   44:  ranges::__movable_box<_Function> __wrapped_func(in_place, std::move(__func));
+        -:   45:  std::__for_each_segment(__first, __last, [&](auto __lfirst, auto __llast) {
+        -:   46:    __wrapped_func =
+        -:   47:        ranges::__movable_box<_Function>(in_place, std::for_each(__lfirst, __llast, std::move(*__wrapped_func)));
+        -:   48:  });
+        -:   49:  return std::move(*__wrapped_func);
+        -:   50:}
+        -:   51:#endif // _LIBCPP_STD_VER >= 23
+        -:   52:
+        -:   53:_LIBCPP_END_NAMESPACE_STD
+        -:   54:
+        -:   55:_LIBCPP_POP_MACROS
+        -:   56:
+        -:   57:#endif // _LIBCPP___ALGORITHM_FOR_EACH_H

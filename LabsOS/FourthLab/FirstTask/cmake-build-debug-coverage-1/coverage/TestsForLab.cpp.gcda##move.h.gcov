@@ -1,0 +1,145 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/move.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/CMakeFiles/tests_for_lab.dir/TestsForLab.cpp.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/CMakeFiles/tests_for_lab.dir/TestsForLab.cpp.gcda
+        -:    0:Runs:6
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___ALGORITHM_MOVE_H
+        -:   10:#define _LIBCPP___ALGORITHM_MOVE_H
+        -:   11:
+        -:   12:#include <__algorithm/copy_move_common.h>
+        -:   13:#include <__algorithm/for_each_segment.h>
+        -:   14:#include <__algorithm/iterator_operations.h>
+        -:   15:#include <__algorithm/min.h>
+        -:   16:#include <__config>
+        -:   17:#include <__iterator/segmented_iterator.h>
+        -:   18:#include <__type_traits/common_type.h>
+        -:   19:#include <__type_traits/is_copy_constructible.h>
+        -:   20:#include <__utility/move.h>
+        -:   21:#include <__utility/pair.h>
+        -:   22:
+        -:   23:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   24:#  pragma GCC system_header
+        -:   25:#endif
+        -:   26:
+        -:   27:_LIBCPP_PUSH_MACROS
+        -:   28:#include <__undef_macros>
+        -:   29:
+        -:   30:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   31:
+        -:   32:template <class _AlgPolicy, class _InIter, class _Sent, class _OutIter>
+        -:   33:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_InIter, _OutIter>
+        -:   34:__move(_InIter __first, _Sent __last, _OutIter __result);
+        -:   35:
+        -:   36:template <class _AlgPolicy>
+        -:   37:struct __move_loop {
+        -:   38:  template <class _InIter, class _Sent, class _OutIter>
+        -:   39:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_InIter, _OutIter>
+function _ZNKSt3__111__move_loopINS_17_ClassicAlgPolicyEEclB8ne180100IPNS_4pairIPvmEES7_S7_EENS4_IT_T1_EES8_T0_S9_ called 7 returned 100% blocks executed 75%
+        7:   40:  operator()(_InIter __first, _Sent __last, _OutIter __result) const {
+        7:   41:    while (__first != __last) {
+        7:   41-block  0
+        7:   41-block  1
+branch  0 taken 0
+branch  1 taken 7
+    $$$$$:   41-block  2
+    #####:   42:      *__result = _IterOps<_AlgPolicy>::__iter_move(__first);
+    #####:   43:      ++__first;
+    #####:   44:      ++__result;
+        -:   45:    }
+        7:   46:    return std::make_pair(std::move(__first), std::move(__result));
+        7:   46-block  0
+        -:   47:  }
+        -:   48:
+        -:   49:  template <class _InIter, class _OutIter>
+        -:   50:  struct _MoveSegment {
+        -:   51:    using _Traits = __segmented_iterator_traits<_InIter>;
+        -:   52:
+        -:   53:    _OutIter& __result_;
+        -:   54:
+        -:   55:    _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 explicit _MoveSegment(_OutIter& __result)
+        -:   56:        : __result_(__result) {}
+        -:   57:
+        -:   58:    _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 void
+        -:   59:    operator()(typename _Traits::__local_iterator __lfirst, typename _Traits::__local_iterator __llast) {
+        -:   60:      __result_ = std::__move<_AlgPolicy>(__lfirst, __llast, std::move(__result_)).second;
+        -:   61:    }
+        -:   62:  };
+        -:   63:
+        -:   64:  template <class _InIter, class _OutIter, __enable_if_t<__is_segmented_iterator<_InIter>::value, int> = 0>
+        -:   65:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_InIter, _OutIter>
+        -:   66:  operator()(_InIter __first, _InIter __last, _OutIter __result) const {
+        -:   67:    std::__for_each_segment(__first, __last, _MoveSegment<_InIter, _OutIter>(__result));
+        -:   68:    return std::make_pair(__last, std::move(__result));
+        -:   69:  }
+        -:   70:
+        -:   71:  template <class _InIter,
+        -:   72:            class _OutIter,
+        -:   73:            __enable_if_t<__has_random_access_iterator_category<_InIter>::value &&
+        -:   74:                              !__is_segmented_iterator<_InIter>::value && __is_segmented_iterator<_OutIter>::value,
+        -:   75:                          int> = 0>
+        -:   76:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_InIter, _OutIter>
+        -:   77:  operator()(_InIter __first, _InIter __last, _OutIter __result) const {
+        -:   78:    using _Traits = __segmented_iterator_traits<_OutIter>;
+        -:   79:    using _DiffT  = typename common_type<__iter_diff_t<_InIter>, __iter_diff_t<_OutIter> >::type;
+        -:   80:
+        -:   81:    if (__first == __last)
+        -:   82:      return std::make_pair(std::move(__first), std::move(__result));
+        -:   83:
+        -:   84:    auto __local_first      = _Traits::__local(__result);
+        -:   85:    auto __segment_iterator = _Traits::__segment(__result);
+        -:   86:    while (true) {
+        -:   87:      auto __local_last = _Traits::__end(__segment_iterator);
+        -:   88:      auto __size       = std::min<_DiffT>(__local_last - __local_first, __last - __first);
+        -:   89:      auto __iters      = std::__move<_AlgPolicy>(__first, __first + __size, __local_first);
+        -:   90:      __first           = std::move(__iters.first);
+        -:   91:
+        -:   92:      if (__first == __last)
+        -:   93:        return std::make_pair(std::move(__first), _Traits::__compose(__segment_iterator, std::move(__iters.second)));
+        -:   94:
+        -:   95:      __local_first = _Traits::__begin(++__segment_iterator);
+        -:   96:    }
+        -:   97:  }
+        -:   98:};
+        -:   99:
+        -:  100:struct __move_trivial {
+        -:  101:  // At this point, the iterators have been unwrapped so any `contiguous_iterator` has been unwrapped to a pointer.
+        -:  102:  template <class _In, class _Out, __enable_if_t<__can_lower_move_assignment_to_memmove<_In, _Out>::value, int> = 0>
+        -:  103:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_In*, _Out*>
+        -:  104:  operator()(_In* __first, _In* __last, _Out* __result) const {
+        -:  105:    return std::__copy_trivial_impl(__first, __last, __result);
+        -:  106:  }
+        -:  107:};
+        -:  108:
+        -:  109:template <class _AlgPolicy, class _InIter, class _Sent, class _OutIter>
+        -:  110:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_InIter, _OutIter>
+function _ZNSt3__16__moveB8ne180100INS_17_ClassicAlgPolicyEPNS_4pairIPvmEES5_S5_EENS2_IT0_T2_EES6_T1_S7_ called 7 returned 100% blocks executed 100%
+        7:  111:__move(_InIter __first, _Sent __last, _OutIter __result) {
+        7:  112:  return std::__dispatch_copy_or_move<_AlgPolicy, __move_loop<_AlgPolicy>, __move_trivial>(
+        7:  112-block  0
+        7:  113:      std::move(__first), std::move(__last), std::move(__result));
+        -:  114:}
+        -:  115:
+        -:  116:template <class _InputIterator, class _OutputIterator>
+        -:  117:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 _OutputIterator
+function _ZNSt3__14moveB8ne180100IPNS_4pairIPvmEES4_EET0_T_S6_S5_ called 7 returned 100% blocks executed 100%
+        7:  118:move(_InputIterator __first, _InputIterator __last, _OutputIterator __result) {
+        -:  119:  static_assert(is_copy_constructible<_InputIterator>::value, "Iterators has to be copy constructible.");
+        -:  120:  static_assert(is_copy_constructible<_OutputIterator>::value, "The output iterator has to be copy constructible.");
+        -:  121:
+        7:  122:  return std::__move<_ClassicAlgPolicy>(std::move(__first), std::move(__last), std::move(__result)).second;
+        7:  122-block  0
+        -:  123:}
+        -:  124:
+        -:  125:_LIBCPP_END_NAMESPACE_STD
+        -:  126:
+        -:  127:_LIBCPP_POP_MACROS
+        -:  128:
+        -:  129:#endif // _LIBCPP___ALGORITHM_MOVE_H

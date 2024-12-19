@@ -1,0 +1,197 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/___wctype.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * Copyright (c) 2017 Apple Inc. All rights reserved.
+        -:    3: *
+        -:    4: * @APPLE_LICENSE_HEADER_START@
+        -:    5: *
+        -:    6: * This file contains Original Code and/or Modifications of Original Code
+        -:    7: * as defined in and that are subject to the Apple Public Source License
+        -:    8: * Version 2.0 (the 'License'). You may not use this file except in
+        -:    9: * compliance with the License. Please obtain a copy of the License at
+        -:   10: * http://www.opensource.apple.com/apsl/ and read it before using this
+        -:   11: * file.
+        -:   12: *
+        -:   13: * The Original Code and all software distributed under the License are
+        -:   14: * distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
+        -:   15: * EXPRESS OR IMPLIED, AND APPLE HEREBY DISCLAIMS ALL SUCH WARRANTIES,
+        -:   16: * INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY,
+        -:   17: * FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT.
+        -:   18: * Please see the License for the specific language governing rights and
+        -:   19: * limitations under the License.
+        -:   20: *
+        -:   21: * @APPLE_LICENSE_HEADER_END@
+        -:   22: */
+        -:   23:/*-
+        -:   24: * Copyright (c)1999 Citrus Project,
+        -:   25: * All rights reserved.
+        -:   26: *
+        -:   27: * Redistribution and use in source and binary forms, with or without
+        -:   28: * modification, are permitted provided that the following conditions
+        -:   29: * are met:
+        -:   30: * 1. Redistributions of source code must retain the above copyright
+        -:   31: *    notice, this list of conditions and the following disclaimer.
+        -:   32: * 2. Redistributions in binary form must reproduce the above copyright
+        -:   33: *    notice, this list of conditions and the following disclaimer in the
+        -:   34: *    documentation and/or other materials provided with the distribution.
+        -:   35: *
+        -:   36: * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+        -:   37: * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+        -:   38: * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+        -:   39: * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+        -:   40: * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+        -:   41: * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+        -:   42: * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+        -:   43: * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+        -:   44: * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+        -:   45: * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+        -:   46: * SUCH DAMAGE.
+        -:   47: *
+        -:   48: */
+        -:   49:
+        -:   50:/*
+        -:   51: * Common header for __wctype.h and xlocale/___wctype.h
+        -:   52: */
+        -:   53:
+        -:   54:#ifndef __WCTYPE_H_
+        -:   55:#define __WCTYPE_H_
+        -:   56:#define ___WCTYPE_H_
+        -:   57:
+        -:   58:#include <sys/cdefs.h>
+        -:   59:#include <_types.h>
+        -:   60:
+        -:   61:#include <sys/_types/_wint_t.h>
+        -:   62:#include <_types/_wctype_t.h>
+        -:   63:
+        -:   64:#ifndef WEOF
+        -:   65:#define WEOF			__DARWIN_WEOF
+        -:   66:#endif
+        -:   67:
+        -:   68:#ifndef __DARWIN_WCTYPE_TOP_inline
+        -:   69:#define __DARWIN_WCTYPE_TOP_inline __header_inline
+        -:   70:#endif
+        -:   71:
+        -:   72:#include <ctype.h>
+        -:   73:
+        -:   74:/*
+        -:   75: * Use inline functions if we are allowed to and the compiler supports them.
+        -:   76: */
+        -:   77:#if !defined(_DONT_USE_CTYPE_INLINE_) && \
+        -:   78:	(defined(_USE_CTYPE_INLINE_) || defined(__GNUC__) || defined(__cplusplus))
+        -:   79:
+        -:   80:__DARWIN_WCTYPE_TOP_inline int
+        -:   81:iswalnum(wint_t _wc)
+        -:   82:{
+        -:   83:	return (__istype(_wc, _CTYPE_A|_CTYPE_D));
+        -:   84:}
+        -:   85:
+        -:   86:__DARWIN_WCTYPE_TOP_inline int
+        -:   87:iswalpha(wint_t _wc)
+        -:   88:{
+        -:   89:	return (__istype(_wc, _CTYPE_A));
+        -:   90:}
+        -:   91:
+        -:   92:__DARWIN_WCTYPE_TOP_inline int
+        -:   93:iswcntrl(wint_t _wc)
+        -:   94:{
+        -:   95:	return (__istype(_wc, _CTYPE_C));
+        -:   96:}
+        -:   97:
+        -:   98:__DARWIN_WCTYPE_TOP_inline int
+        -:   99:iswctype(wint_t _wc, wctype_t _charclass)
+        -:  100:{
+        -:  101:	return (__istype(_wc, _charclass));
+        -:  102:}
+        -:  103:
+        -:  104:__DARWIN_WCTYPE_TOP_inline int
+        -:  105:iswdigit(wint_t _wc)
+        -:  106:{
+        -:  107:	return (__isctype(_wc, _CTYPE_D));
+        -:  108:}
+        -:  109:
+        -:  110:__DARWIN_WCTYPE_TOP_inline int
+        -:  111:iswgraph(wint_t _wc)
+        -:  112:{
+        -:  113:	return (__istype(_wc, _CTYPE_G));
+        -:  114:}
+        -:  115:
+        -:  116:__DARWIN_WCTYPE_TOP_inline int
+        -:  117:iswlower(wint_t _wc)
+        -:  118:{
+        -:  119:	return (__istype(_wc, _CTYPE_L));
+        -:  120:}
+        -:  121:
+        -:  122:__DARWIN_WCTYPE_TOP_inline int
+        -:  123:iswprint(wint_t _wc)
+        -:  124:{
+        -:  125:	return (__istype(_wc, _CTYPE_R));
+        -:  126:}
+        -:  127:
+        -:  128:__DARWIN_WCTYPE_TOP_inline int
+        -:  129:iswpunct(wint_t _wc)
+        -:  130:{
+        -:  131:	return (__istype(_wc, _CTYPE_P));
+        -:  132:}
+        -:  133:
+        -:  134:__DARWIN_WCTYPE_TOP_inline int
+        -:  135:iswspace(wint_t _wc)
+        -:  136:{
+        -:  137:	return (__istype(_wc, _CTYPE_S));
+        -:  138:}
+        -:  139:
+        -:  140:__DARWIN_WCTYPE_TOP_inline int
+        -:  141:iswupper(wint_t _wc)
+        -:  142:{
+        -:  143:	return (__istype(_wc, _CTYPE_U));
+        -:  144:}
+        -:  145:
+        -:  146:__DARWIN_WCTYPE_TOP_inline int
+        -:  147:iswxdigit(wint_t _wc)
+        -:  148:{
+        -:  149:	return (__isctype(_wc, _CTYPE_X));
+        -:  150:}
+        -:  151:
+        -:  152:__DARWIN_WCTYPE_TOP_inline wint_t
+function _Z8towloweri called 0 returned 0% blocks executed 0%
+    #####:  153:towlower(wint_t _wc)
+        -:  154:{
+    #####:  155:		return (__tolower(_wc));
+    $$$$$:  155-block  0
+        -:  156:}
+        -:  157:
+        -:  158:__DARWIN_WCTYPE_TOP_inline wint_t
+        -:  159:towupper(wint_t _wc)
+        -:  160:{
+        -:  161:		return (__toupper(_wc));
+        -:  162:}
+        -:  163:
+        -:  164:#else /* not using inlines */
+        -:  165:
+        -:  166:__BEGIN_DECLS
+        -:  167:int	iswalnum(wint_t);
+        -:  168:int	iswalpha(wint_t);
+        -:  169:int	iswcntrl(wint_t);
+        -:  170:int	iswctype(wint_t, wctype_t);
+        -:  171:int	iswdigit(wint_t);
+        -:  172:int	iswgraph(wint_t);
+        -:  173:int	iswlower(wint_t);
+        -:  174:int	iswprint(wint_t);
+        -:  175:int	iswpunct(wint_t);
+        -:  176:int	iswspace(wint_t);
+        -:  177:int	iswupper(wint_t);
+        -:  178:int	iswxdigit(wint_t);
+        -:  179:wint_t	towlower(wint_t);
+        -:  180:wint_t	towupper(wint_t);
+        -:  181:__END_DECLS
+        -:  182:
+        -:  183:#endif /* using inlines */
+        -:  184:
+        -:  185:__BEGIN_DECLS
+        -:  186:wctype_t
+        -:  187:	wctype(const char *);
+        -:  188:__END_DECLS
+        -:  189:
+        -:  190:#endif /* __WCTYPE_H_ */

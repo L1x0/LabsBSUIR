@@ -1,0 +1,102 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__utility/swap.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___UTILITY_SWAP_H
+        -:   10:#define _LIBCPP___UTILITY_SWAP_H
+        -:   11:
+        -:   12:#include <__config>
+        -:   13:#include <__type_traits/is_move_assignable.h>
+        -:   14:#include <__type_traits/is_move_constructible.h>
+        -:   15:#include <__type_traits/is_nothrow_move_assignable.h>
+        -:   16:#include <__type_traits/is_nothrow_move_constructible.h>
+        -:   17:#include <__type_traits/is_swappable.h>
+        -:   18:#include <__utility/declval.h>
+        -:   19:#include <__utility/move.h>
+        -:   20:#include <cstddef>
+        -:   21:
+        -:   22:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   23:#  pragma GCC system_header
+        -:   24:#endif
+        -:   25:
+        -:   26:_LIBCPP_PUSH_MACROS
+        -:   27:#include <__undef_macros>
+        -:   28:
+        -:   29:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   30:
+        -:   31:#ifndef _LIBCPP_CXX03_LANG
+        -:   32:template <class _Tp>
+        -:   33:using __swap_result_t = __enable_if_t<is_move_constructible<_Tp>::value && is_move_assignable<_Tp>::value>;
+        -:   34:#else
+        -:   35:template <class>
+        -:   36:using __swap_result_t = void;
+        -:   37:#endif
+        -:   38:
+        -:   39:template <class _Tp>
+function _ZNSt3__14swapB8ne180100IbEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableIS2_EE5valueEvE4typeERS2_S5_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14swapB8ne180100IPPcEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableIS4_EE5valueEvE4typeERS4_S7_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14swapB8ne180100IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableIS9_EE5valueEvE4typeERS9_SC_ called 270 returned 100% blocks executed 100%
+function _ZNSt3__14swapB8ne180100ImEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableIS2_EE5valueEvE4typeERS2_S5_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14swapB8ne180100INS_14default_deleteINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableISA_EE5valueEvE4typeERSA_SD_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14swapB8ne180100IPN7testing14TestPartResultEEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableIS5_EE5valueEvE4typeERS5_S8_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14swapB8ne180100IPN7testing8internal13edit_distance8EditTypeEEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableIS7_EE5valueEvE4typeERS7_SA_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14swapB8ne180100IN7testing8internal13edit_distance8EditTypeEEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableIS6_EE5valueEvE4typeERS6_S9_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14swapB8ne180100IPmEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableIS3_EE5valueEvE4typeERS3_S6_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14swapB8ne180100IPN7testing12TestPropertyEEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableIS5_EE5valueEvE4typeERS5_S8_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14swapB8ne180100IPPN7testing8TestInfoEEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableIS6_EE5valueEvE4typeERS6_S9_ called 72 returned 100% blocks executed 100%
+function _ZNSt3__14swapB8ne180100IPiEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableIS3_EE5valueEvE4typeERS3_S6_ called 90 returned 100% blocks executed 100%
+function _ZNSt3__14swapB8ne180100IPN7testing8TestInfoEEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableIS5_EE5valueEvE4typeERS5_S8_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14swapB8ne180100IPPN7testing17TestEventListenerEEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableIS6_EE5valueEvE4typeERS6_S9_ called 18 returned 100% blocks executed 100%
+function _ZNSt3__14swapB8ne180100IPPN7testing11EnvironmentEEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableIS6_EE5valueEvE4typeERS6_S9_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14swapB8ne180100IPN7testing8internal9TraceInfoEEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableIS6_EE5valueEvE4typeERS6_S9_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14swapB8ne180100IPPN7testing9TestSuiteEEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableIS6_EE5valueEvE4typeERS6_S9_ called 18 returned 100% blocks executed 100%
+function _ZNSt3__14swapB8ne180100IiEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableIS2_EE5valueEvE4typeERS2_S5_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14swapB8ne180100INS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE5__repEEENS_9enable_ifIXaasr21is_move_constructibleIT_EE5valuesr18is_move_assignableIS9_EE5valueEvE4typeERS9_SC_ called 0 returned 0% blocks executed 0%
+      468:   40:inline _LIBCPP_HIDE_FROM_ABI __swap_result_t<_Tp> _LIBCPP_CONSTEXPR_SINCE_CXX20 swap(_Tp& __x, _Tp& __y)
+        -:   41:    _NOEXCEPT_(is_nothrow_move_constructible<_Tp>::value&& is_nothrow_move_assignable<_Tp>::value) {
+      468:   42:  _Tp __t(std::move(__x));
+      468:   43:  __x = std::move(__y);
+      468:   44:  __y = std::move(__t);
+      468:   45:}
+    $$$$$:   45-block  0
+    $$$$$:   45-block  1
+      270:   45-block  2
+    $$$$$:   45-block  3
+    $$$$$:   45-block  4
+    $$$$$:   45-block  5
+    $$$$$:   45-block  6
+    $$$$$:   45-block  7
+    $$$$$:   45-block  8
+    $$$$$:   45-block  9
+       72:   45-block 10
+       90:   45-block 11
+    $$$$$:   45-block 12
+       18:   45-block 13
+    $$$$$:   45-block 14
+    $$$$$:   45-block 15
+       18:   45-block 16
+    $$$$$:   45-block 17
+    $$$$$:   45-block 18
+        -:   46:
+        -:   47:template <class _Tp, size_t _Np, __enable_if_t<__is_swappable<_Tp>::value, int> >
+        -:   48:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 void swap(_Tp (&__a)[_Np], _Tp (&__b)[_Np])
+        -:   49:    _NOEXCEPT_(__is_nothrow_swappable<_Tp>::value) {
+        -:   50:  for (size_t __i = 0; __i != _Np; ++__i) {
+        -:   51:    swap(__a[__i], __b[__i]);
+        -:   52:  }
+        -:   53:}
+        -:   54:
+        -:   55:_LIBCPP_END_NAMESPACE_STD
+        -:   56:
+        -:   57:_LIBCPP_POP_MACROS
+        -:   58:
+        -:   59:#endif // _LIBCPP___UTILITY_SWAP_H

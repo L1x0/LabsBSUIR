@@ -1,0 +1,1528 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/set
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// -*- C++ -*-
+        -:    2://===----------------------------------------------------------------------===//
+        -:    3://
+        -:    4:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    5:// See https://llvm.org/LICENSE.txt for license information.
+        -:    6:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    7://
+        -:    8://===----------------------------------------------------------------------===//
+        -:    9:
+        -:   10:#ifndef _LIBCPP_SET
+        -:   11:#define _LIBCPP_SET
+        -:   12:
+        -:   13:/*
+        -:   14:
+        -:   15:    set synopsis
+        -:   16:
+        -:   17:namespace std
+        -:   18:{
+        -:   19:
+        -:   20:template <class Key, class Compare = less<Key>,
+        -:   21:          class Allocator = allocator<Key>>
+        -:   22:class set
+        -:   23:{
+        -:   24:public:
+        -:   25:    // types:
+        -:   26:    typedef Key                                      key_type;
+        -:   27:    typedef key_type                                 value_type;
+        -:   28:    typedef Compare                                  key_compare;
+        -:   29:    typedef key_compare                              value_compare;
+        -:   30:    typedef Allocator                                allocator_type;
+        -:   31:    typedef typename allocator_type::reference       reference;
+        -:   32:    typedef typename allocator_type::const_reference const_reference;
+        -:   33:    typedef typename allocator_type::size_type       size_type;
+        -:   34:    typedef typename allocator_type::difference_type difference_type;
+        -:   35:    typedef typename allocator_type::pointer         pointer;
+        -:   36:    typedef typename allocator_type::const_pointer   const_pointer;
+        -:   37:
+        -:   38:    typedef implementation-defined                   iterator;
+        -:   39:    typedef implementation-defined                   const_iterator;
+        -:   40:    typedef std::reverse_iterator<iterator>          reverse_iterator;
+        -:   41:    typedef std::reverse_iterator<const_iterator>    const_reverse_iterator;
+        -:   42:    typedef unspecified                              node_type;               // C++17
+        -:   43:    typedef INSERT_RETURN_TYPE<iterator, node_type>  insert_return_type;      // C++17
+        -:   44:
+        -:   45:    // construct/copy/destroy:
+        -:   46:    set()
+        -:   47:        noexcept(
+        -:   48:            is_nothrow_default_constructible<allocator_type>::value &&
+        -:   49:            is_nothrow_default_constructible<key_compare>::value &&
+        -:   50:            is_nothrow_copy_constructible<key_compare>::value);
+        -:   51:    explicit set(const value_compare& comp);
+        -:   52:    set(const value_compare& comp, const allocator_type& a);
+        -:   53:    template <class InputIterator>
+        -:   54:        set(InputIterator first, InputIterator last,
+        -:   55:            const value_compare& comp = value_compare());
+        -:   56:    template <class InputIterator>
+        -:   57:        set(InputIterator first, InputIterator last, const value_compare& comp,
+        -:   58:            const allocator_type& a);
+        -:   59:    template<container-compatible-range<value_type> R>
+        -:   60:      set(from_range_t, R&& rg, const Compare& comp = Compare(), const Allocator& = Allocator()); // C++23
+        -:   61:    set(const set& s);
+        -:   62:    set(set&& s)
+        -:   63:        noexcept(
+        -:   64:            is_nothrow_move_constructible<allocator_type>::value &&
+        -:   65:            is_nothrow_move_constructible<key_compare>::value);
+        -:   66:    explicit set(const allocator_type& a);
+        -:   67:    set(const set& s, const allocator_type& a);
+        -:   68:    set(set&& s, const allocator_type& a);
+        -:   69:    set(initializer_list<value_type> il, const value_compare& comp = value_compare());
+        -:   70:    set(initializer_list<value_type> il, const value_compare& comp,
+        -:   71:        const allocator_type& a);
+        -:   72:    template <class InputIterator>
+        -:   73:        set(InputIterator first, InputIterator last, const allocator_type& a)
+        -:   74:            : set(first, last, Compare(), a) {}  // C++14
+        -:   75:    template<container-compatible-range<value_type> R>
+        -:   76:      set(from_range_t, R&& rg, const Allocator& a))
+        -:   77:        : set(from_range, std::forward<R>(rg), Compare(), a) { } // C++23
+        -:   78:    set(initializer_list<value_type> il, const allocator_type& a)
+        -:   79:        : set(il, Compare(), a) {}  // C++14
+        -:   80:    ~set();
+        -:   81:
+        -:   82:    set& operator=(const set& s);
+        -:   83:    set& operator=(set&& s)
+        -:   84:        noexcept(
+        -:   85:            allocator_type::propagate_on_container_move_assignment::value &&
+        -:   86:            is_nothrow_move_assignable<allocator_type>::value &&
+        -:   87:            is_nothrow_move_assignable<key_compare>::value);
+        -:   88:    set& operator=(initializer_list<value_type> il);
+        -:   89:
+        -:   90:    // iterators:
+        -:   91:          iterator begin() noexcept;
+        -:   92:    const_iterator begin() const noexcept;
+        -:   93:          iterator end() noexcept;
+        -:   94:    const_iterator end()   const noexcept;
+        -:   95:
+        -:   96:          reverse_iterator rbegin() noexcept;
+        -:   97:    const_reverse_iterator rbegin() const noexcept;
+        -:   98:          reverse_iterator rend() noexcept;
+        -:   99:    const_reverse_iterator rend()   const noexcept;
+        -:  100:
+        -:  101:    const_iterator         cbegin()  const noexcept;
+        -:  102:    const_iterator         cend()    const noexcept;
+        -:  103:    const_reverse_iterator crbegin() const noexcept;
+        -:  104:    const_reverse_iterator crend()   const noexcept;
+        -:  105:
+        -:  106:    // capacity:
+        -:  107:    bool      empty()    const noexcept;
+        -:  108:    size_type size()     const noexcept;
+        -:  109:    size_type max_size() const noexcept;
+        -:  110:
+        -:  111:    // modifiers:
+        -:  112:    template <class... Args>
+        -:  113:        pair<iterator, bool> emplace(Args&&... args);
+        -:  114:    template <class... Args>
+        -:  115:        iterator emplace_hint(const_iterator position, Args&&... args);
+        -:  116:    pair<iterator,bool> insert(const value_type& v);
+        -:  117:    pair<iterator,bool> insert(value_type&& v);
+        -:  118:    iterator insert(const_iterator position, const value_type& v);
+        -:  119:    iterator insert(const_iterator position, value_type&& v);
+        -:  120:    template <class InputIterator>
+        -:  121:        void insert(InputIterator first, InputIterator last);
+        -:  122:    template<container-compatible-range<value_type> R>
+        -:  123:      void insert_range(R&& rg);                                                      // C++23
+        -:  124:    void insert(initializer_list<value_type> il);
+        -:  125:
+        -:  126:    node_type extract(const_iterator position);                                       // C++17
+        -:  127:    node_type extract(const key_type& x);                                             // C++17
+        -:  128:    insert_return_type insert(node_type&& nh);                                        // C++17
+        -:  129:    iterator insert(const_iterator hint, node_type&& nh);                             // C++17
+        -:  130:
+        -:  131:    iterator  erase(const_iterator position);
+        -:  132:    iterator  erase(iterator position);  // C++14
+        -:  133:    size_type erase(const key_type& k);
+        -:  134:    iterator  erase(const_iterator first, const_iterator last);
+        -:  135:    void clear() noexcept;
+        -:  136:
+        -:  137:    template<class C2>
+        -:  138:      void merge(set<Key, C2, Allocator>& source);         // C++17
+        -:  139:    template<class C2>
+        -:  140:      void merge(set<Key, C2, Allocator>&& source);        // C++17
+        -:  141:    template<class C2>
+        -:  142:      void merge(multiset<Key, C2, Allocator>& source);    // C++17
+        -:  143:    template<class C2>
+        -:  144:      void merge(multiset<Key, C2, Allocator>&& source);   // C++17
+        -:  145:
+        -:  146:    void swap(set& s)
+        -:  147:        noexcept(
+        -:  148:            __is_nothrow_swappable<key_compare>::value &&
+        -:  149:            (!allocator_type::propagate_on_container_swap::value ||
+        -:  150:             __is_nothrow_swappable<allocator_type>::value));
+        -:  151:
+        -:  152:    // observers:
+        -:  153:    allocator_type get_allocator() const noexcept;
+        -:  154:    key_compare    key_comp()      const;
+        -:  155:    value_compare  value_comp()    const;
+        -:  156:
+        -:  157:    // set operations:
+        -:  158:          iterator find(const key_type& k);
+        -:  159:    const_iterator find(const key_type& k) const;
+        -:  160:    template<typename K>
+        -:  161:        iterator find(const K& x);
+        -:  162:    template<typename K>
+        -:  163:        const_iterator find(const K& x) const;  // C++14
+        -:  164:
+        -:  165:    template<typename K>
+        -:  166:        size_type count(const K& x) const;        // C++14
+        -:  167:    size_type      count(const key_type& k) const;
+        -:  168:
+        -:  169:    bool           contains(const key_type& x) const;  // C++20
+        -:  170:    template<class K> bool contains(const K& x) const; // C++20
+        -:  171:
+        -:  172:          iterator lower_bound(const key_type& k);
+        -:  173:    const_iterator lower_bound(const key_type& k) const;
+        -:  174:    template<typename K>
+        -:  175:        iterator lower_bound(const K& x);              // C++14
+        -:  176:    template<typename K>
+        -:  177:        const_iterator lower_bound(const K& x) const;  // C++14
+        -:  178:
+        -:  179:          iterator upper_bound(const key_type& k);
+        -:  180:    const_iterator upper_bound(const key_type& k) const;
+        -:  181:    template<typename K>
+        -:  182:        iterator upper_bound(const K& x);              // C++14
+        -:  183:    template<typename K>
+        -:  184:        const_iterator upper_bound(const K& x) const;  // C++14
+        -:  185:    pair<iterator,iterator>             equal_range(const key_type& k);
+        -:  186:    pair<const_iterator,const_iterator> equal_range(const key_type& k) const;
+        -:  187:    template<typename K>
+        -:  188:        pair<iterator,iterator>             equal_range(const K& x);        // C++14
+        -:  189:    template<typename K>
+        -:  190:        pair<const_iterator,const_iterator> equal_range(const K& x) const;  // C++14
+        -:  191:};
+        -:  192:
+        -:  193:template <class InputIterator,
+        -:  194:      class Compare = less<typename iterator_traits<InputIterator>::value_type>,
+        -:  195:      class Allocator = allocator<typename iterator_traits<InputIterator>::value_type>>
+        -:  196:set(InputIterator, InputIterator,
+        -:  197:    Compare = Compare(), Allocator = Allocator())
+        -:  198:  -> set<typename iterator_traits<InputIterator>::value_type, Compare, Allocator>; // C++17
+        -:  199:
+        -:  200:template<ranges::input_range R, class Compare = less<ranges::range_value_t<R>>,
+        -:  201:         class Allocator = allocator<ranges::range_value_t<R>>>
+        -:  202:  set(from_range_t, R&&, Compare = Compare(), Allocator = Allocator())
+        -:  203:    -> set<ranges::range_value_t<R>, Compare, Allocator>; // C++23
+        -:  204:
+        -:  205:template<class Key, class Compare = less<Key>, class Allocator = allocator<Key>>
+        -:  206:set(initializer_list<Key>, Compare = Compare(), Allocator = Allocator())
+        -:  207:  -> set<Key, Compare, Allocator>; // C++17
+        -:  208:
+        -:  209:template<class InputIterator, class Allocator>
+        -:  210:set(InputIterator, InputIterator, Allocator)
+        -:  211:  -> set<typename iterator_traits<InputIterator>::value_type,
+        -:  212:          less<typename iterator_traits<InputIterator>::value_type>, Allocator>; // C++17
+        -:  213:
+        -:  214:template<ranges::input_range R, class Allocator>
+        -:  215:  set(from_range_t, R&&, Allocator)
+        -:  216:    -> set<ranges::range_value_t<R>, less<ranges::range_value_t<R>>, Allocator>; // C++23
+        -:  217:
+        -:  218:template<class Key, class Allocator>
+        -:  219:set(initializer_list<Key>, Allocator) -> set<Key, less<Key>, Allocator>; // C++17
+        -:  220:
+        -:  221:template <class Key, class Compare, class Allocator>
+        -:  222:bool
+        -:  223:operator==(const set<Key, Compare, Allocator>& x,
+        -:  224:           const set<Key, Compare, Allocator>& y);
+        -:  225:
+        -:  226:template <class Key, class Compare, class Allocator>
+        -:  227:bool
+        -:  228:operator< (const set<Key, Compare, Allocator>& x,
+        -:  229:           const set<Key, Compare, Allocator>& y);                                // removed in C++20
+        -:  230:
+        -:  231:template <class Key, class Compare, class Allocator>
+        -:  232:bool
+        -:  233:operator!=(const set<Key, Compare, Allocator>& x,
+        -:  234:           const set<Key, Compare, Allocator>& y);                                // removed in C++20
+        -:  235:
+        -:  236:template <class Key, class Compare, class Allocator>
+        -:  237:bool
+        -:  238:operator> (const set<Key, Compare, Allocator>& x,
+        -:  239:           const set<Key, Compare, Allocator>& y);                                // removed in C++20
+        -:  240:
+        -:  241:template <class Key, class Compare, class Allocator>
+        -:  242:bool
+        -:  243:operator>=(const set<Key, Compare, Allocator>& x,
+        -:  244:           const set<Key, Compare, Allocator>& y);                                // removed in C++20
+        -:  245:
+        -:  246:template <class Key, class Compare, class Allocator>
+        -:  247:bool
+        -:  248:operator<=(const set<Key, Compare, Allocator>& x,
+        -:  249:           const set<Key, Compare, Allocator>& y);                                // removed in C++20
+        -:  250:
+        -:  251:template<class Key, class Compare, class Allocator>
+        -:  252:  synth-three-way-result<Key> operator<=>(const set<Key, Compare, Allocator>& x,
+        -:  253:                                          const set<Key, Compare, Allocator>& y); // since C++20
+        -:  254:
+        -:  255:// specialized algorithms:
+        -:  256:template <class Key, class Compare, class Allocator>
+        -:  257:void
+        -:  258:swap(set<Key, Compare, Allocator>& x, set<Key, Compare, Allocator>& y)
+        -:  259:    noexcept(noexcept(x.swap(y)));
+        -:  260:
+        -:  261:template <class Key, class Compare, class Allocator, class Predicate>
+        -:  262:typename set<Key, Compare, Allocator>::size_type
+        -:  263:erase_if(set<Key, Compare, Allocator>& c, Predicate pred);  // C++20
+        -:  264:
+        -:  265:template <class Key, class Compare = less<Key>,
+        -:  266:          class Allocator = allocator<Key>>
+        -:  267:class multiset
+        -:  268:{
+        -:  269:public:
+        -:  270:    // types:
+        -:  271:    typedef Key                                      key_type;
+        -:  272:    typedef key_type                                 value_type;
+        -:  273:    typedef Compare                                  key_compare;
+        -:  274:    typedef key_compare                              value_compare;
+        -:  275:    typedef Allocator                                allocator_type;
+        -:  276:    typedef typename allocator_type::reference       reference;
+        -:  277:    typedef typename allocator_type::const_reference const_reference;
+        -:  278:    typedef typename allocator_type::size_type       size_type;
+        -:  279:    typedef typename allocator_type::difference_type difference_type;
+        -:  280:    typedef typename allocator_type::pointer         pointer;
+        -:  281:    typedef typename allocator_type::const_pointer   const_pointer;
+        -:  282:
+        -:  283:    typedef implementation-defined                   iterator;
+        -:  284:    typedef implementation-defined                   const_iterator;
+        -:  285:    typedef std::reverse_iterator<iterator>          reverse_iterator;
+        -:  286:    typedef std::reverse_iterator<const_iterator>    const_reverse_iterator;
+        -:  287:    typedef unspecified                              node_type;               // C++17
+        -:  288:
+        -:  289:    // construct/copy/destroy:
+        -:  290:    multiset()
+        -:  291:        noexcept(
+        -:  292:            is_nothrow_default_constructible<allocator_type>::value &&
+        -:  293:            is_nothrow_default_constructible<key_compare>::value &&
+        -:  294:            is_nothrow_copy_constructible<key_compare>::value);
+        -:  295:    explicit multiset(const value_compare& comp);
+        -:  296:    multiset(const value_compare& comp, const allocator_type& a);
+        -:  297:    template <class InputIterator>
+        -:  298:        multiset(InputIterator first, InputIterator last,
+        -:  299:                 const value_compare& comp = value_compare());
+        -:  300:    template <class InputIterator>
+        -:  301:        multiset(InputIterator first, InputIterator last,
+        -:  302:                 const value_compare& comp, const allocator_type& a);
+        -:  303:    template<container-compatible-range<value_type> R>
+        -:  304:      multiset(from_range_t, R&& rg,
+        -:  305:               const Compare& comp = Compare(), const Allocator& = Allocator()); // C++23
+        -:  306:    multiset(const multiset& s);
+        -:  307:    multiset(multiset&& s)
+        -:  308:        noexcept(
+        -:  309:            is_nothrow_move_constructible<allocator_type>::value &&
+        -:  310:            is_nothrow_move_constructible<key_compare>::value);
+        -:  311:    explicit multiset(const allocator_type& a);
+        -:  312:    multiset(const multiset& s, const allocator_type& a);
+        -:  313:    multiset(multiset&& s, const allocator_type& a);
+        -:  314:    multiset(initializer_list<value_type> il, const value_compare& comp = value_compare());
+        -:  315:    multiset(initializer_list<value_type> il, const value_compare& comp,
+        -:  316:             const allocator_type& a);
+        -:  317:    template <class InputIterator>
+        -:  318:        multiset(InputIterator first, InputIterator last, const allocator_type& a)
+        -:  319:            : set(first, last, Compare(), a) {}  // C++14
+        -:  320:    template<container-compatible-range<value_type> R>
+        -:  321:      multiset(from_range_t, R&& rg, const Allocator& a))
+        -:  322:        : multiset(from_range, std::forward<R>(rg), Compare(), a) { } // C++23
+        -:  323:    multiset(initializer_list<value_type> il, const allocator_type& a)
+        -:  324:        : set(il, Compare(), a) {}  // C++14
+        -:  325:    ~multiset();
+        -:  326:
+        -:  327:    multiset& operator=(const multiset& s);
+        -:  328:    multiset& operator=(multiset&& s)
+        -:  329:        noexcept(
+        -:  330:            allocator_type::propagate_on_container_move_assignment::value &&
+        -:  331:            is_nothrow_move_assignable<allocator_type>::value &&
+        -:  332:            is_nothrow_move_assignable<key_compare>::value);
+        -:  333:    multiset& operator=(initializer_list<value_type> il);
+        -:  334:
+        -:  335:    // iterators:
+        -:  336:          iterator begin() noexcept;
+        -:  337:    const_iterator begin() const noexcept;
+        -:  338:          iterator end() noexcept;
+        -:  339:    const_iterator end()   const noexcept;
+        -:  340:
+        -:  341:          reverse_iterator rbegin() noexcept;
+        -:  342:    const_reverse_iterator rbegin() const noexcept;
+        -:  343:          reverse_iterator rend() noexcept;
+        -:  344:    const_reverse_iterator rend()   const noexcept;
+        -:  345:
+        -:  346:    const_iterator         cbegin()  const noexcept;
+        -:  347:    const_iterator         cend()    const noexcept;
+        -:  348:    const_reverse_iterator crbegin() const noexcept;
+        -:  349:    const_reverse_iterator crend()   const noexcept;
+        -:  350:
+        -:  351:    // capacity:
+        -:  352:    bool      empty()    const noexcept;
+        -:  353:    size_type size()     const noexcept;
+        -:  354:    size_type max_size() const noexcept;
+        -:  355:
+        -:  356:    // modifiers:
+        -:  357:    template <class... Args>
+        -:  358:        iterator emplace(Args&&... args);
+        -:  359:    template <class... Args>
+        -:  360:        iterator emplace_hint(const_iterator position, Args&&... args);
+        -:  361:    iterator insert(const value_type& v);
+        -:  362:    iterator insert(value_type&& v);
+        -:  363:    iterator insert(const_iterator position, const value_type& v);
+        -:  364:    iterator insert(const_iterator position, value_type&& v);
+        -:  365:    template <class InputIterator>
+        -:  366:        void insert(InputIterator first, InputIterator last);
+        -:  367:    template<container-compatible-range<value_type> R>
+        -:  368:      void insert_range(R&& rg);                                                      // C++23
+        -:  369:    void insert(initializer_list<value_type> il);
+        -:  370:
+        -:  371:    node_type extract(const_iterator position);                                       // C++17
+        -:  372:    node_type extract(const key_type& x);                                             // C++17
+        -:  373:    iterator insert(node_type&& nh);                                                  // C++17
+        -:  374:    iterator insert(const_iterator hint, node_type&& nh);                             // C++17
+        -:  375:
+        -:  376:    iterator  erase(const_iterator position);
+        -:  377:    iterator  erase(iterator position);  // C++14
+        -:  378:    size_type erase(const key_type& k);
+        -:  379:    iterator  erase(const_iterator first, const_iterator last);
+        -:  380:    void clear() noexcept;
+        -:  381:
+        -:  382:    template<class C2>
+        -:  383:      void merge(multiset<Key, C2, Allocator>& source);    // C++17
+        -:  384:    template<class C2>
+        -:  385:      void merge(multiset<Key, C2, Allocator>&& source);   // C++17
+        -:  386:    template<class C2>
+        -:  387:      void merge(set<Key, C2, Allocator>& source);         // C++17
+        -:  388:    template<class C2>
+        -:  389:      void merge(set<Key, C2, Allocator>&& source);        // C++17
+        -:  390:
+        -:  391:    void swap(multiset& s)
+        -:  392:        noexcept(
+        -:  393:            __is_nothrow_swappable<key_compare>::value &&
+        -:  394:            (!allocator_type::propagate_on_container_swap::value ||
+        -:  395:             __is_nothrow_swappable<allocator_type>::value));
+        -:  396:
+        -:  397:    // observers:
+        -:  398:    allocator_type get_allocator() const noexcept;
+        -:  399:    key_compare    key_comp()      const;
+        -:  400:    value_compare  value_comp()    const;
+        -:  401:
+        -:  402:    // set operations:
+        -:  403:          iterator find(const key_type& k);
+        -:  404:    const_iterator find(const key_type& k) const;
+        -:  405:    template<typename K>
+        -:  406:        iterator find(const K& x);
+        -:  407:    template<typename K>
+        -:  408:        const_iterator find(const K& x) const;  // C++14
+        -:  409:
+        -:  410:    template<typename K>
+        -:  411:        size_type count(const K& x) const;      // C++14
+        -:  412:    size_type      count(const key_type& k) const;
+        -:  413:
+        -:  414:    bool           contains(const key_type& x) const;  // C++20
+        -:  415:    template<class K> bool contains(const K& x) const; // C++20
+        -:  416:
+        -:  417:          iterator lower_bound(const key_type& k);
+        -:  418:    const_iterator lower_bound(const key_type& k) const;
+        -:  419:    template<typename K>
+        -:  420:        iterator lower_bound(const K& x);              // C++14
+        -:  421:    template<typename K>
+        -:  422:        const_iterator lower_bound(const K& x) const;  // C++14
+        -:  423:
+        -:  424:          iterator upper_bound(const key_type& k);
+        -:  425:    const_iterator upper_bound(const key_type& k) const;
+        -:  426:    template<typename K>
+        -:  427:        iterator upper_bound(const K& x);              // C++14
+        -:  428:    template<typename K>
+        -:  429:        const_iterator upper_bound(const K& x) const;  // C++14
+        -:  430:
+        -:  431:    pair<iterator,iterator>             equal_range(const key_type& k);
+        -:  432:    pair<const_iterator,const_iterator> equal_range(const key_type& k) const;
+        -:  433:    template<typename K>
+        -:  434:        pair<iterator,iterator>             equal_range(const K& x);        // C++14
+        -:  435:    template<typename K>
+        -:  436:        pair<const_iterator,const_iterator> equal_range(const K& x) const;  // C++14
+        -:  437:};
+        -:  438:
+        -:  439:template <class InputIterator,
+        -:  440:      class Compare = less<typename iterator_traits<InputIterator>::value_type>,
+        -:  441:      class Allocator = allocator<typename iterator_traits<InputIterator>::value_type>>
+        -:  442:multiset(InputIterator, InputIterator,
+        -:  443:    Compare = Compare(), Allocator = Allocator())
+        -:  444:  -> multiset<typename iterator_traits<InputIterator>::value_type, Compare, Allocator>; // C++17
+        -:  445:
+        -:  446:template<ranges::input_range R, class Compare = less<ranges::range_value_t<R>>,
+        -:  447:          class Allocator = allocator<ranges::range_value_t<R>>>
+        -:  448:  multiset(from_range_t, R&&, Compare = Compare(), Allocator = Allocator())
+        -:  449:    -> multiset<ranges::range_value_t<R>, Compare, Allocator>;
+        -:  450:
+        -:  451:template<class Key, class Compare = less<Key>, class Allocator = allocator<Key>>
+        -:  452:multiset(initializer_list<Key>, Compare = Compare(), Allocator = Allocator())
+        -:  453:  -> multiset<Key, Compare, Allocator>; // C++17
+        -:  454:
+        -:  455:template<class InputIterator, class Allocator>
+        -:  456:multiset(InputIterator, InputIterator, Allocator)
+        -:  457:  -> multiset<typename iterator_traits<InputIterator>::value_type,
+        -:  458:          less<typename iterator_traits<InputIterator>::value_type>, Allocator>; // C++17
+        -:  459:
+        -:  460:template<ranges::input_range R, class Allocator>
+        -:  461:  multiset(from_range_t, R&&, Allocator)
+        -:  462:    -> multiset<ranges::range_value_t<R>, less<ranges::range_value_t<R>>, Allocator>;
+        -:  463:
+        -:  464:template<class Key, class Allocator>
+        -:  465:multiset(initializer_list<Key>, Allocator) -> multiset<Key, less<Key>, Allocator>; // C++17
+        -:  466:
+        -:  467:template <class Key, class Compare, class Allocator>
+        -:  468:bool
+        -:  469:operator==(const multiset<Key, Compare, Allocator>& x,
+        -:  470:           const multiset<Key, Compare, Allocator>& y);
+        -:  471:
+        -:  472:template <class Key, class Compare, class Allocator>
+        -:  473:bool
+        -:  474:operator< (const multiset<Key, Compare, Allocator>& x,
+        -:  475:           const multiset<Key, Compare, Allocator>& y);                                // removed in C++20
+        -:  476:
+        -:  477:template <class Key, class Compare, class Allocator>
+        -:  478:bool
+        -:  479:operator!=(const multiset<Key, Compare, Allocator>& x,
+        -:  480:           const multiset<Key, Compare, Allocator>& y);                                // removed in C++20
+        -:  481:
+        -:  482:template <class Key, class Compare, class Allocator>
+        -:  483:bool
+        -:  484:operator> (const multiset<Key, Compare, Allocator>& x,
+        -:  485:           const multiset<Key, Compare, Allocator>& y);                                // removed in C++20
+        -:  486:
+        -:  487:template <class Key, class Compare, class Allocator>
+        -:  488:bool
+        -:  489:operator>=(const multiset<Key, Compare, Allocator>& x,
+        -:  490:           const multiset<Key, Compare, Allocator>& y);                                // removed in C++20
+        -:  491:
+        -:  492:template <class Key, class Compare, class Allocator>
+        -:  493:bool
+        -:  494:operator<=(const multiset<Key, Compare, Allocator>& x,
+        -:  495:           const multiset<Key, Compare, Allocator>& y);                                // removed in C++20
+        -:  496:
+        -:  497:template<class Key, class Compare, class Allocator>
+        -:  498:  synth-three-way-result<Key> operator<=>(const multiset<Key, Compare, Allocator>& x,
+        -:  499:                                          const multiset<Key, Compare, Allocator>& y); // since C++20
+        -:  500:
+        -:  501:// specialized algorithms:
+        -:  502:template <class Key, class Compare, class Allocator>
+        -:  503:void
+        -:  504:swap(multiset<Key, Compare, Allocator>& x, multiset<Key, Compare, Allocator>& y)
+        -:  505:    noexcept(noexcept(x.swap(y)));
+        -:  506:
+        -:  507:template <class Key, class Compare, class Allocator, class Predicate>
+        -:  508:typename multiset<Key, Compare, Allocator>::size_type
+        -:  509:erase_if(multiset<Key, Compare, Allocator>& c, Predicate pred);  // C++20
+        -:  510:
+        -:  511:}  // std
+        -:  512:
+        -:  513:*/
+        -:  514:
+        -:  515:#include <__algorithm/equal.h>
+        -:  516:#include <__algorithm/lexicographical_compare.h>
+        -:  517:#include <__algorithm/lexicographical_compare_three_way.h>
+        -:  518:#include <__assert> // all public C++ headers provide the assertion handler
+        -:  519:#include <__availability>
+        -:  520:#include <__config>
+        -:  521:#include <__functional/is_transparent.h>
+        -:  522:#include <__functional/operations.h>
+        -:  523:#include <__iterator/erase_if_container.h>
+        -:  524:#include <__iterator/iterator_traits.h>
+        -:  525:#include <__iterator/ranges_iterator_traits.h>
+        -:  526:#include <__iterator/reverse_iterator.h>
+        -:  527:#include <__memory/allocator.h>
+        -:  528:#include <__memory_resource/polymorphic_allocator.h>
+        -:  529:#include <__node_handle>
+        -:  530:#include <__ranges/concepts.h>
+        -:  531:#include <__ranges/container_compatible_range.h>
+        -:  532:#include <__ranges/from_range.h>
+        -:  533:#include <__tree>
+        -:  534:#include <__type_traits/is_allocator.h>
+        -:  535:#include <__utility/forward.h>
+        -:  536:#include <version>
+        -:  537:
+        -:  538:// standard-mandated includes
+        -:  539:
+        -:  540:// [iterator.range]
+        -:  541:#include <__iterator/access.h>
+        -:  542:#include <__iterator/data.h>
+        -:  543:#include <__iterator/empty.h>
+        -:  544:#include <__iterator/reverse_access.h>
+        -:  545:#include <__iterator/size.h>
+        -:  546:
+        -:  547:// [associative.set.syn]
+        -:  548:#include <compare>
+        -:  549:#include <initializer_list>
+        -:  550:
+        -:  551:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:  552:#  pragma GCC system_header
+        -:  553:#endif
+        -:  554:
+        -:  555:_LIBCPP_PUSH_MACROS
+        -:  556:#include <__undef_macros>
+        -:  557:
+        -:  558:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:  559:
+        -:  560:template <class _Key, class _Compare, class _Allocator>
+        -:  561:class multiset;
+        -:  562:
+        -:  563:template <class _Key, class _Compare = less<_Key>, class _Allocator = allocator<_Key> >
+        -:  564:class _LIBCPP_TEMPLATE_VIS set {
+        -:  565:public:
+        -:  566:  // types:
+        -:  567:  typedef _Key key_type;
+        -:  568:  typedef key_type value_type;
+        -:  569:  typedef __type_identity_t<_Compare> key_compare;
+        -:  570:  typedef key_compare value_compare;
+        -:  571:  typedef __type_identity_t<_Allocator> allocator_type;
+        -:  572:  typedef value_type& reference;
+        -:  573:  typedef const value_type& const_reference;
+        -:  574:
+        -:  575:  static_assert((is_same<typename allocator_type::value_type, value_type>::value),
+        -:  576:                "Allocator::value_type must be same type as value_type");
+        -:  577:
+        -:  578:private:
+        -:  579:  typedef __tree<value_type, value_compare, allocator_type> __base;
+        -:  580:  typedef allocator_traits<allocator_type> __alloc_traits;
+        -:  581:
+        -:  582:  static_assert(is_same<allocator_type, __rebind_alloc<__alloc_traits, value_type> >::value,
+        -:  583:                "[allocator.requirements] states that rebinding an allocator to the same type should result in the "
+        -:  584:                "original allocator");
+        -:  585:
+        -:  586:  __base __tree_;
+        -:  587:
+        -:  588:public:
+        -:  589:  typedef typename __base::pointer pointer;
+        -:  590:  typedef typename __base::const_pointer const_pointer;
+        -:  591:  typedef typename __base::size_type size_type;
+        -:  592:  typedef typename __base::difference_type difference_type;
+        -:  593:  typedef typename __base::const_iterator iterator;
+        -:  594:  typedef typename __base::const_iterator const_iterator;
+        -:  595:  typedef std::reverse_iterator<iterator> reverse_iterator;
+        -:  596:  typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+        -:  597:
+        -:  598:#if _LIBCPP_STD_VER >= 17
+        -:  599:  typedef __set_node_handle<typename __base::__node, allocator_type> node_type;
+        -:  600:  typedef __insert_return_type<iterator, node_type> insert_return_type;
+        -:  601:#endif
+        -:  602:
+        -:  603:  template <class _Key2, class _Compare2, class _Alloc2>
+        -:  604:  friend class _LIBCPP_TEMPLATE_VIS set;
+        -:  605:  template <class _Key2, class _Compare2, class _Alloc2>
+        -:  606:  friend class _LIBCPP_TEMPLATE_VIS multiset;
+        -:  607:
+function _ZNSt3__13setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4lessIS6_EENS4_IS6_EEEC1B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__13setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4lessIS6_EENS4_IS6_EEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+       12:  608:  _LIBCPP_HIDE_FROM_ABI set() _NOEXCEPT_(
+        -:  609:      is_nothrow_default_constructible<allocator_type>::value&& is_nothrow_default_constructible<key_compare>::value&&
+        -:  610:          is_nothrow_copy_constructible<key_compare>::value)
+       12:  611:      : __tree_(value_compare()) {}
+        6:  611-block  0
+        6:  611-block  1
+        -:  612:
+        -:  613:  _LIBCPP_HIDE_FROM_ABI explicit set(const value_compare& __comp) _NOEXCEPT_(
+        -:  614:      is_nothrow_default_constructible<allocator_type>::value&& is_nothrow_copy_constructible<key_compare>::value)
+        -:  615:      : __tree_(__comp) {}
+        -:  616:
+        -:  617:  _LIBCPP_HIDE_FROM_ABI explicit set(const value_compare& __comp, const allocator_type& __a) : __tree_(__comp, __a) {}
+        -:  618:  template <class _InputIterator>
+        -:  619:  _LIBCPP_HIDE_FROM_ABI set(_InputIterator __f, _InputIterator __l, const value_compare& __comp = value_compare())
+        -:  620:      : __tree_(__comp) {
+        -:  621:    insert(__f, __l);
+        -:  622:  }
+        -:  623:
+        -:  624:  template <class _InputIterator>
+        -:  625:  _LIBCPP_HIDE_FROM_ABI
+        -:  626:  set(_InputIterator __f, _InputIterator __l, const value_compare& __comp, const allocator_type& __a)
+        -:  627:      : __tree_(__comp, __a) {
+        -:  628:    insert(__f, __l);
+        -:  629:  }
+        -:  630:
+        -:  631:#if _LIBCPP_STD_VER >= 23
+        -:  632:  template <_ContainerCompatibleRange<value_type> _Range>
+        -:  633:  _LIBCPP_HIDE_FROM_ABI
+        -:  634:  set(from_range_t,
+        -:  635:      _Range&& __range,
+        -:  636:      const key_compare& __comp = key_compare(),
+        -:  637:      const allocator_type& __a = allocator_type())
+        -:  638:      : __tree_(__comp, __a) {
+        -:  639:    insert_range(std::forward<_Range>(__range));
+        -:  640:  }
+        -:  641:#endif
+        -:  642:
+        -:  643:#if _LIBCPP_STD_VER >= 14
+        -:  644:  template <class _InputIterator>
+        -:  645:  _LIBCPP_HIDE_FROM_ABI set(_InputIterator __f, _InputIterator __l, const allocator_type& __a)
+        -:  646:      : set(__f, __l, key_compare(), __a) {}
+        -:  647:#endif
+        -:  648:
+        -:  649:#if _LIBCPP_STD_VER >= 23
+        -:  650:  template <_ContainerCompatibleRange<value_type> _Range>
+        -:  651:  _LIBCPP_HIDE_FROM_ABI set(from_range_t, _Range&& __range, const allocator_type& __a)
+        -:  652:      : set(from_range, std::forward<_Range>(__range), key_compare(), __a) {}
+        -:  653:#endif
+        -:  654:
+        -:  655:  _LIBCPP_HIDE_FROM_ABI set(const set& __s) : __tree_(__s.__tree_) { insert(__s.begin(), __s.end()); }
+        -:  656:
+        -:  657:  _LIBCPP_HIDE_FROM_ABI set& operator=(const set& __s) {
+        -:  658:    __tree_ = __s.__tree_;
+        -:  659:    return *this;
+        -:  660:  }
+        -:  661:
+        -:  662:#ifndef _LIBCPP_CXX03_LANG
+        -:  663:  _LIBCPP_HIDE_FROM_ABI set(set&& __s) _NOEXCEPT_(is_nothrow_move_constructible<__base>::value)
+        -:  664:      : __tree_(std::move(__s.__tree_)) {}
+        -:  665:#endif // _LIBCPP_CXX03_LANG
+        -:  666:
+        -:  667:  _LIBCPP_HIDE_FROM_ABI explicit set(const allocator_type& __a) : __tree_(__a) {}
+        -:  668:
+        -:  669:  _LIBCPP_HIDE_FROM_ABI set(const set& __s, const allocator_type& __a) : __tree_(__s.__tree_.value_comp(), __a) {
+        -:  670:    insert(__s.begin(), __s.end());
+        -:  671:  }
+        -:  672:
+        -:  673:#ifndef _LIBCPP_CXX03_LANG
+        -:  674:  _LIBCPP_HIDE_FROM_ABI set(set&& __s, const allocator_type& __a);
+        -:  675:
+        -:  676:  _LIBCPP_HIDE_FROM_ABI set(initializer_list<value_type> __il, const value_compare& __comp = value_compare())
+        -:  677:      : __tree_(__comp) {
+        -:  678:    insert(__il.begin(), __il.end());
+        -:  679:  }
+        -:  680:
+        -:  681:  _LIBCPP_HIDE_FROM_ABI set(initializer_list<value_type> __il, const value_compare& __comp, const allocator_type& __a)
+        -:  682:      : __tree_(__comp, __a) {
+        -:  683:    insert(__il.begin(), __il.end());
+        -:  684:  }
+        -:  685:
+        -:  686:#  if _LIBCPP_STD_VER >= 14
+        -:  687:  _LIBCPP_HIDE_FROM_ABI set(initializer_list<value_type> __il, const allocator_type& __a)
+        -:  688:      : set(__il, key_compare(), __a) {}
+        -:  689:#  endif
+        -:  690:
+        -:  691:  _LIBCPP_HIDE_FROM_ABI set& operator=(initializer_list<value_type> __il) {
+        -:  692:    __tree_.__assign_unique(__il.begin(), __il.end());
+        -:  693:    return *this;
+        -:  694:  }
+        -:  695:
+        -:  696:  _LIBCPP_HIDE_FROM_ABI set& operator=(set&& __s) _NOEXCEPT_(is_nothrow_move_assignable<__base>::value) {
+        -:  697:    __tree_ = std::move(__s.__tree_);
+        -:  698:    return *this;
+        -:  699:  }
+        -:  700:#endif // _LIBCPP_CXX03_LANG
+        -:  701:
+function _ZNSt3__13setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4lessIS6_EENS4_IS6_EEED1B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__13setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4lessIS6_EENS4_IS6_EEED2B8ne180100Ev called 0 returned 0% blocks executed 0%
+    #####:  702:  _LIBCPP_HIDE_FROM_ABI ~set() { static_assert(sizeof(__diagnose_non_const_comparator<_Key, _Compare>()), ""); }
+    $$$$$:  702-block  0
+    $$$$$:  702-block  1
+        -:  703:
+        -:  704:  _LIBCPP_HIDE_FROM_ABI iterator begin() _NOEXCEPT { return __tree_.begin(); }
+        -:  705:  _LIBCPP_HIDE_FROM_ABI const_iterator begin() const _NOEXCEPT { return __tree_.begin(); }
+        -:  706:  _LIBCPP_HIDE_FROM_ABI iterator end() _NOEXCEPT { return __tree_.end(); }
+function _ZNKSt3__13setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4lessIS6_EENS4_IS6_EEE3endB8ne180100Ev called 0 returned 0% blocks executed 0%
+    #####:  707:  _LIBCPP_HIDE_FROM_ABI const_iterator end() const _NOEXCEPT { return __tree_.end(); }
+    $$$$$:  707-block  0
+        -:  708:
+        -:  709:  _LIBCPP_HIDE_FROM_ABI reverse_iterator rbegin() _NOEXCEPT { return reverse_iterator(end()); }
+        -:  710:  _LIBCPP_HIDE_FROM_ABI const_reverse_iterator rbegin() const _NOEXCEPT { return const_reverse_iterator(end()); }
+        -:  711:  _LIBCPP_HIDE_FROM_ABI reverse_iterator rend() _NOEXCEPT { return reverse_iterator(begin()); }
+        -:  712:  _LIBCPP_HIDE_FROM_ABI const_reverse_iterator rend() const _NOEXCEPT { return const_reverse_iterator(begin()); }
+        -:  713:
+        -:  714:  _LIBCPP_HIDE_FROM_ABI const_iterator cbegin() const _NOEXCEPT { return begin(); }
+        -:  715:  _LIBCPP_HIDE_FROM_ABI const_iterator cend() const _NOEXCEPT { return end(); }
+        -:  716:  _LIBCPP_HIDE_FROM_ABI const_reverse_iterator crbegin() const _NOEXCEPT { return rbegin(); }
+        -:  717:  _LIBCPP_HIDE_FROM_ABI const_reverse_iterator crend() const _NOEXCEPT { return rend(); }
+        -:  718:
+        -:  719:  _LIBCPP_NODISCARD_AFTER_CXX17 _LIBCPP_HIDE_FROM_ABI bool empty() const _NOEXCEPT { return __tree_.size() == 0; }
+        -:  720:  _LIBCPP_HIDE_FROM_ABI size_type size() const _NOEXCEPT { return __tree_.size(); }
+        -:  721:  _LIBCPP_HIDE_FROM_ABI size_type max_size() const _NOEXCEPT { return __tree_.max_size(); }
+        -:  722:
+        -:  723:  // modifiers:
+        -:  724:#ifndef _LIBCPP_CXX03_LANG
+        -:  725:  template <class... _Args>
+        -:  726:  _LIBCPP_HIDE_FROM_ABI pair<iterator, bool> emplace(_Args&&... __args) {
+        -:  727:    return __tree_.__emplace_unique(std::forward<_Args>(__args)...);
+        -:  728:  }
+        -:  729:  template <class... _Args>
+        -:  730:  _LIBCPP_HIDE_FROM_ABI iterator emplace_hint(const_iterator __p, _Args&&... __args) {
+        -:  731:    return __tree_.__emplace_hint_unique(__p, std::forward<_Args>(__args)...);
+        -:  732:  }
+        -:  733:#endif // _LIBCPP_CXX03_LANG
+        -:  734:
+function _ZNSt3__13setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4lessIS6_EENS4_IS6_EEE6insertB8ne180100ERKS6_ called 0 returned 0% blocks executed 0%
+    #####:  735:  _LIBCPP_HIDE_FROM_ABI pair<iterator, bool> insert(const value_type& __v) { return __tree_.__insert_unique(__v); }
+    $$$$$:  735-block  0
+        -:  736:  _LIBCPP_HIDE_FROM_ABI iterator insert(const_iterator __p, const value_type& __v) {
+        -:  737:    return __tree_.__insert_unique(__p, __v);
+        -:  738:  }
+        -:  739:
+        -:  740:  template <class _InputIterator>
+        -:  741:  _LIBCPP_HIDE_FROM_ABI void insert(_InputIterator __f, _InputIterator __l) {
+        -:  742:    for (const_iterator __e = cend(); __f != __l; ++__f)
+        -:  743:      __tree_.__insert_unique(__e, *__f);
+        -:  744:  }
+        -:  745:
+        -:  746:#if _LIBCPP_STD_VER >= 23
+        -:  747:  template <_ContainerCompatibleRange<value_type> _Range>
+        -:  748:  _LIBCPP_HIDE_FROM_ABI void insert_range(_Range&& __range) {
+        -:  749:    const_iterator __end = cend();
+        -:  750:    for (auto&& __element : __range) {
+        -:  751:      __tree_.__insert_unique(__end, std::forward<decltype(__element)>(__element));
+        -:  752:    }
+        -:  753:  }
+        -:  754:#endif
+        -:  755:
+        -:  756:#ifndef _LIBCPP_CXX03_LANG
+function _ZNSt3__13setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4lessIS6_EENS4_IS6_EEE6insertB8ne180100EOS6_ called 0 returned 0% blocks executed 0%
+    #####:  757:  _LIBCPP_HIDE_FROM_ABI pair<iterator, bool> insert(value_type&& __v) {
+    #####:  758:    return __tree_.__insert_unique(std::move(__v));
+    $$$$$:  758-block  0
+        -:  759:  }
+        -:  760:
+        -:  761:  _LIBCPP_HIDE_FROM_ABI iterator insert(const_iterator __p, value_type&& __v) {
+        -:  762:    return __tree_.__insert_unique(__p, std::move(__v));
+        -:  763:  }
+        -:  764:
+        -:  765:  _LIBCPP_HIDE_FROM_ABI void insert(initializer_list<value_type> __il) { insert(__il.begin(), __il.end()); }
+        -:  766:#endif // _LIBCPP_CXX03_LANG
+        -:  767:
+        -:  768:  _LIBCPP_HIDE_FROM_ABI iterator erase(const_iterator __p) { return __tree_.erase(__p); }
+        -:  769:  _LIBCPP_HIDE_FROM_ABI size_type erase(const key_type& __k) { return __tree_.__erase_unique(__k); }
+        -:  770:  _LIBCPP_HIDE_FROM_ABI iterator erase(const_iterator __f, const_iterator __l) { return __tree_.erase(__f, __l); }
+        -:  771:  _LIBCPP_HIDE_FROM_ABI void clear() _NOEXCEPT { __tree_.clear(); }
+        -:  772:
+        -:  773:#if _LIBCPP_STD_VER >= 17
+        -:  774:  _LIBCPP_HIDE_FROM_ABI insert_return_type insert(node_type&& __nh) {
+        -:  775:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(__nh.empty() || __nh.get_allocator() == get_allocator(),
+        -:  776:                                        "node_type with incompatible allocator passed to set::insert()");
+        -:  777:    return __tree_.template __node_handle_insert_unique< node_type, insert_return_type>(std::move(__nh));
+        -:  778:  }
+        -:  779:  _LIBCPP_HIDE_FROM_ABI iterator insert(const_iterator __hint, node_type&& __nh) {
+        -:  780:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(__nh.empty() || __nh.get_allocator() == get_allocator(),
+        -:  781:                                        "node_type with incompatible allocator passed to set::insert()");
+        -:  782:    return __tree_.template __node_handle_insert_unique<node_type>(__hint, std::move(__nh));
+        -:  783:  }
+        -:  784:  _LIBCPP_HIDE_FROM_ABI node_type extract(key_type const& __key) {
+        -:  785:    return __tree_.template __node_handle_extract<node_type>(__key);
+        -:  786:  }
+        -:  787:  _LIBCPP_HIDE_FROM_ABI node_type extract(const_iterator __it) {
+        -:  788:    return __tree_.template __node_handle_extract<node_type>(__it);
+        -:  789:  }
+        -:  790:  template <class _Compare2>
+        -:  791:  _LIBCPP_HIDE_FROM_ABI void merge(set<key_type, _Compare2, allocator_type>& __source) {
+        -:  792:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(
+        -:  793:        __source.get_allocator() == get_allocator(), "merging container with incompatible allocator");
+        -:  794:    __tree_.__node_handle_merge_unique(__source.__tree_);
+        -:  795:  }
+        -:  796:  template <class _Compare2>
+        -:  797:  _LIBCPP_HIDE_FROM_ABI void merge(set<key_type, _Compare2, allocator_type>&& __source) {
+        -:  798:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(
+        -:  799:        __source.get_allocator() == get_allocator(), "merging container with incompatible allocator");
+        -:  800:    __tree_.__node_handle_merge_unique(__source.__tree_);
+        -:  801:  }
+        -:  802:  template <class _Compare2>
+        -:  803:  _LIBCPP_HIDE_FROM_ABI void merge(multiset<key_type, _Compare2, allocator_type>& __source) {
+        -:  804:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(
+        -:  805:        __source.get_allocator() == get_allocator(), "merging container with incompatible allocator");
+        -:  806:    __tree_.__node_handle_merge_unique(__source.__tree_);
+        -:  807:  }
+        -:  808:  template <class _Compare2>
+        -:  809:  _LIBCPP_HIDE_FROM_ABI void merge(multiset<key_type, _Compare2, allocator_type>&& __source) {
+        -:  810:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(
+        -:  811:        __source.get_allocator() == get_allocator(), "merging container with incompatible allocator");
+        -:  812:    __tree_.__node_handle_merge_unique(__source.__tree_);
+        -:  813:  }
+        -:  814:#endif
+        -:  815:
+        -:  816:  _LIBCPP_HIDE_FROM_ABI void swap(set& __s) _NOEXCEPT_(__is_nothrow_swappable<__base>::value) {
+        -:  817:    __tree_.swap(__s.__tree_);
+        -:  818:  }
+        -:  819:
+        -:  820:  _LIBCPP_HIDE_FROM_ABI allocator_type get_allocator() const _NOEXCEPT { return __tree_.__alloc(); }
+        -:  821:  _LIBCPP_HIDE_FROM_ABI key_compare key_comp() const { return __tree_.value_comp(); }
+        -:  822:  _LIBCPP_HIDE_FROM_ABI value_compare value_comp() const { return __tree_.value_comp(); }
+        -:  823:
+        -:  824:  // set operations:
+        -:  825:  _LIBCPP_HIDE_FROM_ABI iterator find(const key_type& __k) { return __tree_.find(__k); }
+function _ZNKSt3__13setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4lessIS6_EENS4_IS6_EEE4findB8ne180100ERKS6_ called 0 returned 0% blocks executed 0%
+    #####:  826:  _LIBCPP_HIDE_FROM_ABI const_iterator find(const key_type& __k) const { return __tree_.find(__k); }
+    $$$$$:  826-block  0
+        -:  827:#if _LIBCPP_STD_VER >= 14
+        -:  828:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -:  829:  _LIBCPP_HIDE_FROM_ABI iterator find(const _K2& __k) {
+        -:  830:    return __tree_.find(__k);
+        -:  831:  }
+        -:  832:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -:  833:  _LIBCPP_HIDE_FROM_ABI const_iterator find(const _K2& __k) const {
+        -:  834:    return __tree_.find(__k);
+        -:  835:  }
+        -:  836:#endif
+        -:  837:
+function _ZNKSt3__13setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4lessIS6_EENS4_IS6_EEE5countB8ne180100ERKS6_ called 0 returned 0% blocks executed 0%
+    #####:  838:  _LIBCPP_HIDE_FROM_ABI size_type count(const key_type& __k) const { return __tree_.__count_unique(__k); }
+    $$$$$:  838-block  0
+        -:  839:#if _LIBCPP_STD_VER >= 14
+        -:  840:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -:  841:  _LIBCPP_HIDE_FROM_ABI size_type count(const _K2& __k) const {
+        -:  842:    return __tree_.__count_multi(__k);
+        -:  843:  }
+        -:  844:#endif
+        -:  845:
+        -:  846:#if _LIBCPP_STD_VER >= 20
+        -:  847:  _LIBCPP_HIDE_FROM_ABI bool contains(const key_type& __k) const { return find(__k) != end(); }
+        -:  848:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -:  849:  _LIBCPP_HIDE_FROM_ABI bool contains(const _K2& __k) const {
+        -:  850:    return find(__k) != end();
+        -:  851:  }
+        -:  852:#endif // _LIBCPP_STD_VER >= 20
+        -:  853:
+        -:  854:  _LIBCPP_HIDE_FROM_ABI iterator lower_bound(const key_type& __k) { return __tree_.lower_bound(__k); }
+        -:  855:  _LIBCPP_HIDE_FROM_ABI const_iterator lower_bound(const key_type& __k) const { return __tree_.lower_bound(__k); }
+        -:  856:#if _LIBCPP_STD_VER >= 14
+        -:  857:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -:  858:  _LIBCPP_HIDE_FROM_ABI iterator lower_bound(const _K2& __k) {
+        -:  859:    return __tree_.lower_bound(__k);
+        -:  860:  }
+        -:  861:
+        -:  862:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -:  863:  _LIBCPP_HIDE_FROM_ABI const_iterator lower_bound(const _K2& __k) const {
+        -:  864:    return __tree_.lower_bound(__k);
+        -:  865:  }
+        -:  866:#endif
+        -:  867:
+        -:  868:  _LIBCPP_HIDE_FROM_ABI iterator upper_bound(const key_type& __k) { return __tree_.upper_bound(__k); }
+        -:  869:  _LIBCPP_HIDE_FROM_ABI const_iterator upper_bound(const key_type& __k) const { return __tree_.upper_bound(__k); }
+        -:  870:#if _LIBCPP_STD_VER >= 14
+        -:  871:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -:  872:  _LIBCPP_HIDE_FROM_ABI iterator upper_bound(const _K2& __k) {
+        -:  873:    return __tree_.upper_bound(__k);
+        -:  874:  }
+        -:  875:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -:  876:  _LIBCPP_HIDE_FROM_ABI const_iterator upper_bound(const _K2& __k) const {
+        -:  877:    return __tree_.upper_bound(__k);
+        -:  878:  }
+        -:  879:#endif
+        -:  880:
+        -:  881:  _LIBCPP_HIDE_FROM_ABI pair<iterator, iterator> equal_range(const key_type& __k) {
+        -:  882:    return __tree_.__equal_range_unique(__k);
+        -:  883:  }
+        -:  884:  _LIBCPP_HIDE_FROM_ABI pair<const_iterator, const_iterator> equal_range(const key_type& __k) const {
+        -:  885:    return __tree_.__equal_range_unique(__k);
+        -:  886:  }
+        -:  887:#if _LIBCPP_STD_VER >= 14
+        -:  888:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -:  889:  _LIBCPP_HIDE_FROM_ABI pair<iterator, iterator> equal_range(const _K2& __k) {
+        -:  890:    return __tree_.__equal_range_multi(__k);
+        -:  891:  }
+        -:  892:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -:  893:  _LIBCPP_HIDE_FROM_ABI pair<const_iterator, const_iterator> equal_range(const _K2& __k) const {
+        -:  894:    return __tree_.__equal_range_multi(__k);
+        -:  895:  }
+        -:  896:#endif
+        -:  897:};
+        -:  898:
+        -:  899:#if _LIBCPP_STD_VER >= 17
+        -:  900:template <class _InputIterator,
+        -:  901:          class _Compare   = less<__iter_value_type<_InputIterator>>,
+        -:  902:          class _Allocator = allocator<__iter_value_type<_InputIterator>>,
+        -:  903:          class            = enable_if_t<__has_input_iterator_category<_InputIterator>::value, void>,
+        -:  904:          class            = enable_if_t<__is_allocator<_Allocator>::value, void>,
+        -:  905:          class            = enable_if_t<!__is_allocator<_Compare>::value, void>>
+        -:  906:set(_InputIterator, _InputIterator, _Compare = _Compare(), _Allocator = _Allocator())
+        -:  907:    -> set<__iter_value_type<_InputIterator>, _Compare, _Allocator>;
+        -:  908:
+        -:  909:#  if _LIBCPP_STD_VER >= 23
+        -:  910:template <ranges::input_range _Range,
+        -:  911:          class _Compare   = less<ranges::range_value_t<_Range>>,
+        -:  912:          class _Allocator = allocator<ranges::range_value_t<_Range>>,
+        -:  913:          class            = enable_if_t<__is_allocator<_Allocator>::value, void>,
+        -:  914:          class            = enable_if_t<!__is_allocator<_Compare>::value, void>>
+        -:  915:set(from_range_t, _Range&&, _Compare = _Compare(), _Allocator = _Allocator())
+        -:  916:    -> set<ranges::range_value_t<_Range>, _Compare, _Allocator>;
+        -:  917:#  endif
+        -:  918:
+        -:  919:template <class _Key,
+        -:  920:          class _Compare   = less<_Key>,
+        -:  921:          class _Allocator = allocator<_Key>,
+        -:  922:          class            = enable_if_t<!__is_allocator<_Compare>::value, void>,
+        -:  923:          class            = enable_if_t<__is_allocator<_Allocator>::value, void>>
+        -:  924:set(initializer_list<_Key>, _Compare = _Compare(), _Allocator = _Allocator()) -> set<_Key, _Compare, _Allocator>;
+        -:  925:
+        -:  926:template <class _InputIterator,
+        -:  927:          class _Allocator,
+        -:  928:          class = enable_if_t<__has_input_iterator_category<_InputIterator>::value, void>,
+        -:  929:          class = enable_if_t<__is_allocator<_Allocator>::value, void>>
+        -:  930:set(_InputIterator, _InputIterator, _Allocator)
+        -:  931:    -> set<__iter_value_type<_InputIterator>, less<__iter_value_type<_InputIterator>>, _Allocator>;
+        -:  932:
+        -:  933:#  if _LIBCPP_STD_VER >= 23
+        -:  934:template <ranges::input_range _Range, class _Allocator, class = enable_if_t<__is_allocator<_Allocator>::value, void>>
+        -:  935:set(from_range_t, _Range&&, _Allocator)
+        -:  936:    -> set<ranges::range_value_t<_Range>, less<ranges::range_value_t<_Range>>, _Allocator>;
+        -:  937:#  endif
+        -:  938:
+        -:  939:template <class _Key, class _Allocator, class = enable_if_t<__is_allocator<_Allocator>::value, void>>
+        -:  940:set(initializer_list<_Key>, _Allocator) -> set<_Key, less<_Key>, _Allocator>;
+        -:  941:#endif
+        -:  942:
+        -:  943:#ifndef _LIBCPP_CXX03_LANG
+        -:  944:
+        -:  945:template <class _Key, class _Compare, class _Allocator>
+        -:  946:set<_Key, _Compare, _Allocator>::set(set&& __s, const allocator_type& __a) : __tree_(std::move(__s.__tree_), __a) {
+        -:  947:  if (__a != __s.get_allocator()) {
+        -:  948:    const_iterator __e = cend();
+        -:  949:    while (!__s.empty())
+        -:  950:      insert(__e, std::move(__s.__tree_.remove(__s.begin())->__value_));
+        -:  951:  }
+        -:  952:}
+        -:  953:
+        -:  954:#endif // _LIBCPP_CXX03_LANG
+        -:  955:
+        -:  956:template <class _Key, class _Compare, class _Allocator>
+        -:  957:inline _LIBCPP_HIDE_FROM_ABI bool
+        -:  958:operator==(const set<_Key, _Compare, _Allocator>& __x, const set<_Key, _Compare, _Allocator>& __y) {
+        -:  959:  return __x.size() == __y.size() && std::equal(__x.begin(), __x.end(), __y.begin());
+        -:  960:}
+        -:  961:
+        -:  962:#if _LIBCPP_STD_VER <= 17
+        -:  963:
+        -:  964:template <class _Key, class _Compare, class _Allocator>
+        -:  965:inline _LIBCPP_HIDE_FROM_ABI bool
+        -:  966:operator<(const set<_Key, _Compare, _Allocator>& __x, const set<_Key, _Compare, _Allocator>& __y) {
+        -:  967:  return std::lexicographical_compare(__x.begin(), __x.end(), __y.begin(), __y.end());
+        -:  968:}
+        -:  969:
+        -:  970:template <class _Key, class _Compare, class _Allocator>
+        -:  971:inline _LIBCPP_HIDE_FROM_ABI bool
+        -:  972:operator!=(const set<_Key, _Compare, _Allocator>& __x, const set<_Key, _Compare, _Allocator>& __y) {
+        -:  973:  return !(__x == __y);
+        -:  974:}
+        -:  975:
+        -:  976:template <class _Key, class _Compare, class _Allocator>
+        -:  977:inline _LIBCPP_HIDE_FROM_ABI bool
+        -:  978:operator>(const set<_Key, _Compare, _Allocator>& __x, const set<_Key, _Compare, _Allocator>& __y) {
+        -:  979:  return __y < __x;
+        -:  980:}
+        -:  981:
+        -:  982:template <class _Key, class _Compare, class _Allocator>
+        -:  983:inline _LIBCPP_HIDE_FROM_ABI bool
+        -:  984:operator>=(const set<_Key, _Compare, _Allocator>& __x, const set<_Key, _Compare, _Allocator>& __y) {
+        -:  985:  return !(__x < __y);
+        -:  986:}
+        -:  987:
+        -:  988:template <class _Key, class _Compare, class _Allocator>
+        -:  989:inline _LIBCPP_HIDE_FROM_ABI bool
+        -:  990:operator<=(const set<_Key, _Compare, _Allocator>& __x, const set<_Key, _Compare, _Allocator>& __y) {
+        -:  991:  return !(__y < __x);
+        -:  992:}
+        -:  993:
+        -:  994:#else // _LIBCPP_STD_VER <= 17
+        -:  995:
+        -:  996:template <class _Key, class _Allocator>
+        -:  997:_LIBCPP_HIDE_FROM_ABI __synth_three_way_result<_Key>
+        -:  998:operator<=>(const set<_Key, _Allocator>& __x, const set<_Key, _Allocator>& __y) {
+        -:  999:  return std::lexicographical_compare_three_way(
+        -: 1000:      __x.begin(), __x.end(), __y.begin(), __y.end(), std::__synth_three_way<_Key, _Key>);
+        -: 1001:}
+        -: 1002:
+        -: 1003:#endif // _LIBCPP_STD_VER <= 17
+        -: 1004:
+        -: 1005:// specialized algorithms:
+        -: 1006:template <class _Key, class _Compare, class _Allocator>
+        -: 1007:inline _LIBCPP_HIDE_FROM_ABI void swap(set<_Key, _Compare, _Allocator>& __x, set<_Key, _Compare, _Allocator>& __y)
+        -: 1008:    _NOEXCEPT_(_NOEXCEPT_(__x.swap(__y))) {
+        -: 1009:  __x.swap(__y);
+        -: 1010:}
+        -: 1011:
+        -: 1012:#if _LIBCPP_STD_VER >= 20
+        -: 1013:template <class _Key, class _Compare, class _Allocator, class _Predicate>
+        -: 1014:inline _LIBCPP_HIDE_FROM_ABI typename set<_Key, _Compare, _Allocator>::size_type
+        -: 1015:erase_if(set<_Key, _Compare, _Allocator>& __c, _Predicate __pred) {
+        -: 1016:  return std::__libcpp_erase_if_container(__c, __pred);
+        -: 1017:}
+        -: 1018:#endif
+        -: 1019:
+        -: 1020:template <class _Key, class _Compare = less<_Key>, class _Allocator = allocator<_Key> >
+        -: 1021:class _LIBCPP_TEMPLATE_VIS multiset {
+        -: 1022:public:
+        -: 1023:  // types:
+        -: 1024:  typedef _Key key_type;
+        -: 1025:  typedef key_type value_type;
+        -: 1026:  typedef __type_identity_t<_Compare> key_compare;
+        -: 1027:  typedef key_compare value_compare;
+        -: 1028:  typedef __type_identity_t<_Allocator> allocator_type;
+        -: 1029:  typedef value_type& reference;
+        -: 1030:  typedef const value_type& const_reference;
+        -: 1031:
+        -: 1032:  static_assert((is_same<typename allocator_type::value_type, value_type>::value),
+        -: 1033:                "Allocator::value_type must be same type as value_type");
+        -: 1034:
+        -: 1035:private:
+        -: 1036:  typedef __tree<value_type, value_compare, allocator_type> __base;
+        -: 1037:  typedef allocator_traits<allocator_type> __alloc_traits;
+        -: 1038:
+        -: 1039:  static_assert(is_same<allocator_type, __rebind_alloc<__alloc_traits, value_type> >::value,
+        -: 1040:                "[allocator.requirements] states that rebinding an allocator to the same type should result in the "
+        -: 1041:                "original allocator");
+        -: 1042:
+        -: 1043:  __base __tree_;
+        -: 1044:
+        -: 1045:public:
+        -: 1046:  typedef typename __base::pointer pointer;
+        -: 1047:  typedef typename __base::const_pointer const_pointer;
+        -: 1048:  typedef typename __base::size_type size_type;
+        -: 1049:  typedef typename __base::difference_type difference_type;
+        -: 1050:  typedef typename __base::const_iterator iterator;
+        -: 1051:  typedef typename __base::const_iterator const_iterator;
+        -: 1052:  typedef std::reverse_iterator<iterator> reverse_iterator;
+        -: 1053:  typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+        -: 1054:
+        -: 1055:#if _LIBCPP_STD_VER >= 17
+        -: 1056:  typedef __set_node_handle<typename __base::__node, allocator_type> node_type;
+        -: 1057:#endif
+        -: 1058:
+        -: 1059:  template <class _Key2, class _Compare2, class _Alloc2>
+        -: 1060:  friend class _LIBCPP_TEMPLATE_VIS set;
+        -: 1061:  template <class _Key2, class _Compare2, class _Alloc2>
+        -: 1062:  friend class _LIBCPP_TEMPLATE_VIS multiset;
+        -: 1063:
+        -: 1064:  // construct/copy/destroy:
+        -: 1065:  _LIBCPP_HIDE_FROM_ABI multiset() _NOEXCEPT_(
+        -: 1066:      is_nothrow_default_constructible<allocator_type>::value&& is_nothrow_default_constructible<key_compare>::value&&
+        -: 1067:          is_nothrow_copy_constructible<key_compare>::value)
+        -: 1068:      : __tree_(value_compare()) {}
+        -: 1069:
+        -: 1070:  _LIBCPP_HIDE_FROM_ABI explicit multiset(const value_compare& __comp) _NOEXCEPT_(
+        -: 1071:      is_nothrow_default_constructible<allocator_type>::value&& is_nothrow_copy_constructible<key_compare>::value)
+        -: 1072:      : __tree_(__comp) {}
+        -: 1073:
+        -: 1074:  _LIBCPP_HIDE_FROM_ABI explicit multiset(const value_compare& __comp, const allocator_type& __a)
+        -: 1075:      : __tree_(__comp, __a) {}
+        -: 1076:  template <class _InputIterator>
+        -: 1077:  _LIBCPP_HIDE_FROM_ABI multiset(_InputIterator __f, _InputIterator __l, const value_compare& __comp = value_compare())
+        -: 1078:      : __tree_(__comp) {
+        -: 1079:    insert(__f, __l);
+        -: 1080:  }
+        -: 1081:
+        -: 1082:#if _LIBCPP_STD_VER >= 14
+        -: 1083:  template <class _InputIterator>
+        -: 1084:  _LIBCPP_HIDE_FROM_ABI multiset(_InputIterator __f, _InputIterator __l, const allocator_type& __a)
+        -: 1085:      : multiset(__f, __l, key_compare(), __a) {}
+        -: 1086:#endif
+        -: 1087:
+        -: 1088:  template <class _InputIterator>
+        -: 1089:  _LIBCPP_HIDE_FROM_ABI
+        -: 1090:  multiset(_InputIterator __f, _InputIterator __l, const value_compare& __comp, const allocator_type& __a)
+        -: 1091:      : __tree_(__comp, __a) {
+        -: 1092:    insert(__f, __l);
+        -: 1093:  }
+        -: 1094:
+        -: 1095:#if _LIBCPP_STD_VER >= 23
+        -: 1096:  template <_ContainerCompatibleRange<value_type> _Range>
+        -: 1097:  _LIBCPP_HIDE_FROM_ABI
+        -: 1098:  multiset(from_range_t,
+        -: 1099:           _Range&& __range,
+        -: 1100:           const key_compare& __comp = key_compare(),
+        -: 1101:           const allocator_type& __a = allocator_type())
+        -: 1102:      : __tree_(__comp, __a) {
+        -: 1103:    insert_range(std::forward<_Range>(__range));
+        -: 1104:  }
+        -: 1105:
+        -: 1106:  template <_ContainerCompatibleRange<value_type> _Range>
+        -: 1107:  _LIBCPP_HIDE_FROM_ABI multiset(from_range_t, _Range&& __range, const allocator_type& __a)
+        -: 1108:      : multiset(from_range, std::forward<_Range>(__range), key_compare(), __a) {}
+        -: 1109:#endif
+        -: 1110:
+        -: 1111:  _LIBCPP_HIDE_FROM_ABI multiset(const multiset& __s)
+        -: 1112:      : __tree_(__s.__tree_.value_comp(),
+        -: 1113:                __alloc_traits::select_on_container_copy_construction(__s.__tree_.__alloc())) {
+        -: 1114:    insert(__s.begin(), __s.end());
+        -: 1115:  }
+        -: 1116:
+        -: 1117:  _LIBCPP_HIDE_FROM_ABI multiset& operator=(const multiset& __s) {
+        -: 1118:    __tree_ = __s.__tree_;
+        -: 1119:    return *this;
+        -: 1120:  }
+        -: 1121:
+        -: 1122:#ifndef _LIBCPP_CXX03_LANG
+        -: 1123:  _LIBCPP_HIDE_FROM_ABI multiset(multiset&& __s) _NOEXCEPT_(is_nothrow_move_constructible<__base>::value)
+        -: 1124:      : __tree_(std::move(__s.__tree_)) {}
+        -: 1125:
+        -: 1126:  _LIBCPP_HIDE_FROM_ABI multiset(multiset&& __s, const allocator_type& __a);
+        -: 1127:#endif // _LIBCPP_CXX03_LANG
+        -: 1128:  _LIBCPP_HIDE_FROM_ABI explicit multiset(const allocator_type& __a) : __tree_(__a) {}
+        -: 1129:  _LIBCPP_HIDE_FROM_ABI multiset(const multiset& __s, const allocator_type& __a)
+        -: 1130:      : __tree_(__s.__tree_.value_comp(), __a) {
+        -: 1131:    insert(__s.begin(), __s.end());
+        -: 1132:  }
+        -: 1133:
+        -: 1134:#ifndef _LIBCPP_CXX03_LANG
+        -: 1135:  _LIBCPP_HIDE_FROM_ABI multiset(initializer_list<value_type> __il, const value_compare& __comp = value_compare())
+        -: 1136:      : __tree_(__comp) {
+        -: 1137:    insert(__il.begin(), __il.end());
+        -: 1138:  }
+        -: 1139:
+        -: 1140:  _LIBCPP_HIDE_FROM_ABI
+        -: 1141:  multiset(initializer_list<value_type> __il, const value_compare& __comp, const allocator_type& __a)
+        -: 1142:      : __tree_(__comp, __a) {
+        -: 1143:    insert(__il.begin(), __il.end());
+        -: 1144:  }
+        -: 1145:
+        -: 1146:#  if _LIBCPP_STD_VER >= 14
+        -: 1147:  _LIBCPP_HIDE_FROM_ABI multiset(initializer_list<value_type> __il, const allocator_type& __a)
+        -: 1148:      : multiset(__il, key_compare(), __a) {}
+        -: 1149:#  endif
+        -: 1150:
+        -: 1151:  _LIBCPP_HIDE_FROM_ABI multiset& operator=(initializer_list<value_type> __il) {
+        -: 1152:    __tree_.__assign_multi(__il.begin(), __il.end());
+        -: 1153:    return *this;
+        -: 1154:  }
+        -: 1155:
+        -: 1156:  _LIBCPP_HIDE_FROM_ABI multiset& operator=(multiset&& __s) _NOEXCEPT_(is_nothrow_move_assignable<__base>::value) {
+        -: 1157:    __tree_ = std::move(__s.__tree_);
+        -: 1158:    return *this;
+        -: 1159:  }
+        -: 1160:#endif // _LIBCPP_CXX03_LANG
+        -: 1161:
+        -: 1162:  _LIBCPP_HIDE_FROM_ABI ~multiset() { static_assert(sizeof(__diagnose_non_const_comparator<_Key, _Compare>()), ""); }
+        -: 1163:
+        -: 1164:  _LIBCPP_HIDE_FROM_ABI iterator begin() _NOEXCEPT { return __tree_.begin(); }
+        -: 1165:  _LIBCPP_HIDE_FROM_ABI const_iterator begin() const _NOEXCEPT { return __tree_.begin(); }
+        -: 1166:  _LIBCPP_HIDE_FROM_ABI iterator end() _NOEXCEPT { return __tree_.end(); }
+        -: 1167:  _LIBCPP_HIDE_FROM_ABI const_iterator end() const _NOEXCEPT { return __tree_.end(); }
+        -: 1168:
+        -: 1169:  _LIBCPP_HIDE_FROM_ABI reverse_iterator rbegin() _NOEXCEPT { return reverse_iterator(end()); }
+        -: 1170:  _LIBCPP_HIDE_FROM_ABI const_reverse_iterator rbegin() const _NOEXCEPT { return const_reverse_iterator(end()); }
+        -: 1171:  _LIBCPP_HIDE_FROM_ABI reverse_iterator rend() _NOEXCEPT { return reverse_iterator(begin()); }
+        -: 1172:  _LIBCPP_HIDE_FROM_ABI const_reverse_iterator rend() const _NOEXCEPT { return const_reverse_iterator(begin()); }
+        -: 1173:
+        -: 1174:  _LIBCPP_HIDE_FROM_ABI const_iterator cbegin() const _NOEXCEPT { return begin(); }
+        -: 1175:  _LIBCPP_HIDE_FROM_ABI const_iterator cend() const _NOEXCEPT { return end(); }
+        -: 1176:  _LIBCPP_HIDE_FROM_ABI const_reverse_iterator crbegin() const _NOEXCEPT { return rbegin(); }
+        -: 1177:  _LIBCPP_HIDE_FROM_ABI const_reverse_iterator crend() const _NOEXCEPT { return rend(); }
+        -: 1178:
+        -: 1179:  _LIBCPP_NODISCARD_AFTER_CXX17 _LIBCPP_HIDE_FROM_ABI bool empty() const _NOEXCEPT { return __tree_.size() == 0; }
+        -: 1180:  _LIBCPP_HIDE_FROM_ABI size_type size() const _NOEXCEPT { return __tree_.size(); }
+        -: 1181:  _LIBCPP_HIDE_FROM_ABI size_type max_size() const _NOEXCEPT { return __tree_.max_size(); }
+        -: 1182:
+        -: 1183:  // modifiers:
+        -: 1184:#ifndef _LIBCPP_CXX03_LANG
+        -: 1185:  template <class... _Args>
+        -: 1186:  _LIBCPP_HIDE_FROM_ABI iterator emplace(_Args&&... __args) {
+        -: 1187:    return __tree_.__emplace_multi(std::forward<_Args>(__args)...);
+        -: 1188:  }
+        -: 1189:  template <class... _Args>
+        -: 1190:  _LIBCPP_HIDE_FROM_ABI iterator emplace_hint(const_iterator __p, _Args&&... __args) {
+        -: 1191:    return __tree_.__emplace_hint_multi(__p, std::forward<_Args>(__args)...);
+        -: 1192:  }
+        -: 1193:#endif // _LIBCPP_CXX03_LANG
+        -: 1194:
+        -: 1195:  _LIBCPP_HIDE_FROM_ABI iterator insert(const value_type& __v) { return __tree_.__insert_multi(__v); }
+        -: 1196:  _LIBCPP_HIDE_FROM_ABI iterator insert(const_iterator __p, const value_type& __v) {
+        -: 1197:    return __tree_.__insert_multi(__p, __v);
+        -: 1198:  }
+        -: 1199:
+        -: 1200:  template <class _InputIterator>
+        -: 1201:  _LIBCPP_HIDE_FROM_ABI void insert(_InputIterator __f, _InputIterator __l) {
+        -: 1202:    for (const_iterator __e = cend(); __f != __l; ++__f)
+        -: 1203:      __tree_.__insert_multi(__e, *__f);
+        -: 1204:  }
+        -: 1205:
+        -: 1206:#if _LIBCPP_STD_VER >= 23
+        -: 1207:  template <_ContainerCompatibleRange<value_type> _Range>
+        -: 1208:  _LIBCPP_HIDE_FROM_ABI void insert_range(_Range&& __range) {
+        -: 1209:    const_iterator __end = cend();
+        -: 1210:    for (auto&& __element : __range) {
+        -: 1211:      __tree_.__insert_multi(__end, std::forward<decltype(__element)>(__element));
+        -: 1212:    }
+        -: 1213:  }
+        -: 1214:#endif
+        -: 1215:
+        -: 1216:#ifndef _LIBCPP_CXX03_LANG
+        -: 1217:  _LIBCPP_HIDE_FROM_ABI iterator insert(value_type&& __v) { return __tree_.__insert_multi(std::move(__v)); }
+        -: 1218:
+        -: 1219:  _LIBCPP_HIDE_FROM_ABI iterator insert(const_iterator __p, value_type&& __v) {
+        -: 1220:    return __tree_.__insert_multi(__p, std::move(__v));
+        -: 1221:  }
+        -: 1222:
+        -: 1223:  _LIBCPP_HIDE_FROM_ABI void insert(initializer_list<value_type> __il) { insert(__il.begin(), __il.end()); }
+        -: 1224:#endif // _LIBCPP_CXX03_LANG
+        -: 1225:
+        -: 1226:  _LIBCPP_HIDE_FROM_ABI iterator erase(const_iterator __p) { return __tree_.erase(__p); }
+        -: 1227:  _LIBCPP_HIDE_FROM_ABI size_type erase(const key_type& __k) { return __tree_.__erase_multi(__k); }
+        -: 1228:  _LIBCPP_HIDE_FROM_ABI iterator erase(const_iterator __f, const_iterator __l) { return __tree_.erase(__f, __l); }
+        -: 1229:  _LIBCPP_HIDE_FROM_ABI void clear() _NOEXCEPT { __tree_.clear(); }
+        -: 1230:
+        -: 1231:#if _LIBCPP_STD_VER >= 17
+        -: 1232:  _LIBCPP_HIDE_FROM_ABI iterator insert(node_type&& __nh) {
+        -: 1233:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(__nh.empty() || __nh.get_allocator() == get_allocator(),
+        -: 1234:                                        "node_type with incompatible allocator passed to multiset::insert()");
+        -: 1235:    return __tree_.template __node_handle_insert_multi<node_type>(std::move(__nh));
+        -: 1236:  }
+        -: 1237:  _LIBCPP_HIDE_FROM_ABI iterator insert(const_iterator __hint, node_type&& __nh) {
+        -: 1238:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(__nh.empty() || __nh.get_allocator() == get_allocator(),
+        -: 1239:                                        "node_type with incompatible allocator passed to multiset::insert()");
+        -: 1240:    return __tree_.template __node_handle_insert_multi<node_type>(__hint, std::move(__nh));
+        -: 1241:  }
+        -: 1242:  _LIBCPP_HIDE_FROM_ABI node_type extract(key_type const& __key) {
+        -: 1243:    return __tree_.template __node_handle_extract<node_type>(__key);
+        -: 1244:  }
+        -: 1245:  _LIBCPP_HIDE_FROM_ABI node_type extract(const_iterator __it) {
+        -: 1246:    return __tree_.template __node_handle_extract<node_type>(__it);
+        -: 1247:  }
+        -: 1248:  template <class _Compare2>
+        -: 1249:  _LIBCPP_HIDE_FROM_ABI void merge(multiset<key_type, _Compare2, allocator_type>& __source) {
+        -: 1250:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(
+        -: 1251:        __source.get_allocator() == get_allocator(), "merging container with incompatible allocator");
+        -: 1252:    __tree_.__node_handle_merge_multi(__source.__tree_);
+        -: 1253:  }
+        -: 1254:  template <class _Compare2>
+        -: 1255:  _LIBCPP_HIDE_FROM_ABI void merge(multiset<key_type, _Compare2, allocator_type>&& __source) {
+        -: 1256:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(
+        -: 1257:        __source.get_allocator() == get_allocator(), "merging container with incompatible allocator");
+        -: 1258:    __tree_.__node_handle_merge_multi(__source.__tree_);
+        -: 1259:  }
+        -: 1260:  template <class _Compare2>
+        -: 1261:  _LIBCPP_HIDE_FROM_ABI void merge(set<key_type, _Compare2, allocator_type>& __source) {
+        -: 1262:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(
+        -: 1263:        __source.get_allocator() == get_allocator(), "merging container with incompatible allocator");
+        -: 1264:    __tree_.__node_handle_merge_multi(__source.__tree_);
+        -: 1265:  }
+        -: 1266:  template <class _Compare2>
+        -: 1267:  _LIBCPP_HIDE_FROM_ABI void merge(set<key_type, _Compare2, allocator_type>&& __source) {
+        -: 1268:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(
+        -: 1269:        __source.get_allocator() == get_allocator(), "merging container with incompatible allocator");
+        -: 1270:    __tree_.__node_handle_merge_multi(__source.__tree_);
+        -: 1271:  }
+        -: 1272:#endif
+        -: 1273:
+        -: 1274:  _LIBCPP_HIDE_FROM_ABI void swap(multiset& __s) _NOEXCEPT_(__is_nothrow_swappable<__base>::value) {
+        -: 1275:    __tree_.swap(__s.__tree_);
+        -: 1276:  }
+        -: 1277:
+        -: 1278:  _LIBCPP_HIDE_FROM_ABI allocator_type get_allocator() const _NOEXCEPT { return __tree_.__alloc(); }
+        -: 1279:  _LIBCPP_HIDE_FROM_ABI key_compare key_comp() const { return __tree_.value_comp(); }
+        -: 1280:  _LIBCPP_HIDE_FROM_ABI value_compare value_comp() const { return __tree_.value_comp(); }
+        -: 1281:
+        -: 1282:  // set operations:
+        -: 1283:  _LIBCPP_HIDE_FROM_ABI iterator find(const key_type& __k) { return __tree_.find(__k); }
+        -: 1284:  _LIBCPP_HIDE_FROM_ABI const_iterator find(const key_type& __k) const { return __tree_.find(__k); }
+        -: 1285:#if _LIBCPP_STD_VER >= 14
+        -: 1286:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -: 1287:  _LIBCPP_HIDE_FROM_ABI iterator find(const _K2& __k) {
+        -: 1288:    return __tree_.find(__k);
+        -: 1289:  }
+        -: 1290:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -: 1291:  _LIBCPP_HIDE_FROM_ABI const_iterator find(const _K2& __k) const {
+        -: 1292:    return __tree_.find(__k);
+        -: 1293:  }
+        -: 1294:#endif
+        -: 1295:
+        -: 1296:  _LIBCPP_HIDE_FROM_ABI size_type count(const key_type& __k) const { return __tree_.__count_multi(__k); }
+        -: 1297:#if _LIBCPP_STD_VER >= 14
+        -: 1298:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -: 1299:  _LIBCPP_HIDE_FROM_ABI size_type count(const _K2& __k) const {
+        -: 1300:    return __tree_.__count_multi(__k);
+        -: 1301:  }
+        -: 1302:#endif
+        -: 1303:
+        -: 1304:#if _LIBCPP_STD_VER >= 20
+        -: 1305:  _LIBCPP_HIDE_FROM_ABI bool contains(const key_type& __k) const { return find(__k) != end(); }
+        -: 1306:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -: 1307:  _LIBCPP_HIDE_FROM_ABI bool contains(const _K2& __k) const {
+        -: 1308:    return find(__k) != end();
+        -: 1309:  }
+        -: 1310:#endif // _LIBCPP_STD_VER >= 20
+        -: 1311:
+        -: 1312:  _LIBCPP_HIDE_FROM_ABI iterator lower_bound(const key_type& __k) { return __tree_.lower_bound(__k); }
+        -: 1313:  _LIBCPP_HIDE_FROM_ABI const_iterator lower_bound(const key_type& __k) const { return __tree_.lower_bound(__k); }
+        -: 1314:#if _LIBCPP_STD_VER >= 14
+        -: 1315:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -: 1316:  _LIBCPP_HIDE_FROM_ABI iterator lower_bound(const _K2& __k) {
+        -: 1317:    return __tree_.lower_bound(__k);
+        -: 1318:  }
+        -: 1319:
+        -: 1320:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -: 1321:  _LIBCPP_HIDE_FROM_ABI const_iterator lower_bound(const _K2& __k) const {
+        -: 1322:    return __tree_.lower_bound(__k);
+        -: 1323:  }
+        -: 1324:#endif
+        -: 1325:
+        -: 1326:  _LIBCPP_HIDE_FROM_ABI iterator upper_bound(const key_type& __k) { return __tree_.upper_bound(__k); }
+        -: 1327:  _LIBCPP_HIDE_FROM_ABI const_iterator upper_bound(const key_type& __k) const { return __tree_.upper_bound(__k); }
+        -: 1328:#if _LIBCPP_STD_VER >= 14
+        -: 1329:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -: 1330:  _LIBCPP_HIDE_FROM_ABI iterator upper_bound(const _K2& __k) {
+        -: 1331:    return __tree_.upper_bound(__k);
+        -: 1332:  }
+        -: 1333:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -: 1334:  _LIBCPP_HIDE_FROM_ABI const_iterator upper_bound(const _K2& __k) const {
+        -: 1335:    return __tree_.upper_bound(__k);
+        -: 1336:  }
+        -: 1337:#endif
+        -: 1338:
+        -: 1339:  _LIBCPP_HIDE_FROM_ABI pair<iterator, iterator> equal_range(const key_type& __k) {
+        -: 1340:    return __tree_.__equal_range_multi(__k);
+        -: 1341:  }
+        -: 1342:  _LIBCPP_HIDE_FROM_ABI pair<const_iterator, const_iterator> equal_range(const key_type& __k) const {
+        -: 1343:    return __tree_.__equal_range_multi(__k);
+        -: 1344:  }
+        -: 1345:#if _LIBCPP_STD_VER >= 14
+        -: 1346:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -: 1347:  _LIBCPP_HIDE_FROM_ABI pair<iterator, iterator> equal_range(const _K2& __k) {
+        -: 1348:    return __tree_.__equal_range_multi(__k);
+        -: 1349:  }
+        -: 1350:  template <typename _K2, enable_if_t<__is_transparent<_Compare, _K2>::value, int> = 0>
+        -: 1351:  _LIBCPP_HIDE_FROM_ABI pair<const_iterator, const_iterator> equal_range(const _K2& __k) const {
+        -: 1352:    return __tree_.__equal_range_multi(__k);
+        -: 1353:  }
+        -: 1354:#endif
+        -: 1355:};
+        -: 1356:
+        -: 1357:#if _LIBCPP_STD_VER >= 17
+        -: 1358:template <class _InputIterator,
+        -: 1359:          class _Compare   = less<__iter_value_type<_InputIterator>>,
+        -: 1360:          class _Allocator = allocator<__iter_value_type<_InputIterator>>,
+        -: 1361:          class            = enable_if_t<__has_input_iterator_category<_InputIterator>::value, void>,
+        -: 1362:          class            = enable_if_t<__is_allocator<_Allocator>::value, void>,
+        -: 1363:          class            = enable_if_t<!__is_allocator<_Compare>::value, void>>
+        -: 1364:multiset(_InputIterator, _InputIterator, _Compare = _Compare(), _Allocator = _Allocator())
+        -: 1365:    -> multiset<__iter_value_type<_InputIterator>, _Compare, _Allocator>;
+        -: 1366:
+        -: 1367:#  if _LIBCPP_STD_VER >= 23
+        -: 1368:template <ranges::input_range _Range,
+        -: 1369:          class _Compare   = less<ranges::range_value_t<_Range>>,
+        -: 1370:          class _Allocator = allocator<ranges::range_value_t<_Range>>,
+        -: 1371:          class            = enable_if_t<__is_allocator<_Allocator>::value, void>,
+        -: 1372:          class            = enable_if_t<!__is_allocator<_Compare>::value, void>>
+        -: 1373:multiset(from_range_t, _Range&&, _Compare = _Compare(), _Allocator = _Allocator())
+        -: 1374:    -> multiset<ranges::range_value_t<_Range>, _Compare, _Allocator>;
+        -: 1375:#  endif
+        -: 1376:
+        -: 1377:template <class _Key,
+        -: 1378:          class _Compare   = less<_Key>,
+        -: 1379:          class _Allocator = allocator<_Key>,
+        -: 1380:          class            = enable_if_t<__is_allocator<_Allocator>::value, void>,
+        -: 1381:          class            = enable_if_t<!__is_allocator<_Compare>::value, void>>
+        -: 1382:multiset(initializer_list<_Key>, _Compare = _Compare(), _Allocator = _Allocator())
+        -: 1383:    -> multiset<_Key, _Compare, _Allocator>;
+        -: 1384:
+        -: 1385:template <class _InputIterator,
+        -: 1386:          class _Allocator,
+        -: 1387:          class = enable_if_t<__has_input_iterator_category<_InputIterator>::value, void>,
+        -: 1388:          class = enable_if_t<__is_allocator<_Allocator>::value, void>>
+        -: 1389:multiset(_InputIterator, _InputIterator, _Allocator)
+        -: 1390:    -> multiset<__iter_value_type<_InputIterator>, less<__iter_value_type<_InputIterator>>, _Allocator>;
+        -: 1391:
+        -: 1392:#  if _LIBCPP_STD_VER >= 23
+        -: 1393:template <ranges::input_range _Range, class _Allocator, class = enable_if_t<__is_allocator<_Allocator>::value, void>>
+        -: 1394:multiset(from_range_t, _Range&&, _Allocator)
+        -: 1395:    -> multiset<ranges::range_value_t<_Range>, less<ranges::range_value_t<_Range>>, _Allocator>;
+        -: 1396:#  endif
+        -: 1397:
+        -: 1398:template <class _Key, class _Allocator, class = enable_if_t<__is_allocator<_Allocator>::value, void>>
+        -: 1399:multiset(initializer_list<_Key>, _Allocator) -> multiset<_Key, less<_Key>, _Allocator>;
+        -: 1400:#endif
+        -: 1401:
+        -: 1402:#ifndef _LIBCPP_CXX03_LANG
+        -: 1403:
+        -: 1404:template <class _Key, class _Compare, class _Allocator>
+        -: 1405:multiset<_Key, _Compare, _Allocator>::multiset(multiset&& __s, const allocator_type& __a)
+        -: 1406:    : __tree_(std::move(__s.__tree_), __a) {
+        -: 1407:  if (__a != __s.get_allocator()) {
+        -: 1408:    const_iterator __e = cend();
+        -: 1409:    while (!__s.empty())
+        -: 1410:      insert(__e, std::move(__s.__tree_.remove(__s.begin())->__value_));
+        -: 1411:  }
+        -: 1412:}
+        -: 1413:
+        -: 1414:#endif // _LIBCPP_CXX03_LANG
+        -: 1415:
+        -: 1416:template <class _Key, class _Compare, class _Allocator>
+        -: 1417:inline _LIBCPP_HIDE_FROM_ABI bool
+        -: 1418:operator==(const multiset<_Key, _Compare, _Allocator>& __x, const multiset<_Key, _Compare, _Allocator>& __y) {
+        -: 1419:  return __x.size() == __y.size() && std::equal(__x.begin(), __x.end(), __y.begin());
+        -: 1420:}
+        -: 1421:
+        -: 1422:#if _LIBCPP_STD_VER <= 17
+        -: 1423:
+        -: 1424:template <class _Key, class _Compare, class _Allocator>
+        -: 1425:inline _LIBCPP_HIDE_FROM_ABI bool
+        -: 1426:operator<(const multiset<_Key, _Compare, _Allocator>& __x, const multiset<_Key, _Compare, _Allocator>& __y) {
+        -: 1427:  return std::lexicographical_compare(__x.begin(), __x.end(), __y.begin(), __y.end());
+        -: 1428:}
+        -: 1429:
+        -: 1430:template <class _Key, class _Compare, class _Allocator>
+        -: 1431:inline _LIBCPP_HIDE_FROM_ABI bool
+        -: 1432:operator!=(const multiset<_Key, _Compare, _Allocator>& __x, const multiset<_Key, _Compare, _Allocator>& __y) {
+        -: 1433:  return !(__x == __y);
+        -: 1434:}
+        -: 1435:
+        -: 1436:template <class _Key, class _Compare, class _Allocator>
+        -: 1437:inline _LIBCPP_HIDE_FROM_ABI bool
+        -: 1438:operator>(const multiset<_Key, _Compare, _Allocator>& __x, const multiset<_Key, _Compare, _Allocator>& __y) {
+        -: 1439:  return __y < __x;
+        -: 1440:}
+        -: 1441:
+        -: 1442:template <class _Key, class _Compare, class _Allocator>
+        -: 1443:inline _LIBCPP_HIDE_FROM_ABI bool
+        -: 1444:operator>=(const multiset<_Key, _Compare, _Allocator>& __x, const multiset<_Key, _Compare, _Allocator>& __y) {
+        -: 1445:  return !(__x < __y);
+        -: 1446:}
+        -: 1447:
+        -: 1448:template <class _Key, class _Compare, class _Allocator>
+        -: 1449:inline _LIBCPP_HIDE_FROM_ABI bool
+        -: 1450:operator<=(const multiset<_Key, _Compare, _Allocator>& __x, const multiset<_Key, _Compare, _Allocator>& __y) {
+        -: 1451:  return !(__y < __x);
+        -: 1452:}
+        -: 1453:
+        -: 1454:#else // _LIBCPP_STD_VER <= 17
+        -: 1455:
+        -: 1456:template <class _Key, class _Allocator>
+        -: 1457:_LIBCPP_HIDE_FROM_ABI __synth_three_way_result<_Key>
+        -: 1458:operator<=>(const multiset<_Key, _Allocator>& __x, const multiset<_Key, _Allocator>& __y) {
+        -: 1459:  return std::lexicographical_compare_three_way(
+        -: 1460:      __x.begin(), __x.end(), __y.begin(), __y.end(), std::__synth_three_way<_Key, _Key>);
+        -: 1461:}
+        -: 1462:
+        -: 1463:#endif // _LIBCPP_STD_VER <= 17
+        -: 1464:
+        -: 1465:template <class _Key, class _Compare, class _Allocator>
+        -: 1466:inline _LIBCPP_HIDE_FROM_ABI void
+        -: 1467:swap(multiset<_Key, _Compare, _Allocator>& __x, multiset<_Key, _Compare, _Allocator>& __y)
+        -: 1468:    _NOEXCEPT_(_NOEXCEPT_(__x.swap(__y))) {
+        -: 1469:  __x.swap(__y);
+        -: 1470:}
+        -: 1471:
+        -: 1472:#if _LIBCPP_STD_VER >= 20
+        -: 1473:template <class _Key, class _Compare, class _Allocator, class _Predicate>
+        -: 1474:inline _LIBCPP_HIDE_FROM_ABI typename multiset<_Key, _Compare, _Allocator>::size_type
+        -: 1475:erase_if(multiset<_Key, _Compare, _Allocator>& __c, _Predicate __pred) {
+        -: 1476:  return std::__libcpp_erase_if_container(__c, __pred);
+        -: 1477:}
+        -: 1478:#endif
+        -: 1479:
+        -: 1480:_LIBCPP_END_NAMESPACE_STD
+        -: 1481:
+        -: 1482:#if _LIBCPP_STD_VER >= 17
+        -: 1483:_LIBCPP_BEGIN_NAMESPACE_STD
+        -: 1484:namespace pmr {
+        -: 1485:template <class _KeyT, class _CompareT = std::less<_KeyT>>
+        -: 1486:using set _LIBCPP_AVAILABILITY_PMR = std::set<_KeyT, _CompareT, polymorphic_allocator<_KeyT>>;
+        -: 1487:
+        -: 1488:template <class _KeyT, class _CompareT = std::less<_KeyT>>
+        -: 1489:using multiset _LIBCPP_AVAILABILITY_PMR = std::multiset<_KeyT, _CompareT, polymorphic_allocator<_KeyT>>;
+        -: 1490:} // namespace pmr
+        -: 1491:_LIBCPP_END_NAMESPACE_STD
+        -: 1492:#endif
+        -: 1493:
+        -: 1494:_LIBCPP_POP_MACROS
+        -: 1495:
+        -: 1496:#if !defined(_LIBCPP_REMOVE_TRANSITIVE_INCLUDES) && _LIBCPP_STD_VER <= 20
+        -: 1497:#  include <concepts>
+        -: 1498:#  include <cstdlib>
+        -: 1499:#  include <functional>
+        -: 1500:#  include <iterator>
+        -: 1501:#  include <stdexcept>
+        -: 1502:#  include <type_traits>
+        -: 1503:#endif
+        -: 1504:
+        -: 1505:#endif // _LIBCPP_SET

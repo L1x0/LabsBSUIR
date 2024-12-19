@@ -1,0 +1,176 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/unwrap_range.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___ALGORITHM_UNWRAP_RANGE_H
+        -:   10:#define _LIBCPP___ALGORITHM_UNWRAP_RANGE_H
+        -:   11:
+        -:   12:#include <__algorithm/unwrap_iter.h>
+        -:   13:#include <__concepts/constructible.h>
+        -:   14:#include <__config>
+        -:   15:#include <__iterator/concepts.h>
+        -:   16:#include <__iterator/next.h>
+        -:   17:#include <__utility/declval.h>
+        -:   18:#include <__utility/move.h>
+        -:   19:#include <__utility/pair.h>
+        -:   20:
+        -:   21:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   22:#  pragma GCC system_header
+        -:   23:#endif
+        -:   24:
+        -:   25:_LIBCPP_PUSH_MACROS
+        -:   26:#include <__undef_macros>
+        -:   27:
+        -:   28:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   29:
+        -:   30:// __unwrap_range and __rewrap_range are used to unwrap ranges which may have different iterator and sentinel types.
+        -:   31:// __unwrap_iter and __rewrap_iter don't work for this, because they assume that the iterator and sentinel have
+        -:   32:// the same type. __unwrap_range tries to get two iterators and then forward to __unwrap_iter.
+        -:   33:
+        -:   34:#if _LIBCPP_STD_VER >= 20
+        -:   35:template <class _Iter, class _Sent>
+        -:   36:struct __unwrap_range_impl {
+        -:   37:  _LIBCPP_HIDE_FROM_ABI static constexpr auto __unwrap(_Iter __first, _Sent __sent)
+        -:   38:    requires random_access_iterator<_Iter> && sized_sentinel_for<_Sent, _Iter>
+        -:   39:  {
+        -:   40:    auto __last = ranges::next(__first, __sent);
+        -:   41:    return pair{std::__unwrap_iter(std::move(__first)), std::__unwrap_iter(std::move(__last))};
+        -:   42:  }
+        -:   43:
+        -:   44:  _LIBCPP_HIDE_FROM_ABI static constexpr auto __unwrap(_Iter __first, _Sent __last) {
+        -:   45:    return pair{std::move(__first), std::move(__last)};
+        -:   46:  }
+        -:   47:
+        -:   48:  _LIBCPP_HIDE_FROM_ABI static constexpr auto
+        -:   49:  __rewrap(_Iter __orig_iter, decltype(std::__unwrap_iter(std::move(__orig_iter))) __iter)
+        -:   50:    requires random_access_iterator<_Iter> && sized_sentinel_for<_Sent, _Iter>
+        -:   51:  {
+        -:   52:    return std::__rewrap_iter(std::move(__orig_iter), std::move(__iter));
+        -:   53:  }
+        -:   54:
+        -:   55:  _LIBCPP_HIDE_FROM_ABI static constexpr auto __rewrap(const _Iter&, _Iter __iter)
+        -:   56:    requires(!(random_access_iterator<_Iter> && sized_sentinel_for<_Sent, _Iter>))
+        -:   57:  {
+        -:   58:    return __iter;
+        -:   59:  }
+        -:   60:};
+        -:   61:
+        -:   62:template <class _Iter>
+        -:   63:struct __unwrap_range_impl<_Iter, _Iter> {
+        -:   64:  _LIBCPP_HIDE_FROM_ABI static constexpr auto __unwrap(_Iter __first, _Iter __last) {
+        -:   65:    return pair{std::__unwrap_iter(std::move(__first)), std::__unwrap_iter(std::move(__last))};
+        -:   66:  }
+        -:   67:
+        -:   68:  _LIBCPP_HIDE_FROM_ABI static constexpr auto
+        -:   69:  __rewrap(_Iter __orig_iter, decltype(std::__unwrap_iter(__orig_iter)) __iter) {
+        -:   70:    return std::__rewrap_iter(std::move(__orig_iter), std::move(__iter));
+        -:   71:  }
+        -:   72:};
+        -:   73:
+        -:   74:template <class _Iter, class _Sent>
+        -:   75:_LIBCPP_HIDE_FROM_ABI constexpr auto __unwrap_range(_Iter __first, _Sent __last) {
+        -:   76:  return __unwrap_range_impl<_Iter, _Sent>::__unwrap(std::move(__first), std::move(__last));
+        -:   77:}
+        -:   78:
+        -:   79:template < class _Sent, class _Iter, class _Unwrapped>
+        -:   80:_LIBCPP_HIDE_FROM_ABI constexpr _Iter __rewrap_range(_Iter __orig_iter, _Unwrapped __iter) {
+        -:   81:  return __unwrap_range_impl<_Iter, _Sent>::__rewrap(std::move(__orig_iter), std::move(__iter));
+        -:   82:}
+        -:   83:#else  // _LIBCPP_STD_VER >= 20
+        -:   84:template <class _Iter, class _Unwrapped = decltype(std::__unwrap_iter(std::declval<_Iter>()))>
+function _ZNSt3__114__unwrap_rangeB8ne180100INS_16reverse_iteratorIPPcEES4_EENS_4pairIT0_S6_EET_S8_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__unwrap_rangeB8ne180100INS_11__wrap_iterIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEES8_EENS_4pairIT0_SB_EET_SD_ called 36 returned 100% blocks executed 100%
+function _ZNSt3__114__unwrap_rangeB8ne180100IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEES7_EENS_4pairIT0_S9_EET_SB_ called 6 returned 100% blocks executed 100%
+function _ZNSt3__114__unwrap_rangeB8ne180100IPKPKcS4_EENS_4pairIT0_S6_EET_S8_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__unwrap_rangeB8ne180100IPKcS2_EENS_4pairIT0_S4_EET_S6_ called 72 returned 100% blocks executed 100%
+function _ZNSt3__114__unwrap_rangeB8ne180100INS_11__wrap_iterIPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEES9_EENS_4pairIT0_SC_EET_SE_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__unwrap_rangeB8ne180100IPdS1_EENS_4pairIT0_S3_EET_S5_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__unwrap_rangeB8ne180100IPN7testing8internal13edit_distance8EditTypeES5_EENS_4pairIT0_S7_EET_S9_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__unwrap_rangeB8ne180100INS_16reverse_iteratorIPN7testing8internal13edit_distance8EditTypeEEES7_EENS_4pairIT0_S9_EET_SB_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__unwrap_rangeB8ne180100INS_16reverse_iteratorIPmEES3_EENS_4pairIT0_S5_EET_S7_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__unwrap_rangeB8ne180100INS_16reverse_iteratorIPPN7testing8TestInfoEEES6_EENS_4pairIT0_S8_EET_SA_ called 24 returned 100% blocks executed 100%
+function _ZNSt3__114__unwrap_rangeB8ne180100INS_16reverse_iteratorIPiEES3_EENS_4pairIT0_S5_EET_S7_ called 30 returned 100% blocks executed 100%
+function _ZNSt3__114__unwrap_rangeB8ne180100IPPN7testing8TestInfoES4_EENS_4pairIT0_S6_EET_S8_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__unwrap_rangeB8ne180100INS_11__wrap_iterIPPN7testing8TestInfoEEES5_EENS_4pairIT0_S8_EET_SA_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__unwrap_rangeB8ne180100INS_16reverse_iteratorIPPN7testing17TestEventListenerEEES6_EENS_4pairIT0_S8_EET_SA_ called 6 returned 100% blocks executed 100%
+function _ZNSt3__114__unwrap_rangeB8ne180100IPPN7testing17TestEventListenerES4_EENS_4pairIT0_S6_EET_S8_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__unwrap_rangeB8ne180100INS_16reverse_iteratorIPPN7testing11EnvironmentEEES6_EENS_4pairIT0_S8_EET_SA_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__unwrap_rangeB8ne180100IPPN7testing9TestSuiteES4_EENS_4pairIT0_S6_EET_S8_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__unwrap_rangeB8ne180100INS_16reverse_iteratorIPPN7testing9TestSuiteEEES6_EENS_4pairIT0_S8_EET_SA_ called 6 returned 100% blocks executed 100%
+      180:   85:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR pair<_Unwrapped, _Unwrapped> __unwrap_range(_Iter __first, _Iter __last) {
+      180:   86:  return std::make_pair(std::__unwrap_iter(std::move(__first)), std::__unwrap_iter(std::move(__last)));
+    $$$$$:   86-block  0
+       36:   86-block  1
+        6:   86-block  2
+    $$$$$:   86-block  3
+       72:   86-block  4
+    $$$$$:   86-block  5
+    $$$$$:   86-block  6
+    $$$$$:   86-block  7
+    $$$$$:   86-block  8
+    $$$$$:   86-block  9
+       24:   86-block 10
+       30:   86-block 11
+    $$$$$:   86-block 12
+    $$$$$:   86-block 13
+        6:   86-block 14
+    $$$$$:   86-block 15
+    $$$$$:   86-block 16
+    $$$$$:   86-block 17
+        6:   86-block 18
+        -:   87:}
+        -:   88:
+        -:   89:template <class _Iter, class _Unwrapped>
+function _ZNSt3__114__rewrap_rangeB8ne180100INS_16reverse_iteratorIPPcEES4_EET_S5_T0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__rewrap_rangeB8ne180100INS_11__wrap_iterIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEES8_EET_SA_T0_ called 36 returned 100% blocks executed 100%
+function _ZNSt3__114__rewrap_rangeB8ne180100IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEES7_EET_S8_T0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__rewrap_rangeB8ne180100IPKcS2_EET_S3_T0_ called 72 returned 100% blocks executed 100%
+function _ZNSt3__114__rewrap_rangeB8ne180100IPdS1_EET_S2_T0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__rewrap_rangeB8ne180100IPN7testing8internal13edit_distance8EditTypeES5_EET_S6_T0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__rewrap_rangeB8ne180100INS_16reverse_iteratorIPN7testing8internal13edit_distance8EditTypeEEES7_EET_S8_T0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__rewrap_rangeB8ne180100INS_16reverse_iteratorIPmEES3_EET_S4_T0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__rewrap_rangeB8ne180100INS_16reverse_iteratorIPPN7testing8TestInfoEEES6_EET_S7_T0_ called 24 returned 100% blocks executed 100%
+function _ZNSt3__114__rewrap_rangeB8ne180100INS_16reverse_iteratorIPiEES3_EET_S4_T0_ called 30 returned 100% blocks executed 100%
+function _ZNSt3__114__rewrap_rangeB8ne180100IPPN7testing8TestInfoES4_EET_S5_T0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__rewrap_rangeB8ne180100INS_11__wrap_iterIPPN7testing8TestInfoEEES5_EET_S7_T0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__rewrap_rangeB8ne180100INS_16reverse_iteratorIPPN7testing17TestEventListenerEEES6_EET_S7_T0_ called 6 returned 100% blocks executed 100%
+function _ZNSt3__114__rewrap_rangeB8ne180100IPPN7testing17TestEventListenerES4_EET_S5_T0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__rewrap_rangeB8ne180100INS_16reverse_iteratorIPPN7testing11EnvironmentEEES6_EET_S7_T0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__rewrap_rangeB8ne180100IPPN7testing9TestSuiteES4_EET_S5_T0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__114__rewrap_rangeB8ne180100INS_16reverse_iteratorIPPN7testing9TestSuiteEEES6_EET_S7_T0_ called 6 returned 100% blocks executed 100%
+      174:   90:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR _Iter __rewrap_range(_Iter __orig_iter, _Unwrapped __iter) {
+      174:   91:  return std::__rewrap_iter(std::move(__orig_iter), std::move(__iter));
+    $$$$$:   91-block  0
+       36:   91-block  1
+    $$$$$:   91-block  2
+       72:   91-block  3
+    $$$$$:   91-block  4
+    $$$$$:   91-block  5
+    $$$$$:   91-block  6
+    $$$$$:   91-block  7
+       24:   91-block  8
+       30:   91-block  9
+    $$$$$:   91-block 10
+    $$$$$:   91-block 11
+        6:   91-block 12
+    $$$$$:   91-block 13
+    $$$$$:   91-block 14
+    $$$$$:   91-block 15
+        6:   91-block 16
+        -:   92:}
+        -:   93:#endif // _LIBCPP_STD_VER >= 20
+        -:   94:
+        -:   95:_LIBCPP_END_NAMESPACE_STD
+        -:   96:
+        -:   97:_LIBCPP_POP_MACROS
+        -:   98:
+        -:   99:#endif // _LIBCPP___ALGORITHM_UNWRAP_RANGE_H

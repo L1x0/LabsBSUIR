@@ -1,0 +1,84 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__debug_utils/strict_weak_ordering_check.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___LIBCXX_DEBUG_STRICT_WEAK_ORDERING_CHECK
+        -:   10:#define _LIBCPP___LIBCXX_DEBUG_STRICT_WEAK_ORDERING_CHECK
+        -:   11:
+        -:   12:#include <__config>
+        -:   13:
+        -:   14:#include <__algorithm/comp_ref_type.h>
+        -:   15:#include <__algorithm/is_sorted.h>
+        -:   16:#include <__assert>
+        -:   17:#include <__iterator/iterator_traits.h>
+        -:   18:#include <__type_traits/is_constant_evaluated.h>
+        -:   19:
+        -:   20:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   21:#  pragma GCC system_header
+        -:   22:#endif
+        -:   23:
+        -:   24:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   25:
+        -:   26:template <class _RandomAccessIterator, class _Comp>
+        -:   27:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 void
+function _ZNSt3__135__check_strict_weak_ordering_sortedB8ne180100INS_11__wrap_iterIPPN7testing8TestInfoEEEZNS2_9TestSuite3RunEvE3$_0EEvT_S9_RT0_ called 6 returned 100% blocks executed 100%
+        6:   28:__check_strict_weak_ordering_sorted(_RandomAccessIterator __first, _RandomAccessIterator __last, _Comp& __comp) {
+        -:   29:#if _LIBCPP_HARDENING_MODE == _LIBCPP_HARDENING_MODE_DEBUG
+        -:   30:  using __diff_t  = __iter_diff_t<_RandomAccessIterator>;
+        -:   31:  using _Comp_ref = __comp_ref_type<_Comp>;
+        -:   32:  if (!__libcpp_is_constant_evaluated()) {
+        -:   33:    // Check if the range is actually sorted.
+        -:   34:    _LIBCPP_ASSERT_SEMANTIC_REQUIREMENT(
+        -:   35:        (std::is_sorted<_RandomAccessIterator, _Comp_ref>(__first, __last, _Comp_ref(__comp))),
+        -:   36:        "The range is not sorted after the sort, your comparator is not a valid strict-weak ordering");
+        -:   37:    // Limit the number of elements we need to check.
+        -:   38:    __diff_t __size = __last - __first > __diff_t(100) ? __diff_t(100) : __last - __first;
+        -:   39:    __diff_t __p    = 0;
+        -:   40:    while (__p < __size) {
+        -:   41:      __diff_t __q = __p + __diff_t(1);
+        -:   42:      // Find first element that is greater than *(__first+__p).
+        -:   43:      while (__q < __size && !__comp(*(__first + __p), *(__first + __q))) {
+        -:   44:        ++__q;
+        -:   45:      }
+        -:   46:      // Check that the elements from __p to __q are equal between each other.
+        -:   47:      for (__diff_t __b = __p; __b < __q; ++__b) {
+        -:   48:        for (__diff_t __a = __p; __a <= __b; ++__a) {
+        -:   49:          _LIBCPP_ASSERT_SEMANTIC_REQUIREMENT(
+        -:   50:              !__comp(*(__first + __a), *(__first + __b)), "Your comparator is not a valid strict-weak ordering");
+        -:   51:          _LIBCPP_ASSERT_SEMANTIC_REQUIREMENT(
+        -:   52:              !__comp(*(__first + __b), *(__first + __a)), "Your comparator is not a valid strict-weak ordering");
+        -:   53:        }
+        -:   54:      }
+        -:   55:      // Check that elements between __p and __q are less than between __q and __size.
+        -:   56:      for (__diff_t __a = __p; __a < __q; ++__a) {
+        -:   57:        for (__diff_t __b = __q; __b < __size; ++__b) {
+        -:   58:          _LIBCPP_ASSERT_SEMANTIC_REQUIREMENT(
+        -:   59:              __comp(*(__first + __a), *(__first + __b)), "Your comparator is not a valid strict-weak ordering");
+        -:   60:          _LIBCPP_ASSERT_SEMANTIC_REQUIREMENT(
+        -:   61:              !__comp(*(__first + __b), *(__first + __a)), "Your comparator is not a valid strict-weak ordering");
+        -:   62:        }
+        -:   63:      }
+        -:   64:      // Skip these equal elements.
+        -:   65:      __p = __q;
+        -:   66:    }
+        -:   67:  }
+        -:   68:#else
+        -:   69:  (void)__first;
+        -:   70:  (void)__last;
+        6:   71:  (void)__comp;
+        -:   72:#endif // _LIBCPP_HARDENING_MODE == _LIBCPP_HARDENING_MODE_DEBUG
+        6:   73:}
+        6:   73-block  0
+        -:   74:
+        -:   75:_LIBCPP_END_NAMESPACE_STD
+        -:   76:
+        -:   77:#endif // _LIBCPP___LIBCXX_DEBUG_STRICT_WEAK_ORDERING_CHECK

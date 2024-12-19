@@ -1,0 +1,84 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__memory/destruct_n.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___MEMORY_DESTRUCT_N_H
+        -:   10:#define _LIBCPP___MEMORY_DESTRUCT_N_H
+        -:   11:
+        -:   12:#include <__config>
+        -:   13:#include <__type_traits/integral_constant.h>
+        -:   14:#include <__type_traits/is_trivially_destructible.h>
+        -:   15:#include <cstddef>
+        -:   16:
+        -:   17:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   18:#  pragma GCC system_header
+        -:   19:#endif
+        -:   20:
+        -:   21:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   22:
+        -:   23:struct __destruct_n {
+        -:   24:private:
+        -:   25:  size_t __size_;
+        -:   26:
+        -:   27:  template <class _Tp>
+        -:   28:  _LIBCPP_HIDE_FROM_ABI void __process(_Tp* __p, false_type) _NOEXCEPT {
+        -:   29:    for (size_t __i = 0; __i < __size_; ++__i, ++__p)
+        -:   30:      __p->~_Tp();
+        -:   31:  }
+        -:   32:
+        -:   33:  template <class _Tp>
+function _ZNSt3__112__destruct_n9__processB8ne180100IPN7testing8TestInfoEEEvPT_NS_17integral_constantIbLb1EEE called 0 returned 0% blocks executed 0%
+    #####:   34:  _LIBCPP_HIDE_FROM_ABI void __process(_Tp*, true_type) _NOEXCEPT {}
+    $$$$$:   34-block  0
+        -:   35:
+        -:   36:  _LIBCPP_HIDE_FROM_ABI void __incr(false_type) _NOEXCEPT { ++__size_; }
+function _ZNSt3__112__destruct_n6__incrB8ne180100ENS_17integral_constantIbLb1EEE called 0 returned 0% blocks executed 0%
+    #####:   37:  _LIBCPP_HIDE_FROM_ABI void __incr(true_type) _NOEXCEPT {}
+    $$$$$:   37-block  0
+        -:   38:
+        -:   39:  _LIBCPP_HIDE_FROM_ABI void __set(size_t __s, false_type) _NOEXCEPT { __size_ = __s; }
+function _ZNSt3__112__destruct_n5__setB8ne180100EmNS_17integral_constantIbLb1EEE called 0 returned 0% blocks executed 0%
+    #####:   40:  _LIBCPP_HIDE_FROM_ABI void __set(size_t, true_type) _NOEXCEPT {}
+    $$$$$:   40-block  0
+        -:   41:
+        -:   42:public:
+function _ZNSt3__112__destruct_nC1B8ne180100Em called 0 returned 0% blocks executed 0%
+function _ZNSt3__112__destruct_nC2B8ne180100Em called 0 returned 0% blocks executed 0%
+    #####:   43:  _LIBCPP_HIDE_FROM_ABI explicit __destruct_n(size_t __s) _NOEXCEPT : __size_(__s) {}
+    $$$$$:   43-block  0
+    $$$$$:   43-block  1
+        -:   44:
+        -:   45:  template <class _Tp>
+function _ZNSt3__112__destruct_n6__incrB8ne180100IPN7testing8TestInfoEEEvv called 0 returned 0% blocks executed 0%
+    #####:   46:  _LIBCPP_HIDE_FROM_ABI void __incr() _NOEXCEPT {
+    #####:   47:    __incr(integral_constant<bool, is_trivially_destructible<_Tp>::value>());
+    #####:   48:  }
+    $$$$$:   48-block  0
+        -:   49:
+        -:   50:  template <class _Tp>
+function _ZNSt3__112__destruct_n5__setB8ne180100IPN7testing8TestInfoEEEvmPT_ called 0 returned 0% blocks executed 0%
+    #####:   51:  _LIBCPP_HIDE_FROM_ABI void __set(size_t __s, _Tp*) _NOEXCEPT {
+    #####:   52:    __set(__s, integral_constant<bool, is_trivially_destructible<_Tp>::value>());
+    #####:   53:  }
+    $$$$$:   53-block  0
+        -:   54:
+        -:   55:  template <class _Tp>
+function _ZNSt3__112__destruct_nclB8ne180100IPN7testing8TestInfoEEEvPT_ called 0 returned 0% blocks executed 0%
+    #####:   56:  _LIBCPP_HIDE_FROM_ABI void operator()(_Tp* __p) _NOEXCEPT {
+    #####:   57:    __process(__p, integral_constant<bool, is_trivially_destructible<_Tp>::value>());
+    #####:   58:  }
+    $$$$$:   58-block  0
+        -:   59:};
+        -:   60:
+        -:   61:_LIBCPP_END_NAMESPACE_STD
+        -:   62:
+        -:   63:#endif // _LIBCPP___MEMORY_DESTRUCT_N_H

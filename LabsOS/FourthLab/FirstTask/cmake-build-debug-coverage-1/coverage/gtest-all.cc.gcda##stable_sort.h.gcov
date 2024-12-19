@@ -1,0 +1,443 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/stable_sort.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___ALGORITHM_STABLE_SORT_H
+        -:   10:#define _LIBCPP___ALGORITHM_STABLE_SORT_H
+        -:   11:
+        -:   12:#include <__algorithm/comp.h>
+        -:   13:#include <__algorithm/comp_ref_type.h>
+        -:   14:#include <__algorithm/inplace_merge.h>
+        -:   15:#include <__algorithm/iterator_operations.h>
+        -:   16:#include <__algorithm/sort.h>
+        -:   17:#include <__config>
+        -:   18:#include <__debug_utils/strict_weak_ordering_check.h>
+        -:   19:#include <__iterator/iterator_traits.h>
+        -:   20:#include <__memory/destruct_n.h>
+        -:   21:#include <__memory/temporary_buffer.h>
+        -:   22:#include <__memory/unique_ptr.h>
+        -:   23:#include <__type_traits/is_trivially_copy_assignable.h>
+        -:   24:#include <__utility/move.h>
+        -:   25:#include <__utility/pair.h>
+        -:   26:#include <new>
+        -:   27:
+        -:   28:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   29:#  pragma GCC system_header
+        -:   30:#endif
+        -:   31:
+        -:   32:_LIBCPP_PUSH_MACROS
+        -:   33:#include <__undef_macros>
+        -:   34:
+        -:   35:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   36:
+        -:   37:template <class _AlgPolicy, class _Compare, class _BidirectionalIterator>
+function _ZNSt3__121__insertion_sort_moveB8ne180100INS_17_ClassicAlgPolicyERZN7testing9TestSuite3RunEvE3$_0NS_11__wrap_iterIPPNS2_8TestInfoEEEEEvT1_SB_PNS_15iterator_traitsISB_E10value_typeET0_ called 0 returned 0% blocks executed 0%
+    #####:   38:_LIBCPP_HIDE_FROM_ABI void __insertion_sort_move(
+        -:   39:    _BidirectionalIterator __first1,
+        -:   40:    _BidirectionalIterator __last1,
+        -:   41:    typename iterator_traits<_BidirectionalIterator>::value_type* __first2,
+        -:   42:    _Compare __comp) {
+        -:   43:  using _Ops = _IterOps<_AlgPolicy>;
+        -:   44:
+        -:   45:  typedef typename iterator_traits<_BidirectionalIterator>::value_type value_type;
+    #####:   46:  if (__first1 != __last1) {
+    $$$$$:   46-block  0
+    $$$$$:   46-block  1
+    #####:   47:    __destruct_n __d(0);
+    #####:   48:    unique_ptr<value_type, __destruct_n&> __h(__first2, __d);
+    #####:   49:    value_type* __last2 = __first2;
+    #####:   50:    ::new ((void*)__last2) value_type(_Ops::__iter_move(__first1));
+    $$$$$:   50-block  0
+    #####:   51:    __d.template __incr<value_type>();
+    #####:   52:    for (++__last2; ++__first1 != __last1; ++__last2) {
+    $$$$$:   52-block  0
+    $$$$$:   52-block  1
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   52-block  2
+    #####:   53:      value_type* __j2 = __last2;
+    #####:   54:      value_type* __i2 = __j2;
+    #####:   55:      if (__comp(*__first1, *--__i2)) {
+    $$$$$:   55-block  0
+    $$$$$:   55-block  1
+branch  0 never executed
+branch  1 never executed
+    #####:   56:        ::new ((void*)__j2) value_type(std::move(*__i2));
+    #####:   57:        __d.template __incr<value_type>();
+    #####:   58:        for (--__j2; __i2 != __first2 && __comp(*__first1, *--__i2); --__j2)
+    $$$$$:   58-block  0
+    $$$$$:   58-block  1
+    $$$$$:   58-block  2
+    $$$$$:   58-block  3
+    $$$$$:   58-block  4
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   58-block  5
+    #####:   59:          *__j2 = std::move(*__i2);
+    $$$$$:   59-block  0
+    #####:   60:        *__j2 = _Ops::__iter_move(__first1);
+    $$$$$:   60-block  0
+    #####:   61:      } else {
+    $$$$$:   61-block  0
+    #####:   62:        ::new ((void*)__j2) value_type(_Ops::__iter_move(__first1));
+    $$$$$:   62-block  0
+    #####:   63:        __d.template __incr<value_type>();
+    $$$$$:   63-block  0
+        -:   64:      }
+    #####:   65:    }
+    $$$$$:   65-block  0
+    #####:   66:    __h.release();
+    #####:   67:  }
+    $$$$$:   67-block  0
+    $$$$$:   67-block  1
+    $$$$$:   67-block  2
+    #####:   68:}
+    $$$$$:   68-block  0
+        -:   69:
+        -:   70:template <class _AlgPolicy, class _Compare, class _InputIterator1, class _InputIterator2>
+function _ZNSt3__122__merge_move_constructB8ne180100INS_17_ClassicAlgPolicyERZN7testing9TestSuite3RunEvE3$_0NS_11__wrap_iterIPPNS2_8TestInfoEEESA_EEvT1_SB_T2_SC_PNS_15iterator_traitsISB_E10value_typeET0_ called 0 returned 0% blocks executed 0%
+    #####:   71:_LIBCPP_HIDE_FROM_ABI void __merge_move_construct(
+        -:   72:    _InputIterator1 __first1,
+        -:   73:    _InputIterator1 __last1,
+        -:   74:    _InputIterator2 __first2,
+        -:   75:    _InputIterator2 __last2,
+        -:   76:    typename iterator_traits<_InputIterator1>::value_type* __result,
+        -:   77:    _Compare __comp) {
+        -:   78:  using _Ops = _IterOps<_AlgPolicy>;
+        -:   79:
+        -:   80:  typedef typename iterator_traits<_InputIterator1>::value_type value_type;
+    #####:   81:  __destruct_n __d(0);
+    #####:   82:  unique_ptr<value_type, __destruct_n&> __h(__result, __d);
+    #####:   83:  for (; true; ++__result) {
+    $$$$$:   83-block  0
+    $$$$$:   83-block  1
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   83-block  2
+    #####:   84:    if (__first1 == __last1) {
+    $$$$$:   84-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   85:      for (; __first2 != __last2; ++__first2, (void)++__result, __d.template __incr<value_type>())
+    $$$$$:   85-block  0
+    $$$$$:   85-block  1
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   85-block  2
+    #####:   86:        ::new ((void*)__result) value_type(_Ops::__iter_move(__first2));
+    $$$$$:   86-block  0
+    $$$$$:   86-block  1
+    #####:   87:      __h.release();
+    #####:   88:      return;
+    $$$$$:   88-block  0
+        -:   89:    }
+    #####:   90:    if (__first2 == __last2) {
+    $$$$$:   90-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   91:      for (; __first1 != __last1; ++__first1, (void)++__result, __d.template __incr<value_type>())
+    $$$$$:   91-block  0
+    $$$$$:   91-block  1
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   91-block  2
+    #####:   92:        ::new ((void*)__result) value_type(_Ops::__iter_move(__first1));
+    $$$$$:   92-block  0
+    $$$$$:   92-block  1
+    #####:   93:      __h.release();
+    #####:   94:      return;
+    $$$$$:   94-block  0
+        -:   95:    }
+    #####:   96:    if (__comp(*__first2, *__first1)) {
+    $$$$$:   96-block  0
+    $$$$$:   96-block  1
+branch  0 never executed
+branch  1 never executed
+    #####:   97:      ::new ((void*)__result) value_type(_Ops::__iter_move(__first2));
+    $$$$$:   97-block  0
+    #####:   98:      __d.template __incr<value_type>();
+    #####:   99:      ++__first2;
+    #####:  100:    } else {
+    $$$$$:  100-block  0
+    #####:  101:      ::new ((void*)__result) value_type(_Ops::__iter_move(__first1));
+    $$$$$:  101-block  0
+    #####:  102:      __d.template __incr<value_type>();
+    #####:  103:      ++__first1;
+    $$$$$:  103-block  0
+        -:  104:    }
+    #####:  105:  }
+    $$$$$:  105-block  0
+    #####:  106:}
+    $$$$$:  106-block  0
+    $$$$$:  106-block  1
+    $$$$$:  106-block  2
+    $$$$$:  106-block  3
+    $$$$$:  106-block  4
+        -:  107:
+        -:  108:template <class _AlgPolicy, class _Compare, class _InputIterator1, class _InputIterator2, class _OutputIterator>
+function _ZNSt3__119__merge_move_assignB8ne180100INS_17_ClassicAlgPolicyERZN7testing9TestSuite3RunEvE3$_0PPNS2_8TestInfoES8_NS_11__wrap_iterIS8_EEEEvT1_SB_T2_SC_T3_T0_ called 0 returned 0% blocks executed 0%
+    #####:  109:_LIBCPP_HIDE_FROM_ABI void __merge_move_assign(
+        -:  110:    _InputIterator1 __first1,
+        -:  111:    _InputIterator1 __last1,
+        -:  112:    _InputIterator2 __first2,
+        -:  113:    _InputIterator2 __last2,
+        -:  114:    _OutputIterator __result,
+        -:  115:    _Compare __comp) {
+        -:  116:  using _Ops = _IterOps<_AlgPolicy>;
+        -:  117:
+    #####:  118:  for (; __first1 != __last1; ++__result) {
+    $$$$$:  118-block  0
+    $$$$$:  118-block  1
+branch  0 never executed
+branch  1 never executed
+    $$$$$:  118-block  2
+    #####:  119:    if (__first2 == __last2) {
+    $$$$$:  119-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  120:      for (; __first1 != __last1; ++__first1, (void)++__result)
+    $$$$$:  120-block  0
+    $$$$$:  120-block  1
+branch  0 never executed
+branch  1 never executed
+    $$$$$:  120-block  2
+    #####:  121:        *__result = _Ops::__iter_move(__first1);
+    $$$$$:  121-block  0
+    #####:  122:      return;
+    $$$$$:  122-block  0
+        -:  123:    }
+    #####:  124:    if (__comp(*__first2, *__first1)) {
+    $$$$$:  124-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  125:      *__result = _Ops::__iter_move(__first2);
+    #####:  126:      ++__first2;
+    #####:  127:    } else {
+    $$$$$:  127-block  0
+    #####:  128:      *__result = _Ops::__iter_move(__first1);
+    #####:  129:      ++__first1;
+    $$$$$:  129-block  0
+        -:  130:    }
+    #####:  131:  }
+    $$$$$:  131-block  0
+    #####:  132:  for (; __first2 != __last2; ++__first2, (void)++__result)
+    $$$$$:  132-block  0
+    $$$$$:  132-block  1
+    $$$$$:  132-block  2
+    $$$$$:  132-block  3
+    #####:  133:    *__result = _Ops::__iter_move(__first2);
+    $$$$$:  133-block  0
+    #####:  134:}
+    $$$$$:  134-block  0
+        -:  135:
+        -:  136:template <class _AlgPolicy, class _Compare, class _RandomAccessIterator>
+        -:  137:void __stable_sort(_RandomAccessIterator __first,
+        -:  138:                   _RandomAccessIterator __last,
+        -:  139:                   _Compare __comp,
+        -:  140:                   typename iterator_traits<_RandomAccessIterator>::difference_type __len,
+        -:  141:                   typename iterator_traits<_RandomAccessIterator>::value_type* __buff,
+        -:  142:                   ptrdiff_t __buff_size);
+        -:  143:
+        -:  144:template <class _AlgPolicy, class _Compare, class _RandomAccessIterator>
+function _ZNSt3__118__stable_sort_moveINS_17_ClassicAlgPolicyERZN7testing9TestSuite3RunEvE3$_0NS_11__wrap_iterIPPNS2_8TestInfoEEEEEvT1_SB_T0_NS_15iterator_traitsISB_E15difference_typeEPNSE_10value_typeE called 0 returned 0% blocks executed 0%
+    #####:  145:void __stable_sort_move(_RandomAccessIterator __first1,
+        -:  146:                        _RandomAccessIterator __last1,
+        -:  147:                        _Compare __comp,
+        -:  148:                        typename iterator_traits<_RandomAccessIterator>::difference_type __len,
+        -:  149:                        typename iterator_traits<_RandomAccessIterator>::value_type* __first2) {
+        -:  150:  using _Ops = _IterOps<_AlgPolicy>;
+        -:  151:
+        -:  152:  typedef typename iterator_traits<_RandomAccessIterator>::value_type value_type;
+    #####:  153:  switch (__len) {
+    $$$$$:  153-block  0
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  154:  case 0:
+    #####:  155:    return;
+    $$$$$:  155-block  0
+        -:  156:  case 1:
+    #####:  157:    ::new ((void*)__first2) value_type(_Ops::__iter_move(__first1));
+    #####:  158:    return;
+    $$$$$:  158-block  0
+        -:  159:  case 2:
+    #####:  160:    __destruct_n __d(0);
+    #####:  161:    unique_ptr<value_type, __destruct_n&> __h2(__first2, __d);
+    #####:  162:    if (__comp(*--__last1, *__first1)) {
+    $$$$$:  162-block  0
+    $$$$$:  162-block  1
+branch  0 never executed
+branch  1 never executed
+    #####:  163:      ::new ((void*)__first2) value_type(_Ops::__iter_move(__last1));
+    $$$$$:  163-block  0
+    #####:  164:      __d.template __incr<value_type>();
+    #####:  165:      ++__first2;
+    #####:  166:      ::new ((void*)__first2) value_type(_Ops::__iter_move(__first1));
+    $$$$$:  166-block  0
+    #####:  167:    } else {
+    $$$$$:  167-block  0
+    #####:  168:      ::new ((void*)__first2) value_type(_Ops::__iter_move(__first1));
+    $$$$$:  168-block  0
+    #####:  169:      __d.template __incr<value_type>();
+    #####:  170:      ++__first2;
+    #####:  171:      ::new ((void*)__first2) value_type(_Ops::__iter_move(__last1));
+    $$$$$:  171-block  0
+    $$$$$:  171-block  1
+        -:  172:    }
+    #####:  173:    __h2.release();
+        -:  174:    return;
+    #####:  175:  }
+    $$$$$:  175-block  0
+    $$$$$:  175-block  1
+    $$$$$:  175-block  2
+    #####:  176:  if (__len <= 8) {
+    $$$$$:  176-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  177:    std::__insertion_sort_move<_AlgPolicy, _Compare>(__first1, __last1, __first2, __comp);
+    #####:  178:    return;
+    $$$$$:  178-block  0
+        -:  179:  }
+    #####:  180:  typename iterator_traits<_RandomAccessIterator>::difference_type __l2 = __len / 2;
+    #####:  181:  _RandomAccessIterator __m                                             = __first1 + __l2;
+    #####:  182:  std::__stable_sort<_AlgPolicy, _Compare>(__first1, __m, __comp, __l2, __first2, __l2);
+    #####:  183:  std::__stable_sort<_AlgPolicy, _Compare>(__m, __last1, __comp, __len - __l2, __first2 + __l2, __len - __l2);
+    #####:  184:  std::__merge_move_construct<_AlgPolicy, _Compare>(__first1, __m, __m, __last1, __first2, __comp);
+    #####:  185:}
+    $$$$$:  185-block  0
+    $$$$$:  185-block  1
+        -:  186:
+        -:  187:template <class _Tp>
+        -:  188:struct __stable_sort_switch {
+        -:  189:  static const unsigned value = 128 * is_trivially_copy_assignable<_Tp>::value;
+        -:  190:};
+        -:  191:
+        -:  192:template <class _AlgPolicy, class _Compare, class _RandomAccessIterator>
+function _ZNSt3__113__stable_sortINS_17_ClassicAlgPolicyERZN7testing9TestSuite3RunEvE3$_0NS_11__wrap_iterIPPNS2_8TestInfoEEEEEvT1_SB_T0_NS_15iterator_traitsISB_E15difference_typeEPNSE_10value_typeEl called 6 returned 100% blocks executed 21%
+        6:  193:void __stable_sort(_RandomAccessIterator __first,
+        -:  194:                   _RandomAccessIterator __last,
+        -:  195:                   _Compare __comp,
+        -:  196:                   typename iterator_traits<_RandomAccessIterator>::difference_type __len,
+        -:  197:                   typename iterator_traits<_RandomAccessIterator>::value_type* __buff,
+        -:  198:                   ptrdiff_t __buff_size) {
+        -:  199:  typedef typename iterator_traits<_RandomAccessIterator>::value_type value_type;
+        -:  200:  typedef typename iterator_traits<_RandomAccessIterator>::difference_type difference_type;
+        6:  201:  switch (__len) {
+        6:  201-block  0
+branch  0 taken 0
+branch  1 taken 6
+    $$$$$:  201-block  1
+    $$$$$:  201-block  2
+        -:  202:  case 0:
+        -:  203:  case 1:
+    #####:  204:    return;
+    $$$$$:  204-block  0
+        -:  205:  case 2:
+    #####:  206:    if (__comp(*--__last, *__first))
+    $$$$$:  206-block  0
+    $$$$$:  206-block  1
+    #####:  207:      _IterOps<_AlgPolicy>::iter_swap(__first, __last);
+    $$$$$:  207-block  0
+    #####:  208:    return;
+    $$$$$:  208-block  0
+        -:  209:  }
+        6:  210:  if (__len <= static_cast<difference_type>(__stable_sort_switch<value_type>::value)) {
+        6:  210-block  0
+branch  0 taken 6
+branch  1 taken 0
+        6:  211:    std::__insertion_sort<_AlgPolicy, _Compare>(__first, __last, __comp);
+        6:  212:    return;
+        6:  212-block  0
+        -:  213:  }
+    #####:  214:  typename iterator_traits<_RandomAccessIterator>::difference_type __l2 = __len / 2;
+    #####:  215:  _RandomAccessIterator __m                                             = __first + __l2;
+    #####:  216:  if (__len <= __buff_size) {
+    $$$$$:  216-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  217:    __destruct_n __d(0);
+    #####:  218:    unique_ptr<value_type, __destruct_n&> __h2(__buff, __d);
+    #####:  219:    std::__stable_sort_move<_AlgPolicy, _Compare>(__first, __m, __comp, __l2, __buff);
+    $$$$$:  219-block  0
+    #####:  220:    __d.__set(__l2, (value_type*)nullptr);
+    #####:  221:    std::__stable_sort_move<_AlgPolicy, _Compare>(__m, __last, __comp, __len - __l2, __buff + __l2);
+    $$$$$:  221-block  0
+    #####:  222:    __d.__set(__len, (value_type*)nullptr);
+    #####:  223:    std::__merge_move_assign<_AlgPolicy, _Compare>(
+    $$$$$:  223-block  0
+    #####:  224:        __buff, __buff + __l2, __buff + __l2, __buff + __len, __first, __comp);
+        -:  225:    //         std::__merge<_Compare>(move_iterator<value_type*>(__buff),
+        -:  226:    //                                  move_iterator<value_type*>(__buff + __l2),
+        -:  227:    //                                  move_iterator<_RandomAccessIterator>(__buff + __l2),
+        -:  228:    //                                  move_iterator<_RandomAccessIterator>(__buff + __len),
+        -:  229:    //                                  __first, __comp);
+        -:  230:    return;
+    #####:  231:  }
+    $$$$$:  231-block  0
+    $$$$$:  231-block  1
+    $$$$$:  231-block  2
+    #####:  232:  std::__stable_sort<_AlgPolicy, _Compare>(__first, __m, __comp, __l2, __buff, __buff_size);
+    #####:  233:  std::__stable_sort<_AlgPolicy, _Compare>(__m, __last, __comp, __len - __l2, __buff, __buff_size);
+    #####:  234:  std::__inplace_merge<_AlgPolicy>(__first, __m, __last, __comp, __l2, __len - __l2, __buff, __buff_size);
+        6:  235:}
+    $$$$$:  235-block  0
+        6:  235-block  1
+        -:  236:
+        -:  237:template <class _AlgPolicy, class _RandomAccessIterator, class _Compare>
+        -:  238:inline _LIBCPP_HIDE_FROM_ABI void
+function _ZNSt3__118__stable_sort_implB8ne180100INS_17_ClassicAlgPolicyENS_11__wrap_iterIPPN7testing8TestInfoEEEZNS3_9TestSuite3RunEvE3$_0EEvT0_SA_RT1_ called 6 returned 100% blocks executed 50%
+        6:  239:__stable_sort_impl(_RandomAccessIterator __first, _RandomAccessIterator __last, _Compare& __comp) {
+        -:  240:  using value_type      = typename iterator_traits<_RandomAccessIterator>::value_type;
+        -:  241:  using difference_type = typename iterator_traits<_RandomAccessIterator>::difference_type;
+        -:  242:
+        6:  243:  difference_type __len = __last - __first;
+        6:  244:  pair<value_type*, ptrdiff_t> __buf(0, 0);
+        6:  245:  unique_ptr<value_type, __return_temporary_buffer> __h;
+        6:  246:  if (__len > static_cast<difference_type>(__stable_sort_switch<value_type>::value)) {
+    $$$$$:  246-block  0
+        6:  246-block  1
+        -:  247:    // TODO: Remove the use of std::get_temporary_buffer
+        -:  248:    _LIBCPP_SUPPRESS_DEPRECATED_PUSH
+    #####:  249:    __buf = std::get_temporary_buffer<value_type>(__len);
+        -:  250:    _LIBCPP_SUPPRESS_DEPRECATED_POP
+    #####:  251:    __h.reset(__buf.first);
+    #####:  252:  }
+    $$$$$:  252-block  0
+        -:  253:
+        6:  254:  std::__stable_sort<_AlgPolicy, __comp_ref_type<_Compare> >(__first, __last, __comp, __len, __buf.first, __buf.second);
+        6:  254-block  0
+        6:  255:  std::__check_strict_weak_ordering_sorted(__first, __last, __comp);
+        6:  255-block  0
+        6:  256:}
+        6:  256-block  0
+    $$$$$:  256-block  1
+    $$$$$:  256-block  2
+        -:  257:
+        -:  258:template <class _RandomAccessIterator, class _Compare>
+        -:  259:inline _LIBCPP_HIDE_FROM_ABI void
+function _ZNSt3__111stable_sortB8ne180100INS_11__wrap_iterIPPN7testing8TestInfoEEEZNS2_9TestSuite3RunEvE3$_0EEvT_S9_T0_ called 6 returned 100% blocks executed 100%
+        6:  260:stable_sort(_RandomAccessIterator __first, _RandomAccessIterator __last, _Compare __comp) {
+        6:  261:  std::__stable_sort_impl<_ClassicAlgPolicy>(std::move(__first), std::move(__last), __comp);
+        6:  262:}
+        6:  262-block  0
+        -:  263:
+        -:  264:template <class _RandomAccessIterator>
+        -:  265:inline _LIBCPP_HIDE_FROM_ABI void stable_sort(_RandomAccessIterator __first, _RandomAccessIterator __last) {
+        -:  266:  std::stable_sort(__first, __last, __less<>());
+        -:  267:}
+        -:  268:
+        -:  269:_LIBCPP_END_NAMESPACE_STD
+        -:  270:
+        -:  271:_LIBCPP_POP_MACROS
+        -:  272:
+        -:  273:#endif // _LIBCPP___ALGORITHM_STABLE_SORT_H

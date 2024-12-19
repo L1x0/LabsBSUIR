@@ -1,0 +1,5 @@
+if(EXISTS "/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug/tests_for_lab[1]_tests.cmake")
+  include("/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug/tests_for_lab[1]_tests.cmake")
+else()
+  add_test(tests_for_lab_NOT_BUILT tests_for_lab_NOT_BUILT)
+endif()

@@ -1,0 +1,55 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/fill_n.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___ALGORITHM_FILL_N_H
+        -:   10:#define _LIBCPP___ALGORITHM_FILL_N_H
+        -:   11:
+        -:   12:#include <__config>
+        -:   13:#include <__iterator/iterator_traits.h>
+        -:   14:#include <__utility/convert_to_integral.h>
+        -:   15:
+        -:   16:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   17:#  pragma GCC system_header
+        -:   18:#endif
+        -:   19:
+        -:   20:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   21:
+        -:   22:// fill_n isn't specialized for std::memset, because the compiler already optimizes the loop to a call to std::memset.
+        -:   23:
+        -:   24:template <class _OutputIterator, class _Size, class _Tp>
+        -:   25:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 _OutputIterator
+function _ZNSt3__18__fill_nB8ne180100IPcmcEET_S2_T0_RKT1_ called 36 returned 100% blocks executed 100%
+       36:   26:__fill_n(_OutputIterator __first, _Size __n, const _Tp& __value) {
+       72:   27:  for (; __n > 0; ++__first, (void)--__n)
+       36:   27-block  0
+       72:   27-block  1
+branch  0 taken 36
+branch  1 taken 36
+       36:   27-block  2
+       36:   28:    *__first = __value;
+       36:   28-block  0
+       36:   29:  return __first;
+       36:   29-block  0
+        -:   30:}
+        -:   31:
+        -:   32:template <class _OutputIterator, class _Size, class _Tp>
+        -:   33:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 _OutputIterator
+function _ZNSt3__16fill_nB8ne180100IPcmcEET_S2_T0_RKT1_ called 36 returned 100% blocks executed 100%
+       36:   34:fill_n(_OutputIterator __first, _Size __n, const _Tp& __value) {
+       36:   35:  return std::__fill_n(__first, std::__convert_to_integral(__n), __value);
+       36:   35-block  0
+        -:   36:}
+        -:   37:
+        -:   38:_LIBCPP_END_NAMESPACE_STD
+        -:   39:
+        -:   40:#endif // _LIBCPP___ALGORITHM_FILL_N_H

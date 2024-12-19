@@ -1,0 +1,172 @@
+Start testing: Dec 16 10:40 +03
+----------------------------------------------------------
+1/6 Testing: MemoryManagerTest.AllocateDeallocate
+1/6 Test: MemoryManagerTest.AllocateDeallocate
+Command: "/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/tests_for_lab" "--gtest_filter=MemoryManagerTest.AllocateDeallocate" "--gtest_also_run_disabled_tests"
+Directory: /Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1
+"MemoryManagerTest.AllocateDeallocate" start time: Dec 16 10:40 +03
+Output:
+----------------------------------------------------------
+Running main() from /Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MemoryManagerTest.AllocateDeallocate
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MemoryManagerTest
+[ RUN      ] MemoryManagerTest.AllocateDeallocate
+Общая память: 1024 байт
+Используемая память: 0 байт
+Свободные блоки: 3
+  Адрес: 0x14100c980, Размер: 640 байт
+  Адрес: 0x14100c800, Размер: 128 байт
+  Адрес: 0x14100c880, Размер: 256 байт
+Выделенные блоки: 0
+[       OK ] MemoryManagerTest.AllocateDeallocate (0 ms)
+[----------] 1 test from MemoryManagerTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MemoryManagerTest.AllocateDeallocate" end time: Dec 16 10:40 +03
+"MemoryManagerTest.AllocateDeallocate" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/6 Testing: MemoryManagerTest.WriteRead
+2/6 Test: MemoryManagerTest.WriteRead
+Command: "/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/tests_for_lab" "--gtest_filter=MemoryManagerTest.WriteRead" "--gtest_also_run_disabled_tests"
+Directory: /Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1
+"MemoryManagerTest.WriteRead" start time: Dec 16 10:40 +03
+Output:
+----------------------------------------------------------
+Running main() from /Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MemoryManagerTest.WriteRead
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MemoryManagerTest
+[ RUN      ] MemoryManagerTest.WriteRead
+[       OK ] MemoryManagerTest.WriteRead (0 ms)
+[----------] 1 test from MemoryManagerTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MemoryManagerTest.WriteRead" end time: Dec 16 10:40 +03
+"MemoryManagerTest.WriteRead" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/6 Testing: MemoryManagerTest.AllocateMoreThanAvailable
+3/6 Test: MemoryManagerTest.AllocateMoreThanAvailable
+Command: "/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/tests_for_lab" "--gtest_filter=MemoryManagerTest.AllocateMoreThanAvailable" "--gtest_also_run_disabled_tests"
+Directory: /Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1
+"MemoryManagerTest.AllocateMoreThanAvailable" start time: Dec 16 10:40 +03
+Output:
+----------------------------------------------------------
+Running main() from /Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MemoryManagerTest.AllocateMoreThanAvailable
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MemoryManagerTest
+[ RUN      ] MemoryManagerTest.AllocateMoreThanAvailable
+[       OK ] MemoryManagerTest.AllocateMoreThanAvailable (0 ms)
+[----------] 1 test from MemoryManagerTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MemoryManagerTest.AllocateMoreThanAvailable" end time: Dec 16 10:40 +03
+"MemoryManagerTest.AllocateMoreThanAvailable" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/6 Testing: MemoryManagerTest.WriteExceedsBlock
+4/6 Test: MemoryManagerTest.WriteExceedsBlock
+Command: "/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/tests_for_lab" "--gtest_filter=MemoryManagerTest.WriteExceedsBlock" "--gtest_also_run_disabled_tests"
+Directory: /Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1
+"MemoryManagerTest.WriteExceedsBlock" start time: Dec 16 10:40 +03
+Output:
+----------------------------------------------------------
+Running main() from /Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MemoryManagerTest.WriteExceedsBlock
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MemoryManagerTest
+[ RUN      ] MemoryManagerTest.WriteExceedsBlock
+[       OK ] MemoryManagerTest.WriteExceedsBlock (0 ms)
+[----------] 1 test from MemoryManagerTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MemoryManagerTest.WriteExceedsBlock" end time: Dec 16 10:40 +03
+"MemoryManagerTest.WriteExceedsBlock" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/6 Testing: MemoryManagerTest.DoubleDeallocate
+5/6 Test: MemoryManagerTest.DoubleDeallocate
+Command: "/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/tests_for_lab" "--gtest_filter=MemoryManagerTest.DoubleDeallocate" "--gtest_also_run_disabled_tests"
+Directory: /Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1
+"MemoryManagerTest.DoubleDeallocate" start time: Dec 16 10:40 +03
+Output:
+----------------------------------------------------------
+Running main() from /Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MemoryManagerTest.DoubleDeallocate
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MemoryManagerTest
+[ RUN      ] MemoryManagerTest.DoubleDeallocate
+[       OK ] MemoryManagerTest.DoubleDeallocate (0 ms)
+[----------] 1 test from MemoryManagerTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MemoryManagerTest.DoubleDeallocate" end time: Dec 16 10:40 +03
+"MemoryManagerTest.DoubleDeallocate" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/6 Testing: MemoryManagerTest.PrintStatus
+6/6 Test: MemoryManagerTest.PrintStatus
+Command: "/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/tests_for_lab" "--gtest_filter=MemoryManagerTest.PrintStatus" "--gtest_also_run_disabled_tests"
+Directory: /Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1
+"MemoryManagerTest.PrintStatus" start time: Dec 16 10:40 +03
+Output:
+----------------------------------------------------------
+Running main() from /Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MemoryManagerTest.PrintStatus
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MemoryManagerTest
+[ RUN      ] MemoryManagerTest.PrintStatus
+[       OK ] MemoryManagerTest.PrintStatus (0 ms)
+[----------] 1 test from MemoryManagerTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MemoryManagerTest.PrintStatus" end time: Dec 16 10:40 +03
+"MemoryManagerTest.PrintStatus" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Dec 16 10:40 +03

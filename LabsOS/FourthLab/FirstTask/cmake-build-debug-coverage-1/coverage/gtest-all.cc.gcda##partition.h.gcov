@@ -1,0 +1,121 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/partition.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___ALGORITHM_PARTITION_H
+        -:   10:#define _LIBCPP___ALGORITHM_PARTITION_H
+        -:   11:
+        -:   12:#include <__algorithm/iterator_operations.h>
+        -:   13:#include <__config>
+        -:   14:#include <__iterator/iterator_traits.h>
+        -:   15:#include <__utility/move.h>
+        -:   16:#include <__utility/pair.h>
+        -:   17:
+        -:   18:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   19:#  pragma GCC system_header
+        -:   20:#endif
+        -:   21:
+        -:   22:_LIBCPP_PUSH_MACROS
+        -:   23:#include <__undef_macros>
+        -:   24:
+        -:   25:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   26:
+        -:   27:template <class _Predicate, class _AlgPolicy, class _ForwardIterator, class _Sentinel>
+        -:   28:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 pair<_ForwardIterator, _ForwardIterator>
+        -:   29:__partition_impl(_ForwardIterator __first, _Sentinel __last, _Predicate __pred, forward_iterator_tag) {
+        -:   30:  while (true) {
+        -:   31:    if (__first == __last)
+        -:   32:      return std::make_pair(std::move(__first), std::move(__first));
+        -:   33:    if (!__pred(*__first))
+        -:   34:      break;
+        -:   35:    ++__first;
+        -:   36:  }
+        -:   37:
+        -:   38:  _ForwardIterator __p = __first;
+        -:   39:  while (++__p != __last) {
+        -:   40:    if (__pred(*__p)) {
+        -:   41:      _IterOps<_AlgPolicy>::iter_swap(__first, __p);
+        -:   42:      ++__first;
+        -:   43:    }
+        -:   44:  }
+        -:   45:  return std::make_pair(std::move(__first), std::move(__p));
+        -:   46:}
+        -:   47:
+        -:   48:template <class _Predicate, class _AlgPolicy, class _BidirectionalIterator, class _Sentinel>
+        -:   49:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 pair<_BidirectionalIterator, _BidirectionalIterator>
+function _ZNSt3__116__partition_implB8ne180100IRPFbRKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEENS_17_ClassicAlgPolicyENS_11__wrap_iterIPS6_EESF_EENS_4pairIT1_SH_EESH_T2_T_NS_26bidirectional_iterator_tagE called 18 returned 100% blocks executed 73%
+       18:   50:__partition_impl(_BidirectionalIterator __first, _Sentinel __sentinel, _Predicate __pred, bidirectional_iterator_tag) {
+       18:   51:  _BidirectionalIterator __original_last = _IterOps<_AlgPolicy>::next(__first, __sentinel);
+       18:   52:  _BidirectionalIterator __last          = __original_last;
+        -:   53:
+       18:   54:  while (true) {
+       18:   54-block  0
+    $$$$$:   54-block  1
+       42:   55:    while (true) {
+       18:   55-block  0
+       24:   55-block  1
+       42:   56:      if (__first == __last)
+       42:   56-block  0
+branch  0 taken 12
+branch  1 taken 30
+       12:   57:        return std::make_pair(std::move(__first), std::move(__original_last));
+       12:   57-block  0
+       30:   58:      if (!__pred(*__first))
+       30:   58-block  0
+branch  0 taken 6
+branch  1 taken 24
+        6:   59:        break;
+        6:   59-block  0
+       24:   60:      ++__first;
+        -:   61:    }
+        6:   62:    do {
+        6:   62-block  0
+        6:   63:      if (__first == --__last)
+        6:   63-block  0
+branch  0 taken 6
+branch  1 taken 0
+        6:   64:        return std::make_pair(std::move(__first), std::move(__original_last));
+        6:   64-block  0
+    #####:   65:    } while (!__pred(*__last));
+    $$$$$:   65-block  0
+    $$$$$:   65-block  1
+    $$$$$:   65-block  2
+    #####:   66:    _IterOps<_AlgPolicy>::iter_swap(__first, __last);
+    #####:   67:    ++__first;
+        -:   68:  }
+       18:   69:}
+       18:   69-block  0
+        -:   70:
+        -:   71:template <class _AlgPolicy, class _ForwardIterator, class _Sentinel, class _Predicate, class _IterCategory>
+        -:   72:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 pair<_ForwardIterator, _ForwardIterator>
+function _ZNSt3__111__partitionB8ne180100INS_17_ClassicAlgPolicyENS_11__wrap_iterIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEESA_RPFbRKS8_ENS_26random_access_iterator_tagEEENS_4pairIT0_SI_EESI_T1_OT2_T3_ called 18 returned 100% blocks executed 100%
+       18:   73:__partition(_ForwardIterator __first, _Sentinel __last, _Predicate&& __pred, _IterCategory __iter_category) {
+       18:   74:  return std::__partition_impl<__remove_cvref_t<_Predicate>&, _AlgPolicy>(
+       18:   74-block  0
+       18:   75:      std::move(__first), std::move(__last), __pred, __iter_category);
+        -:   76:}
+        -:   77:
+        -:   78:template <class _ForwardIterator, class _Predicate>
+        -:   79:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 _ForwardIterator
+function _ZNSt3__19partitionB8ne180100INS_11__wrap_iterIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEPFbRKS7_EEET_SE_SE_T0_ called 18 returned 100% blocks executed 100%
+       18:   80:partition(_ForwardIterator __first, _ForwardIterator __last, _Predicate __pred) {
+        -:   81:  using _IterCategory = typename iterator_traits<_ForwardIterator>::iterator_category;
+       18:   82:  auto __result = std::__partition<_ClassicAlgPolicy>(std::move(__first), std::move(__last), __pred, _IterCategory());
+       18:   83:  return __result.first;
+       18:   83-block  0
+        -:   84:}
+        -:   85:
+        -:   86:_LIBCPP_END_NAMESPACE_STD
+        -:   87:
+        -:   88:_LIBCPP_POP_MACROS
+        -:   89:
+        -:   90:#endif // _LIBCPP___ALGORITHM_PARTITION_H

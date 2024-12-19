@@ -1,0 +1,1852 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/unordered_set
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// -*- C++ -*-
+        -:    2://===----------------------------------------------------------------------===//
+        -:    3://
+        -:    4:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    5:// See https://llvm.org/LICENSE.txt for license information.
+        -:    6:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    7://
+        -:    8://===----------------------------------------------------------------------===//
+        -:    9:
+        -:   10:#ifndef _LIBCPP_UNORDERED_SET
+        -:   11:#define _LIBCPP_UNORDERED_SET
+        -:   12:
+        -:   13:// clang-format off
+        -:   14:
+        -:   15:/*
+        -:   16:
+        -:   17:    unordered_set synopsis
+        -:   18:
+        -:   19:#include <initializer_list>
+        -:   20:
+        -:   21:namespace std
+        -:   22:{
+        -:   23:
+        -:   24:template <class Value, class Hash = hash<Value>, class Pred = equal_to<Value>,
+        -:   25:          class Alloc = allocator<Value>>
+        -:   26:class unordered_set
+        -:   27:{
+        -:   28:public:
+        -:   29:    // types
+        -:   30:    typedef Value                                                      key_type;
+        -:   31:    typedef key_type                                                   value_type;
+        -:   32:    typedef Hash                                                       hasher;
+        -:   33:    typedef Pred                                                       key_equal;
+        -:   34:    typedef Alloc                                                      allocator_type;
+        -:   35:    typedef value_type&                                                reference;
+        -:   36:    typedef const value_type&                                          const_reference;
+        -:   37:    typedef typename allocator_traits<allocator_type>::pointer         pointer;
+        -:   38:    typedef typename allocator_traits<allocator_type>::const_pointer   const_pointer;
+        -:   39:    typedef typename allocator_traits<allocator_type>::size_type       size_type;
+        -:   40:    typedef typename allocator_traits<allocator_type>::difference_type difference_type;
+        -:   41:
+        -:   42:    typedef /unspecified/ iterator;
+        -:   43:    typedef /unspecified/ const_iterator;
+        -:   44:    typedef /unspecified/ local_iterator;
+        -:   45:    typedef /unspecified/ const_local_iterator;
+        -:   46:
+        -:   47:    typedef unspecified node_type unspecified;                            // C++17
+        -:   48:    typedef INSERT_RETURN_TYPE<iterator, node_type> insert_return_type;   // C++17
+        -:   49:
+        -:   50:    unordered_set()
+        -:   51:        noexcept(
+        -:   52:            is_nothrow_default_constructible<hasher>::value &&
+        -:   53:            is_nothrow_default_constructible<key_equal>::value &&
+        -:   54:            is_nothrow_default_constructible<allocator_type>::value);
+        -:   55:    explicit unordered_set(size_type n, const hasher& hf = hasher(),
+        -:   56:                           const key_equal& eql = key_equal(),
+        -:   57:                           const allocator_type& a = allocator_type());
+        -:   58:    template <class InputIterator>
+        -:   59:        unordered_set(InputIterator f, InputIterator l,
+        -:   60:                      size_type n = 0, const hasher& hf = hasher(),
+        -:   61:                      const key_equal& eql = key_equal(),
+        -:   62:                      const allocator_type& a = allocator_type());
+        -:   63:    template<container-compatible-range<value_type> R>
+        -:   64:      unordered_set(from_range_t, R&& rg, size_type n = see below,
+        -:   65:        const hasher& hf = hasher(), const key_equal& eql = key_equal(),
+        -:   66:        const allocator_type& a = allocator_type()); // C++23
+        -:   67:    explicit unordered_set(const allocator_type&);
+        -:   68:    unordered_set(const unordered_set&);
+        -:   69:    unordered_set(const unordered_set&, const Allocator&);
+        -:   70:    unordered_set(unordered_set&&)
+        -:   71:        noexcept(
+        -:   72:            is_nothrow_move_constructible<hasher>::value &&
+        -:   73:            is_nothrow_move_constructible<key_equal>::value &&
+        -:   74:            is_nothrow_move_constructible<allocator_type>::value);
+        -:   75:    unordered_set(unordered_set&&, const Allocator&);
+        -:   76:    unordered_set(initializer_list<value_type>, size_type n = 0,
+        -:   77:                  const hasher& hf = hasher(), const key_equal& eql = key_equal(),
+        -:   78:                  const allocator_type& a = allocator_type());
+        -:   79:    unordered_set(size_type n, const allocator_type& a); // C++14
+        -:   80:    unordered_set(size_type n, const hasher& hf, const allocator_type& a); // C++14
+        -:   81:    template <class InputIterator>
+        -:   82:      unordered_set(InputIterator f, InputIterator l, size_type n, const allocator_type& a); // C++14
+        -:   83:    template <class InputIterator>
+        -:   84:      unordered_set(InputIterator f, InputIterator l, size_type n,
+        -:   85:                    const hasher& hf,  const allocator_type& a); // C++14
+        -:   86:    template<container-compatible-range<value_type> R>
+        -:   87:      unordered_set(from_range_t, R&& rg, size_type n, const allocator_type& a)
+        -:   88:        : unordered_set(from_range, std::forward<R>(rg), n, hasher(), key_equal(), a) { } // C++23
+        -:   89:    template<container-compatible-range<value_type> R>
+        -:   90:      unordered_set(from_range_t, R&& rg, size_type n, const hasher& hf, const allocator_type& a)
+        -:   91:        : unordered_set(from_range, std::forward<R>(rg), n, hf, key_equal(), a) { }       // C++23
+        -:   92:    unordered_set(initializer_list<value_type> il, size_type n, const allocator_type& a); // C++14
+        -:   93:    unordered_set(initializer_list<value_type> il, size_type n,
+        -:   94:                  const hasher& hf,  const allocator_type& a); // C++14
+        -:   95:    ~unordered_set();
+        -:   96:    unordered_set& operator=(const unordered_set&);
+        -:   97:    unordered_set& operator=(unordered_set&&)
+        -:   98:        noexcept(
+        -:   99:            allocator_type::propagate_on_container_move_assignment::value &&
+        -:  100:            is_nothrow_move_assignable<allocator_type>::value &&
+        -:  101:            is_nothrow_move_assignable<hasher>::value &&
+        -:  102:            is_nothrow_move_assignable<key_equal>::value);
+        -:  103:    unordered_set& operator=(initializer_list<value_type>);
+        -:  104:
+        -:  105:    allocator_type get_allocator() const noexcept;
+        -:  106:
+        -:  107:    bool      empty() const noexcept;
+        -:  108:    size_type size() const noexcept;
+        -:  109:    size_type max_size() const noexcept;
+        -:  110:
+        -:  111:    iterator       begin() noexcept;
+        -:  112:    iterator       end() noexcept;
+        -:  113:    const_iterator begin()  const noexcept;
+        -:  114:    const_iterator end()    const noexcept;
+        -:  115:    const_iterator cbegin() const noexcept;
+        -:  116:    const_iterator cend()   const noexcept;
+        -:  117:
+        -:  118:    template <class... Args>
+        -:  119:        pair<iterator, bool> emplace(Args&&... args);
+        -:  120:    template <class... Args>
+        -:  121:        iterator emplace_hint(const_iterator position, Args&&... args);
+        -:  122:    pair<iterator, bool> insert(const value_type& obj);
+        -:  123:    pair<iterator, bool> insert(value_type&& obj);
+        -:  124:    iterator insert(const_iterator hint, const value_type& obj);
+        -:  125:    iterator insert(const_iterator hint, value_type&& obj);
+        -:  126:    template <class InputIterator>
+        -:  127:        void insert(InputIterator first, InputIterator last);
+        -:  128:    template<container-compatible-range<value_type> R>
+        -:  129:      void insert_range(R&& rg);                                      // C++23
+        -:  130:    void insert(initializer_list<value_type>);
+        -:  131:
+        -:  132:    node_type extract(const_iterator position);                       // C++17
+        -:  133:    node_type extract(const key_type& x);                             // C++17
+        -:  134:    insert_return_type insert(node_type&& nh);                        // C++17
+        -:  135:    iterator           insert(const_iterator hint, node_type&& nh);   // C++17
+        -:  136:
+        -:  137:    iterator erase(const_iterator position);
+        -:  138:    iterator erase(iterator position);  // C++14
+        -:  139:    size_type erase(const key_type& k);
+        -:  140:    iterator erase(const_iterator first, const_iterator last);
+        -:  141:    void clear() noexcept;
+        -:  142:
+        -:  143:    template<class H2, class P2>
+        -:  144:      void merge(unordered_set<Key, H2, P2, Allocator>& source);         // C++17
+        -:  145:    template<class H2, class P2>
+        -:  146:      void merge(unordered_set<Key, H2, P2, Allocator>&& source);        // C++17
+        -:  147:    template<class H2, class P2>
+        -:  148:      void merge(unordered_multiset<Key, H2, P2, Allocator>& source);    // C++17
+        -:  149:    template<class H2, class P2>
+        -:  150:      void merge(unordered_multiset<Key, H2, P2, Allocator>&& source);   // C++17
+        -:  151:
+        -:  152:    void swap(unordered_set&)
+        -:  153:       noexcept(allocator_traits<Allocator>::is_always_equal::value &&
+        -:  154:                 noexcept(swap(declval<hasher&>(), declval<hasher&>())) &&
+        -:  155:                 noexcept(swap(declval<key_equal&>(), declval<key_equal&>()))); // C++17
+        -:  156:
+        -:  157:    hasher hash_function() const;
+        -:  158:    key_equal key_eq() const;
+        -:  159:
+        -:  160:    iterator       find(const key_type& k);
+        -:  161:    const_iterator find(const key_type& k) const;
+        -:  162:    template<typename K>
+        -:  163:        iterator find(const K& x);              // C++20
+        -:  164:    template<typename K>
+        -:  165:        const_iterator find(const K& x) const;  // C++20
+        -:  166:    size_type count(const key_type& k) const;
+        -:  167:    template<typename K>
+        -:  168:        size_type count(const K& k) const; // C++20
+        -:  169:    bool contains(const key_type& k) const; // C++20
+        -:  170:    template<typename K>
+        -:  171:        bool contains(const K& k) const; // C++20
+        -:  172:    pair<iterator, iterator>             equal_range(const key_type& k);
+        -:  173:    pair<const_iterator, const_iterator> equal_range(const key_type& k) const;
+        -:  174:    template<typename K>
+        -:  175:        pair<iterator, iterator>             equal_range(const K& k); // C++20
+        -:  176:    template<typename K>
+        -:  177:        pair<const_iterator, const_iterator> equal_range(const K& k) const; // C++20
+        -:  178:
+        -:  179:    size_type bucket_count() const noexcept;
+        -:  180:    size_type max_bucket_count() const noexcept;
+        -:  181:
+        -:  182:    size_type bucket_size(size_type n) const;
+        -:  183:    size_type bucket(const key_type& k) const;
+        -:  184:
+        -:  185:    local_iterator       begin(size_type n);
+        -:  186:    local_iterator       end(size_type n);
+        -:  187:    const_local_iterator begin(size_type n) const;
+        -:  188:    const_local_iterator end(size_type n) const;
+        -:  189:    const_local_iterator cbegin(size_type n) const;
+        -:  190:    const_local_iterator cend(size_type n) const;
+        -:  191:
+        -:  192:    float load_factor() const noexcept;
+        -:  193:    float max_load_factor() const noexcept;
+        -:  194:    void max_load_factor(float z);
+        -:  195:    void rehash(size_type n);
+        -:  196:    void reserve(size_type n);
+        -:  197:};
+        -:  198:
+        -:  199:template<class InputIterator,
+        -:  200:    class Hash = hash<typename iterator_traits<InputIterator>::value_type>,
+        -:  201:    class Pred = equal_to<typename iterator_traits<InputIterator>::value_type>,
+        -:  202:    class Allocator = allocator<typename iterator_traits<InputIterator>::value_type>>
+        -:  203:unordered_set(InputIterator, InputIterator, typename see below::size_type = see below,
+        -:  204:    Hash = Hash(), Pred = Pred(), Allocator = Allocator())
+        -:  205:  -> unordered_set<typename iterator_traits<InputIterator>::value_type,
+        -:  206:        Hash, Pred, Allocator>; // C++17
+        -:  207:
+        -:  208:template<ranges::input_range R,
+        -:  209:         class Hash = hash<ranges::range_value_t<R>>,
+        -:  210:         class Pred = equal_to<ranges::range_value_t<R>>,
+        -:  211:         class Allocator = allocator<ranges::range_value_t<R>>>
+        -:  212:  unordered_set(from_range_t, R&&, typename see below::size_type = see below, Hash = Hash(), Pred = Pred(), Allocator = Allocator())
+        -:  213:    -> unordered_set<ranges::range_value_t<R>, Hash, Pred, Allocator>; // C++23
+        -:  214:
+        -:  215:template<class T, class Hash = hash<T>,
+        -:  216:          class Pred = equal_to<T>, class Allocator = allocator<T>>
+        -:  217:unordered_set(initializer_list<T>, typename see below::size_type = see below,
+        -:  218:    Hash = Hash(), Pred = Pred(), Allocator = Allocator())
+        -:  219:  -> unordered_set<T, Hash, Pred, Allocator>; // C++17
+        -:  220:
+        -:  221:template<class InputIterator,  class Allocator>
+        -:  222:unordered_set(InputIterator, InputIterator, typename see below::size_type, Allocator)
+        -:  223:  -> unordered_set<typename iterator_traits<InputIterator>::value_type,
+        -:  224:        hash<typename iterator_traits<InputIterator>::value_type>,
+        -:  225:        equal_to<typename iterator_traits<InputIterator>::value_type>,
+        -:  226:        Allocator>; // C++17
+        -:  227:
+        -:  228:template<class InputIterator, class Hash, class Allocator>
+        -:  229:unordered_set(InputIterator, InputIterator, typename see below::size_type,
+        -:  230:    Hash, Allocator)
+        -:  231:  -> unordered_set<typename iterator_traits<InputIterator>::value_type, Hash,
+        -:  232:        equal_to<typename iterator_traits<InputIterator>::value_type>,
+        -:  233:        Allocator>; // C++17
+        -:  234:
+        -:  235:template<ranges::input_range R, class Allocator>
+        -:  236:  unordered_set(from_range_t, R&&, typename see below::size_type, Allocator)
+        -:  237:    -> unordered_set<ranges::range_value_t<R>, hash<ranges::range_value_t<R>>,
+        -:  238:                      equal_to<ranges::range_value_t<R>>, Allocator>; // C++23
+        -:  239:
+        -:  240:template<ranges::input_range R, class Allocator>
+        -:  241:  unordered_set(from_range_t, R&&, Allocator)
+        -:  242:    -> unordered_set<ranges::range_value_t<R>, hash<ranges::range_value_t<R>>,
+        -:  243:                      equal_to<ranges::range_value_t<R>>, Allocator>; // C++23
+        -:  244:
+        -:  245:template<ranges::input_range R, class Hash, class Allocator>
+        -:  246:  unordered_set(from_range_t, R&&, typename see below::size_type, Hash, Allocator)
+        -:  247:    -> unordered_set<ranges::range_value_t<R>, Hash,
+        -:  248:                      equal_to<ranges::range_value_t<R>>, Allocator>; // C++23
+        -:  249:
+        -:  250:template<class T, class Allocator>
+        -:  251:unordered_set(initializer_list<T>, typename see below::size_type, Allocator)
+        -:  252:  -> unordered_set<T, hash<T>, equal_to<T>, Allocator>; // C++17
+        -:  253:
+        -:  254:template<class T, class Hash, class Allocator>
+        -:  255:unordered_set(initializer_list<T>, typename see below::size_type, Hash, Allocator)
+        -:  256:  -> unordered_set<T, Hash, equal_to<T>, Allocator>; // C++17
+        -:  257:
+        -:  258:template <class Value, class Hash, class Pred, class Alloc>
+        -:  259:    void swap(unordered_set<Value, Hash, Pred, Alloc>& x,
+        -:  260:              unordered_set<Value, Hash, Pred, Alloc>& y)
+        -:  261:              noexcept(noexcept(x.swap(y)));
+        -:  262:
+        -:  263:template <class Value, class Hash, class Pred, class Alloc>
+        -:  264:    bool
+        -:  265:    operator==(const unordered_set<Value, Hash, Pred, Alloc>& x,
+        -:  266:               const unordered_set<Value, Hash, Pred, Alloc>& y);
+        -:  267:
+        -:  268:template <class Value, class Hash, class Pred, class Alloc>
+        -:  269:    bool
+        -:  270:    operator!=(const unordered_set<Value, Hash, Pred, Alloc>& x,
+        -:  271:               const unordered_set<Value, Hash, Pred, Alloc>& y); // removed in C++20
+        -:  272:
+        -:  273:template <class Value, class Hash = hash<Value>, class Pred = equal_to<Value>,
+        -:  274:          class Alloc = allocator<Value>>
+        -:  275:class unordered_multiset
+        -:  276:{
+        -:  277:public:
+        -:  278:    // types
+        -:  279:    typedef Value                                                      key_type;
+        -:  280:    typedef key_type                                                   value_type;
+        -:  281:    typedef Hash                                                       hasher;
+        -:  282:    typedef Pred                                                       key_equal;
+        -:  283:    typedef Alloc                                                      allocator_type;
+        -:  284:    typedef value_type&                                                reference;
+        -:  285:    typedef const value_type&                                          const_reference;
+        -:  286:    typedef typename allocator_traits<allocator_type>::pointer         pointer;
+        -:  287:    typedef typename allocator_traits<allocator_type>::const_pointer   const_pointer;
+        -:  288:    typedef typename allocator_traits<allocator_type>::size_type       size_type;
+        -:  289:    typedef typename allocator_traits<allocator_type>::difference_type difference_type;
+        -:  290:
+        -:  291:    typedef /unspecified/ iterator;
+        -:  292:    typedef /unspecified/ const_iterator;
+        -:  293:    typedef /unspecified/ local_iterator;
+        -:  294:    typedef /unspecified/ const_local_iterator;
+        -:  295:
+        -:  296:    typedef unspecified node_type unspecified;   // C++17
+        -:  297:
+        -:  298:    unordered_multiset()
+        -:  299:        noexcept(
+        -:  300:            is_nothrow_default_constructible<hasher>::value &&
+        -:  301:            is_nothrow_default_constructible<key_equal>::value &&
+        -:  302:            is_nothrow_default_constructible<allocator_type>::value);
+        -:  303:    explicit unordered_multiset(size_type n, const hasher& hf = hasher(),
+        -:  304:                           const key_equal& eql = key_equal(),
+        -:  305:                           const allocator_type& a = allocator_type());
+        -:  306:    template <class InputIterator>
+        -:  307:        unordered_multiset(InputIterator f, InputIterator l,
+        -:  308:                      size_type n = 0, const hasher& hf = hasher(),
+        -:  309:                      const key_equal& eql = key_equal(),
+        -:  310:                      const allocator_type& a = allocator_type());
+        -:  311:    template<container-compatible-range<value_type> R>
+        -:  312:      unordered_multiset(from_range_t, R&& rg, size_type n = see below,
+        -:  313:        const hasher& hf = hasher(), const key_equal& eql = key_equal(),
+        -:  314:        const allocator_type& a = allocator_type()); // C++23
+        -:  315:    explicit unordered_multiset(const allocator_type&);
+        -:  316:    unordered_multiset(const unordered_multiset&);
+        -:  317:    unordered_multiset(const unordered_multiset&, const Allocator&);
+        -:  318:    unordered_multiset(unordered_multiset&&)
+        -:  319:        noexcept(
+        -:  320:            is_nothrow_move_constructible<hasher>::value &&
+        -:  321:            is_nothrow_move_constructible<key_equal>::value &&
+        -:  322:            is_nothrow_move_constructible<allocator_type>::value);
+        -:  323:    unordered_multiset(unordered_multiset&&, const Allocator&);
+        -:  324:    unordered_multiset(initializer_list<value_type>, size_type n = /see below/,
+        -:  325:                  const hasher& hf = hasher(), const key_equal& eql = key_equal(),
+        -:  326:                  const allocator_type& a = allocator_type());
+        -:  327:    unordered_multiset(size_type n, const allocator_type& a); // C++14
+        -:  328:    unordered_multiset(size_type n, const hasher& hf, const allocator_type& a); // C++14
+        -:  329:    template <class InputIterator>
+        -:  330:      unordered_multiset(InputIterator f, InputIterator l, size_type n, const allocator_type& a); // C++14
+        -:  331:    template <class InputIterator>
+        -:  332:      unordered_multiset(InputIterator f, InputIterator l, size_type n,
+        -:  333:                         const hasher& hf, const allocator_type& a); // C++14
+        -:  334:    template<container-compatible-range<value_type> R>
+        -:  335:      unordered_multiset(from_range_t, R&& rg, size_type n, const allocator_type& a)
+        -:  336:        : unordered_multiset(from_range, std::forward<R>(rg), n, hasher(), key_equal(), a) { } // C++23
+        -:  337:    template<container-compatible-range<value_type> R>
+        -:  338:      unordered_multiset(from_range_t, R&& rg, size_type n, const hasher& hf, const allocator_type& a)
+        -:  339:        : unordered_multiset(from_range, std::forward<R>(rg), n, hf, key_equal(), a) { }       // C++23
+        -:  340:    unordered_multiset(initializer_list<value_type> il, size_type n, const allocator_type& a); // C++14
+        -:  341:    unordered_multiset(initializer_list<value_type> il, size_type n,
+        -:  342:                       const hasher& hf,  const allocator_type& a); // C++14
+        -:  343:    ~unordered_multiset();
+        -:  344:    unordered_multiset& operator=(const unordered_multiset&);
+        -:  345:    unordered_multiset& operator=(unordered_multiset&&)
+        -:  346:        noexcept(
+        -:  347:            allocator_type::propagate_on_container_move_assignment::value &&
+        -:  348:            is_nothrow_move_assignable<allocator_type>::value &&
+        -:  349:            is_nothrow_move_assignable<hasher>::value &&
+        -:  350:            is_nothrow_move_assignable<key_equal>::value);
+        -:  351:    unordered_multiset& operator=(initializer_list<value_type>);
+        -:  352:
+        -:  353:    allocator_type get_allocator() const noexcept;
+        -:  354:
+        -:  355:    bool      empty() const noexcept;
+        -:  356:    size_type size() const noexcept;
+        -:  357:    size_type max_size() const noexcept;
+        -:  358:
+        -:  359:    iterator       begin() noexcept;
+        -:  360:    iterator       end() noexcept;
+        -:  361:    const_iterator begin()  const noexcept;
+        -:  362:    const_iterator end()    const noexcept;
+        -:  363:    const_iterator cbegin() const noexcept;
+        -:  364:    const_iterator cend()   const noexcept;
+        -:  365:
+        -:  366:    template <class... Args>
+        -:  367:        iterator emplace(Args&&... args);
+        -:  368:    template <class... Args>
+        -:  369:        iterator emplace_hint(const_iterator position, Args&&... args);
+        -:  370:    iterator insert(const value_type& obj);
+        -:  371:    iterator insert(value_type&& obj);
+        -:  372:    iterator insert(const_iterator hint, const value_type& obj);
+        -:  373:    iterator insert(const_iterator hint, value_type&& obj);
+        -:  374:    template <class InputIterator>
+        -:  375:        void insert(InputIterator first, InputIterator last);
+        -:  376:    template<container-compatible-range<value_type> R>
+        -:  377:      void insert_range(R&& rg);                            // C++23
+        -:  378:    void insert(initializer_list<value_type>);
+        -:  379:
+        -:  380:    node_type extract(const_iterator position);             // C++17
+        -:  381:    node_type extract(const key_type& x);                   // C++17
+        -:  382:    iterator insert(node_type&& nh);                        // C++17
+        -:  383:    iterator insert(const_iterator hint, node_type&& nh);   // C++17
+        -:  384:
+        -:  385:    iterator erase(const_iterator position);
+        -:  386:    iterator erase(iterator position);  // C++14
+        -:  387:    size_type erase(const key_type& k);
+        -:  388:    iterator erase(const_iterator first, const_iterator last);
+        -:  389:    void clear() noexcept;
+        -:  390:
+        -:  391:    template<class H2, class P2>
+        -:  392:      void merge(unordered_multiset<Key, H2, P2, Allocator>& source);    // C++17
+        -:  393:    template<class H2, class P2>
+        -:  394:      void merge(unordered_multiset<Key, H2, P2, Allocator>&& source);   // C++17
+        -:  395:    template<class H2, class P2>
+        -:  396:      void merge(unordered_set<Key, H2, P2, Allocator>& source);         // C++17
+        -:  397:    template<class H2, class P2>
+        -:  398:      void merge(unordered_set<Key, H2, P2, Allocator>&& source);        // C++17
+        -:  399:
+        -:  400:    void swap(unordered_multiset&)
+        -:  401:       noexcept(allocator_traits<Allocator>::is_always_equal::value &&
+        -:  402:                 noexcept(swap(declval<hasher&>(), declval<hasher&>())) &&
+        -:  403:                 noexcept(swap(declval<key_equal&>(), declval<key_equal&>()))); // C++17
+        -:  404:
+        -:  405:    hasher hash_function() const;
+        -:  406:    key_equal key_eq() const;
+        -:  407:
+        -:  408:    iterator       find(const key_type& k);
+        -:  409:    const_iterator find(const key_type& k) const;
+        -:  410:    template<typename K>
+        -:  411:        iterator find(const K& x);              // C++20
+        -:  412:    template<typename K>
+        -:  413:        const_iterator find(const K& x) const;  // C++20
+        -:  414:    size_type count(const key_type& k) const;
+        -:  415:    template<typename K>
+        -:  416:        size_type count(const K& k) const; // C++20
+        -:  417:    bool contains(const key_type& k) const; // C++20
+        -:  418:    template<typename K>
+        -:  419:        bool contains(const K& k) const; // C++20
+        -:  420:    pair<iterator, iterator>             equal_range(const key_type& k);
+        -:  421:    pair<const_iterator, const_iterator> equal_range(const key_type& k) const;
+        -:  422:    template<typename K>
+        -:  423:        pair<iterator, iterator>             equal_range(const K& k); // C++20
+        -:  424:    template<typename K>
+        -:  425:        pair<const_iterator, const_iterator> equal_range(const K& k) const; // C++20
+        -:  426:
+        -:  427:    size_type bucket_count() const noexcept;
+        -:  428:    size_type max_bucket_count() const noexcept;
+        -:  429:
+        -:  430:    size_type bucket_size(size_type n) const;
+        -:  431:    size_type bucket(const key_type& k) const;
+        -:  432:
+        -:  433:    local_iterator       begin(size_type n);
+        -:  434:    local_iterator       end(size_type n);
+        -:  435:    const_local_iterator begin(size_type n) const;
+        -:  436:    const_local_iterator end(size_type n) const;
+        -:  437:    const_local_iterator cbegin(size_type n) const;
+        -:  438:    const_local_iterator cend(size_type n) const;
+        -:  439:
+        -:  440:    float load_factor() const noexcept;
+        -:  441:    float max_load_factor() const noexcept;
+        -:  442:    void max_load_factor(float z);
+        -:  443:    void rehash(size_type n);
+        -:  444:    void reserve(size_type n);
+        -:  445:};
+        -:  446:
+        -:  447:template<class InputIterator,
+        -:  448:    class Hash = hash<typename iterator_traits<InputIterator>::value_type>,
+        -:  449:    class Pred = equal_to<typename iterator_traits<InputIterator>::value_type>,
+        -:  450:    class Allocator = allocator<typename iterator_traits<InputIterator>::value_type>>
+        -:  451:unordered_multiset(InputIterator, InputIterator, see below::size_type = see below,
+        -:  452:    Hash = Hash(), Pred = Pred(), Allocator = Allocator())
+        -:  453:  -> unordered_multiset<typename iterator_traits<InputIterator>::value_type,
+        -:  454:        Hash, Pred, Allocator>; // C++17
+        -:  455:
+        -:  456:template<ranges::input_range R,
+        -:  457:         class Hash = hash<ranges::range_value_t<R>>,
+        -:  458:         class Pred = equal_to<ranges::range_value_t<R>>,
+        -:  459:         class Allocator = allocator<ranges::range_value_t<R>>>
+        -:  460:  unordered_multiset(from_range_t, R&&, typename see below::size_type = see below, Hash = Hash(), Pred = Pred(), Allocator = Allocator())
+        -:  461:    -> unordered_multiset<ranges::range_value_t<R>, Hash, Pred, Allocator>; // C++23
+        -:  462:
+        -:  463:template<class T, class Hash = hash<T>,
+        -:  464:          class Pred = equal_to<T>, class Allocator = allocator<T>>
+        -:  465:unordered_multiset(initializer_list<T>, typename see below::size_type = see below,
+        -:  466:    Hash = Hash(), Pred = Pred(), Allocator = Allocator())
+        -:  467:  -> unordered_multiset<T, Hash, Pred, Allocator>; // C++17
+        -:  468:
+        -:  469:template<class InputIterator,  class Allocator>
+        -:  470:unordered_multiset(InputIterator, InputIterator, typename see below::size_type, Allocator)
+        -:  471:  -> unordered_multiset<typename iterator_traits<InputIterator>::value_type,
+        -:  472:        hash<typename iterator_traits<InputIterator>::value_type>,
+        -:  473:        equal_to<typename iterator_traits<InputIterator>::value_type>,
+        -:  474:        Allocator>; // C++17
+        -:  475:
+        -:  476:template<class InputIterator,  class Hash, class Allocator>
+        -:  477:unordered_multiset(InputIterator, InputIterator, typename see below::size_type,
+        -:  478:    Hash, Allocator)
+        -:  479:  -> unordered_multiset<typename iterator_traits<InputIterator>::value_type, Hash,
+        -:  480:        equal_to<typename iterator_traits<InputIterator>::value_type>, Allocator>; // C++17
+        -:  481:
+        -:  482:template<ranges::input_range R, class Allocator>
+        -:  483:  unordered_multiset(from_range_t, R&&, typename see below::size_type, Allocator)
+        -:  484:    -> unordered_multiset<ranges::range_value_t<R>, hash<ranges::range_value_t<R>>,
+        -:  485:                      equal_to<ranges::range_value_t<R>>, Allocator>; // C++23
+        -:  486:
+        -:  487:template<ranges::input_range R, class Allocator>
+        -:  488:  unordered_multiset(from_range_t, R&&, Allocator)
+        -:  489:    -> unordered_multiset<ranges::range_value_t<R>, hash<ranges::range_value_t<R>>,
+        -:  490:                      equal_to<ranges::range_value_t<R>>, Allocator>; // C++23
+        -:  491:
+        -:  492:template<ranges::input_range R, class Hash, class Allocator>
+        -:  493:  unordered_multiset(from_range_t, R&&, typename see below::size_type, Hash, Allocator)
+        -:  494:    -> unordered_multiset<ranges::range_value_t<R>, Hash,
+        -:  495:                      equal_to<ranges::range_value_t<R>>, Allocator>; // C++23
+        -:  496:
+        -:  497:template<class T, class Allocator>
+        -:  498:unordered_multiset(initializer_list<T>, typename see below::size_type, Allocator)
+        -:  499:  -> unordered_multiset<T, hash<T>, equal_to<T>, Allocator>; // C++17
+        -:  500:
+        -:  501:template<class T, class Hash, class Allocator>
+        -:  502:unordered_multiset(initializer_list<T>, typename see below::size_type, Hash, Allocator)
+        -:  503:  -> unordered_multiset<T, Hash, equal_to<T>, Allocator>; // C++17
+        -:  504:
+        -:  505:template <class Value, class Hash, class Pred, class Alloc>
+        -:  506:    void swap(unordered_multiset<Value, Hash, Pred, Alloc>& x,
+        -:  507:              unordered_multiset<Value, Hash, Pred, Alloc>& y)
+        -:  508:              noexcept(noexcept(x.swap(y)));
+        -:  509:
+        -:  510:template <class K, class T, class H, class P, class A, class Predicate>
+        -:  511:    typename unordered_set<K, T, H, P, A>::size_type
+        -:  512:    erase_if(unordered_set<K, T, H, P, A>& c, Predicate pred);       // C++20
+        -:  513:
+        -:  514:template <class K, class T, class H, class P, class A, class Predicate>
+        -:  515:    typename unordered_multiset<K, T, H, P, A>::size_type
+        -:  516:    erase_if(unordered_multiset<K, T, H, P, A>& c, Predicate pred);  // C++20
+        -:  517:
+        -:  518:
+        -:  519:template <class Value, class Hash, class Pred, class Alloc>
+        -:  520:    bool
+        -:  521:    operator==(const unordered_multiset<Value, Hash, Pred, Alloc>& x,
+        -:  522:               const unordered_multiset<Value, Hash, Pred, Alloc>& y);
+        -:  523:
+        -:  524:template <class Value, class Hash, class Pred, class Alloc>
+        -:  525:    bool
+        -:  526:    operator!=(const unordered_multiset<Value, Hash, Pred, Alloc>& x,
+        -:  527:               const unordered_multiset<Value, Hash, Pred, Alloc>& y); // removed in C++20
+        -:  528:}  // std
+        -:  529:
+        -:  530:*/
+        -:  531:
+        -:  532:// clang-format on
+        -:  533:
+        -:  534:#include <__algorithm/is_permutation.h>
+        -:  535:#include <__assert> // all public C++ headers provide the assertion handler
+        -:  536:#include <__availability>
+        -:  537:#include <__config>
+        -:  538:#include <__functional/is_transparent.h>
+        -:  539:#include <__functional/operations.h>
+        -:  540:#include <__hash_table>
+        -:  541:#include <__iterator/distance.h>
+        -:  542:#include <__iterator/erase_if_container.h>
+        -:  543:#include <__iterator/iterator_traits.h>
+        -:  544:#include <__iterator/ranges_iterator_traits.h>
+        -:  545:#include <__memory/addressof.h>
+        -:  546:#include <__memory/allocator.h>
+        -:  547:#include <__memory_resource/polymorphic_allocator.h>
+        -:  548:#include <__node_handle>
+        -:  549:#include <__ranges/concepts.h>
+        -:  550:#include <__ranges/container_compatible_range.h>
+        -:  551:#include <__ranges/from_range.h>
+        -:  552:#include <__type_traits/is_allocator.h>
+        -:  553:#include <__utility/forward.h>
+        -:  554:#include <version>
+        -:  555:
+        -:  556:// standard-mandated includes
+        -:  557:
+        -:  558:// [iterator.range]
+        -:  559:#include <__iterator/access.h>
+        -:  560:#include <__iterator/data.h>
+        -:  561:#include <__iterator/empty.h>
+        -:  562:#include <__iterator/reverse_access.h>
+        -:  563:#include <__iterator/size.h>
+        -:  564:
+        -:  565:// [unord.set.syn]
+        -:  566:#include <compare>
+        -:  567:#include <initializer_list>
+        -:  568:
+        -:  569:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:  570:#  pragma GCC system_header
+        -:  571:#endif
+        -:  572:
+        -:  573:_LIBCPP_PUSH_MACROS
+        -:  574:#include <__undef_macros>
+        -:  575:
+        -:  576:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:  577:
+        -:  578:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -:  579:class unordered_multiset;
+        -:  580:
+        -:  581:template <class _Value, class _Hash = hash<_Value>, class _Pred = equal_to<_Value>, class _Alloc = allocator<_Value> >
+        -:  582:class _LIBCPP_TEMPLATE_VIS unordered_set {
+        -:  583:public:
+        -:  584:  // types
+        -:  585:  typedef _Value key_type;
+        -:  586:  typedef key_type value_type;
+        -:  587:  typedef __type_identity_t<_Hash> hasher;
+        -:  588:  typedef __type_identity_t<_Pred> key_equal;
+        -:  589:  typedef __type_identity_t<_Alloc> allocator_type;
+        -:  590:  typedef value_type& reference;
+        -:  591:  typedef const value_type& const_reference;
+        -:  592:  static_assert((is_same<value_type, typename allocator_type::value_type>::value),
+        -:  593:                "Allocator::value_type must be same type as value_type");
+        -:  594:
+        -:  595:  static_assert(is_same<allocator_type, __rebind_alloc<allocator_traits<allocator_type>, value_type> >::value,
+        -:  596:                "[allocator.requirements] states that rebinding an allocator to the same type should result in the "
+        -:  597:                "original allocator");
+        -:  598:
+        -:  599:private:
+        -:  600:  typedef __hash_table<value_type, hasher, key_equal, allocator_type> __table;
+        -:  601:
+        -:  602:  __table __table_;
+        -:  603:
+        -:  604:public:
+        -:  605:  typedef typename __table::pointer pointer;
+        -:  606:  typedef typename __table::const_pointer const_pointer;
+        -:  607:  typedef typename __table::size_type size_type;
+        -:  608:  typedef typename __table::difference_type difference_type;
+        -:  609:
+        -:  610:  typedef typename __table::const_iterator iterator;
+        -:  611:  typedef typename __table::const_iterator const_iterator;
+        -:  612:  typedef typename __table::const_local_iterator local_iterator;
+        -:  613:  typedef typename __table::const_local_iterator const_local_iterator;
+        -:  614:
+        -:  615:#if _LIBCPP_STD_VER >= 17
+        -:  616:  typedef __set_node_handle<typename __table::__node, allocator_type> node_type;
+        -:  617:  typedef __insert_return_type<iterator, node_type> insert_return_type;
+        -:  618:#endif
+        -:  619:
+        -:  620:  template <class _Value2, class _Hash2, class _Pred2, class _Alloc2>
+        -:  621:  friend class _LIBCPP_TEMPLATE_VIS unordered_set;
+        -:  622:  template <class _Value2, class _Hash2, class _Pred2, class _Alloc2>
+        -:  623:  friend class _LIBCPP_TEMPLATE_VIS unordered_multiset;
+        -:  624:
+function _ZNSt3__113unordered_setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4hashIS6_EENS_8equal_toIS6_EENS4_IS6_EEEC1B8ne180100Ev called 30 returned 100% blocks executed 100%
+function _ZNSt3__113unordered_setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4hashIS6_EENS_8equal_toIS6_EENS4_IS6_EEEC2B8ne180100Ev called 30 returned 100% blocks executed 100%
+       60:  625:  _LIBCPP_HIDE_FROM_ABI unordered_set() _NOEXCEPT_(is_nothrow_default_constructible<__table>::value) {}
+       30:  625-block  0
+       30:  625-block  1
+        -:  626:  explicit _LIBCPP_HIDE_FROM_ABI
+        -:  627:  unordered_set(size_type __n, const hasher& __hf = hasher(), const key_equal& __eql = key_equal());
+        -:  628:#if _LIBCPP_STD_VER >= 14
+        -:  629:  inline _LIBCPP_HIDE_FROM_ABI unordered_set(size_type __n, const allocator_type& __a)
+        -:  630:      : unordered_set(__n, hasher(), key_equal(), __a) {}
+        -:  631:  inline _LIBCPP_HIDE_FROM_ABI unordered_set(size_type __n, const hasher& __hf, const allocator_type& __a)
+        -:  632:      : unordered_set(__n, __hf, key_equal(), __a) {}
+        -:  633:#endif
+        -:  634:  _LIBCPP_HIDE_FROM_ABI
+        -:  635:  unordered_set(size_type __n, const hasher& __hf, const key_equal& __eql, const allocator_type& __a);
+        -:  636:  template <class _InputIterator>
+        -:  637:  _LIBCPP_HIDE_FROM_ABI unordered_set(_InputIterator __first, _InputIterator __last);
+        -:  638:  template <class _InputIterator>
+        -:  639:  _LIBCPP_HIDE_FROM_ABI
+        -:  640:  unordered_set(_InputIterator __first,
+        -:  641:                _InputIterator __last,
+        -:  642:                size_type __n,
+        -:  643:                const hasher& __hf     = hasher(),
+        -:  644:                const key_equal& __eql = key_equal());
+        -:  645:  template <class _InputIterator>
+        -:  646:  _LIBCPP_HIDE_FROM_ABI unordered_set(
+        -:  647:      _InputIterator __first,
+        -:  648:      _InputIterator __last,
+        -:  649:      size_type __n,
+        -:  650:      const hasher& __hf,
+        -:  651:      const key_equal& __eql,
+        -:  652:      const allocator_type& __a);
+        -:  653:
+        -:  654:#if _LIBCPP_STD_VER >= 23
+        -:  655:  template <_ContainerCompatibleRange<value_type> _Range>
+        -:  656:  _LIBCPP_HIDE_FROM_ABI unordered_set(
+        -:  657:      from_range_t,
+        -:  658:      _Range&& __range,
+        -:  659:      size_type __n             = /*implementation-defined*/ 0,
+        -:  660:      const hasher& __hf        = hasher(),
+        -:  661:      const key_equal& __eql    = key_equal(),
+        -:  662:      const allocator_type& __a = allocator_type())
+        -:  663:      : __table_(__hf, __eql, __a) {
+        -:  664:    if (__n > 0) {
+        -:  665:      __table_.__rehash_unique(__n);
+        -:  666:    }
+        -:  667:    insert_range(std::forward<_Range>(__range));
+        -:  668:  }
+        -:  669:#endif
+        -:  670:
+        -:  671:#if _LIBCPP_STD_VER >= 14
+        -:  672:  template <class _InputIterator>
+        -:  673:  inline _LIBCPP_HIDE_FROM_ABI
+        -:  674:  unordered_set(_InputIterator __first, _InputIterator __last, size_type __n, const allocator_type& __a)
+        -:  675:      : unordered_set(__first, __last, __n, hasher(), key_equal(), __a) {}
+        -:  676:  template <class _InputIterator>
+        -:  677:  _LIBCPP_HIDE_FROM_ABI unordered_set(
+        -:  678:      _InputIterator __first, _InputIterator __last, size_type __n, const hasher& __hf, const allocator_type& __a)
+        -:  679:      : unordered_set(__first, __last, __n, __hf, key_equal(), __a) {}
+        -:  680:#endif
+        -:  681:
+        -:  682:#if _LIBCPP_STD_VER >= 23
+        -:  683:  template <_ContainerCompatibleRange<value_type> _Range>
+        -:  684:  _LIBCPP_HIDE_FROM_ABI unordered_set(from_range_t, _Range&& __range, size_type __n, const allocator_type& __a)
+        -:  685:      : unordered_set(from_range, std::forward<_Range>(__range), __n, hasher(), key_equal(), __a) {}
+        -:  686:
+        -:  687:  template <_ContainerCompatibleRange<value_type> _Range>
+        -:  688:  _LIBCPP_HIDE_FROM_ABI
+        -:  689:  unordered_set(from_range_t, _Range&& __range, size_type __n, const hasher& __hf, const allocator_type& __a)
+        -:  690:      : unordered_set(from_range, std::forward<_Range>(__range), __n, __hf, key_equal(), __a) {}
+        -:  691:#endif
+        -:  692:
+        -:  693:  _LIBCPP_HIDE_FROM_ABI explicit unordered_set(const allocator_type& __a);
+        -:  694:  _LIBCPP_HIDE_FROM_ABI unordered_set(const unordered_set& __u);
+        -:  695:  _LIBCPP_HIDE_FROM_ABI unordered_set(const unordered_set& __u, const allocator_type& __a);
+        -:  696:#ifndef _LIBCPP_CXX03_LANG
+        -:  697:  _LIBCPP_HIDE_FROM_ABI unordered_set(unordered_set&& __u) _NOEXCEPT_(is_nothrow_move_constructible<__table>::value);
+        -:  698:  _LIBCPP_HIDE_FROM_ABI unordered_set(unordered_set&& __u, const allocator_type& __a);
+        -:  699:  _LIBCPP_HIDE_FROM_ABI unordered_set(initializer_list<value_type> __il);
+        -:  700:  _LIBCPP_HIDE_FROM_ABI
+        -:  701:  unordered_set(initializer_list<value_type> __il,
+        -:  702:                size_type __n,
+        -:  703:                const hasher& __hf     = hasher(),
+        -:  704:                const key_equal& __eql = key_equal());
+        -:  705:  _LIBCPP_HIDE_FROM_ABI unordered_set(
+        -:  706:      initializer_list<value_type> __il,
+        -:  707:      size_type __n,
+        -:  708:      const hasher& __hf,
+        -:  709:      const key_equal& __eql,
+        -:  710:      const allocator_type& __a);
+        -:  711:#  if _LIBCPP_STD_VER >= 14
+        -:  712:  inline _LIBCPP_HIDE_FROM_ABI
+        -:  713:  unordered_set(initializer_list<value_type> __il, size_type __n, const allocator_type& __a)
+        -:  714:      : unordered_set(__il, __n, hasher(), key_equal(), __a) {}
+        -:  715:  inline _LIBCPP_HIDE_FROM_ABI
+        -:  716:  unordered_set(initializer_list<value_type> __il, size_type __n, const hasher& __hf, const allocator_type& __a)
+        -:  717:      : unordered_set(__il, __n, __hf, key_equal(), __a) {}
+        -:  718:#  endif
+        -:  719:#endif // _LIBCPP_CXX03_LANG
+function _ZNSt3__113unordered_setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4hashIS6_EENS_8equal_toIS6_EENS4_IS6_EEED1B8ne180100Ev called 30 returned 100% blocks executed 100%
+function _ZNSt3__113unordered_setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4hashIS6_EENS_8equal_toIS6_EENS4_IS6_EEED2B8ne180100Ev called 30 returned 100% blocks executed 100%
+       60:  720:  _LIBCPP_HIDE_FROM_ABI ~unordered_set() {
+        -:  721:    static_assert(sizeof(std::__diagnose_unordered_container_requirements<_Value, _Hash, _Pred>(0)), "");
+       60:  722:  }
+       30:  722-block  0
+       30:  722-block  1
+        -:  723:
+        -:  724:  _LIBCPP_HIDE_FROM_ABI unordered_set& operator=(const unordered_set& __u) {
+        -:  725:    __table_ = __u.__table_;
+        -:  726:    return *this;
+        -:  727:  }
+        -:  728:#ifndef _LIBCPP_CXX03_LANG
+        -:  729:  _LIBCPP_HIDE_FROM_ABI unordered_set& operator=(unordered_set&& __u)
+        -:  730:      _NOEXCEPT_(is_nothrow_move_assignable<__table>::value);
+        -:  731:  _LIBCPP_HIDE_FROM_ABI unordered_set& operator=(initializer_list<value_type> __il);
+        -:  732:#endif // _LIBCPP_CXX03_LANG
+        -:  733:
+        -:  734:  _LIBCPP_HIDE_FROM_ABI allocator_type get_allocator() const _NOEXCEPT {
+        -:  735:    return allocator_type(__table_.__node_alloc());
+        -:  736:  }
+        -:  737:
+        -:  738:  _LIBCPP_NODISCARD_AFTER_CXX17 _LIBCPP_HIDE_FROM_ABI bool empty() const _NOEXCEPT { return __table_.size() == 0; }
+        -:  739:  _LIBCPP_HIDE_FROM_ABI size_type size() const _NOEXCEPT { return __table_.size(); }
+        -:  740:  _LIBCPP_HIDE_FROM_ABI size_type max_size() const _NOEXCEPT { return __table_.max_size(); }
+        -:  741:
+function _ZNSt3__113unordered_setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4hashIS6_EENS_8equal_toIS6_EENS4_IS6_EEE5beginB8ne180100Ev called 18 returned 100% blocks executed 100%
+       18:  742:  _LIBCPP_HIDE_FROM_ABI iterator begin() _NOEXCEPT { return __table_.begin(); }
+       18:  742-block  0
+        -:  743:  _LIBCPP_HIDE_FROM_ABI iterator end() _NOEXCEPT { return __table_.end(); }
+        -:  744:  _LIBCPP_HIDE_FROM_ABI const_iterator begin() const _NOEXCEPT { return __table_.begin(); }
+function _ZNKSt3__113unordered_setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4hashIS6_EENS_8equal_toIS6_EENS4_IS6_EEE3endB8ne180100Ev called 120 returned 100% blocks executed 100%
+      120:  745:  _LIBCPP_HIDE_FROM_ABI const_iterator end() const _NOEXCEPT { return __table_.end(); }
+      120:  745-block  0
+        -:  746:  _LIBCPP_HIDE_FROM_ABI const_iterator cbegin() const _NOEXCEPT { return __table_.begin(); }
+        -:  747:  _LIBCPP_HIDE_FROM_ABI const_iterator cend() const _NOEXCEPT { return __table_.end(); }
+        -:  748:
+        -:  749:#ifndef _LIBCPP_CXX03_LANG
+        -:  750:  template <class... _Args>
+        -:  751:  _LIBCPP_HIDE_FROM_ABI pair<iterator, bool> emplace(_Args&&... __args) {
+        -:  752:    return __table_.__emplace_unique(std::forward<_Args>(__args)...);
+        -:  753:  }
+        -:  754:  template <class... _Args>
+        -:  755:  _LIBCPP_HIDE_FROM_ABI iterator emplace_hint(const_iterator, _Args&&... __args) {
+        -:  756:    return __table_.__emplace_unique(std::forward<_Args>(__args)...).first;
+        -:  757:  }
+        -:  758:
+function _ZNSt3__113unordered_setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4hashIS6_EENS_8equal_toIS6_EENS4_IS6_EEE6insertB8ne180100EOS6_ called 6 returned 100% blocks executed 100%
+        6:  759:  _LIBCPP_HIDE_FROM_ABI pair<iterator, bool> insert(value_type&& __x) {
+        6:  760:    return __table_.__insert_unique(std::move(__x));
+        6:  760-block  0
+        -:  761:  }
+function _ZNSt3__113unordered_setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4hashIS6_EENS_8equal_toIS6_EENS4_IS6_EEE6insertB8ne180100ENS_21__hash_const_iteratorIPNS_11__hash_nodeIS6_PvEEEEOS6_ called 6 returned 100% blocks executed 100%
+        6:  762:  _LIBCPP_HIDE_FROM_ABI iterator insert(const_iterator, value_type&& __x) { return insert(std::move(__x)).first; }
+        6:  762-block  0
+        -:  763:
+        -:  764:  _LIBCPP_HIDE_FROM_ABI void insert(initializer_list<value_type> __il) { insert(__il.begin(), __il.end()); }
+        -:  765:#endif // _LIBCPP_CXX03_LANG
+        -:  766:  _LIBCPP_HIDE_FROM_ABI pair<iterator, bool> insert(const value_type& __x) { return __table_.__insert_unique(__x); }
+        -:  767:
+        -:  768:  _LIBCPP_HIDE_FROM_ABI iterator insert(const_iterator, const value_type& __x) { return insert(__x).first; }
+        -:  769:  template <class _InputIterator>
+        -:  770:  _LIBCPP_HIDE_FROM_ABI void insert(_InputIterator __first, _InputIterator __last);
+        -:  771:
+        -:  772:#if _LIBCPP_STD_VER >= 23
+        -:  773:  template <_ContainerCompatibleRange<value_type> _Range>
+        -:  774:  _LIBCPP_HIDE_FROM_ABI void insert_range(_Range&& __range) {
+        -:  775:    for (auto&& __element : __range) {
+        -:  776:      __table_.__insert_unique(std::forward<decltype(__element)>(__element));
+        -:  777:    }
+        -:  778:  }
+        -:  779:#endif
+        -:  780:
+        -:  781:  _LIBCPP_HIDE_FROM_ABI iterator erase(const_iterator __p) { return __table_.erase(__p); }
+        -:  782:  _LIBCPP_HIDE_FROM_ABI size_type erase(const key_type& __k) { return __table_.__erase_unique(__k); }
+        -:  783:  _LIBCPP_HIDE_FROM_ABI iterator erase(const_iterator __first, const_iterator __last) {
+        -:  784:    return __table_.erase(__first, __last);
+        -:  785:  }
+        -:  786:  _LIBCPP_HIDE_FROM_ABI void clear() _NOEXCEPT { __table_.clear(); }
+        -:  787:
+        -:  788:#if _LIBCPP_STD_VER >= 17
+        -:  789:  _LIBCPP_HIDE_FROM_ABI insert_return_type insert(node_type&& __nh) {
+        -:  790:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(__nh.empty() || __nh.get_allocator() == get_allocator(),
+        -:  791:                                        "node_type with incompatible allocator passed to unordered_set::insert()");
+        -:  792:    return __table_.template __node_handle_insert_unique< node_type, insert_return_type>(std::move(__nh));
+        -:  793:  }
+        -:  794:  _LIBCPP_HIDE_FROM_ABI iterator insert(const_iterator __h, node_type&& __nh) {
+        -:  795:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(__nh.empty() || __nh.get_allocator() == get_allocator(),
+        -:  796:                                        "node_type with incompatible allocator passed to unordered_set::insert()");
+        -:  797:    return __table_.template __node_handle_insert_unique<node_type>(__h, std::move(__nh));
+        -:  798:  }
+        -:  799:  _LIBCPP_HIDE_FROM_ABI node_type extract(key_type const& __key) {
+        -:  800:    return __table_.template __node_handle_extract<node_type>(__key);
+        -:  801:  }
+        -:  802:  _LIBCPP_HIDE_FROM_ABI node_type extract(const_iterator __it) {
+        -:  803:    return __table_.template __node_handle_extract<node_type>(__it);
+        -:  804:  }
+        -:  805:
+        -:  806:  template <class _H2, class _P2>
+        -:  807:  _LIBCPP_HIDE_FROM_ABI void merge(unordered_set<key_type, _H2, _P2, allocator_type>& __source) {
+        -:  808:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(
+        -:  809:        __source.get_allocator() == get_allocator(), "merging container with incompatible allocator");
+        -:  810:    __table_.__node_handle_merge_unique(__source.__table_);
+        -:  811:  }
+        -:  812:  template <class _H2, class _P2>
+        -:  813:  _LIBCPP_HIDE_FROM_ABI void merge(unordered_set<key_type, _H2, _P2, allocator_type>&& __source) {
+        -:  814:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(
+        -:  815:        __source.get_allocator() == get_allocator(), "merging container with incompatible allocator");
+        -:  816:    __table_.__node_handle_merge_unique(__source.__table_);
+        -:  817:  }
+        -:  818:  template <class _H2, class _P2>
+        -:  819:  _LIBCPP_HIDE_FROM_ABI void merge(unordered_multiset<key_type, _H2, _P2, allocator_type>& __source) {
+        -:  820:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(
+        -:  821:        __source.get_allocator() == get_allocator(), "merging container with incompatible allocator");
+        -:  822:    __table_.__node_handle_merge_unique(__source.__table_);
+        -:  823:  }
+        -:  824:  template <class _H2, class _P2>
+        -:  825:  _LIBCPP_HIDE_FROM_ABI void merge(unordered_multiset<key_type, _H2, _P2, allocator_type>&& __source) {
+        -:  826:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(
+        -:  827:        __source.get_allocator() == get_allocator(), "merging container with incompatible allocator");
+        -:  828:    __table_.__node_handle_merge_unique(__source.__table_);
+        -:  829:  }
+        -:  830:#endif
+        -:  831:
+        -:  832:  _LIBCPP_HIDE_FROM_ABI void swap(unordered_set& __u) _NOEXCEPT_(__is_nothrow_swappable<__table>::value) {
+        -:  833:    __table_.swap(__u.__table_);
+        -:  834:  }
+        -:  835:
+        -:  836:  _LIBCPP_HIDE_FROM_ABI hasher hash_function() const { return __table_.hash_function(); }
+        -:  837:  _LIBCPP_HIDE_FROM_ABI key_equal key_eq() const { return __table_.key_eq(); }
+        -:  838:
+        -:  839:  _LIBCPP_HIDE_FROM_ABI iterator find(const key_type& __k) { return __table_.find(__k); }
+function _ZNKSt3__113unordered_setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4hashIS6_EENS_8equal_toIS6_EENS4_IS6_EEE4findB8ne180100ERKS6_ called 120 returned 100% blocks executed 100%
+      120:  840:  _LIBCPP_HIDE_FROM_ABI const_iterator find(const key_type& __k) const { return __table_.find(__k); }
+      120:  840-block  0
+        -:  841:#if _LIBCPP_STD_VER >= 20
+        -:  842:  template <class _K2,
+        -:  843:            enable_if_t<__is_transparent<hasher, _K2>::value && __is_transparent<key_equal, _K2>::value>* = nullptr>
+        -:  844:  _LIBCPP_HIDE_FROM_ABI iterator find(const _K2& __k) {
+        -:  845:    return __table_.find(__k);
+        -:  846:  }
+        -:  847:  template <class _K2,
+        -:  848:            enable_if_t<__is_transparent<hasher, _K2>::value && __is_transparent<key_equal, _K2>::value>* = nullptr>
+        -:  849:  _LIBCPP_HIDE_FROM_ABI const_iterator find(const _K2& __k) const {
+        -:  850:    return __table_.find(__k);
+        -:  851:  }
+        -:  852:#endif // _LIBCPP_STD_VER >= 20
+        -:  853:
+        -:  854:  _LIBCPP_HIDE_FROM_ABI size_type count(const key_type& __k) const { return __table_.__count_unique(__k); }
+        -:  855:#if _LIBCPP_STD_VER >= 20
+        -:  856:  template <class _K2,
+        -:  857:            enable_if_t<__is_transparent<hasher, _K2>::value && __is_transparent<key_equal, _K2>::value>* = nullptr>
+        -:  858:  _LIBCPP_HIDE_FROM_ABI size_type count(const _K2& __k) const {
+        -:  859:    return __table_.__count_unique(__k);
+        -:  860:  }
+        -:  861:#endif // _LIBCPP_STD_VER >= 20
+        -:  862:
+        -:  863:#if _LIBCPP_STD_VER >= 20
+        -:  864:  _LIBCPP_HIDE_FROM_ABI bool contains(const key_type& __k) const { return find(__k) != end(); }
+        -:  865:
+        -:  866:  template <class _K2,
+        -:  867:            enable_if_t<__is_transparent<hasher, _K2>::value && __is_transparent<key_equal, _K2>::value>* = nullptr>
+        -:  868:  _LIBCPP_HIDE_FROM_ABI bool contains(const _K2& __k) const {
+        -:  869:    return find(__k) != end();
+        -:  870:  }
+        -:  871:#endif // _LIBCPP_STD_VER >= 20
+        -:  872:
+        -:  873:  _LIBCPP_HIDE_FROM_ABI pair<iterator, iterator> equal_range(const key_type& __k) {
+        -:  874:    return __table_.__equal_range_unique(__k);
+        -:  875:  }
+        -:  876:  _LIBCPP_HIDE_FROM_ABI pair<const_iterator, const_iterator> equal_range(const key_type& __k) const {
+        -:  877:    return __table_.__equal_range_unique(__k);
+        -:  878:  }
+        -:  879:#if _LIBCPP_STD_VER >= 20
+        -:  880:  template <class _K2,
+        -:  881:            enable_if_t<__is_transparent<hasher, _K2>::value && __is_transparent<key_equal, _K2>::value>* = nullptr>
+        -:  882:  _LIBCPP_HIDE_FROM_ABI pair<iterator, iterator> equal_range(const _K2& __k) {
+        -:  883:    return __table_.__equal_range_unique(__k);
+        -:  884:  }
+        -:  885:  template <class _K2,
+        -:  886:            enable_if_t<__is_transparent<hasher, _K2>::value && __is_transparent<key_equal, _K2>::value>* = nullptr>
+        -:  887:  _LIBCPP_HIDE_FROM_ABI pair<const_iterator, const_iterator> equal_range(const _K2& __k) const {
+        -:  888:    return __table_.__equal_range_unique(__k);
+        -:  889:  }
+        -:  890:#endif // _LIBCPP_STD_VER >= 20
+        -:  891:
+        -:  892:  _LIBCPP_HIDE_FROM_ABI size_type bucket_count() const _NOEXCEPT { return __table_.bucket_count(); }
+        -:  893:  _LIBCPP_HIDE_FROM_ABI size_type max_bucket_count() const _NOEXCEPT { return __table_.max_bucket_count(); }
+        -:  894:
+        -:  895:  _LIBCPP_HIDE_FROM_ABI size_type bucket_size(size_type __n) const { return __table_.bucket_size(__n); }
+        -:  896:  _LIBCPP_HIDE_FROM_ABI size_type bucket(const key_type& __k) const { return __table_.bucket(__k); }
+        -:  897:
+        -:  898:  _LIBCPP_HIDE_FROM_ABI local_iterator begin(size_type __n) { return __table_.begin(__n); }
+        -:  899:  _LIBCPP_HIDE_FROM_ABI local_iterator end(size_type __n) { return __table_.end(__n); }
+        -:  900:  _LIBCPP_HIDE_FROM_ABI const_local_iterator begin(size_type __n) const { return __table_.cbegin(__n); }
+        -:  901:  _LIBCPP_HIDE_FROM_ABI const_local_iterator end(size_type __n) const { return __table_.cend(__n); }
+        -:  902:  _LIBCPP_HIDE_FROM_ABI const_local_iterator cbegin(size_type __n) const { return __table_.cbegin(__n); }
+        -:  903:  _LIBCPP_HIDE_FROM_ABI const_local_iterator cend(size_type __n) const { return __table_.cend(__n); }
+        -:  904:
+        -:  905:  _LIBCPP_HIDE_FROM_ABI float load_factor() const _NOEXCEPT { return __table_.load_factor(); }
+        -:  906:  _LIBCPP_HIDE_FROM_ABI float max_load_factor() const _NOEXCEPT { return __table_.max_load_factor(); }
+        -:  907:  _LIBCPP_HIDE_FROM_ABI void max_load_factor(float __mlf) { __table_.max_load_factor(__mlf); }
+        -:  908:  _LIBCPP_HIDE_FROM_ABI void rehash(size_type __n) { __table_.__rehash_unique(__n); }
+        -:  909:  _LIBCPP_HIDE_FROM_ABI void reserve(size_type __n) { __table_.__reserve_unique(__n); }
+        -:  910:};
+        -:  911:
+        -:  912:#if _LIBCPP_STD_VER >= 17
+        -:  913:template <class _InputIterator,
+        -:  914:          class _Hash      = hash<__iter_value_type<_InputIterator>>,
+        -:  915:          class _Pred      = equal_to<__iter_value_type<_InputIterator>>,
+        -:  916:          class _Allocator = allocator<__iter_value_type<_InputIterator>>,
+        -:  917:          class            = enable_if_t<__has_input_iterator_category<_InputIterator>::value>,
+        -:  918:          class            = enable_if_t<!__is_allocator<_Hash>::value>,
+        -:  919:          class            = enable_if_t<!is_integral<_Hash>::value>,
+        -:  920:          class            = enable_if_t<!__is_allocator<_Pred>::value>,
+        -:  921:          class            = enable_if_t<__is_allocator<_Allocator>::value>>
+        -:  922:unordered_set(_InputIterator,
+        -:  923:              _InputIterator,
+        -:  924:              typename allocator_traits<_Allocator>::size_type = 0,
+        -:  925:              _Hash                                            = _Hash(),
+        -:  926:              _Pred                                            = _Pred(),
+        -:  927:              _Allocator = _Allocator()) -> unordered_set<__iter_value_type<_InputIterator>, _Hash, _Pred, _Allocator>;
+        -:  928:
+        -:  929:#  if _LIBCPP_STD_VER >= 23
+        -:  930:template <ranges::input_range _Range,
+        -:  931:          class _Hash      = hash<ranges::range_value_t<_Range>>,
+        -:  932:          class _Pred      = equal_to<ranges::range_value_t<_Range>>,
+        -:  933:          class _Allocator = allocator<ranges::range_value_t<_Range>>,
+        -:  934:          class            = enable_if_t<!__is_allocator<_Hash>::value>,
+        -:  935:          class            = enable_if_t<!is_integral<_Hash>::value>,
+        -:  936:          class            = enable_if_t<!__is_allocator<_Pred>::value>,
+        -:  937:          class            = enable_if_t<__is_allocator<_Allocator>::value>>
+        -:  938:unordered_set(from_range_t,
+        -:  939:              _Range&&,
+        -:  940:              typename allocator_traits<_Allocator>::size_type = 0,
+        -:  941:              _Hash                                            = _Hash(),
+        -:  942:              _Pred                                            = _Pred(),
+        -:  943:              _Allocator                                       = _Allocator())
+        -:  944:    -> unordered_set<ranges::range_value_t<_Range>, _Hash, _Pred, _Allocator>; // C++23
+        -:  945:#  endif
+        -:  946:
+        -:  947:template <class _Tp,
+        -:  948:          class _Hash      = hash<_Tp>,
+        -:  949:          class _Pred      = equal_to<_Tp>,
+        -:  950:          class _Allocator = allocator<_Tp>,
+        -:  951:          class            = enable_if_t<!__is_allocator<_Hash>::value>,
+        -:  952:          class            = enable_if_t<!is_integral<_Hash>::value>,
+        -:  953:          class            = enable_if_t<!__is_allocator<_Pred>::value>,
+        -:  954:          class            = enable_if_t<__is_allocator<_Allocator>::value>>
+        -:  955:unordered_set(initializer_list<_Tp>,
+        -:  956:              typename allocator_traits<_Allocator>::size_type = 0,
+        -:  957:              _Hash                                            = _Hash(),
+        -:  958:              _Pred                                            = _Pred(),
+        -:  959:              _Allocator = _Allocator()) -> unordered_set<_Tp, _Hash, _Pred, _Allocator>;
+        -:  960:
+        -:  961:template <class _InputIterator,
+        -:  962:          class _Allocator,
+        -:  963:          class = enable_if_t<__has_input_iterator_category<_InputIterator>::value>,
+        -:  964:          class = enable_if_t<__is_allocator<_Allocator>::value>>
+        -:  965:unordered_set(_InputIterator, _InputIterator, typename allocator_traits<_Allocator>::size_type, _Allocator)
+        -:  966:    -> unordered_set<__iter_value_type<_InputIterator>,
+        -:  967:                     hash<__iter_value_type<_InputIterator>>,
+        -:  968:                     equal_to<__iter_value_type<_InputIterator>>,
+        -:  969:                     _Allocator>;
+        -:  970:
+        -:  971:template <class _InputIterator,
+        -:  972:          class _Hash,
+        -:  973:          class _Allocator,
+        -:  974:          class = enable_if_t<__has_input_iterator_category<_InputIterator>::value>,
+        -:  975:          class = enable_if_t<!__is_allocator<_Hash>::value>,
+        -:  976:          class = enable_if_t<!is_integral<_Hash>::value>,
+        -:  977:          class = enable_if_t<__is_allocator<_Allocator>::value>>
+        -:  978:unordered_set(_InputIterator, _InputIterator, typename allocator_traits<_Allocator>::size_type, _Hash, _Allocator)
+        -:  979:    -> unordered_set<__iter_value_type<_InputIterator>, _Hash, equal_to<__iter_value_type<_InputIterator>>, _Allocator>;
+        -:  980:
+        -:  981:#  if _LIBCPP_STD_VER >= 23
+        -:  982:
+        -:  983:template <ranges::input_range _Range, class _Allocator, class = enable_if_t<__is_allocator<_Allocator>::value>>
+        -:  984:unordered_set(from_range_t, _Range&&, typename allocator_traits<_Allocator>::size_type, _Allocator)
+        -:  985:    -> unordered_set<ranges::range_value_t<_Range>,
+        -:  986:                     hash<ranges::range_value_t<_Range>>,
+        -:  987:                     equal_to<ranges::range_value_t<_Range>>,
+        -:  988:                     _Allocator>;
+        -:  989:
+        -:  990:template <ranges::input_range _Range, class _Allocator, class = enable_if_t<__is_allocator<_Allocator>::value>>
+        -:  991:unordered_set(from_range_t, _Range&&, _Allocator)
+        -:  992:    -> unordered_set<ranges::range_value_t<_Range>,
+        -:  993:                     hash<ranges::range_value_t<_Range>>,
+        -:  994:                     equal_to<ranges::range_value_t<_Range>>,
+        -:  995:                     _Allocator>;
+        -:  996:
+        -:  997:template <ranges::input_range _Range,
+        -:  998:          class _Hash,
+        -:  999:          class _Allocator,
+        -: 1000:          class = enable_if_t<!__is_allocator<_Hash>::value>,
+        -: 1001:          class = enable_if_t<!is_integral<_Hash>::value>,
+        -: 1002:          class = enable_if_t<__is_allocator<_Allocator>::value>>
+        -: 1003:unordered_set(from_range_t, _Range&&, typename allocator_traits<_Allocator>::size_type, _Hash, _Allocator)
+        -: 1004:    -> unordered_set<ranges::range_value_t<_Range>, _Hash, equal_to<ranges::range_value_t<_Range>>, _Allocator>;
+        -: 1005:
+        -: 1006:#  endif
+        -: 1007:
+        -: 1008:template <class _Tp, class _Allocator, class = enable_if_t<__is_allocator<_Allocator>::value>>
+        -: 1009:unordered_set(initializer_list<_Tp>, typename allocator_traits<_Allocator>::size_type, _Allocator)
+        -: 1010:    -> unordered_set<_Tp, hash<_Tp>, equal_to<_Tp>, _Allocator>;
+        -: 1011:
+        -: 1012:template <class _Tp,
+        -: 1013:          class _Hash,
+        -: 1014:          class _Allocator,
+        -: 1015:          class = enable_if_t<!__is_allocator<_Hash>::value>,
+        -: 1016:          class = enable_if_t<!is_integral<_Hash>::value>,
+        -: 1017:          class = enable_if_t<__is_allocator<_Allocator>::value>>
+        -: 1018:unordered_set(initializer_list<_Tp>, typename allocator_traits<_Allocator>::size_type, _Hash, _Allocator)
+        -: 1019:    -> unordered_set<_Tp, _Hash, equal_to<_Tp>, _Allocator>;
+        -: 1020:#endif
+        -: 1021:
+        -: 1022:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1023:unordered_set<_Value, _Hash, _Pred, _Alloc>::unordered_set(size_type __n, const hasher& __hf, const key_equal& __eql)
+        -: 1024:    : __table_(__hf, __eql) {
+        -: 1025:  __table_.__rehash_unique(__n);
+        -: 1026:}
+        -: 1027:
+        -: 1028:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1029:unordered_set<_Value, _Hash, _Pred, _Alloc>::unordered_set(
+        -: 1030:    size_type __n, const hasher& __hf, const key_equal& __eql, const allocator_type& __a)
+        -: 1031:    : __table_(__hf, __eql, __a) {
+        -: 1032:  __table_.__rehash_unique(__n);
+        -: 1033:}
+        -: 1034:
+        -: 1035:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1036:template <class _InputIterator>
+        -: 1037:unordered_set<_Value, _Hash, _Pred, _Alloc>::unordered_set(_InputIterator __first, _InputIterator __last) {
+        -: 1038:  insert(__first, __last);
+        -: 1039:}
+        -: 1040:
+        -: 1041:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1042:template <class _InputIterator>
+        -: 1043:unordered_set<_Value, _Hash, _Pred, _Alloc>::unordered_set(
+        -: 1044:    _InputIterator __first, _InputIterator __last, size_type __n, const hasher& __hf, const key_equal& __eql)
+        -: 1045:    : __table_(__hf, __eql) {
+        -: 1046:  __table_.__rehash_unique(__n);
+        -: 1047:  insert(__first, __last);
+        -: 1048:}
+        -: 1049:
+        -: 1050:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1051:template <class _InputIterator>
+        -: 1052:unordered_set<_Value, _Hash, _Pred, _Alloc>::unordered_set(
+        -: 1053:    _InputIterator __first,
+        -: 1054:    _InputIterator __last,
+        -: 1055:    size_type __n,
+        -: 1056:    const hasher& __hf,
+        -: 1057:    const key_equal& __eql,
+        -: 1058:    const allocator_type& __a)
+        -: 1059:    : __table_(__hf, __eql, __a) {
+        -: 1060:  __table_.__rehash_unique(__n);
+        -: 1061:  insert(__first, __last);
+        -: 1062:}
+        -: 1063:
+        -: 1064:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1065:inline unordered_set<_Value, _Hash, _Pred, _Alloc>::unordered_set(const allocator_type& __a) : __table_(__a) {}
+        -: 1066:
+        -: 1067:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1068:unordered_set<_Value, _Hash, _Pred, _Alloc>::unordered_set(const unordered_set& __u) : __table_(__u.__table_) {
+        -: 1069:  __table_.__rehash_unique(__u.bucket_count());
+        -: 1070:  insert(__u.begin(), __u.end());
+        -: 1071:}
+        -: 1072:
+        -: 1073:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1074:unordered_set<_Value, _Hash, _Pred, _Alloc>::unordered_set(const unordered_set& __u, const allocator_type& __a)
+        -: 1075:    : __table_(__u.__table_, __a) {
+        -: 1076:  __table_.__rehash_unique(__u.bucket_count());
+        -: 1077:  insert(__u.begin(), __u.end());
+        -: 1078:}
+        -: 1079:
+        -: 1080:#ifndef _LIBCPP_CXX03_LANG
+        -: 1081:
+        -: 1082:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1083:inline unordered_set<_Value, _Hash, _Pred, _Alloc>::unordered_set(unordered_set&& __u)
+        -: 1084:    _NOEXCEPT_(is_nothrow_move_constructible<__table>::value)
+        -: 1085:    : __table_(std::move(__u.__table_)) {}
+        -: 1086:
+        -: 1087:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1088:unordered_set<_Value, _Hash, _Pred, _Alloc>::unordered_set(unordered_set&& __u, const allocator_type& __a)
+        -: 1089:    : __table_(std::move(__u.__table_), __a) {
+        -: 1090:  if (__a != __u.get_allocator()) {
+        -: 1091:    iterator __i = __u.begin();
+        -: 1092:    while (__u.size() != 0)
+        -: 1093:      __table_.__insert_unique(std::move(__u.__table_.remove(__i++)->__get_value()));
+        -: 1094:  }
+        -: 1095:}
+        -: 1096:
+        -: 1097:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1098:unordered_set<_Value, _Hash, _Pred, _Alloc>::unordered_set(initializer_list<value_type> __il) {
+        -: 1099:  insert(__il.begin(), __il.end());
+        -: 1100:}
+        -: 1101:
+        -: 1102:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1103:unordered_set<_Value, _Hash, _Pred, _Alloc>::unordered_set(
+        -: 1104:    initializer_list<value_type> __il, size_type __n, const hasher& __hf, const key_equal& __eql)
+        -: 1105:    : __table_(__hf, __eql) {
+        -: 1106:  __table_.__rehash_unique(__n);
+        -: 1107:  insert(__il.begin(), __il.end());
+        -: 1108:}
+        -: 1109:
+        -: 1110:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1111:unordered_set<_Value, _Hash, _Pred, _Alloc>::unordered_set(
+        -: 1112:    initializer_list<value_type> __il,
+        -: 1113:    size_type __n,
+        -: 1114:    const hasher& __hf,
+        -: 1115:    const key_equal& __eql,
+        -: 1116:    const allocator_type& __a)
+        -: 1117:    : __table_(__hf, __eql, __a) {
+        -: 1118:  __table_.__rehash_unique(__n);
+        -: 1119:  insert(__il.begin(), __il.end());
+        -: 1120:}
+        -: 1121:
+        -: 1122:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1123:inline unordered_set<_Value, _Hash, _Pred, _Alloc>&
+function _ZNSt3__113unordered_setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4hashIS6_EENS_8equal_toIS6_EENS4_IS6_EEEaSEOSC_ called 6 returned 100% blocks executed 100%
+        6: 1124:unordered_set<_Value, _Hash, _Pred, _Alloc>::operator=(unordered_set&& __u)
+        -: 1125:    _NOEXCEPT_(is_nothrow_move_assignable<__table>::value) {
+        6: 1126:  __table_ = std::move(__u.__table_);
+        6: 1127:  return *this;
+        6: 1127-block  0
+        -: 1128:}
+        -: 1129:
+        -: 1130:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1131:inline unordered_set<_Value, _Hash, _Pred, _Alloc>&
+        -: 1132:unordered_set<_Value, _Hash, _Pred, _Alloc>::operator=(initializer_list<value_type> __il) {
+        -: 1133:  __table_.__assign_unique(__il.begin(), __il.end());
+        -: 1134:  return *this;
+        -: 1135:}
+        -: 1136:
+        -: 1137:#endif // _LIBCPP_CXX03_LANG
+        -: 1138:
+        -: 1139:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1140:template <class _InputIterator>
+        -: 1141:inline void unordered_set<_Value, _Hash, _Pred, _Alloc>::insert(_InputIterator __first, _InputIterator __last) {
+        -: 1142:  for (; __first != __last; ++__first)
+        -: 1143:    __table_.__insert_unique(*__first);
+        -: 1144:}
+        -: 1145:
+        -: 1146:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1147:inline _LIBCPP_HIDE_FROM_ABI void
+        -: 1148:swap(unordered_set<_Value, _Hash, _Pred, _Alloc>& __x, unordered_set<_Value, _Hash, _Pred, _Alloc>& __y)
+        -: 1149:    _NOEXCEPT_(_NOEXCEPT_(__x.swap(__y))) {
+        -: 1150:  __x.swap(__y);
+        -: 1151:}
+        -: 1152:
+        -: 1153:#if _LIBCPP_STD_VER >= 20
+        -: 1154:template <class _Value, class _Hash, class _Pred, class _Alloc, class _Predicate>
+        -: 1155:inline _LIBCPP_HIDE_FROM_ABI typename unordered_set<_Value, _Hash, _Pred, _Alloc>::size_type
+        -: 1156:erase_if(unordered_set<_Value, _Hash, _Pred, _Alloc>& __c, _Predicate __pred) {
+        -: 1157:  return std::__libcpp_erase_if_container(__c, __pred);
+        -: 1158:}
+        -: 1159:#endif
+        -: 1160:
+        -: 1161:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1162:_LIBCPP_HIDE_FROM_ABI bool operator==(const unordered_set<_Value, _Hash, _Pred, _Alloc>& __x,
+        -: 1163:                                      const unordered_set<_Value, _Hash, _Pred, _Alloc>& __y) {
+        -: 1164:  if (__x.size() != __y.size())
+        -: 1165:    return false;
+        -: 1166:  typedef typename unordered_set<_Value, _Hash, _Pred, _Alloc>::const_iterator const_iterator;
+        -: 1167:  for (const_iterator __i = __x.begin(), __ex = __x.end(), __ey = __y.end(); __i != __ex; ++__i) {
+        -: 1168:    const_iterator __j = __y.find(*__i);
+        -: 1169:    if (__j == __ey || !(*__i == *__j))
+        -: 1170:      return false;
+        -: 1171:  }
+        -: 1172:  return true;
+        -: 1173:}
+        -: 1174:
+        -: 1175:#if _LIBCPP_STD_VER <= 17
+        -: 1176:
+        -: 1177:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1178:inline _LIBCPP_HIDE_FROM_ABI bool operator!=(const unordered_set<_Value, _Hash, _Pred, _Alloc>& __x,
+        -: 1179:                                             const unordered_set<_Value, _Hash, _Pred, _Alloc>& __y) {
+        -: 1180:  return !(__x == __y);
+        -: 1181:}
+        -: 1182:
+        -: 1183:#endif
+        -: 1184:
+        -: 1185:template <class _Value, class _Hash = hash<_Value>, class _Pred = equal_to<_Value>, class _Alloc = allocator<_Value> >
+        -: 1186:class _LIBCPP_TEMPLATE_VIS unordered_multiset {
+        -: 1187:public:
+        -: 1188:  // types
+        -: 1189:  typedef _Value key_type;
+        -: 1190:  typedef key_type value_type;
+        -: 1191:  typedef __type_identity_t<_Hash> hasher;
+        -: 1192:  typedef __type_identity_t<_Pred> key_equal;
+        -: 1193:  typedef __type_identity_t<_Alloc> allocator_type;
+        -: 1194:  typedef value_type& reference;
+        -: 1195:  typedef const value_type& const_reference;
+        -: 1196:  static_assert((is_same<value_type, typename allocator_type::value_type>::value),
+        -: 1197:                "Allocator::value_type must be same type as value_type");
+        -: 1198:
+        -: 1199:private:
+        -: 1200:  typedef __hash_table<value_type, hasher, key_equal, allocator_type> __table;
+        -: 1201:
+        -: 1202:  __table __table_;
+        -: 1203:
+        -: 1204:public:
+        -: 1205:  typedef typename __table::pointer pointer;
+        -: 1206:  typedef typename __table::const_pointer const_pointer;
+        -: 1207:  typedef typename __table::size_type size_type;
+        -: 1208:  typedef typename __table::difference_type difference_type;
+        -: 1209:
+        -: 1210:  typedef typename __table::const_iterator iterator;
+        -: 1211:  typedef typename __table::const_iterator const_iterator;
+        -: 1212:  typedef typename __table::const_local_iterator local_iterator;
+        -: 1213:  typedef typename __table::const_local_iterator const_local_iterator;
+        -: 1214:
+        -: 1215:#if _LIBCPP_STD_VER >= 17
+        -: 1216:  typedef __set_node_handle<typename __table::__node, allocator_type> node_type;
+        -: 1217:#endif
+        -: 1218:
+        -: 1219:  template <class _Value2, class _Hash2, class _Pred2, class _Alloc2>
+        -: 1220:  friend class _LIBCPP_TEMPLATE_VIS unordered_set;
+        -: 1221:  template <class _Value2, class _Hash2, class _Pred2, class _Alloc2>
+        -: 1222:  friend class _LIBCPP_TEMPLATE_VIS unordered_multiset;
+        -: 1223:
+        -: 1224:  _LIBCPP_HIDE_FROM_ABI unordered_multiset() _NOEXCEPT_(is_nothrow_default_constructible<__table>::value) {}
+        -: 1225:  explicit _LIBCPP_HIDE_FROM_ABI
+        -: 1226:  unordered_multiset(size_type __n, const hasher& __hf = hasher(), const key_equal& __eql = key_equal());
+        -: 1227:  _LIBCPP_HIDE_FROM_ABI
+        -: 1228:  unordered_multiset(size_type __n, const hasher& __hf, const key_equal& __eql, const allocator_type& __a);
+        -: 1229:#if _LIBCPP_STD_VER >= 14
+        -: 1230:  inline _LIBCPP_HIDE_FROM_ABI unordered_multiset(size_type __n, const allocator_type& __a)
+        -: 1231:      : unordered_multiset(__n, hasher(), key_equal(), __a) {}
+        -: 1232:  inline _LIBCPP_HIDE_FROM_ABI unordered_multiset(size_type __n, const hasher& __hf, const allocator_type& __a)
+        -: 1233:      : unordered_multiset(__n, __hf, key_equal(), __a) {}
+        -: 1234:#endif
+        -: 1235:  template <class _InputIterator>
+        -: 1236:  _LIBCPP_HIDE_FROM_ABI unordered_multiset(_InputIterator __first, _InputIterator __last);
+        -: 1237:  template <class _InputIterator>
+        -: 1238:  _LIBCPP_HIDE_FROM_ABI unordered_multiset(
+        -: 1239:      _InputIterator __first,
+        -: 1240:      _InputIterator __last,
+        -: 1241:      size_type __n,
+        -: 1242:      const hasher& __hf     = hasher(),
+        -: 1243:      const key_equal& __eql = key_equal());
+        -: 1244:  template <class _InputIterator>
+        -: 1245:  _LIBCPP_HIDE_FROM_ABI unordered_multiset(
+        -: 1246:      _InputIterator __first,
+        -: 1247:      _InputIterator __last,
+        -: 1248:      size_type __n,
+        -: 1249:      const hasher& __hf,
+        -: 1250:      const key_equal& __eql,
+        -: 1251:      const allocator_type& __a);
+        -: 1252:
+        -: 1253:#if _LIBCPP_STD_VER >= 23
+        -: 1254:  template <_ContainerCompatibleRange<value_type> _Range>
+        -: 1255:  _LIBCPP_HIDE_FROM_ABI unordered_multiset(
+        -: 1256:      from_range_t,
+        -: 1257:      _Range&& __range,
+        -: 1258:      size_type __n             = /*implementation-defined*/ 0,
+        -: 1259:      const hasher& __hf        = hasher(),
+        -: 1260:      const key_equal& __eql    = key_equal(),
+        -: 1261:      const allocator_type& __a = allocator_type())
+        -: 1262:      : __table_(__hf, __eql, __a) {
+        -: 1263:    if (__n > 0) {
+        -: 1264:      __table_.__rehash_multi(__n);
+        -: 1265:    }
+        -: 1266:    insert_range(std::forward<_Range>(__range));
+        -: 1267:  }
+        -: 1268:#endif
+        -: 1269:
+        -: 1270:#if _LIBCPP_STD_VER >= 14
+        -: 1271:  template <class _InputIterator>
+        -: 1272:  inline _LIBCPP_HIDE_FROM_ABI
+        -: 1273:  unordered_multiset(_InputIterator __first, _InputIterator __last, size_type __n, const allocator_type& __a)
+        -: 1274:      : unordered_multiset(__first, __last, __n, hasher(), key_equal(), __a) {}
+        -: 1275:  template <class _InputIterator>
+        -: 1276:  inline _LIBCPP_HIDE_FROM_ABI unordered_multiset(
+        -: 1277:      _InputIterator __first, _InputIterator __last, size_type __n, const hasher& __hf, const allocator_type& __a)
+        -: 1278:      : unordered_multiset(__first, __last, __n, __hf, key_equal(), __a) {}
+        -: 1279:#endif
+        -: 1280:
+        -: 1281:#if _LIBCPP_STD_VER >= 23
+        -: 1282:  template <_ContainerCompatibleRange<value_type> _Range>
+        -: 1283:  _LIBCPP_HIDE_FROM_ABI unordered_multiset(from_range_t, _Range&& __range, size_type __n, const allocator_type& __a)
+        -: 1284:      : unordered_multiset(from_range, std::forward<_Range>(__range), __n, hasher(), key_equal(), __a) {}
+        -: 1285:
+        -: 1286:  template <_ContainerCompatibleRange<value_type> _Range>
+        -: 1287:  _LIBCPP_HIDE_FROM_ABI
+        -: 1288:  unordered_multiset(from_range_t, _Range&& __range, size_type __n, const hasher& __hf, const allocator_type& __a)
+        -: 1289:      : unordered_multiset(from_range, std::forward<_Range>(__range), __n, __hf, key_equal(), __a) {}
+        -: 1290:#endif
+        -: 1291:
+        -: 1292:  _LIBCPP_HIDE_FROM_ABI explicit unordered_multiset(const allocator_type& __a);
+        -: 1293:  _LIBCPP_HIDE_FROM_ABI unordered_multiset(const unordered_multiset& __u);
+        -: 1294:  _LIBCPP_HIDE_FROM_ABI unordered_multiset(const unordered_multiset& __u, const allocator_type& __a);
+        -: 1295:#ifndef _LIBCPP_CXX03_LANG
+        -: 1296:  _LIBCPP_HIDE_FROM_ABI unordered_multiset(unordered_multiset&& __u)
+        -: 1297:      _NOEXCEPT_(is_nothrow_move_constructible<__table>::value);
+        -: 1298:  _LIBCPP_HIDE_FROM_ABI unordered_multiset(unordered_multiset&& __u, const allocator_type& __a);
+        -: 1299:  _LIBCPP_HIDE_FROM_ABI unordered_multiset(initializer_list<value_type> __il);
+        -: 1300:  _LIBCPP_HIDE_FROM_ABI unordered_multiset(
+        -: 1301:      initializer_list<value_type> __il,
+        -: 1302:      size_type __n,
+        -: 1303:      const hasher& __hf     = hasher(),
+        -: 1304:      const key_equal& __eql = key_equal());
+        -: 1305:  _LIBCPP_HIDE_FROM_ABI unordered_multiset(
+        -: 1306:      initializer_list<value_type> __il,
+        -: 1307:      size_type __n,
+        -: 1308:      const hasher& __hf,
+        -: 1309:      const key_equal& __eql,
+        -: 1310:      const allocator_type& __a);
+        -: 1311:#  if _LIBCPP_STD_VER >= 14
+        -: 1312:  inline _LIBCPP_HIDE_FROM_ABI
+        -: 1313:  unordered_multiset(initializer_list<value_type> __il, size_type __n, const allocator_type& __a)
+        -: 1314:      : unordered_multiset(__il, __n, hasher(), key_equal(), __a) {}
+        -: 1315:  inline _LIBCPP_HIDE_FROM_ABI
+        -: 1316:  unordered_multiset(initializer_list<value_type> __il, size_type __n, const hasher& __hf, const allocator_type& __a)
+        -: 1317:      : unordered_multiset(__il, __n, __hf, key_equal(), __a) {}
+        -: 1318:#  endif
+        -: 1319:#endif // _LIBCPP_CXX03_LANG
+        -: 1320:  _LIBCPP_HIDE_FROM_ABI ~unordered_multiset() {
+        -: 1321:    static_assert(sizeof(std::__diagnose_unordered_container_requirements<_Value, _Hash, _Pred>(0)), "");
+        -: 1322:  }
+        -: 1323:
+        -: 1324:  _LIBCPP_HIDE_FROM_ABI unordered_multiset& operator=(const unordered_multiset& __u) {
+        -: 1325:    __table_ = __u.__table_;
+        -: 1326:    return *this;
+        -: 1327:  }
+        -: 1328:#ifndef _LIBCPP_CXX03_LANG
+        -: 1329:  _LIBCPP_HIDE_FROM_ABI unordered_multiset& operator=(unordered_multiset&& __u)
+        -: 1330:      _NOEXCEPT_(is_nothrow_move_assignable<__table>::value);
+        -: 1331:  _LIBCPP_HIDE_FROM_ABI unordered_multiset& operator=(initializer_list<value_type> __il);
+        -: 1332:#endif // _LIBCPP_CXX03_LANG
+        -: 1333:
+        -: 1334:  _LIBCPP_HIDE_FROM_ABI allocator_type get_allocator() const _NOEXCEPT {
+        -: 1335:    return allocator_type(__table_.__node_alloc());
+        -: 1336:  }
+        -: 1337:
+        -: 1338:  _LIBCPP_NODISCARD_AFTER_CXX17 _LIBCPP_HIDE_FROM_ABI bool empty() const _NOEXCEPT { return __table_.size() == 0; }
+        -: 1339:  _LIBCPP_HIDE_FROM_ABI size_type size() const _NOEXCEPT { return __table_.size(); }
+        -: 1340:  _LIBCPP_HIDE_FROM_ABI size_type max_size() const _NOEXCEPT { return __table_.max_size(); }
+        -: 1341:
+        -: 1342:  _LIBCPP_HIDE_FROM_ABI iterator begin() _NOEXCEPT { return __table_.begin(); }
+        -: 1343:  _LIBCPP_HIDE_FROM_ABI iterator end() _NOEXCEPT { return __table_.end(); }
+        -: 1344:  _LIBCPP_HIDE_FROM_ABI const_iterator begin() const _NOEXCEPT { return __table_.begin(); }
+        -: 1345:  _LIBCPP_HIDE_FROM_ABI const_iterator end() const _NOEXCEPT { return __table_.end(); }
+        -: 1346:  _LIBCPP_HIDE_FROM_ABI const_iterator cbegin() const _NOEXCEPT { return __table_.begin(); }
+        -: 1347:  _LIBCPP_HIDE_FROM_ABI const_iterator cend() const _NOEXCEPT { return __table_.end(); }
+        -: 1348:
+        -: 1349:#ifndef _LIBCPP_CXX03_LANG
+        -: 1350:  template <class... _Args>
+        -: 1351:  _LIBCPP_HIDE_FROM_ABI iterator emplace(_Args&&... __args) {
+        -: 1352:    return __table_.__emplace_multi(std::forward<_Args>(__args)...);
+        -: 1353:  }
+        -: 1354:  template <class... _Args>
+        -: 1355:  _LIBCPP_HIDE_FROM_ABI iterator emplace_hint(const_iterator __p, _Args&&... __args) {
+        -: 1356:    return __table_.__emplace_hint_multi(__p, std::forward<_Args>(__args)...);
+        -: 1357:  }
+        -: 1358:
+        -: 1359:  _LIBCPP_HIDE_FROM_ABI iterator insert(value_type&& __x) { return __table_.__insert_multi(std::move(__x)); }
+        -: 1360:  _LIBCPP_HIDE_FROM_ABI iterator insert(const_iterator __p, value_type&& __x) {
+        -: 1361:    return __table_.__insert_multi(__p, std::move(__x));
+        -: 1362:  }
+        -: 1363:  _LIBCPP_HIDE_FROM_ABI void insert(initializer_list<value_type> __il) { insert(__il.begin(), __il.end()); }
+        -: 1364:#endif // _LIBCPP_CXX03_LANG
+        -: 1365:
+        -: 1366:  _LIBCPP_HIDE_FROM_ABI iterator insert(const value_type& __x) { return __table_.__insert_multi(__x); }
+        -: 1367:
+        -: 1368:  _LIBCPP_HIDE_FROM_ABI iterator insert(const_iterator __p, const value_type& __x) {
+        -: 1369:    return __table_.__insert_multi(__p, __x);
+        -: 1370:  }
+        -: 1371:
+        -: 1372:  template <class _InputIterator>
+        -: 1373:  _LIBCPP_HIDE_FROM_ABI void insert(_InputIterator __first, _InputIterator __last);
+        -: 1374:
+        -: 1375:#if _LIBCPP_STD_VER >= 23
+        -: 1376:  template <_ContainerCompatibleRange<value_type> _Range>
+        -: 1377:  _LIBCPP_HIDE_FROM_ABI void insert_range(_Range&& __range) {
+        -: 1378:    for (auto&& __element : __range) {
+        -: 1379:      __table_.__insert_multi(std::forward<decltype(__element)>(__element));
+        -: 1380:    }
+        -: 1381:  }
+        -: 1382:#endif
+        -: 1383:
+        -: 1384:#if _LIBCPP_STD_VER >= 17
+        -: 1385:  _LIBCPP_HIDE_FROM_ABI iterator insert(node_type&& __nh) {
+        -: 1386:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(__nh.empty() || __nh.get_allocator() == get_allocator(),
+        -: 1387:                                        "node_type with incompatible allocator passed to unordered_multiset::insert()");
+        -: 1388:    return __table_.template __node_handle_insert_multi<node_type>(std::move(__nh));
+        -: 1389:  }
+        -: 1390:  _LIBCPP_HIDE_FROM_ABI iterator insert(const_iterator __hint, node_type&& __nh) {
+        -: 1391:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(__nh.empty() || __nh.get_allocator() == get_allocator(),
+        -: 1392:                                        "node_type with incompatible allocator passed to unordered_multiset::insert()");
+        -: 1393:    return __table_.template __node_handle_insert_multi<node_type>(__hint, std::move(__nh));
+        -: 1394:  }
+        -: 1395:  _LIBCPP_HIDE_FROM_ABI node_type extract(const_iterator __position) {
+        -: 1396:    return __table_.template __node_handle_extract<node_type>(__position);
+        -: 1397:  }
+        -: 1398:  _LIBCPP_HIDE_FROM_ABI node_type extract(key_type const& __key) {
+        -: 1399:    return __table_.template __node_handle_extract<node_type>(__key);
+        -: 1400:  }
+        -: 1401:
+        -: 1402:  template <class _H2, class _P2>
+        -: 1403:  _LIBCPP_HIDE_FROM_ABI void merge(unordered_multiset<key_type, _H2, _P2, allocator_type>& __source) {
+        -: 1404:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(
+        -: 1405:        __source.get_allocator() == get_allocator(), "merging container with incompatible allocator");
+        -: 1406:    return __table_.__node_handle_merge_multi(__source.__table_);
+        -: 1407:  }
+        -: 1408:  template <class _H2, class _P2>
+        -: 1409:  _LIBCPP_HIDE_FROM_ABI void merge(unordered_multiset<key_type, _H2, _P2, allocator_type>&& __source) {
+        -: 1410:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(
+        -: 1411:        __source.get_allocator() == get_allocator(), "merging container with incompatible allocator");
+        -: 1412:    return __table_.__node_handle_merge_multi(__source.__table_);
+        -: 1413:  }
+        -: 1414:  template <class _H2, class _P2>
+        -: 1415:  _LIBCPP_HIDE_FROM_ABI void merge(unordered_set<key_type, _H2, _P2, allocator_type>& __source) {
+        -: 1416:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(
+        -: 1417:        __source.get_allocator() == get_allocator(), "merging container with incompatible allocator");
+        -: 1418:    return __table_.__node_handle_merge_multi(__source.__table_);
+        -: 1419:  }
+        -: 1420:  template <class _H2, class _P2>
+        -: 1421:  _LIBCPP_HIDE_FROM_ABI void merge(unordered_set<key_type, _H2, _P2, allocator_type>&& __source) {
+        -: 1422:    _LIBCPP_ASSERT_COMPATIBLE_ALLOCATOR(
+        -: 1423:        __source.get_allocator() == get_allocator(), "merging container with incompatible allocator");
+        -: 1424:    return __table_.__node_handle_merge_multi(__source.__table_);
+        -: 1425:  }
+        -: 1426:#endif
+        -: 1427:
+        -: 1428:  _LIBCPP_HIDE_FROM_ABI iterator erase(const_iterator __p) { return __table_.erase(__p); }
+        -: 1429:  _LIBCPP_HIDE_FROM_ABI size_type erase(const key_type& __k) { return __table_.__erase_multi(__k); }
+        -: 1430:  _LIBCPP_HIDE_FROM_ABI iterator erase(const_iterator __first, const_iterator __last) {
+        -: 1431:    return __table_.erase(__first, __last);
+        -: 1432:  }
+        -: 1433:  _LIBCPP_HIDE_FROM_ABI void clear() _NOEXCEPT { __table_.clear(); }
+        -: 1434:
+        -: 1435:  _LIBCPP_HIDE_FROM_ABI void swap(unordered_multiset& __u) _NOEXCEPT_(__is_nothrow_swappable<__table>::value) {
+        -: 1436:    __table_.swap(__u.__table_);
+        -: 1437:  }
+        -: 1438:
+        -: 1439:  _LIBCPP_HIDE_FROM_ABI hasher hash_function() const { return __table_.hash_function(); }
+        -: 1440:  _LIBCPP_HIDE_FROM_ABI key_equal key_eq() const { return __table_.key_eq(); }
+        -: 1441:
+        -: 1442:  _LIBCPP_HIDE_FROM_ABI iterator find(const key_type& __k) { return __table_.find(__k); }
+        -: 1443:  _LIBCPP_HIDE_FROM_ABI const_iterator find(const key_type& __k) const { return __table_.find(__k); }
+        -: 1444:#if _LIBCPP_STD_VER >= 20
+        -: 1445:  template <class _K2,
+        -: 1446:            enable_if_t<__is_transparent<hasher, _K2>::value && __is_transparent<key_equal, _K2>::value>* = nullptr>
+        -: 1447:  _LIBCPP_HIDE_FROM_ABI iterator find(const _K2& __k) {
+        -: 1448:    return __table_.find(__k);
+        -: 1449:  }
+        -: 1450:  template <class _K2,
+        -: 1451:            enable_if_t<__is_transparent<hasher, _K2>::value && __is_transparent<key_equal, _K2>::value>* = nullptr>
+        -: 1452:  _LIBCPP_HIDE_FROM_ABI const_iterator find(const _K2& __k) const {
+        -: 1453:    return __table_.find(__k);
+        -: 1454:  }
+        -: 1455:#endif // _LIBCPP_STD_VER >= 20
+        -: 1456:
+        -: 1457:  _LIBCPP_HIDE_FROM_ABI size_type count(const key_type& __k) const { return __table_.__count_multi(__k); }
+        -: 1458:#if _LIBCPP_STD_VER >= 20
+        -: 1459:  template <class _K2,
+        -: 1460:            enable_if_t<__is_transparent<hasher, _K2>::value && __is_transparent<key_equal, _K2>::value>* = nullptr>
+        -: 1461:  _LIBCPP_HIDE_FROM_ABI size_type count(const _K2& __k) const {
+        -: 1462:    return __table_.__count_multi(__k);
+        -: 1463:  }
+        -: 1464:#endif // _LIBCPP_STD_VER >= 20
+        -: 1465:
+        -: 1466:#if _LIBCPP_STD_VER >= 20
+        -: 1467:  _LIBCPP_HIDE_FROM_ABI bool contains(const key_type& __k) const { return find(__k) != end(); }
+        -: 1468:
+        -: 1469:  template <class _K2,
+        -: 1470:            enable_if_t<__is_transparent<hasher, _K2>::value && __is_transparent<key_equal, _K2>::value>* = nullptr>
+        -: 1471:  _LIBCPP_HIDE_FROM_ABI bool contains(const _K2& __k) const {
+        -: 1472:    return find(__k) != end();
+        -: 1473:  }
+        -: 1474:#endif // _LIBCPP_STD_VER >= 20
+        -: 1475:
+        -: 1476:  _LIBCPP_HIDE_FROM_ABI pair<iterator, iterator> equal_range(const key_type& __k) {
+        -: 1477:    return __table_.__equal_range_multi(__k);
+        -: 1478:  }
+        -: 1479:  _LIBCPP_HIDE_FROM_ABI pair<const_iterator, const_iterator> equal_range(const key_type& __k) const {
+        -: 1480:    return __table_.__equal_range_multi(__k);
+        -: 1481:  }
+        -: 1482:#if _LIBCPP_STD_VER >= 20
+        -: 1483:  template <class _K2,
+        -: 1484:            enable_if_t<__is_transparent<hasher, _K2>::value && __is_transparent<key_equal, _K2>::value>* = nullptr>
+        -: 1485:  _LIBCPP_HIDE_FROM_ABI pair<iterator, iterator> equal_range(const _K2& __k) {
+        -: 1486:    return __table_.__equal_range_multi(__k);
+        -: 1487:  }
+        -: 1488:  template <class _K2,
+        -: 1489:            enable_if_t<__is_transparent<hasher, _K2>::value && __is_transparent<key_equal, _K2>::value>* = nullptr>
+        -: 1490:  _LIBCPP_HIDE_FROM_ABI pair<const_iterator, const_iterator> equal_range(const _K2& __k) const {
+        -: 1491:    return __table_.__equal_range_multi(__k);
+        -: 1492:  }
+        -: 1493:#endif // _LIBCPP_STD_VER >= 20
+        -: 1494:
+        -: 1495:  _LIBCPP_HIDE_FROM_ABI size_type bucket_count() const _NOEXCEPT { return __table_.bucket_count(); }
+        -: 1496:  _LIBCPP_HIDE_FROM_ABI size_type max_bucket_count() const _NOEXCEPT { return __table_.max_bucket_count(); }
+        -: 1497:
+        -: 1498:  _LIBCPP_HIDE_FROM_ABI size_type bucket_size(size_type __n) const { return __table_.bucket_size(__n); }
+        -: 1499:  _LIBCPP_HIDE_FROM_ABI size_type bucket(const key_type& __k) const { return __table_.bucket(__k); }
+        -: 1500:
+        -: 1501:  _LIBCPP_HIDE_FROM_ABI local_iterator begin(size_type __n) { return __table_.begin(__n); }
+        -: 1502:  _LIBCPP_HIDE_FROM_ABI local_iterator end(size_type __n) { return __table_.end(__n); }
+        -: 1503:  _LIBCPP_HIDE_FROM_ABI const_local_iterator begin(size_type __n) const { return __table_.cbegin(__n); }
+        -: 1504:  _LIBCPP_HIDE_FROM_ABI const_local_iterator end(size_type __n) const { return __table_.cend(__n); }
+        -: 1505:  _LIBCPP_HIDE_FROM_ABI const_local_iterator cbegin(size_type __n) const { return __table_.cbegin(__n); }
+        -: 1506:  _LIBCPP_HIDE_FROM_ABI const_local_iterator cend(size_type __n) const { return __table_.cend(__n); }
+        -: 1507:
+        -: 1508:  _LIBCPP_HIDE_FROM_ABI float load_factor() const _NOEXCEPT { return __table_.load_factor(); }
+        -: 1509:  _LIBCPP_HIDE_FROM_ABI float max_load_factor() const _NOEXCEPT { return __table_.max_load_factor(); }
+        -: 1510:  _LIBCPP_HIDE_FROM_ABI void max_load_factor(float __mlf) { __table_.max_load_factor(__mlf); }
+        -: 1511:  _LIBCPP_HIDE_FROM_ABI void rehash(size_type __n) { __table_.__rehash_multi(__n); }
+        -: 1512:  _LIBCPP_HIDE_FROM_ABI void reserve(size_type __n) { __table_.__reserve_multi(__n); }
+        -: 1513:};
+        -: 1514:
+        -: 1515:#if _LIBCPP_STD_VER >= 17
+        -: 1516:template <class _InputIterator,
+        -: 1517:          class _Hash      = hash<__iter_value_type<_InputIterator>>,
+        -: 1518:          class _Pred      = equal_to<__iter_value_type<_InputIterator>>,
+        -: 1519:          class _Allocator = allocator<__iter_value_type<_InputIterator>>,
+        -: 1520:          class            = enable_if_t<__has_input_iterator_category<_InputIterator>::value>,
+        -: 1521:          class            = enable_if_t<!__is_allocator<_Hash>::value>,
+        -: 1522:          class            = enable_if_t<!is_integral<_Hash>::value>,
+        -: 1523:          class            = enable_if_t<!__is_allocator<_Pred>::value>,
+        -: 1524:          class            = enable_if_t<__is_allocator<_Allocator>::value>>
+        -: 1525:unordered_multiset(
+        -: 1526:    _InputIterator,
+        -: 1527:    _InputIterator,
+        -: 1528:    typename allocator_traits<_Allocator>::size_type = 0,
+        -: 1529:    _Hash                                            = _Hash(),
+        -: 1530:    _Pred                                            = _Pred(),
+        -: 1531:    _Allocator = _Allocator()) -> unordered_multiset<__iter_value_type<_InputIterator>, _Hash, _Pred, _Allocator>;
+        -: 1532:
+        -: 1533:#  if _LIBCPP_STD_VER >= 23
+        -: 1534:template <ranges::input_range _Range,
+        -: 1535:          class _Hash      = hash<ranges::range_value_t<_Range>>,
+        -: 1536:          class _Pred      = equal_to<ranges::range_value_t<_Range>>,
+        -: 1537:          class _Allocator = allocator<ranges::range_value_t<_Range>>,
+        -: 1538:          class            = enable_if_t<!__is_allocator<_Hash>::value>,
+        -: 1539:          class            = enable_if_t<!is_integral<_Hash>::value>,
+        -: 1540:          class            = enable_if_t<!__is_allocator<_Pred>::value>,
+        -: 1541:          class            = enable_if_t<__is_allocator<_Allocator>::value>>
+        -: 1542:unordered_multiset(
+        -: 1543:    from_range_t,
+        -: 1544:    _Range&&,
+        -: 1545:    typename allocator_traits<_Allocator>::size_type = 0,
+        -: 1546:    _Hash                                            = _Hash(),
+        -: 1547:    _Pred                                            = _Pred(),
+        -: 1548:    _Allocator = _Allocator()) -> unordered_multiset<ranges::range_value_t<_Range>, _Hash, _Pred, _Allocator>; // C++23
+        -: 1549:#  endif
+        -: 1550:
+        -: 1551:template <class _Tp,
+        -: 1552:          class _Hash      = hash<_Tp>,
+        -: 1553:          class _Pred      = equal_to<_Tp>,
+        -: 1554:          class _Allocator = allocator<_Tp>,
+        -: 1555:          class            = enable_if_t<!__is_allocator<_Hash>::value>,
+        -: 1556:          class            = enable_if_t<!is_integral<_Hash>::value>,
+        -: 1557:          class            = enable_if_t<!__is_allocator<_Pred>::value>,
+        -: 1558:          class            = enable_if_t<__is_allocator<_Allocator>::value>>
+        -: 1559:unordered_multiset(initializer_list<_Tp>,
+        -: 1560:                   typename allocator_traits<_Allocator>::size_type = 0,
+        -: 1561:                   _Hash                                            = _Hash(),
+        -: 1562:                   _Pred                                            = _Pred(),
+        -: 1563:                   _Allocator = _Allocator()) -> unordered_multiset<_Tp, _Hash, _Pred, _Allocator>;
+        -: 1564:
+        -: 1565:template <class _InputIterator,
+        -: 1566:          class _Allocator,
+        -: 1567:          class = enable_if_t<__has_input_iterator_category<_InputIterator>::value>,
+        -: 1568:          class = enable_if_t<__is_allocator<_Allocator>::value>>
+        -: 1569:unordered_multiset(_InputIterator, _InputIterator, typename allocator_traits<_Allocator>::size_type, _Allocator)
+        -: 1570:    -> unordered_multiset<__iter_value_type<_InputIterator>,
+        -: 1571:                          hash<__iter_value_type<_InputIterator>>,
+        -: 1572:                          equal_to<__iter_value_type<_InputIterator>>,
+        -: 1573:                          _Allocator>;
+        -: 1574:
+        -: 1575:template <class _InputIterator,
+        -: 1576:          class _Hash,
+        -: 1577:          class _Allocator,
+        -: 1578:          class = enable_if_t<__has_input_iterator_category<_InputIterator>::value>,
+        -: 1579:          class = enable_if_t<!__is_allocator<_Hash>::value>,
+        -: 1580:          class = enable_if_t<!is_integral<_Hash>::value>,
+        -: 1581:          class = enable_if_t<__is_allocator<_Allocator>::value>>
+        -: 1582:unordered_multiset(_InputIterator, _InputIterator, typename allocator_traits<_Allocator>::size_type, _Hash, _Allocator)
+        -: 1583:    -> unordered_multiset<__iter_value_type<_InputIterator>,
+        -: 1584:                          _Hash,
+        -: 1585:                          equal_to<__iter_value_type<_InputIterator>>,
+        -: 1586:                          _Allocator>;
+        -: 1587:
+        -: 1588:#  if _LIBCPP_STD_VER >= 23
+        -: 1589:
+        -: 1590:template <ranges::input_range _Range, class _Allocator, class = enable_if_t<__is_allocator<_Allocator>::value>>
+        -: 1591:unordered_multiset(from_range_t, _Range&&, typename allocator_traits<_Allocator>::size_type, _Allocator)
+        -: 1592:    -> unordered_multiset<ranges::range_value_t<_Range>,
+        -: 1593:                          hash<ranges::range_value_t<_Range>>,
+        -: 1594:                          equal_to<ranges::range_value_t<_Range>>,
+        -: 1595:                          _Allocator>;
+        -: 1596:
+        -: 1597:template <ranges::input_range _Range, class _Allocator, class = enable_if_t<__is_allocator<_Allocator>::value>>
+        -: 1598:unordered_multiset(from_range_t, _Range&&, _Allocator)
+        -: 1599:    -> unordered_multiset<ranges::range_value_t<_Range>,
+        -: 1600:                          hash<ranges::range_value_t<_Range>>,
+        -: 1601:                          equal_to<ranges::range_value_t<_Range>>,
+        -: 1602:                          _Allocator>;
+        -: 1603:
+        -: 1604:template <ranges::input_range _Range,
+        -: 1605:          class _Hash,
+        -: 1606:          class _Allocator,
+        -: 1607:          class = enable_if_t<!__is_allocator<_Hash>::value>,
+        -: 1608:          class = enable_if_t<!is_integral<_Hash>::value>,
+        -: 1609:          class = enable_if_t<__is_allocator<_Allocator>::value>>
+        -: 1610:unordered_multiset(from_range_t, _Range&&, typename allocator_traits<_Allocator>::size_type, _Hash, _Allocator)
+        -: 1611:    -> unordered_multiset<ranges::range_value_t<_Range>, _Hash, equal_to<ranges::range_value_t<_Range>>, _Allocator>;
+        -: 1612:
+        -: 1613:#  endif
+        -: 1614:
+        -: 1615:template <class _Tp, class _Allocator, class = enable_if_t<__is_allocator<_Allocator>::value>>
+        -: 1616:unordered_multiset(initializer_list<_Tp>, typename allocator_traits<_Allocator>::size_type, _Allocator)
+        -: 1617:    -> unordered_multiset<_Tp, hash<_Tp>, equal_to<_Tp>, _Allocator>;
+        -: 1618:
+        -: 1619:template <class _Tp,
+        -: 1620:          class _Hash,
+        -: 1621:          class _Allocator,
+        -: 1622:          class = enable_if_t<!__is_allocator<_Hash>::value>,
+        -: 1623:          class = enable_if_t<!is_integral<_Hash>::value>,
+        -: 1624:          class = enable_if_t<__is_allocator<_Allocator>::value>>
+        -: 1625:unordered_multiset(initializer_list<_Tp>, typename allocator_traits<_Allocator>::size_type, _Hash, _Allocator)
+        -: 1626:    -> unordered_multiset<_Tp, _Hash, equal_to<_Tp>, _Allocator>;
+        -: 1627:#endif
+        -: 1628:
+        -: 1629:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1630:unordered_multiset<_Value, _Hash, _Pred, _Alloc>::unordered_multiset(
+        -: 1631:    size_type __n, const hasher& __hf, const key_equal& __eql)
+        -: 1632:    : __table_(__hf, __eql) {
+        -: 1633:  __table_.__rehash_multi(__n);
+        -: 1634:}
+        -: 1635:
+        -: 1636:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1637:unordered_multiset<_Value, _Hash, _Pred, _Alloc>::unordered_multiset(
+        -: 1638:    size_type __n, const hasher& __hf, const key_equal& __eql, const allocator_type& __a)
+        -: 1639:    : __table_(__hf, __eql, __a) {
+        -: 1640:  __table_.__rehash_multi(__n);
+        -: 1641:}
+        -: 1642:
+        -: 1643:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1644:template <class _InputIterator>
+        -: 1645:unordered_multiset<_Value, _Hash, _Pred, _Alloc>::unordered_multiset(_InputIterator __first, _InputIterator __last) {
+        -: 1646:  insert(__first, __last);
+        -: 1647:}
+        -: 1648:
+        -: 1649:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1650:template <class _InputIterator>
+        -: 1651:unordered_multiset<_Value, _Hash, _Pred, _Alloc>::unordered_multiset(
+        -: 1652:    _InputIterator __first, _InputIterator __last, size_type __n, const hasher& __hf, const key_equal& __eql)
+        -: 1653:    : __table_(__hf, __eql) {
+        -: 1654:  __table_.__rehash_multi(__n);
+        -: 1655:  insert(__first, __last);
+        -: 1656:}
+        -: 1657:
+        -: 1658:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1659:template <class _InputIterator>
+        -: 1660:unordered_multiset<_Value, _Hash, _Pred, _Alloc>::unordered_multiset(
+        -: 1661:    _InputIterator __first,
+        -: 1662:    _InputIterator __last,
+        -: 1663:    size_type __n,
+        -: 1664:    const hasher& __hf,
+        -: 1665:    const key_equal& __eql,
+        -: 1666:    const allocator_type& __a)
+        -: 1667:    : __table_(__hf, __eql, __a) {
+        -: 1668:  __table_.__rehash_multi(__n);
+        -: 1669:  insert(__first, __last);
+        -: 1670:}
+        -: 1671:
+        -: 1672:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1673:inline unordered_multiset<_Value, _Hash, _Pred, _Alloc>::unordered_multiset(const allocator_type& __a)
+        -: 1674:    : __table_(__a) {}
+        -: 1675:
+        -: 1676:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1677:unordered_multiset<_Value, _Hash, _Pred, _Alloc>::unordered_multiset(const unordered_multiset& __u)
+        -: 1678:    : __table_(__u.__table_) {
+        -: 1679:  __table_.__rehash_multi(__u.bucket_count());
+        -: 1680:  insert(__u.begin(), __u.end());
+        -: 1681:}
+        -: 1682:
+        -: 1683:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1684:unordered_multiset<_Value, _Hash, _Pred, _Alloc>::unordered_multiset(
+        -: 1685:    const unordered_multiset& __u, const allocator_type& __a)
+        -: 1686:    : __table_(__u.__table_, __a) {
+        -: 1687:  __table_.__rehash_multi(__u.bucket_count());
+        -: 1688:  insert(__u.begin(), __u.end());
+        -: 1689:}
+        -: 1690:
+        -: 1691:#ifndef _LIBCPP_CXX03_LANG
+        -: 1692:
+        -: 1693:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1694:inline unordered_multiset<_Value, _Hash, _Pred, _Alloc>::unordered_multiset(unordered_multiset&& __u)
+        -: 1695:    _NOEXCEPT_(is_nothrow_move_constructible<__table>::value)
+        -: 1696:    : __table_(std::move(__u.__table_)) {}
+        -: 1697:
+        -: 1698:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1699:unordered_multiset<_Value, _Hash, _Pred, _Alloc>::unordered_multiset(
+        -: 1700:    unordered_multiset&& __u, const allocator_type& __a)
+        -: 1701:    : __table_(std::move(__u.__table_), __a) {
+        -: 1702:  if (__a != __u.get_allocator()) {
+        -: 1703:    iterator __i = __u.begin();
+        -: 1704:    while (__u.size() != 0)
+        -: 1705:      __table_.__insert_multi(std::move(__u.__table_.remove(__i++)->__get_value()));
+        -: 1706:  }
+        -: 1707:}
+        -: 1708:
+        -: 1709:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1710:unordered_multiset<_Value, _Hash, _Pred, _Alloc>::unordered_multiset(initializer_list<value_type> __il) {
+        -: 1711:  insert(__il.begin(), __il.end());
+        -: 1712:}
+        -: 1713:
+        -: 1714:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1715:unordered_multiset<_Value, _Hash, _Pred, _Alloc>::unordered_multiset(
+        -: 1716:    initializer_list<value_type> __il, size_type __n, const hasher& __hf, const key_equal& __eql)
+        -: 1717:    : __table_(__hf, __eql) {
+        -: 1718:  __table_.__rehash_multi(__n);
+        -: 1719:  insert(__il.begin(), __il.end());
+        -: 1720:}
+        -: 1721:
+        -: 1722:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1723:unordered_multiset<_Value, _Hash, _Pred, _Alloc>::unordered_multiset(
+        -: 1724:    initializer_list<value_type> __il,
+        -: 1725:    size_type __n,
+        -: 1726:    const hasher& __hf,
+        -: 1727:    const key_equal& __eql,
+        -: 1728:    const allocator_type& __a)
+        -: 1729:    : __table_(__hf, __eql, __a) {
+        -: 1730:  __table_.__rehash_multi(__n);
+        -: 1731:  insert(__il.begin(), __il.end());
+        -: 1732:}
+        -: 1733:
+        -: 1734:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1735:inline unordered_multiset<_Value, _Hash, _Pred, _Alloc>&
+        -: 1736:unordered_multiset<_Value, _Hash, _Pred, _Alloc>::operator=(unordered_multiset&& __u)
+        -: 1737:    _NOEXCEPT_(is_nothrow_move_assignable<__table>::value) {
+        -: 1738:  __table_ = std::move(__u.__table_);
+        -: 1739:  return *this;
+        -: 1740:}
+        -: 1741:
+        -: 1742:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1743:inline unordered_multiset<_Value, _Hash, _Pred, _Alloc>&
+        -: 1744:unordered_multiset<_Value, _Hash, _Pred, _Alloc>::operator=(initializer_list<value_type> __il) {
+        -: 1745:  __table_.__assign_multi(__il.begin(), __il.end());
+        -: 1746:  return *this;
+        -: 1747:}
+        -: 1748:
+        -: 1749:#endif // _LIBCPP_CXX03_LANG
+        -: 1750:
+        -: 1751:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1752:template <class _InputIterator>
+        -: 1753:inline void unordered_multiset<_Value, _Hash, _Pred, _Alloc>::insert(_InputIterator __first, _InputIterator __last) {
+        -: 1754:  for (; __first != __last; ++__first)
+        -: 1755:    __table_.__insert_multi(*__first);
+        -: 1756:}
+        -: 1757:
+        -: 1758:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1759:inline _LIBCPP_HIDE_FROM_ABI void
+        -: 1760:swap(unordered_multiset<_Value, _Hash, _Pred, _Alloc>& __x, unordered_multiset<_Value, _Hash, _Pred, _Alloc>& __y)
+        -: 1761:    _NOEXCEPT_(_NOEXCEPT_(__x.swap(__y))) {
+        -: 1762:  __x.swap(__y);
+        -: 1763:}
+        -: 1764:
+        -: 1765:#if _LIBCPP_STD_VER >= 20
+        -: 1766:template <class _Value, class _Hash, class _Pred, class _Alloc, class _Predicate>
+        -: 1767:inline _LIBCPP_HIDE_FROM_ABI typename unordered_multiset<_Value, _Hash, _Pred, _Alloc>::size_type
+        -: 1768:erase_if(unordered_multiset<_Value, _Hash, _Pred, _Alloc>& __c, _Predicate __pred) {
+        -: 1769:  return std::__libcpp_erase_if_container(__c, __pred);
+        -: 1770:}
+        -: 1771:#endif
+        -: 1772:
+        -: 1773:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1774:_LIBCPP_HIDE_FROM_ABI bool operator==(const unordered_multiset<_Value, _Hash, _Pred, _Alloc>& __x,
+        -: 1775:                                      const unordered_multiset<_Value, _Hash, _Pred, _Alloc>& __y) {
+        -: 1776:  if (__x.size() != __y.size())
+        -: 1777:    return false;
+        -: 1778:  typedef typename unordered_multiset<_Value, _Hash, _Pred, _Alloc>::const_iterator const_iterator;
+        -: 1779:  typedef pair<const_iterator, const_iterator> _EqRng;
+        -: 1780:  for (const_iterator __i = __x.begin(), __ex = __x.end(); __i != __ex;) {
+        -: 1781:    _EqRng __xeq = __x.equal_range(*__i);
+        -: 1782:    _EqRng __yeq = __y.equal_range(*__i);
+        -: 1783:    if (std::distance(__xeq.first, __xeq.second) != std::distance(__yeq.first, __yeq.second) ||
+        -: 1784:        !std::is_permutation(__xeq.first, __xeq.second, __yeq.first))
+        -: 1785:      return false;
+        -: 1786:    __i = __xeq.second;
+        -: 1787:  }
+        -: 1788:  return true;
+        -: 1789:}
+        -: 1790:
+        -: 1791:#if _LIBCPP_STD_VER <= 17
+        -: 1792:
+        -: 1793:template <class _Value, class _Hash, class _Pred, class _Alloc>
+        -: 1794:inline _LIBCPP_HIDE_FROM_ABI bool operator!=(const unordered_multiset<_Value, _Hash, _Pred, _Alloc>& __x,
+        -: 1795:                                             const unordered_multiset<_Value, _Hash, _Pred, _Alloc>& __y) {
+        -: 1796:  return !(__x == __y);
+        -: 1797:}
+        -: 1798:
+        -: 1799:#endif
+        -: 1800:
+        -: 1801:_LIBCPP_END_NAMESPACE_STD
+        -: 1802:
+        -: 1803:#if _LIBCPP_STD_VER >= 17
+        -: 1804:_LIBCPP_BEGIN_NAMESPACE_STD
+        -: 1805:namespace pmr {
+        -: 1806:template <class _KeyT, class _HashT = std::hash<_KeyT>, class _PredT = std::equal_to<_KeyT>>
+        -: 1807:using unordered_set _LIBCPP_AVAILABILITY_PMR = std::unordered_set<_KeyT, _HashT, _PredT, polymorphic_allocator<_KeyT>>;
+        -: 1808:
+        -: 1809:template <class _KeyT, class _HashT = std::hash<_KeyT>, class _PredT = std::equal_to<_KeyT>>
+        -: 1810:using unordered_multiset _LIBCPP_AVAILABILITY_PMR =
+        -: 1811:    std::unordered_multiset<_KeyT, _HashT, _PredT, polymorphic_allocator<_KeyT>>;
+        -: 1812:} // namespace pmr
+        -: 1813:_LIBCPP_END_NAMESPACE_STD
+        -: 1814:#endif
+        -: 1815:
+        -: 1816:_LIBCPP_POP_MACROS
+        -: 1817:
+        -: 1818:#if !defined(_LIBCPP_REMOVE_TRANSITIVE_INCLUDES) && _LIBCPP_STD_VER <= 20
+        -: 1819:#  include <concepts>
+        -: 1820:#  include <cstdlib>
+        -: 1821:#  include <functional>
+        -: 1822:#  include <iterator>
+        -: 1823:#  include <stdexcept>
+        -: 1824:#  include <type_traits>
+        -: 1825:#endif
+        -: 1826:
+        -: 1827:#endif // _LIBCPP_UNORDERED_SET

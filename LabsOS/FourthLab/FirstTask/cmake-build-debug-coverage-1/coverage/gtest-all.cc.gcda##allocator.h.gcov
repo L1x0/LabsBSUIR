@@ -1,0 +1,839 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__memory/allocator.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// -*- C++ -*-
+        -:    2://===----------------------------------------------------------------------===//
+        -:    3://
+        -:    4:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    5:// See https://llvm.org/LICENSE.txt for license information.
+        -:    6:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    7://
+        -:    8://===----------------------------------------------------------------------===//
+        -:    9:
+        -:   10:#ifndef _LIBCPP___MEMORY_ALLOCATOR_H
+        -:   11:#define _LIBCPP___MEMORY_ALLOCATOR_H
+        -:   12:
+        -:   13:#include <__config>
+        -:   14:#include <__memory/addressof.h>
+        -:   15:#include <__memory/allocate_at_least.h>
+        -:   16:#include <__memory/allocator_traits.h>
+        -:   17:#include <__type_traits/is_constant_evaluated.h>
+        -:   18:#include <__type_traits/is_same.h>
+        -:   19:#include <__type_traits/is_void.h>
+        -:   20:#include <__type_traits/is_volatile.h>
+        -:   21:#include <__utility/forward.h>
+        -:   22:#include <cstddef>
+        -:   23:#include <new>
+        -:   24:
+        -:   25:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   26:#  pragma GCC system_header
+        -:   27:#endif
+        -:   28:
+        -:   29:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   30:
+        -:   31:template <class _Tp>
+        -:   32:class allocator;
+        -:   33:
+        -:   34:#if defined(_LIBCPP_ENABLE_CXX20_REMOVED_ALLOCATOR_MEMBERS) && !defined(_LIBCPP_DISABLE_DEPRECATION_WARNINGS)
+        -:   35:#  pragma clang deprecated(                                                                                            \
+        -:   36:      _LIBCPP_ENABLE_CXX20_REMOVED_ALLOCATOR_MEMBERS,                                                                  \
+        -:   37:      "_LIBCPP_ENABLE_CXX20_REMOVED_ALLOCATOR_MEMBERS is deprecated in LLVM 18 and will be removed in LLVM 19")
+        -:   38:#endif
+        -:   39:
+        -:   40:#if _LIBCPP_STD_VER <= 17 || defined(_LIBCPP_ENABLE_CXX20_REMOVED_ALLOCATOR_VOID_SPECIALIZATION)
+        -:   41:// These specializations shouldn't be marked _LIBCPP_DEPRECATED_IN_CXX17.
+        -:   42:// Specializing allocator<void> is deprecated, but not using it.
+        -:   43:template <>
+        -:   44:class _LIBCPP_TEMPLATE_VIS allocator<void> {
+        -:   45:#  if _LIBCPP_STD_VER <= 17 || defined(_LIBCPP_ENABLE_CXX20_REMOVED_ALLOCATOR_MEMBERS)
+        -:   46:
+        -:   47:public:
+        -:   48:  _LIBCPP_DEPRECATED_IN_CXX17 typedef void* pointer;
+        -:   49:  _LIBCPP_DEPRECATED_IN_CXX17 typedef const void* const_pointer;
+        -:   50:  _LIBCPP_DEPRECATED_IN_CXX17 typedef void value_type;
+        -:   51:
+        -:   52:  template <class _Up>
+        -:   53:  struct _LIBCPP_DEPRECATED_IN_CXX17 rebind {
+        -:   54:    typedef allocator<_Up> other;
+        -:   55:  };
+        -:   56:#  endif
+        -:   57:};
+        -:   58:
+        -:   59:template <>
+        -:   60:class _LIBCPP_TEMPLATE_VIS allocator<const void> {
+        -:   61:#  if _LIBCPP_STD_VER <= 17 || defined(_LIBCPP_ENABLE_CXX20_REMOVED_ALLOCATOR_MEMBERS)
+        -:   62:
+        -:   63:public:
+        -:   64:  _LIBCPP_DEPRECATED_IN_CXX17 typedef const void* pointer;
+        -:   65:  _LIBCPP_DEPRECATED_IN_CXX17 typedef const void* const_pointer;
+        -:   66:  _LIBCPP_DEPRECATED_IN_CXX17 typedef const void value_type;
+        -:   67:
+        -:   68:  template <class _Up>
+        -:   69:  struct _LIBCPP_DEPRECATED_IN_CXX17 rebind {
+        -:   70:    typedef allocator<_Up> other;
+        -:   71:  };
+        -:   72:#  endif
+        -:   73:};
+        -:   74:#endif
+        -:   75:
+        -:   76:// This class provides a non-trivial default constructor to the class that derives from it
+        -:   77:// if the condition is satisfied.
+        -:   78://
+        -:   79:// The second template parameter exists to allow giving a unique type to __non_trivial_if,
+        -:   80:// which makes it possible to avoid breaking the ABI when making this a base class of an
+        -:   81:// existing class. Without that, imagine we have classes D1 and D2, both of which used to
+        -:   82:// have no base classes, but which now derive from __non_trivial_if. The layout of a class
+        -:   83:// that inherits from both D1 and D2 will change because the two __non_trivial_if base
+        -:   84:// classes are not allowed to share the same address.
+        -:   85://
+        -:   86:// By making those __non_trivial_if base classes unique, we work around this problem and
+        -:   87:// it is safe to start deriving from __non_trivial_if in existing classes.
+        -:   88:template <bool _Cond, class _Unique>
+        -:   89:struct __non_trivial_if {};
+        -:   90:
+        -:   91:template <class _Unique>
+        -:   92:struct __non_trivial_if<true, _Unique> {
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorIPcEEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorIcEEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorIPNS_16__hash_node_baseIPNS_11__hash_nodeINS_12basic_stringIcNS_11char_traitsIcEENS1_IcEEEEPvEEEEEEEC2B8ne180100Ev called 30 returned 100% blocks executed 100%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorINS_11__hash_nodeINS_12basic_stringIcNS_11char_traitsIcEENS1_IcEEEEPvEEEEEC2B8ne180100Ev called 30 returned 100% blocks executed 100%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorINS_11__tree_nodeINS_12__value_typeINS_12basic_stringIcNS_11char_traitsIcEENS1_IcEEEEmEEPvEEEEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorINS_11__list_nodeINS_4pairIcPKcEEPvEEEEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorINS_12basic_stringIcNS_11char_traitsIcEENS1_IcEEEEEEEC2B8ne180100Ev called 84 returned 100% blocks executed 100%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorIPN7testing17TestEventListenerEEEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorIPN7testing8internal30ParameterizedTestSuiteInfoBaseEEEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorIPNS_16__hash_node_baseIPNS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS1_IcEEEEmEEPvEEEEEEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorINS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS1_IcEEEEmEEPvEEEEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorINS_11__tree_nodeINS_12__value_typeINS_12basic_stringIcNS_11char_traitsIcEENS1_IcEEEEN7testing8internal34TypeParameterizedTestSuiteRegistry30TypeParameterizedTestSuiteInfoEEEPvEEEEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorIwEEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorINS_11__tree_nodeINS_12basic_stringIcNS_11char_traitsIcEENS1_IcEEEEPvEEEEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorIdEEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorINS_6vectorIdNS1_IdEEEEEEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorIN7testing8internal13edit_distance8EditTypeEEEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorINS_6vectorIN7testing8internal13edit_distance8EditTypeENS1_IS6_EEEEEEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorImEEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorIN7testing14TestPartResultEEEEC2B8ne180100Ev called 48 returned 100% blocks executed 100%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorIN7testing12TestPropertyEEEEC2B8ne180100Ev called 48 returned 100% blocks executed 100%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorIPN7testing8TestInfoEEEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorIiEEEC2B8ne180100Ev called 12 returned 100% blocks executed 100%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorIPN7testing11EnvironmentEEEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorIPN7testing9TestSuiteEEEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorIPNS_16__hash_node_baseIPNS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS1_IcEEEEPN7testing9TestSuiteEEEPvEEEEEEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorINS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS1_IcEEEEPN7testing9TestSuiteEEEPvEEEEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__116__non_trivial_ifILb1ENS_9allocatorIN7testing8internal9TraceInfoEEEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+      318:   93:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR __non_trivial_if() _NOEXCEPT {}
+    $$$$$:   93-block  0
+    $$$$$:   93-block  1
+       30:   93-block  2
+       30:   93-block  3
+    $$$$$:   93-block  4
+    $$$$$:   93-block  5
+       84:   93-block  6
+        6:   93-block  7
+        6:   93-block  8
+        6:   93-block  9
+        6:   93-block 10
+        6:   93-block 11
+    $$$$$:   93-block 12
+        6:   93-block 13
+    $$$$$:   93-block 14
+    $$$$$:   93-block 15
+    $$$$$:   93-block 16
+    $$$$$:   93-block 17
+    $$$$$:   93-block 18
+       48:   93-block 19
+       48:   93-block 20
+        6:   93-block 21
+       12:   93-block 22
+        6:   93-block 23
+        6:   93-block 24
+        6:   93-block 25
+        6:   93-block 26
+    $$$$$:   93-block 27
+        -:   94:};
+        -:   95:
+        -:   96:// allocator
+        -:   97://
+        -:   98:// Note: For ABI compatibility between C++20 and previous standards, we make
+        -:   99://       allocator<void> trivial in C++20.
+        -:  100:
+        -:  101:template <class _Tp>
+        -:  102:class _LIBCPP_TEMPLATE_VIS allocator : private __non_trivial_if<!is_void<_Tp>::value, allocator<_Tp> > {
+        -:  103:  static_assert(!is_volatile<_Tp>::value, "std::allocator does not support volatile types");
+        -:  104:
+        -:  105:public:
+        -:  106:  typedef size_t size_type;
+        -:  107:  typedef ptrdiff_t difference_type;
+        -:  108:  typedef _Tp value_type;
+        -:  109:  typedef true_type propagate_on_container_move_assignment;
+        -:  110:#if _LIBCPP_STD_VER <= 23 || defined(_LIBCPP_ENABLE_CXX26_REMOVED_ALLOCATOR_MEMBERS)
+        -:  111:  _LIBCPP_DEPRECATED_IN_CXX23 typedef true_type is_always_equal;
+        -:  112:#endif
+        -:  113:
+function _ZNSt3__19allocatorIPcEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIcEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIPNS_16__hash_node_baseIPNS_11__hash_nodeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPvEEEEEC2B8ne180100Ev called 30 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorINS_11__hash_nodeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPvEEEC2B8ne180100Ev called 30 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorINS_11__tree_nodeINS_12__value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEmEEPvEEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_11__list_nodeINS_4pairIcPKcEEPvEEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEEC2B8ne180100Ev called 84 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIPN7testing17TestEventListenerEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIPN7testing8internal30ParameterizedTestSuiteInfoBaseEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIPNS_16__hash_node_baseIPNS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEmEEPvEEEEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorINS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEmEEPvEEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorINS_11__tree_nodeINS_12__value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEN7testing8internal34TypeParameterizedTestSuiteRegistry30TypeParameterizedTestSuiteInfoEEEPvEEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIwEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIcEC1B8ne180100Ev called 36 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorINS_11__tree_nodeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPvEEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIdEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_6vectorIdNS0_IdEEEEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing8internal13edit_distance8EditTypeEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_6vectorIN7testing8internal13edit_distance8EditTypeENS0_IS5_EEEEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorImEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing14TestPartResultEEC2B8ne180100Ev called 48 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIN7testing12TestPropertyEEC2B8ne180100Ev called 48 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIPN7testing8TestInfoEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIiEC2B8ne180100Ev called 12 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIPN7testing11EnvironmentEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIPN7testing9TestSuiteEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIPNS_16__hash_node_baseIPNS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPN7testing9TestSuiteEEEPvEEEEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorINS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPN7testing9TestSuiteEEEPvEEEC2B8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIN7testing8internal9TraceInfoEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+      354:  114:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 allocator() _NOEXCEPT = default;
+    $$$$$:  114-block  0
+    $$$$$:  114-block  1
+       30:  114-block  2
+       30:  114-block  3
+    $$$$$:  114-block  4
+    $$$$$:  114-block  5
+       84:  114-block  6
+        6:  114-block  7
+        6:  114-block  8
+        6:  114-block  9
+        6:  114-block 10
+        6:  114-block 11
+    $$$$$:  114-block 12
+       36:  114-block 13
+        6:  114-block 14
+    $$$$$:  114-block 15
+    $$$$$:  114-block 16
+    $$$$$:  114-block 17
+    $$$$$:  114-block 18
+    $$$$$:  114-block 19
+       48:  114-block 20
+       48:  114-block 21
+        6:  114-block 22
+       12:  114-block 23
+        6:  114-block 24
+        6:  114-block 25
+        6:  114-block 26
+        6:  114-block 27
+    $$$$$:  114-block 28
+        -:  115:
+        -:  116:  template <class _Up>
+        -:  117:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 allocator(const allocator<_Up>&) _NOEXCEPT {}
+        -:  118:
+function _ZNSt3__19allocatorIPcE8allocateB8ne180100Em called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEE8allocateB8ne180100Em called 72 returned 100% blocks executed 66%
+function _ZNSt3__19allocatorINS_11__hash_nodeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPvEEE8allocateB8ne180100Em called 6 returned 100% blocks executed 66%
+function _ZNSt3__19allocatorIPNS_16__hash_node_baseIPNS_11__hash_nodeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPvEEEEE8allocateB8ne180100Em called 6 returned 100% blocks executed 66%
+function _ZNSt3__19allocatorINS_11__tree_nodeINS_12__value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEmEEPvEEE8allocateB8ne180100Em called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_11__list_nodeINS_4pairIcPKcEEPvEEE8allocateB8ne180100Em called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIcE8allocateB8ne180100Em called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing14TestPartResultEE8allocateB8ne180100Em called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_11__tree_nodeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPvEEE8allocateB8ne180100Em called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_11__tree_nodeINS_12__value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEN7testing8internal34TypeParameterizedTestSuiteRegistry30TypeParameterizedTestSuiteInfoEEEPvEEE8allocateB8ne180100Em called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIdE8allocateB8ne180100Em called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_6vectorIdNS0_IdEEEEE8allocateB8ne180100Em called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing8internal13edit_distance8EditTypeEE8allocateB8ne180100Em called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_6vectorIN7testing8internal13edit_distance8EditTypeENS0_IS5_EEEEE8allocateB8ne180100Em called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorImE8allocateB8ne180100Em called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing12TestPropertyEE8allocateB8ne180100Em called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIPN7testing8TestInfoEE8allocateB8ne180100Em called 24 returned 100% blocks executed 66%
+function _ZNSt3__19allocatorIiE8allocateB8ne180100Em called 30 returned 100% blocks executed 66%
+function _ZNSt3__19allocatorIPN7testing17TestEventListenerEE8allocateB8ne180100Em called 6 returned 100% blocks executed 66%
+function _ZNSt3__19allocatorIPN7testing11EnvironmentEE8allocateB8ne180100Em called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing8internal9TraceInfoEE8allocateB8ne180100Em called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPN7testing9TestSuiteEEEPvEEE8allocateB8ne180100Em called 6 returned 100% blocks executed 66%
+function _ZNSt3__19allocatorIPNS_16__hash_node_baseIPNS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPN7testing9TestSuiteEEEPvEEEEE8allocateB8ne180100Em called 6 returned 100% blocks executed 66%
+function _ZNSt3__19allocatorIPN7testing9TestSuiteEE8allocateB8ne180100Em called 6 returned 100% blocks executed 66%
+      162:  119:  _LIBCPP_NODISCARD_AFTER_CXX17 _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 _Tp* allocate(size_t __n) {
+      162:  120:    if (__n > allocator_traits<allocator>::max_size(*this))
+    $$$$$:  120-block  0
+branch  0 never executed
+branch  1 never executed
+       72:  120-block  1
+branch  2 taken 0
+branch  3 taken 72
+        6:  120-block  2
+branch  4 taken 0
+branch  5 taken 6
+        6:  120-block  3
+branch  6 taken 0
+branch  7 taken 6
+    $$$$$:  120-block  4
+branch  8 never executed
+branch  9 never executed
+    $$$$$:  120-block  5
+branch 10 never executed
+branch 11 never executed
+    $$$$$:  120-block  6
+branch 12 never executed
+branch 13 never executed
+    $$$$$:  120-block  7
+branch 14 never executed
+branch 15 never executed
+    $$$$$:  120-block  8
+branch 16 never executed
+branch 17 never executed
+    $$$$$:  120-block  9
+branch 18 never executed
+branch 19 never executed
+    $$$$$:  120-block 10
+branch 20 never executed
+branch 21 never executed
+    $$$$$:  120-block 11
+branch 22 never executed
+branch 23 never executed
+    $$$$$:  120-block 12
+branch 24 never executed
+branch 25 never executed
+    $$$$$:  120-block 13
+branch 26 never executed
+branch 27 never executed
+    $$$$$:  120-block 14
+branch 28 never executed
+branch 29 never executed
+    $$$$$:  120-block 15
+branch 30 never executed
+branch 31 never executed
+       24:  120-block 16
+branch 32 taken 0
+branch 33 taken 24
+       30:  120-block 17
+branch 34 taken 0
+branch 35 taken 30
+        6:  120-block 18
+branch 36 taken 0
+branch 37 taken 6
+    $$$$$:  120-block 19
+branch 38 never executed
+branch 39 never executed
+    $$$$$:  120-block 20
+branch 40 never executed
+branch 41 never executed
+        6:  120-block 21
+branch 42 taken 0
+branch 43 taken 6
+        6:  120-block 22
+branch 44 taken 0
+branch 45 taken 6
+        6:  120-block 23
+branch 46 taken 0
+branch 47 taken 6
+    #####:  121:      __throw_bad_array_new_length();
+    $$$$$:  121-block  0
+    $$$$$:  121-block  1
+    $$$$$:  121-block  2
+    $$$$$:  121-block  3
+    $$$$$:  121-block  4
+    $$$$$:  121-block  5
+    $$$$$:  121-block  6
+    $$$$$:  121-block  7
+    $$$$$:  121-block  8
+    $$$$$:  121-block  9
+    $$$$$:  121-block 10
+    $$$$$:  121-block 11
+    $$$$$:  121-block 12
+    $$$$$:  121-block 13
+    $$$$$:  121-block 14
+    $$$$$:  121-block 15
+    $$$$$:  121-block 16
+    $$$$$:  121-block 17
+    $$$$$:  121-block 18
+    $$$$$:  121-block 19
+    $$$$$:  121-block 20
+    $$$$$:  121-block 21
+    $$$$$:  121-block 22
+    $$$$$:  121-block 23
+        -:  122:    if (__libcpp_is_constant_evaluated()) {
+        -:  123:      return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
+        -:  124:    } else {
+      162:  125:      return static_cast<_Tp*>(std::__libcpp_allocate(__n * sizeof(_Tp), _LIBCPP_ALIGNOF(_Tp)));
+    $$$$$:  125-block  0
+       72:  125-block  1
+        6:  125-block  2
+        6:  125-block  3
+    $$$$$:  125-block  4
+    $$$$$:  125-block  5
+    $$$$$:  125-block  6
+    $$$$$:  125-block  7
+    $$$$$:  125-block  8
+    $$$$$:  125-block  9
+    $$$$$:  125-block 10
+    $$$$$:  125-block 11
+    $$$$$:  125-block 12
+    $$$$$:  125-block 13
+    $$$$$:  125-block 14
+    $$$$$:  125-block 15
+       24:  125-block 16
+       30:  125-block 17
+        6:  125-block 18
+    $$$$$:  125-block 19
+    $$$$$:  125-block 20
+        6:  125-block 21
+        6:  125-block 22
+        6:  125-block 23
+        -:  126:    }
+        -:  127:  }
+        -:  128:
+        -:  129:#if _LIBCPP_STD_VER >= 23
+        -:  130:  [[nodiscard]] _LIBCPP_HIDE_FROM_ABI constexpr allocation_result<_Tp*> allocate_at_least(size_t __n) {
+        -:  131:    return {allocate(__n), __n};
+        -:  132:  }
+        -:  133:#endif
+        -:  134:
+function _ZNSt3__19allocatorIPcE10deallocateB8ne180100EPS1_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEE10deallocateB8ne180100EPS5_m called 66 returned 100% blocks executed 66%
+function _ZNSt3__19allocatorIPNS_16__hash_node_baseIPNS_11__hash_nodeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPvEEEEE10deallocateB8ne180100EPSC_m called 6 returned 100% blocks executed 66%
+function _ZNSt3__19allocatorINS_11__hash_nodeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPvEEE10deallocateB8ne180100EPS8_m called 6 returned 100% blocks executed 66%
+function _ZNSt3__19allocatorINS_11__tree_nodeINS_12__value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEmEEPvEEE10deallocateB8ne180100EPSA_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_11__list_nodeINS_4pairIcPKcEEPvEEE10deallocateB8ne180100EPS7_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_11__tree_nodeINS_12__value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEN7testing8internal34TypeParameterizedTestSuiteRegistry30TypeParameterizedTestSuiteInfoEEEPvEEE10deallocateB8ne180100EPSE_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEmEEPvEEE10deallocateB8ne180100EPSA_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIPNS_16__hash_node_baseIPNS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEmEEPvEEEEE10deallocateB8ne180100EPSE_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIPN7testing8internal30ParameterizedTestSuiteInfoBaseEE10deallocateB8ne180100EPS4_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIcE10deallocateB8ne180100EPcm called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing14TestPartResultEE10deallocateB8ne180100EPS2_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_11__tree_nodeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPvEEE10deallocateB8ne180100EPS8_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIdE10deallocateB8ne180100EPdm called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_6vectorIdNS0_IdEEEEE10deallocateB8ne180100EPS3_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing8internal13edit_distance8EditTypeEE10deallocateB8ne180100EPS4_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_6vectorIN7testing8internal13edit_distance8EditTypeENS0_IS5_EEEEE10deallocateB8ne180100EPS7_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorImE10deallocateB8ne180100EPmm called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing12TestPropertyEE10deallocateB8ne180100EPS2_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIPN7testing8TestInfoEE10deallocateB8ne180100EPS3_m called 18 returned 100% blocks executed 66%
+function _ZNSt3__19allocatorIiE10deallocateB8ne180100EPim called 18 returned 100% blocks executed 66%
+function _ZNSt3__19allocatorIPN7testing17TestEventListenerEE10deallocateB8ne180100EPS3_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIPN7testing11EnvironmentEE10deallocateB8ne180100EPS3_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing8internal9TraceInfoEE10deallocateB8ne180100EPS3_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIPN7testing9TestSuiteEE10deallocateB8ne180100EPS3_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPN7testing9TestSuiteEEEPvEEE10deallocateB8ne180100EPSD_m called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIPNS_16__hash_node_baseIPNS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPN7testing9TestSuiteEEEPvEEEEE10deallocateB8ne180100EPSH_m called 0 returned 0% blocks executed 0%
+      114:  135:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 void deallocate(_Tp* __p, size_t __n) _NOEXCEPT {
+        -:  136:    if (__libcpp_is_constant_evaluated()) {
+        -:  137:      ::operator delete(__p);
+        -:  138:    } else {
+      114:  139:      std::__libcpp_deallocate((void*)__p, __n * sizeof(_Tp), _LIBCPP_ALIGNOF(_Tp));
+    $$$$$:  139-block  0
+branch  0 never executed
+branch  1 never executed
+    $$$$$:  139-block  1
+       66:  139-block  2
+branch  2 taken 66
+branch  3 taken 0
+    $$$$$:  139-block  3
+        6:  139-block  4
+branch  4 taken 6
+branch  5 taken 0
+    $$$$$:  139-block  5
+        6:  139-block  6
+branch  6 taken 6
+branch  7 taken 0
+    $$$$$:  139-block  7
+    $$$$$:  139-block  8
+branch  8 never executed
+branch  9 never executed
+    $$$$$:  139-block  9
+    $$$$$:  139-block 10
+branch 10 never executed
+branch 11 never executed
+    $$$$$:  139-block 11
+    $$$$$:  139-block 12
+branch 12 never executed
+branch 13 never executed
+    $$$$$:  139-block 13
+    $$$$$:  139-block 14
+branch 14 never executed
+branch 15 never executed
+    $$$$$:  139-block 15
+    $$$$$:  139-block 16
+branch 16 never executed
+branch 17 never executed
+    $$$$$:  139-block 17
+    $$$$$:  139-block 18
+branch 18 never executed
+branch 19 never executed
+    $$$$$:  139-block 19
+    $$$$$:  139-block 20
+branch 20 never executed
+branch 21 never executed
+    $$$$$:  139-block 21
+    $$$$$:  139-block 22
+branch 22 never executed
+branch 23 never executed
+    $$$$$:  139-block 23
+    $$$$$:  139-block 24
+branch 24 never executed
+branch 25 never executed
+    $$$$$:  139-block 25
+    $$$$$:  139-block 26
+branch 26 never executed
+branch 27 never executed
+    $$$$$:  139-block 27
+    $$$$$:  139-block 28
+branch 28 never executed
+branch 29 never executed
+    $$$$$:  139-block 29
+    $$$$$:  139-block 30
+branch 30 never executed
+branch 31 never executed
+    $$$$$:  139-block 31
+    $$$$$:  139-block 32
+branch 32 never executed
+branch 33 never executed
+    $$$$$:  139-block 33
+    $$$$$:  139-block 34
+branch 34 never executed
+branch 35 never executed
+    $$$$$:  139-block 35
+    $$$$$:  139-block 36
+branch 36 never executed
+branch 37 never executed
+    $$$$$:  139-block 37
+       18:  139-block 38
+branch 38 taken 18
+branch 39 taken 0
+    $$$$$:  139-block 39
+       18:  139-block 40
+branch 40 taken 18
+branch 41 taken 0
+    $$$$$:  139-block 41
+    $$$$$:  139-block 42
+branch 42 never executed
+branch 43 never executed
+    $$$$$:  139-block 43
+    $$$$$:  139-block 44
+branch 44 never executed
+branch 45 never executed
+    $$$$$:  139-block 45
+    $$$$$:  139-block 46
+branch 46 never executed
+branch 47 never executed
+    $$$$$:  139-block 47
+    $$$$$:  139-block 48
+branch 48 never executed
+branch 49 never executed
+    $$$$$:  139-block 49
+    $$$$$:  139-block 50
+branch 50 never executed
+branch 51 never executed
+    $$$$$:  139-block 51
+    $$$$$:  139-block 52
+branch 52 never executed
+branch 53 never executed
+    $$$$$:  139-block 53
+        -:  140:    }
+      114:  141:  }
+    $$$$$:  141-block  0
+       66:  141-block  1
+        6:  141-block  2
+        6:  141-block  3
+    $$$$$:  141-block  4
+    $$$$$:  141-block  5
+    $$$$$:  141-block  6
+    $$$$$:  141-block  7
+    $$$$$:  141-block  8
+    $$$$$:  141-block  9
+    $$$$$:  141-block 10
+    $$$$$:  141-block 11
+    $$$$$:  141-block 12
+    $$$$$:  141-block 13
+    $$$$$:  141-block 14
+    $$$$$:  141-block 15
+    $$$$$:  141-block 16
+    $$$$$:  141-block 17
+    $$$$$:  141-block 18
+       18:  141-block 19
+       18:  141-block 20
+    $$$$$:  141-block 21
+    $$$$$:  141-block 22
+    $$$$$:  141-block 23
+    $$$$$:  141-block 24
+    $$$$$:  141-block 25
+    $$$$$:  141-block 26
+        -:  142:
+        -:  143:  // C++20 Removed members
+        -:  144:#if _LIBCPP_STD_VER <= 17 || defined(_LIBCPP_ENABLE_CXX20_REMOVED_ALLOCATOR_MEMBERS)
+        -:  145:  _LIBCPP_DEPRECATED_IN_CXX17 typedef _Tp* pointer;
+        -:  146:  _LIBCPP_DEPRECATED_IN_CXX17 typedef const _Tp* const_pointer;
+        -:  147:  _LIBCPP_DEPRECATED_IN_CXX17 typedef _Tp& reference;
+        -:  148:  _LIBCPP_DEPRECATED_IN_CXX17 typedef const _Tp& const_reference;
+        -:  149:
+        -:  150:  template <class _Up>
+        -:  151:  struct _LIBCPP_DEPRECATED_IN_CXX17 rebind {
+        -:  152:    typedef allocator<_Up> other;
+        -:  153:  };
+        -:  154:
+        -:  155:  _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_HIDE_FROM_ABI pointer address(reference __x) const _NOEXCEPT {
+        -:  156:    return std::addressof(__x);
+        -:  157:  }
+        -:  158:  _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_HIDE_FROM_ABI const_pointer address(const_reference __x) const _NOEXCEPT {
+        -:  159:    return std::addressof(__x);
+        -:  160:  }
+        -:  161:
+        -:  162:  _LIBCPP_NODISCARD_AFTER_CXX17 _LIBCPP_HIDE_FROM_ABI _LIBCPP_DEPRECATED_IN_CXX17 _Tp*
+        -:  163:  allocate(size_t __n, const void*) {
+        -:  164:    return allocate(__n);
+        -:  165:  }
+        -:  166:
+function _ZNKSt3__19allocatorIPcE8max_sizeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__19allocatorINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEE8max_sizeB8ne180100Ev called 144 returned 100% blocks executed 100%
+function _ZNKSt3__19allocatorINS_11__hash_nodeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPvEEE8max_sizeB8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNKSt3__19allocatorIPNS_16__hash_node_baseIPNS_11__hash_nodeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPvEEEEE8max_sizeB8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNKSt3__19allocatorINS_11__tree_nodeINS_12__value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEmEEPvEEE8max_sizeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__19allocatorINS_11__list_nodeINS_4pairIcPKcEEPvEEE8max_sizeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__19allocatorIcE8max_sizeB8ne180100Ev called 36 returned 100% blocks executed 100%
+function _ZNKSt3__19allocatorIN7testing14TestPartResultEE8max_sizeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__19allocatorINS_11__tree_nodeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPvEEE8max_sizeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__19allocatorINS_11__tree_nodeINS_12__value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEN7testing8internal34TypeParameterizedTestSuiteRegistry30TypeParameterizedTestSuiteInfoEEEPvEEE8max_sizeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__19allocatorIdE8max_sizeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__19allocatorINS_6vectorIdNS0_IdEEEEE8max_sizeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__19allocatorIN7testing8internal13edit_distance8EditTypeEE8max_sizeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__19allocatorINS_6vectorIN7testing8internal13edit_distance8EditTypeENS0_IS5_EEEEE8max_sizeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__19allocatorImE8max_sizeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__19allocatorIN7testing12TestPropertyEE8max_sizeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__19allocatorIPN7testing8TestInfoEE8max_sizeB8ne180100Ev called 48 returned 100% blocks executed 100%
+function _ZNKSt3__19allocatorIiE8max_sizeB8ne180100Ev called 60 returned 100% blocks executed 100%
+function _ZNKSt3__19allocatorIPN7testing17TestEventListenerEE8max_sizeB8ne180100Ev called 12 returned 100% blocks executed 100%
+function _ZNKSt3__19allocatorIPN7testing11EnvironmentEE8max_sizeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__19allocatorIN7testing8internal9TraceInfoEE8max_sizeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__19allocatorINS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPN7testing9TestSuiteEEEPvEEE8max_sizeB8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNKSt3__19allocatorIPNS_16__hash_node_baseIPNS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPN7testing9TestSuiteEEEPvEEEEE8max_sizeB8ne180100Ev called 6 returned 100% blocks executed 100%
+function _ZNKSt3__19allocatorIPN7testing9TestSuiteEE8max_sizeB8ne180100Ev called 12 returned 100% blocks executed 100%
+      336:  167:  _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_HIDE_FROM_ABI size_type max_size() const _NOEXCEPT {
+      336:  168:    return size_type(~0) / sizeof(_Tp);
+    $$$$$:  168-block  0
+      144:  168-block  1
+        6:  168-block  2
+        6:  168-block  3
+    $$$$$:  168-block  4
+    $$$$$:  168-block  5
+       36:  168-block  6
+    $$$$$:  168-block  7
+    $$$$$:  168-block  8
+    $$$$$:  168-block  9
+    $$$$$:  168-block 10
+    $$$$$:  168-block 11
+    $$$$$:  168-block 12
+    $$$$$:  168-block 13
+    $$$$$:  168-block 14
+    $$$$$:  168-block 15
+       48:  168-block 16
+       60:  168-block 17
+       12:  168-block 18
+    $$$$$:  168-block 19
+    $$$$$:  168-block 20
+        6:  168-block 21
+        6:  168-block 22
+       12:  168-block 23
+        -:  169:  }
+        -:  170:
+        -:  171:  template <class _Up, class... _Args>
+function _ZNSt3__19allocatorIPcE9constructB8ne180100IS1_JS1_EEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEE9constructB8ne180100IS5_JS5_EEEvPT_DpOT0_ called 108 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorINS_11__hash_nodeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPvEEE9constructB8ne180100IS6_JS6_EEEvPT_DpOT0_ called 6 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorINS_11__tree_nodeINS_12__value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEmEEPvEEE9constructB8ne180100INS_4pairIKS7_mEEJRKNS_21piecewise_construct_tENS_5tupleIJRSE_EEENSJ_IJEEEEEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_11__list_nodeINS_4pairIcPKcEEPvEEE9constructB8ne180100IS5_JS5_EEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEE9constructB8ne180100IS5_JRKPKcEEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEE9constructB8ne180100IS5_JRKS5_EEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEE9constructB8ne180100IS5_JRS5_EEEvPT_DpOT0_ called 18 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIN7testing14TestPartResultEE9constructB8ne180100IS2_JRKS2_EEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing14TestPartResultEE9constructB8ne180100IS2_JS2_EEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_11__tree_nodeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPvEEE9constructB8ne180100IS6_JRKS6_EEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_11__tree_nodeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPvEEE9constructB8ne180100IS6_JS6_EEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_11__tree_nodeINS_12__value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEN7testing8internal34TypeParameterizedTestSuiteRegistry30TypeParameterizedTestSuiteInfoEEEPvEEE9constructB8ne180100INS_4pairIKS7_SB_EEJS7_SB_EEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIdE9constructB8ne180100IdJEEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_6vectorIdNS0_IdEEEEE9constructB8ne180100IS3_JRKS3_EEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing8internal13edit_distance8EditTypeEE9constructB8ne180100IS4_JEEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_6vectorIN7testing8internal13edit_distance8EditTypeENS0_IS5_EEEEE9constructB8ne180100IS7_JRKS7_EEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing8internal13edit_distance8EditTypeEE9constructB8ne180100IS4_JRKS4_EEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorImE9constructB8ne180100ImJmEEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing12TestPropertyEE9constructB8ne180100IS2_JRKS2_EEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing12TestPropertyEE9constructB8ne180100IS2_JS2_EEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIPN7testing8TestInfoEE9constructB8ne180100IS3_JRKS3_EEEvPT_DpOT0_ called 36 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIiE9constructB8ne180100IiJiEEEvPT_DpOT0_ called 42 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIPN7testing17TestEventListenerEE9constructB8ne180100IS3_JRKS3_EEEvPT_DpOT0_ called 6 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIPN7testing11EnvironmentEE9constructB8ne180100IS3_JRKS3_EEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing8internal9TraceInfoEE9constructB8ne180100IS3_JRKS3_EEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing8internal9TraceInfoEE9constructB8ne180100IS3_JS3_EEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEPN7testing9TestSuiteEEEPvEEE9constructB8ne180100INS_4pairIKS7_SA_EEJRSH_RKSA_EEEvPT_DpOT0_ called 6 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIPN7testing9TestSuiteEE9constructB8ne180100IS3_JRKS3_EEEvPT_DpOT0_ called 6 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIPN7testing9TestSuiteEE9constructB8ne180100IS3_JS3_EEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+      228:  172:  _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_HIDE_FROM_ABI void construct(_Up* __p, _Args&&... __args) {
+      228:  173:    ::new ((void*)__p) _Up(std::forward<_Args>(__args)...);
+      228:  174:  }
+    $$$$$:  174-block  0
+      108:  174-block  1
+        6:  174-block  2
+    $$$$$:  174-block  3
+    $$$$$:  174-block  4
+    $$$$$:  174-block  5
+    $$$$$:  174-block  6
+       18:  174-block  7
+    $$$$$:  174-block  8
+    $$$$$:  174-block  9
+    $$$$$:  174-block 10
+    $$$$$:  174-block 11
+    $$$$$:  174-block 12
+    $$$$$:  174-block 13
+    $$$$$:  174-block 14
+    $$$$$:  174-block 15
+    $$$$$:  174-block 16
+    $$$$$:  174-block 17
+    $$$$$:  174-block 18
+    $$$$$:  174-block 19
+    $$$$$:  174-block 20
+       36:  174-block 21
+       42:  174-block 22
+        6:  174-block 23
+    $$$$$:  174-block 24
+    $$$$$:  174-block 25
+    $$$$$:  174-block 26
+        6:  174-block 27
+        6:  174-block 28
+    $$$$$:  174-block 29
+        -:  175:
+function _ZNSt3__19allocatorIPcE7destroyB8ne180100EPS1_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_12basic_stringIcNS_11char_traitsIcEENS0_IcEEEEE7destroyB8ne180100EPS5_ called 108 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIPN7testing8internal30ParameterizedTestSuiteInfoBaseEE7destroyB8ne180100EPS4_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing14TestPartResultEE7destroyB8ne180100EPS2_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIdE7destroyB8ne180100EPd called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_6vectorIdNS0_IdEEEEE7destroyB8ne180100EPS3_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing8internal13edit_distance8EditTypeEE7destroyB8ne180100EPS4_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorINS_6vectorIN7testing8internal13edit_distance8EditTypeENS0_IS5_EEEEE7destroyB8ne180100EPS7_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorImE7destroyB8ne180100EPm called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing12TestPropertyEE7destroyB8ne180100EPS2_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIPN7testing8TestInfoEE7destroyB8ne180100EPS3_ called 42 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIiE7destroyB8ne180100EPi called 42 returned 100% blocks executed 100%
+function _ZNSt3__19allocatorIPN7testing17TestEventListenerEE7destroyB8ne180100EPS3_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIPN7testing11EnvironmentEE7destroyB8ne180100EPS3_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIN7testing8internal9TraceInfoEE7destroyB8ne180100EPS3_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__19allocatorIPN7testing9TestSuiteEE7destroyB8ne180100EPS3_ called 0 returned 0% blocks executed 0%
+      192:  176:  _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_HIDE_FROM_ABI void destroy(pointer __p) { __p->~_Tp(); }
+    $$$$$:  176-block  0
+      108:  176-block  1
+    $$$$$:  176-block  2
+    $$$$$:  176-block  3
+    $$$$$:  176-block  4
+    $$$$$:  176-block  5
+    $$$$$:  176-block  6
+    $$$$$:  176-block  7
+    $$$$$:  176-block  8
+    $$$$$:  176-block  9
+       42:  176-block 10
+       42:  176-block 11
+    $$$$$:  176-block 12
+    $$$$$:  176-block 13
+    $$$$$:  176-block 14
+    $$$$$:  176-block 15
+        -:  177:#endif
+        -:  178:};
+        -:  179:
+        -:  180:template <class _Tp>
+        -:  181:class _LIBCPP_TEMPLATE_VIS allocator<const _Tp>
+        -:  182:    : private __non_trivial_if<!is_void<_Tp>::value, allocator<const _Tp> > {
+        -:  183:  static_assert(!is_volatile<_Tp>::value, "std::allocator does not support volatile types");
+        -:  184:
+        -:  185:public:
+        -:  186:  typedef size_t size_type;
+        -:  187:  typedef ptrdiff_t difference_type;
+        -:  188:  typedef const _Tp value_type;
+        -:  189:  typedef true_type propagate_on_container_move_assignment;
+        -:  190:#if _LIBCPP_STD_VER <= 23 || defined(_LIBCPP_ENABLE_CXX26_REMOVED_ALLOCATOR_MEMBERS)
+        -:  191:  _LIBCPP_DEPRECATED_IN_CXX23 typedef true_type is_always_equal;
+        -:  192:#endif
+        -:  193:
+        -:  194:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 allocator() _NOEXCEPT = default;
+        -:  195:
+        -:  196:  template <class _Up>
+        -:  197:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 allocator(const allocator<_Up>&) _NOEXCEPT {}
+        -:  198:
+        -:  199:  _LIBCPP_NODISCARD_AFTER_CXX17 _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 const _Tp* allocate(size_t __n) {
+        -:  200:    if (__n > allocator_traits<allocator>::max_size(*this))
+        -:  201:      __throw_bad_array_new_length();
+        -:  202:    if (__libcpp_is_constant_evaluated()) {
+        -:  203:      return static_cast<const _Tp*>(::operator new(__n * sizeof(_Tp)));
+        -:  204:    } else {
+        -:  205:      return static_cast<const _Tp*>(std::__libcpp_allocate(__n * sizeof(_Tp), _LIBCPP_ALIGNOF(_Tp)));
+        -:  206:    }
+        -:  207:  }
+        -:  208:
+        -:  209:#if _LIBCPP_STD_VER >= 23
+        -:  210:  [[nodiscard]] _LIBCPP_HIDE_FROM_ABI constexpr allocation_result<const _Tp*> allocate_at_least(size_t __n) {
+        -:  211:    return {allocate(__n), __n};
+        -:  212:  }
+        -:  213:#endif
+        -:  214:
+        -:  215:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 void deallocate(const _Tp* __p, size_t __n) {
+        -:  216:    if (__libcpp_is_constant_evaluated()) {
+        -:  217:      ::operator delete(const_cast<_Tp*>(__p));
+        -:  218:    } else {
+        -:  219:      std::__libcpp_deallocate((void*)const_cast<_Tp*>(__p), __n * sizeof(_Tp), _LIBCPP_ALIGNOF(_Tp));
+        -:  220:    }
+        -:  221:  }
+        -:  222:
+        -:  223:  // C++20 Removed members
+        -:  224:#if _LIBCPP_STD_VER <= 17 || defined(_LIBCPP_ENABLE_CXX20_REMOVED_ALLOCATOR_MEMBERS)
+        -:  225:  _LIBCPP_DEPRECATED_IN_CXX17 typedef const _Tp* pointer;
+        -:  226:  _LIBCPP_DEPRECATED_IN_CXX17 typedef const _Tp* const_pointer;
+        -:  227:  _LIBCPP_DEPRECATED_IN_CXX17 typedef const _Tp& reference;
+        -:  228:  _LIBCPP_DEPRECATED_IN_CXX17 typedef const _Tp& const_reference;
+        -:  229:
+        -:  230:  template <class _Up>
+        -:  231:  struct _LIBCPP_DEPRECATED_IN_CXX17 rebind {
+        -:  232:    typedef allocator<_Up> other;
+        -:  233:  };
+        -:  234:
+        -:  235:  _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_HIDE_FROM_ABI const_pointer address(const_reference __x) const _NOEXCEPT {
+        -:  236:    return std::addressof(__x);
+        -:  237:  }
+        -:  238:
+        -:  239:  _LIBCPP_NODISCARD_AFTER_CXX17 _LIBCPP_HIDE_FROM_ABI _LIBCPP_DEPRECATED_IN_CXX17 const _Tp*
+        -:  240:  allocate(size_t __n, const void*) {
+        -:  241:    return allocate(__n);
+        -:  242:  }
+        -:  243:
+        -:  244:  _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_HIDE_FROM_ABI size_type max_size() const _NOEXCEPT {
+        -:  245:    return size_type(~0) / sizeof(_Tp);
+        -:  246:  }
+        -:  247:
+        -:  248:  template <class _Up, class... _Args>
+        -:  249:  _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_HIDE_FROM_ABI void construct(_Up* __p, _Args&&... __args) {
+        -:  250:    ::new ((void*)__p) _Up(std::forward<_Args>(__args)...);
+        -:  251:  }
+        -:  252:
+        -:  253:  _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_HIDE_FROM_ABI void destroy(pointer __p) { __p->~_Tp(); }
+        -:  254:#endif
+        -:  255:};
+        -:  256:
+        -:  257:template <class _Tp, class _Up>
+        -:  258:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 bool
+        -:  259:operator==(const allocator<_Tp>&, const allocator<_Up>&) _NOEXCEPT {
+        -:  260:  return true;
+        -:  261:}
+        -:  262:
+        -:  263:#if _LIBCPP_STD_VER <= 17
+        -:  264:
+        -:  265:template <class _Tp, class _Up>
+        -:  266:inline _LIBCPP_HIDE_FROM_ABI bool operator!=(const allocator<_Tp>&, const allocator<_Up>&) _NOEXCEPT {
+        -:  267:  return false;
+        -:  268:}
+        -:  269:
+        -:  270:#endif
+        -:  271:
+        -:  272:_LIBCPP_END_NAMESPACE_STD
+        -:  273:
+        -:  274:#endif // _LIBCPP___MEMORY_ALLOCATOR_H

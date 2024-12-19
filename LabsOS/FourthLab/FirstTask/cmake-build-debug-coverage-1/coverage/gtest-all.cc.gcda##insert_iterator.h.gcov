@@ -1,0 +1,124 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__iterator/insert_iterator.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// -*- C++ -*-
+        -:    2://===----------------------------------------------------------------------===//
+        -:    3://
+        -:    4:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    5:// See https://llvm.org/LICENSE.txt for license information.
+        -:    6:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    7://
+        -:    8://===----------------------------------------------------------------------===//
+        -:    9:
+        -:   10:#ifndef _LIBCPP___ITERATOR_INSERT_ITERATOR_H
+        -:   11:#define _LIBCPP___ITERATOR_INSERT_ITERATOR_H
+        -:   12:
+        -:   13:#include <__config>
+        -:   14:#include <__iterator/iterator.h>
+        -:   15:#include <__iterator/iterator_traits.h>
+        -:   16:#include <__memory/addressof.h>
+        -:   17:#include <__ranges/access.h>
+        -:   18:#include <__utility/move.h>
+        -:   19:#include <cstddef>
+        -:   20:
+        -:   21:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   22:#  pragma GCC system_header
+        -:   23:#endif
+        -:   24:
+        -:   25:_LIBCPP_PUSH_MACROS
+        -:   26:#include <__undef_macros>
+        -:   27:
+        -:   28:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   29:
+        -:   30:#if _LIBCPP_STD_VER >= 20
+        -:   31:template <class _Container>
+        -:   32:using __insert_iterator_iter_t = ranges::iterator_t<_Container>;
+        -:   33:#else
+        -:   34:template <class _Container>
+        -:   35:using __insert_iterator_iter_t = typename _Container::iterator;
+        -:   36:#endif
+        -:   37:
+        -:   38:_LIBCPP_SUPPRESS_DEPRECATED_PUSH
+        -:   39:template <class _Container>
+        -:   40:class _LIBCPP_TEMPLATE_VIS insert_iterator
+        -:   41:#if _LIBCPP_STD_VER <= 14 || !defined(_LIBCPP_ABI_NO_ITERATOR_BASES)
+        -:   42:    : public iterator<output_iterator_tag, void, void, void, void>
+        -:   43:#endif
+        -:   44:{
+        -:   45:  _LIBCPP_SUPPRESS_DEPRECATED_POP
+        -:   46:
+        -:   47:protected:
+        -:   48:  _Container* container;
+        -:   49:  __insert_iterator_iter_t<_Container> iter;
+        -:   50:
+        -:   51:public:
+        -:   52:  typedef output_iterator_tag iterator_category;
+        -:   53:  typedef void value_type;
+        -:   54:#if _LIBCPP_STD_VER >= 20
+        -:   55:  typedef ptrdiff_t difference_type;
+        -:   56:#else
+        -:   57:  typedef void difference_type;
+        -:   58:#endif
+        -:   59:  typedef void pointer;
+        -:   60:  typedef void reference;
+        -:   61:  typedef _Container container_type;
+        -:   62:
+        -:   63:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20
+function _ZNSt3__115insert_iteratorINS_6vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS5_IS7_EEEEEC1B8ne180100ERS9_NS_11__wrap_iterIPS7_EE called 18 returned 100% blocks executed 100%
+function _ZNSt3__115insert_iteratorINS_6vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS5_IS7_EEEEEC2B8ne180100ERS9_NS_11__wrap_iterIPS7_EE called 18 returned 100% blocks executed 100%
+function _ZNSt3__115insert_iteratorINS_13unordered_setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4hashIS7_EENS_8equal_toIS7_EENS5_IS7_EEEEEC1B8ne180100ERSD_NS_21__hash_const_iteratorIPNS_11__hash_nodeIS7_PvEEEE called 18 returned 100% blocks executed 100%
+function _ZNSt3__115insert_iteratorINS_13unordered_setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4hashIS7_EENS_8equal_toIS7_EENS5_IS7_EEEEEC2B8ne180100ERSD_NS_21__hash_const_iteratorIPNS_11__hash_nodeIS7_PvEEEE called 18 returned 100% blocks executed 100%
+       72:   64:  insert_iterator(_Container& __x, __insert_iterator_iter_t<_Container> __i)
+       72:   65:      : container(std::addressof(__x)), iter(__i) {}
+       18:   65-block  0
+       18:   65-block  1
+       18:   65-block  2
+       18:   65-block  3
+        -:   66:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 insert_iterator&
+        -:   67:  operator=(const typename _Container::value_type& __value) {
+        -:   68:    iter = container->insert(iter, __value);
+        -:   69:    ++iter;
+        -:   70:    return *this;
+        -:   71:  }
+        -:   72:#ifndef _LIBCPP_CXX03_LANG
+        -:   73:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 insert_iterator&
+function _ZNSt3__115insert_iteratorINS_6vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS5_IS7_EEEEEaSB8ne180100EOS7_ called 24 returned 100% blocks executed 100%
+function _ZNSt3__115insert_iteratorINS_13unordered_setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4hashIS7_EENS_8equal_toIS7_EENS5_IS7_EEEEEaSB8ne180100EOS7_ called 6 returned 100% blocks executed 100%
+       30:   74:  operator=(typename _Container::value_type&& __value) {
+       30:   75:    iter = container->insert(iter, std::move(__value));
+       30:   76:    ++iter;
+       30:   77:    return *this;
+       24:   77-block  0
+        6:   77-block  1
+        -:   78:  }
+        -:   79:#endif // _LIBCPP_CXX03_LANG
+function _ZNSt3__115insert_iteratorINS_6vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS5_IS7_EEEEEdeB8ne180100Ev called 24 returned 100% blocks executed 100%
+function _ZNSt3__115insert_iteratorINS_13unordered_setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4hashIS7_EENS_8equal_toIS7_EENS5_IS7_EEEEEdeB8ne180100Ev called 6 returned 100% blocks executed 100%
+       30:   80:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 insert_iterator& operator*() { return *this; }
+       24:   80-block  0
+        6:   80-block  1
+function _ZNSt3__115insert_iteratorINS_6vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS5_IS7_EEEEEppB8ne180100Ev called 24 returned 100% blocks executed 100%
+function _ZNSt3__115insert_iteratorINS_13unordered_setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4hashIS7_EENS_8equal_toIS7_EENS5_IS7_EEEEEppB8ne180100Ev called 6 returned 100% blocks executed 100%
+       30:   81:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 insert_iterator& operator++() { return *this; }
+       24:   81-block  0
+        6:   81-block  1
+        -:   82:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 insert_iterator& operator++(int) { return *this; }
+        -:   83:};
+        -:   84:
+        -:   85:template <class _Container>
+        -:   86:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 insert_iterator<_Container>
+function _ZNSt3__18inserterB8ne180100INS_6vectorINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS5_IS7_EEEEEENS_15insert_iteratorIT_EERSB_NSB_8iteratorE called 18 returned 100% blocks executed 100%
+function _ZNSt3__18inserterB8ne180100INS_13unordered_setINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEENS_4hashIS7_EENS_8equal_toIS7_EENS5_IS7_EEEEEENS_15insert_iteratorIT_EERSF_NSF_8iteratorE called 18 returned 100% blocks executed 100%
+       36:   87:inserter(_Container& __x, __insert_iterator_iter_t<_Container> __i) {
+       36:   88:  return insert_iterator<_Container>(__x, __i);
+       18:   88-block  0
+       18:   88-block  1
+        -:   89:}
+        -:   90:
+        -:   91:_LIBCPP_END_NAMESPACE_STD
+        -:   92:
+        -:   93:_LIBCPP_POP_MACROS
+        -:   94:
+        -:   95:#endif // _LIBCPP___ITERATOR_INSERT_ITERATOR_H

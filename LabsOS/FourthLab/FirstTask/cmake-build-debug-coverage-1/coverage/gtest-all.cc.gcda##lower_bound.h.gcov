@@ -1,0 +1,84 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/lower_bound.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___ALGORITHM_LOWER_BOUND_H
+        -:   10:#define _LIBCPP___ALGORITHM_LOWER_BOUND_H
+        -:   11:
+        -:   12:#include <__algorithm/comp.h>
+        -:   13:#include <__algorithm/half_positive.h>
+        -:   14:#include <__algorithm/iterator_operations.h>
+        -:   15:#include <__config>
+        -:   16:#include <__functional/identity.h>
+        -:   17:#include <__functional/invoke.h>
+        -:   18:#include <__iterator/advance.h>
+        -:   19:#include <__iterator/distance.h>
+        -:   20:#include <__iterator/iterator_traits.h>
+        -:   21:#include <__type_traits/is_callable.h>
+        -:   22:#include <__type_traits/remove_reference.h>
+        -:   23:
+        -:   24:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   25:#  pragma GCC system_header
+        -:   26:#endif
+        -:   27:
+        -:   28:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   29:
+        -:   30:template <class _AlgPolicy, class _Iter, class _Sent, class _Type, class _Proj, class _Comp>
+        -:   31:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 _Iter
+function _ZNSt3__113__lower_boundB8ne180100INS_17_ClassicAlgPolicyENS_11__wrap_iterIPPN7testing8TestInfoEEES7_S5_NS_10__identityEZNS3_9TestSuite3RunEvE3$_0EET0_SB_T1_RKT2_RT4_RT3_ called 0 returned 0% blocks executed 0%
+    #####:   32:__lower_bound(_Iter __first, _Sent __last, const _Type& __value, _Comp& __comp, _Proj& __proj) {
+    #####:   33:  auto __len = _IterOps<_AlgPolicy>::distance(__first, __last);
+        -:   34:
+    #####:   35:  while (__len != 0) {
+    $$$$$:   35-block  0
+    $$$$$:   35-block  1
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   35-block  2
+    #####:   36:    auto __l2 = std::__half_positive(__len);
+    #####:   37:    _Iter __m = __first;
+    #####:   38:    _IterOps<_AlgPolicy>::advance(__m, __l2);
+    #####:   39:    if (std::__invoke(__comp, std::__invoke(__proj, *__m), __value)) {
+    $$$$$:   39-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   40:      __first = ++__m;
+    #####:   41:      __len -= __l2 + 1;
+    #####:   42:    } else {
+    $$$$$:   42-block  0
+    #####:   43:      __len = __l2;
+    $$$$$:   43-block  0
+        -:   44:    }
+        -:   45:  }
+    #####:   46:  return __first;
+    $$$$$:   46-block  0
+        -:   47:}
+        -:   48:
+        -:   49:template <class _ForwardIterator, class _Tp, class _Compare>
+        -:   50:_LIBCPP_NODISCARD_EXT inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 _ForwardIterator
+function _ZNSt3__111lower_boundB8ne180100INS_11__wrap_iterIPPN7testing8TestInfoEEES4_ZNS2_9TestSuite3RunEvE3$_0EET_S9_S9_RKT0_T1_ called 0 returned 0% blocks executed 0%
+    #####:   51:lower_bound(_ForwardIterator __first, _ForwardIterator __last, const _Tp& __value, _Compare __comp) {
+        -:   52:  static_assert(__is_callable<_Compare, decltype(*__first), const _Tp&>::value, "The comparator has to be callable");
+    #####:   53:  auto __proj = std::__identity();
+    #####:   54:  return std::__lower_bound<_ClassicAlgPolicy>(__first, __last, __value, __comp, __proj);
+    $$$$$:   54-block  0
+        -:   55:}
+        -:   56:
+        -:   57:template <class _ForwardIterator, class _Tp>
+        -:   58:_LIBCPP_NODISCARD_EXT inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 _ForwardIterator
+        -:   59:lower_bound(_ForwardIterator __first, _ForwardIterator __last, const _Tp& __value) {
+        -:   60:  return std::lower_bound(__first, __last, __value, __less<>());
+        -:   61:}
+        -:   62:
+        -:   63:_LIBCPP_END_NAMESPACE_STD
+        -:   64:
+        -:   65:#endif // _LIBCPP___ALGORITHM_LOWER_BOUND_H

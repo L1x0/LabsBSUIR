@@ -1,0 +1,252 @@
+        -:    0:Source:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/memory_manager.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/CMakeFiles/tests_for_lab.dir/TestsForLab.cpp.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/CMakeFiles/tests_for_lab.dir/TestsForLab.cpp.gcda
+        -:    0:Runs:6
+        -:    0:Programs:1
+        -:    1://
+        -:    2:// Created by Артём Астахов on 15.12.24.
+        -:    3://
+        -:    4:
+        -:    5:#ifndef MEMORY_MANAGER_H
+        -:    6:#define MEMORY_MANAGER_H
+        -:    7:
+        -:    8:#include <iostream>
+        -:    9:#include <vector>
+        -:   10:#include <map>
+        -:   11:#include <stdexcept>
+        -:   12:#include <cstring>
+        -:   13:
+        -:   14:class MemoryManager {
+        -:   15:private:
+        -:   16:    size_t totalMemory;
+        -:   17:    size_t usedMemory;
+        -:   18:    void* baseMemory; // Базовый блок памяти
+        -:   19:    std::map<void*, size_t> allocatedBlocks; // Адрес блока -> размер блока
+        -:   20:    std::vector<std::pair<void*, size_t>> freeBlocks; // Адрес блока -> размер блока
+        -:   21:
+        -:   22:public:
+function _ZN13MemoryManagerC1Em called 6 returned 100% blocks executed 100%
+function _ZN13MemoryManagerC2Em called 6 returned 100% blocks executed 36%
+       12:   23:    explicit MemoryManager(size_t memorySize) : totalMemory(memorySize), usedMemory(0) {
+        6:   24:        baseMemory = malloc(memorySize); // Выделение единого блока памяти
+        6:   24-block  0
+branch  0 taken 6
+branch  1 taken 0
+        6:   25:        if (!baseMemory) {
+        6:   25-block  0
+branch  0 taken 6
+branch  1 taken 0
+    #####:   26:            throw std::runtime_error("Ошибка инициализации памяти");
+    $$$$$:   26-block  0
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   26-block  1
+branch  2 never executed
+branch  3 never executed
+    $$$$$:   26-block  2
+        -:   27:        }
+        6:   28:        freeBlocks.emplace_back(baseMemory, memorySize);
+        6:   28-block  0
+branch  0 taken 6
+branch  1 taken 0
+       12:   29:    }
+        6:   29-block  0
+    $$$$$:   29-block  1
+        6:   29-block  2
+    $$$$$:   29-block  3
+    $$$$$:   29-block  4
+        -:   30:
+function _ZN13MemoryManagerD1Ev called 6 returned 100% blocks executed 100%
+function _ZN13MemoryManagerD2Ev called 6 returned 100% blocks executed 66%
+       12:   31:    ~MemoryManager() {
+        6:   32:        free(baseMemory); // Освобождаем только базовый блок
+        6:   32-block  0
+branch  0 taken 6
+branch  1 taken 0
+    $$$$$:   32-block  1
+       12:   33:    }
+        6:   33-block  0
+        6:   33-block  1
+        -:   34:
+        -:   35:    // Выделение блока памяти
+function _ZN13MemoryManager8allocateEm called 8 returned 100% blocks executed 83%
+        8:   36:    void* allocate(size_t size) {
+        9:   37:        for (auto it = freeBlocks.begin(); it != freeBlocks.end(); ++it) {
+        8:   37-block  0
+        9:   37-block  1
+branch  0 taken 8
+branch  1 taken 1
+        1:   37-block  2
+        8:   38:            if (it->second >= size) {
+        8:   38-block  0
+branch  0 taken 7
+branch  1 taken 1
+        7:   39:                void* block = it->first;
+        7:   40:                size_t remaining = it->second - size;
+        -:   41:
+        -:   42:                // Удаляем текущий свободный блок
+        7:   43:                freeBlocks.erase(it);
+        -:   44:
+        -:   45:                // Если осталась свободная память, добавляем её обратно
+        7:   46:                if (remaining > 0) {
+        7:   46-block  0
+branch  0 taken 0
+branch  1 taken 7
+        7:   47:                    void* remainingBlock = static_cast<char*>(block) + size;
+        7:   48:                    freeBlocks.emplace_back(remainingBlock, remaining);
+        7:   49:                }
+        7:   49-block  0
+        -:   50:
+        7:   51:                allocatedBlocks[block] = size;
+        7:   52:                usedMemory += size;
+        7:   53:                return block;
+        7:   53-block  0
+        -:   54:            }
+        1:   55:        }
+        1:   55-block  0
+        -:   56:
+        1:   57:        throw std::runtime_error("Недостаточно памяти для выделения блока");
+        1:   57-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   57-block  1
+    $$$$$:   57-block  2
+    $$$$$:   57-block  3
+    #####:   58:    }
+        -:   59:
+        -:   60:    // Освобождение блока памяти
+function _ZN13MemoryManager10deallocateEPv called 8 returned 100% blocks executed 66%
+        8:   61:    void deallocate(void* block) {
+        8:   62:        auto it = allocatedBlocks.find(block);
+        8:   63:        if (it == allocatedBlocks.end()) {
+        8:   63-block  0
+branch  0 taken 7
+branch  1 taken 1
+        1:   64:            throw std::runtime_error("Блок не найден или не был выделен");
+        1:   64-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   64-block  1
+    $$$$$:   64-block  2
+    $$$$$:   64-block  3
+        -:   65:        }
+        -:   66:
+        7:   67:        size_t size = it->second;
+        7:   68:        allocatedBlocks.erase(it);
+        7:   69:        usedMemory -= size;
+        -:   70:
+        7:   71:        freeBlocks.emplace_back(block, size);
+        7:   72:    }
+        7:   72-block  0
+        -:   73:
+        -:   74:    // Запись данных в блок памяти
+function _ZN13MemoryManager5writeEPvPKvm called 2 returned 100% blocks executed 50%
+        2:   75:    void write(void* block, const void* data, size_t size) {
+        2:   76:        auto it = allocatedBlocks.find(block);
+        2:   77:        if (it == allocatedBlocks.end()) {
+        2:   77-block  0
+branch  0 taken 2
+branch  1 taken 0
+    #####:   78:            throw std::runtime_error("Блок не найден или не был выделен");
+    $$$$$:   78-block  0
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   78-block  1
+    $$$$$:   78-block  2
+    $$$$$:   78-block  3
+        -:   79:        }
+        -:   80:
+        2:   81:        if (size > it->second) {
+        2:   81-block  0
+branch  0 taken 1
+branch  1 taken 1
+        1:   82:            throw std::runtime_error("Размер данных превышает размер блока");
+        1:   82-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   82-block  1
+    $$$$$:   82-block  2
+        -:   83:        }
+        -:   84:
+        1:   85:        memcpy(block, data, size);
+        1:   86:    }
+        1:   86-block  0
+        -:   87:
+        -:   88:    // Чтение данных из блока памяти
+function _ZN13MemoryManager4readEPvS0_m called 1 returned 100% blocks executed 30%
+        1:   89:    void read(void* block, void* buffer, size_t size) {
+        1:   90:        auto it = allocatedBlocks.find(block);
+        1:   91:        if (it == allocatedBlocks.end()) {
+        1:   91-block  0
+branch  0 taken 1
+branch  1 taken 0
+    #####:   92:            throw std::runtime_error("Блок не найден или не был выделен");
+    $$$$$:   92-block  0
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   92-block  1
+    $$$$$:   92-block  2
+    $$$$$:   92-block  3
+        -:   93:        }
+        -:   94:
+        1:   95:        if (size > it->second) {
+        1:   95-block  0
+branch  0 taken 1
+branch  1 taken 0
+    #####:   96:            throw std::runtime_error("Размер данных превышает размер блока");
+    $$$$$:   96-block  0
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   96-block  1
+    $$$$$:   96-block  2
+        -:   97:        }
+        -:   98:
+        1:   99:        memcpy(buffer, block, size);
+        1:  100:    }
+        1:  100-block  0
+        -:  101:
+        -:  102:    // Отображение состояния памяти
+function _ZNK13MemoryManager11printStatusEv called 2 returned 100% blocks executed 100%
+        2:  103:    void printStatus() const {
+        2:  104:        std::cout << "Общая память: " << totalMemory << " байт\n";
+        2:  105:        std::cout << "Используемая память: " << usedMemory << " байт\n";
+        2:  106:        std::cout << "Свободные блоки: " << freeBlocks.size() << "\n";
+        6:  107:        for (const auto& block : freeBlocks) {
+        2:  107-block  0
+        6:  107-block  1
+branch  0 taken 4
+branch  1 taken 2
+        4:  107-block  2
+        4:  107-block  3
+        4:  107-block  4
+        4:  108:            std::cout << "  Адрес: " << block.first << ", Размер: " << block.second << " байт\n";
+        -:  109:        }
+        2:  110:        std::cout << "Выделенные блоки: " << allocatedBlocks.size() << "\n";
+        4:  111:        for (const auto& block : allocatedBlocks) {
+        2:  111-block  0
+        4:  111-block  1
+branch  0 taken 2
+branch  1 taken 2
+        2:  111-block  2
+        2:  111-block  3
+        2:  111-block  4
+        2:  112:            std::cout << "  Адрес: " << block.first << ", Размер: " << block.second << " байт\n";
+        -:  113:        }
+        2:  114:    }
+        2:  114-block  0
+        -:  115:
+        -:  116:    // Дополнительный метод для тестов
+        -:  117:    size_t getUsedMemory() const {
+        -:  118:        return usedMemory;
+        -:  119:    }
+        -:  120:
+        -:  121:    size_t getFreeBlocksCount() const {
+        -:  122:        return freeBlocks.size();
+        -:  123:    }
+        -:  124:
+        -:  125:    size_t getAllocatedBlocksCount() const {
+        -:  126:        return allocatedBlocks.size();
+        -:  127:    }
+        -:  128:};
+        -:  129:
+        -:  130:#endif //MEMORY_MANAGER_H

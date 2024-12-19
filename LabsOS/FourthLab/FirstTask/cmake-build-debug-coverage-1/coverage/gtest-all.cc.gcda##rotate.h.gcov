@@ -1,0 +1,256 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/rotate.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___ALGORITHM_ROTATE_H
+        -:   10:#define _LIBCPP___ALGORITHM_ROTATE_H
+        -:   11:
+        -:   12:#include <__algorithm/iterator_operations.h>
+        -:   13:#include <__algorithm/move.h>
+        -:   14:#include <__algorithm/move_backward.h>
+        -:   15:#include <__algorithm/swap_ranges.h>
+        -:   16:#include <__config>
+        -:   17:#include <__iterator/iterator_traits.h>
+        -:   18:#include <__type_traits/is_trivially_move_assignable.h>
+        -:   19:#include <__utility/move.h>
+        -:   20:#include <__utility/pair.h>
+        -:   21:
+        -:   22:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   23:#  pragma GCC system_header
+        -:   24:#endif
+        -:   25:
+        -:   26:_LIBCPP_PUSH_MACROS
+        -:   27:#include <__undef_macros>
+        -:   28:
+        -:   29:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   30:
+        -:   31:template <class _AlgPolicy, class _ForwardIterator>
+        -:   32:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 _ForwardIterator
+function _ZNSt3__113__rotate_leftB8ne180100INS_17_ClassicAlgPolicyENS_11__wrap_iterIPPN7testing8TestInfoEEEEET0_S8_S8_ called 0 returned 0% blocks executed 0%
+    #####:   33:__rotate_left(_ForwardIterator __first, _ForwardIterator __last) {
+        -:   34:  typedef typename iterator_traits<_ForwardIterator>::value_type value_type;
+        -:   35:  using _Ops = _IterOps<_AlgPolicy>;
+        -:   36:
+    #####:   37:  value_type __tmp       = _Ops::__iter_move(__first);
+    #####:   38:  _ForwardIterator __lm1 = std::__move<_AlgPolicy>(_Ops::next(__first), __last, __first).second;
+    #####:   39:  *__lm1                 = std::move(__tmp);
+    #####:   40:  return __lm1;
+    $$$$$:   40-block  0
+        -:   41:}
+        -:   42:
+        -:   43:template <class _AlgPolicy, class _BidirectionalIterator>
+        -:   44:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 _BidirectionalIterator
+function _ZNSt3__114__rotate_rightB8ne180100INS_17_ClassicAlgPolicyENS_11__wrap_iterIPPN7testing8TestInfoEEEEET0_S8_S8_ called 0 returned 0% blocks executed 0%
+    #####:   45:__rotate_right(_BidirectionalIterator __first, _BidirectionalIterator __last) {
+        -:   46:  typedef typename iterator_traits<_BidirectionalIterator>::value_type value_type;
+        -:   47:  using _Ops = _IterOps<_AlgPolicy>;
+        -:   48:
+    #####:   49:  _BidirectionalIterator __lm1 = _Ops::prev(__last);
+    #####:   50:  value_type __tmp             = _Ops::__iter_move(__lm1);
+    #####:   51:  _BidirectionalIterator __fp1 = std::__move_backward<_AlgPolicy>(__first, __lm1, std::move(__last)).second;
+    #####:   52:  *__first                     = std::move(__tmp);
+    #####:   53:  return __fp1;
+    $$$$$:   53-block  0
+        -:   54:}
+        -:   55:
+        -:   56:template <class _AlgPolicy, class _ForwardIterator>
+        -:   57:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 _ForwardIterator
+        -:   58:__rotate_forward(_ForwardIterator __first, _ForwardIterator __middle, _ForwardIterator __last) {
+        -:   59:  _ForwardIterator __i = __middle;
+        -:   60:  while (true) {
+        -:   61:    _IterOps<_AlgPolicy>::iter_swap(__first, __i);
+        -:   62:    ++__first;
+        -:   63:    if (++__i == __last)
+        -:   64:      break;
+        -:   65:    if (__first == __middle)
+        -:   66:      __middle = __i;
+        -:   67:  }
+        -:   68:  _ForwardIterator __r = __first;
+        -:   69:  if (__first != __middle) {
+        -:   70:    __i = __middle;
+        -:   71:    while (true) {
+        -:   72:      _IterOps<_AlgPolicy>::iter_swap(__first, __i);
+        -:   73:      ++__first;
+        -:   74:      if (++__i == __last) {
+        -:   75:        if (__first == __middle)
+        -:   76:          break;
+        -:   77:        __i = __middle;
+        -:   78:      } else if (__first == __middle)
+        -:   79:        __middle = __i;
+        -:   80:    }
+        -:   81:  }
+        -:   82:  return __r;
+        -:   83:}
+        -:   84:
+        -:   85:template <typename _Integral>
+function _ZNSt3__110__algo_gcdB8ne180100IlEET_S1_S1_ called 0 returned 0% blocks executed 0%
+    #####:   86:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 _Integral __algo_gcd(_Integral __x, _Integral __y) {
+    #####:   87:  do {
+    $$$$$:   87-block  0
+    #####:   88:    _Integral __t = __x % __y;
+    #####:   89:    __x           = __y;
+    #####:   90:    __y           = __t;
+    #####:   91:  } while (__y);
+    $$$$$:   91-block  0
+    $$$$$:   91-block  1
+    $$$$$:   91-block  2
+    #####:   92:  return __x;
+    $$$$$:   92-block  0
+        -:   93:}
+        -:   94:
+        -:   95:template <class _AlgPolicy, typename _RandomAccessIterator>
+        -:   96:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 _RandomAccessIterator
+function _ZNSt3__112__rotate_gcdB8ne180100INS_17_ClassicAlgPolicyENS_11__wrap_iterIPPN7testing8TestInfoEEEEET0_S8_S8_S8_ called 0 returned 0% blocks executed 0%
+    #####:   97:__rotate_gcd(_RandomAccessIterator __first, _RandomAccessIterator __middle, _RandomAccessIterator __last) {
+        -:   98:  typedef typename iterator_traits<_RandomAccessIterator>::difference_type difference_type;
+        -:   99:  typedef typename iterator_traits<_RandomAccessIterator>::value_type value_type;
+        -:  100:  using _Ops = _IterOps<_AlgPolicy>;
+        -:  101:
+    #####:  102:  const difference_type __m1 = __middle - __first;
+    #####:  103:  const difference_type __m2 = _Ops::distance(__middle, __last);
+    #####:  104:  if (__m1 == __m2) {
+    $$$$$:  104-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  105:    std::__swap_ranges<_AlgPolicy>(__first, __middle, __middle, __last);
+    #####:  106:    return __middle;
+    $$$$$:  106-block  0
+        -:  107:  }
+    #####:  108:  const difference_type __g = std::__algo_gcd(__m1, __m2);
+    #####:  109:  for (_RandomAccessIterator __p = __first + __g; __p != __first;) {
+    $$$$$:  109-block  0
+    $$$$$:  109-block  1
+branch  0 never executed
+branch  1 never executed
+    $$$$$:  109-block  2
+    #####:  110:    value_type __t(_Ops::__iter_move(--__p));
+    #####:  111:    _RandomAccessIterator __p1 = __p;
+    #####:  112:    _RandomAccessIterator __p2 = __p1 + __m1;
+    #####:  113:    do {
+    $$$$$:  113-block  0
+    #####:  114:      *__p1                     = _Ops::__iter_move(__p2);
+    #####:  115:      __p1                      = __p2;
+    #####:  116:      const difference_type __d = _Ops::distance(__p2, __last);
+    #####:  117:      if (__m1 < __d)
+    $$$$$:  117-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  118:        __p2 += __m1;
+    $$$$$:  118-block  0
+        -:  119:      else
+    #####:  120:        __p2 = __first + (__m1 - __d);
+    $$$$$:  120-block  0
+    #####:  121:    } while (__p2 != __p);
+    $$$$$:  121-block  0
+    $$$$$:  121-block  1
+    $$$$$:  121-block  2
+    #####:  122:    *__p1 = std::move(__t);
+        -:  123:  }
+    #####:  124:  return __first + __m2;
+    $$$$$:  124-block  0
+    #####:  125:}
+    $$$$$:  125-block  0
+        -:  126:
+        -:  127:template <class _AlgPolicy, class _ForwardIterator>
+        -:  128:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 _ForwardIterator
+        -:  129:__rotate_impl(_ForwardIterator __first, _ForwardIterator __middle, _ForwardIterator __last, std::forward_iterator_tag) {
+        -:  130:  typedef typename iterator_traits<_ForwardIterator>::value_type value_type;
+        -:  131:  if (is_trivially_move_assignable<value_type>::value) {
+        -:  132:    if (_IterOps<_AlgPolicy>::next(__first) == __middle)
+        -:  133:      return std::__rotate_left<_AlgPolicy>(__first, __last);
+        -:  134:  }
+        -:  135:  return std::__rotate_forward<_AlgPolicy>(__first, __middle, __last);
+        -:  136:}
+        -:  137:
+        -:  138:template <class _AlgPolicy, class _BidirectionalIterator>
+        -:  139:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 _BidirectionalIterator __rotate_impl(
+        -:  140:    _BidirectionalIterator __first,
+        -:  141:    _BidirectionalIterator __middle,
+        -:  142:    _BidirectionalIterator __last,
+        -:  143:    bidirectional_iterator_tag) {
+        -:  144:  typedef typename iterator_traits<_BidirectionalIterator>::value_type value_type;
+        -:  145:  if (is_trivially_move_assignable<value_type>::value) {
+        -:  146:    if (_IterOps<_AlgPolicy>::next(__first) == __middle)
+        -:  147:      return std::__rotate_left<_AlgPolicy>(__first, __last);
+        -:  148:    if (_IterOps<_AlgPolicy>::next(__middle) == __last)
+        -:  149:      return std::__rotate_right<_AlgPolicy>(__first, __last);
+        -:  150:  }
+        -:  151:  return std::__rotate_forward<_AlgPolicy>(__first, __middle, __last);
+        -:  152:}
+        -:  153:
+        -:  154:template <class _AlgPolicy, class _RandomAccessIterator>
+function _ZNSt3__113__rotate_implB8ne180100INS_17_ClassicAlgPolicyENS_11__wrap_iterIPPN7testing8TestInfoEEEEET0_S8_S8_S8_NS_26random_access_iterator_tagE called 0 returned 0% blocks executed 0%
+    #####:  155:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 _RandomAccessIterator __rotate_impl(
+        -:  156:    _RandomAccessIterator __first,
+        -:  157:    _RandomAccessIterator __middle,
+        -:  158:    _RandomAccessIterator __last,
+        -:  159:    random_access_iterator_tag) {
+        -:  160:  typedef typename iterator_traits<_RandomAccessIterator>::value_type value_type;
+        -:  161:  if (is_trivially_move_assignable<value_type>::value) {
+    #####:  162:    if (_IterOps<_AlgPolicy>::next(__first) == __middle)
+    $$$$$:  162-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  163:      return std::__rotate_left<_AlgPolicy>(__first, __last);
+    $$$$$:  163-block  0
+    #####:  164:    if (_IterOps<_AlgPolicy>::next(__middle) == __last)
+    $$$$$:  164-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  165:      return std::__rotate_right<_AlgPolicy>(__first, __last);
+    $$$$$:  165-block  0
+    #####:  166:    return std::__rotate_gcd<_AlgPolicy>(__first, __middle, __last);
+    $$$$$:  166-block  0
+        -:  167:  }
+        -:  168:  return std::__rotate_forward<_AlgPolicy>(__first, __middle, __last);
+    #####:  169:}
+    $$$$$:  169-block  0
+        -:  170:
+        -:  171:template <class _AlgPolicy, class _Iterator, class _Sentinel>
+        -:  172:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_Iterator, _Iterator>
+function _ZNSt3__18__rotateB8ne180100INS_17_ClassicAlgPolicyENS_11__wrap_iterIPPN7testing8TestInfoEEES7_EENS_4pairIT0_S9_EES9_S9_T1_ called 0 returned 0% blocks executed 0%
+    #####:  173:__rotate(_Iterator __first, _Iterator __middle, _Sentinel __last) {
+        -:  174:  using _Ret            = pair<_Iterator, _Iterator>;
+    #####:  175:  _Iterator __last_iter = _IterOps<_AlgPolicy>::next(__middle, __last);
+        -:  176:
+    #####:  177:  if (__first == __middle)
+    $$$$$:  177-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  178:    return _Ret(__last_iter, __last_iter);
+    $$$$$:  178-block  0
+    #####:  179:  if (__middle == __last)
+    $$$$$:  179-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  180:    return _Ret(std::move(__first), std::move(__last_iter));
+    $$$$$:  180-block  0
+        -:  181:
+        -:  182:  using _IterCategory = typename _IterOps<_AlgPolicy>::template __iterator_category<_Iterator>;
+    #####:  183:  auto __result = std::__rotate_impl<_AlgPolicy>(std::move(__first), std::move(__middle), __last_iter, _IterCategory());
+        -:  184:
+    #####:  185:  return _Ret(std::move(__result), std::move(__last_iter));
+    $$$$$:  185-block  0
+    #####:  186:}
+    $$$$$:  186-block  0
+        -:  187:
+        -:  188:template <class _ForwardIterator>
+        -:  189:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 _ForwardIterator
+        -:  190:rotate(_ForwardIterator __first, _ForwardIterator __middle, _ForwardIterator __last) {
+        -:  191:  return std::__rotate<_ClassicAlgPolicy>(std::move(__first), std::move(__middle), std::move(__last)).first;
+        -:  192:}
+        -:  193:
+        -:  194:_LIBCPP_END_NAMESPACE_STD
+        -:  195:
+        -:  196:_LIBCPP_POP_MACROS
+        -:  197:
+        -:  198:#endif // _LIBCPP___ALGORITHM_ROTATE_H

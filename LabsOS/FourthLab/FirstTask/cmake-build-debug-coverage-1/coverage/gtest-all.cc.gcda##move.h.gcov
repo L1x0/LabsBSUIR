@@ -1,0 +1,282 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/move.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___ALGORITHM_MOVE_H
+        -:   10:#define _LIBCPP___ALGORITHM_MOVE_H
+        -:   11:
+        -:   12:#include <__algorithm/copy_move_common.h>
+        -:   13:#include <__algorithm/for_each_segment.h>
+        -:   14:#include <__algorithm/iterator_operations.h>
+        -:   15:#include <__algorithm/min.h>
+        -:   16:#include <__config>
+        -:   17:#include <__iterator/segmented_iterator.h>
+        -:   18:#include <__type_traits/common_type.h>
+        -:   19:#include <__type_traits/is_copy_constructible.h>
+        -:   20:#include <__utility/move.h>
+        -:   21:#include <__utility/pair.h>
+        -:   22:
+        -:   23:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   24:#  pragma GCC system_header
+        -:   25:#endif
+        -:   26:
+        -:   27:_LIBCPP_PUSH_MACROS
+        -:   28:#include <__undef_macros>
+        -:   29:
+        -:   30:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   31:
+        -:   32:template <class _AlgPolicy, class _InIter, class _Sent, class _OutIter>
+        -:   33:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_InIter, _OutIter>
+        -:   34:__move(_InIter __first, _Sent __last, _OutIter __result);
+        -:   35:
+        -:   36:template <class _AlgPolicy>
+        -:   37:struct __move_loop {
+        -:   38:  template <class _InIter, class _Sent, class _OutIter>
+        -:   39:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_InIter, _OutIter>
+function _ZNKSt3__111__move_loopINS_17_ClassicAlgPolicyEEclB8ne180100INS_16reverse_iteratorIPPcEES7_S7_EENS_4pairIT_T1_EES9_T0_SA_ called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__move_loopINS_17_ClassicAlgPolicyEEclB8ne180100IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEESA_NS_15insert_iteratorINS_6vectorIS9_NS7_IS9_EEEEEEEENS_4pairIT_T1_EESH_T0_SI_ called 18 returned 100% blocks executed 100%
+function _ZNKSt3__111__move_loopINS_17_ClassicAlgPolicyEEclB8ne180100IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEESA_SA_EENS_4pairIT_T1_EESC_T0_SD_ called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__move_loopINS_17_ClassicAlgPolicyEEclB8ne180100IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEESA_NS_15insert_iteratorINS_13unordered_setIS9_NS_4hashIS9_EENS_8equal_toIS9_EENS7_IS9_EEEEEEEENS_4pairIT_T1_EESL_T0_SM_ called 18 returned 100% blocks executed 100%
+function _ZNKSt3__111__move_loopINS_17_ClassicAlgPolicyEEclB8ne180100INS_16reverse_iteratorIPN7testing8internal13edit_distance8EditTypeEEESA_SA_EENS_4pairIT_T1_EESC_T0_SD_ called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__move_loopINS_17_ClassicAlgPolicyEEclB8ne180100INS_16reverse_iteratorIPmEES6_S6_EENS_4pairIT_T1_EES8_T0_S9_ called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__move_loopINS_17_ClassicAlgPolicyEEclB8ne180100INS_16reverse_iteratorIPPN7testing8TestInfoEEES9_S9_EENS_4pairIT_T1_EESB_T0_SC_ called 24 returned 100% blocks executed 100%
+function _ZNKSt3__111__move_loopINS_17_ClassicAlgPolicyEEclB8ne180100INS_16reverse_iteratorIPiEES6_S6_EENS_4pairIT_T1_EES8_T0_S9_ called 30 returned 100% blocks executed 100%
+function _ZNKSt3__111__move_loopINS_17_ClassicAlgPolicyEEclB8ne180100INS_16reverse_iteratorIPPN7testing8TestInfoEEES9_NS4_INS_11__wrap_iterIS8_EEEEEENS_4pairIT_T1_EESE_T0_SF_ called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__move_loopINS_17_ClassicAlgPolicyEEclB8ne180100INS_16reverse_iteratorIPPN7testing17TestEventListenerEEES9_S9_EENS_4pairIT_T1_EESB_T0_SC_ called 6 returned 100% blocks executed 75%
+function _ZNKSt3__111__move_loopINS_17_ClassicAlgPolicyEEclB8ne180100INS_16reverse_iteratorIPPN7testing11EnvironmentEEES9_S9_EENS_4pairIT_T1_EESB_T0_SC_ called 0 returned 0% blocks executed 0%
+function _ZNKSt3__111__move_loopINS_17_ClassicAlgPolicyEEclB8ne180100INS_16reverse_iteratorIPPN7testing9TestSuiteEEES9_S9_EENS_4pairIT_T1_EESB_T0_SC_ called 6 returned 100% blocks executed 75%
+      102:   40:  operator()(_InIter __first, _Sent __last, _OutIter __result) const {
+      216:   41:    while (__first != __last) {
+    $$$$$:   41-block  0
+    $$$$$:   41-block  1
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   41-block  2
+       18:   41-block  3
+       42:   41-block  4
+branch  2 taken 24
+branch  3 taken 18
+       24:   41-block  5
+    $$$$$:   41-block  6
+    $$$$$:   41-block  7
+branch  4 never executed
+branch  5 never executed
+    $$$$$:   41-block  8
+       18:   41-block  9
+       24:   41-block 10
+branch  6 taken 6
+branch  7 taken 18
+        6:   41-block 11
+    $$$$$:   41-block 12
+    $$$$$:   41-block 13
+branch  8 never executed
+branch  9 never executed
+    $$$$$:   41-block 14
+    $$$$$:   41-block 15
+    $$$$$:   41-block 16
+branch 10 never executed
+branch 11 never executed
+    $$$$$:   41-block 17
+       24:   41-block 18
+       66:   41-block 19
+branch 12 taken 42
+branch 13 taken 24
+       42:   41-block 20
+       30:   41-block 21
+       72:   41-block 22
+branch 14 taken 42
+branch 15 taken 30
+       42:   41-block 23
+    $$$$$:   41-block 24
+    $$$$$:   41-block 25
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   41-block 26
+        6:   41-block 27
+        6:   41-block 28
+branch 18 taken 0
+branch 19 taken 6
+    $$$$$:   41-block 29
+    $$$$$:   41-block 30
+    $$$$$:   41-block 31
+branch 20 never executed
+branch 21 never executed
+    $$$$$:   41-block 32
+        6:   41-block 33
+        6:   41-block 34
+branch 22 taken 0
+branch 23 taken 6
+    $$$$$:   41-block 35
+      114:   42:      *__result = _IterOps<_AlgPolicy>::__iter_move(__first);
+      114:   43:      ++__first;
+      114:   44:      ++__result;
+        -:   45:    }
+      102:   46:    return std::make_pair(std::move(__first), std::move(__result));
+    $$$$$:   46-block  0
+       18:   46-block  1
+    $$$$$:   46-block  2
+       18:   46-block  3
+    $$$$$:   46-block  4
+    $$$$$:   46-block  5
+       24:   46-block  6
+       30:   46-block  7
+    $$$$$:   46-block  8
+        6:   46-block  9
+    $$$$$:   46-block 10
+        6:   46-block 11
+        -:   47:  }
+        -:   48:
+        -:   49:  template <class _InIter, class _OutIter>
+        -:   50:  struct _MoveSegment {
+        -:   51:    using _Traits = __segmented_iterator_traits<_InIter>;
+        -:   52:
+        -:   53:    _OutIter& __result_;
+        -:   54:
+        -:   55:    _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 explicit _MoveSegment(_OutIter& __result)
+        -:   56:        : __result_(__result) {}
+        -:   57:
+        -:   58:    _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 void
+        -:   59:    operator()(typename _Traits::__local_iterator __lfirst, typename _Traits::__local_iterator __llast) {
+        -:   60:      __result_ = std::__move<_AlgPolicy>(__lfirst, __llast, std::move(__result_)).second;
+        -:   61:    }
+        -:   62:  };
+        -:   63:
+        -:   64:  template <class _InIter, class _OutIter, __enable_if_t<__is_segmented_iterator<_InIter>::value, int> = 0>
+        -:   65:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_InIter, _OutIter>
+        -:   66:  operator()(_InIter __first, _InIter __last, _OutIter __result) const {
+        -:   67:    std::__for_each_segment(__first, __last, _MoveSegment<_InIter, _OutIter>(__result));
+        -:   68:    return std::make_pair(__last, std::move(__result));
+        -:   69:  }
+        -:   70:
+        -:   71:  template <class _InIter,
+        -:   72:            class _OutIter,
+        -:   73:            __enable_if_t<__has_random_access_iterator_category<_InIter>::value &&
+        -:   74:                              !__is_segmented_iterator<_InIter>::value && __is_segmented_iterator<_OutIter>::value,
+        -:   75:                          int> = 0>
+        -:   76:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_InIter, _OutIter>
+        -:   77:  operator()(_InIter __first, _InIter __last, _OutIter __result) const {
+        -:   78:    using _Traits = __segmented_iterator_traits<_OutIter>;
+        -:   79:    using _DiffT  = typename common_type<__iter_diff_t<_InIter>, __iter_diff_t<_OutIter> >::type;
+        -:   80:
+        -:   81:    if (__first == __last)
+        -:   82:      return std::make_pair(std::move(__first), std::move(__result));
+        -:   83:
+        -:   84:    auto __local_first      = _Traits::__local(__result);
+        -:   85:    auto __segment_iterator = _Traits::__segment(__result);
+        -:   86:    while (true) {
+        -:   87:      auto __local_last = _Traits::__end(__segment_iterator);
+        -:   88:      auto __size       = std::min<_DiffT>(__local_last - __local_first, __last - __first);
+        -:   89:      auto __iters      = std::__move<_AlgPolicy>(__first, __first + __size, __local_first);
+        -:   90:      __first           = std::move(__iters.first);
+        -:   91:
+        -:   92:      if (__first == __last)
+        -:   93:        return std::make_pair(std::move(__first), _Traits::__compose(__segment_iterator, std::move(__iters.second)));
+        -:   94:
+        -:   95:      __local_first = _Traits::__begin(++__segment_iterator);
+        -:   96:    }
+        -:   97:  }
+        -:   98:};
+        -:   99:
+        -:  100:struct __move_trivial {
+        -:  101:  // At this point, the iterators have been unwrapped so any `contiguous_iterator` has been unwrapped to a pointer.
+        -:  102:  template <class _In, class _Out, __enable_if_t<__can_lower_move_assignment_to_memmove<_In, _Out>::value, int> = 0>
+        -:  103:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_In*, _Out*>
+function _ZNKSt3__114__move_trivialclB8ne180100IPN7testing8TestInfoES4_Li0EEENS_4pairIPT_PT0_EES7_S7_S9_ called 0 returned 0% blocks executed 0%
+function _ZNKSt3__114__move_trivialclB8ne180100IPN7testing17TestEventListenerES4_Li0EEENS_4pairIPT_PT0_EES7_S7_S9_ called 0 returned 0% blocks executed 0%
+function _ZNKSt3__114__move_trivialclB8ne180100IPN7testing9TestSuiteES4_Li0EEENS_4pairIPT_PT0_EES7_S7_S9_ called 0 returned 0% blocks executed 0%
+    #####:  104:  operator()(_In* __first, _In* __last, _Out* __result) const {
+    #####:  105:    return std::__copy_trivial_impl(__first, __last, __result);
+    $$$$$:  105-block  0
+    $$$$$:  105-block  1
+    $$$$$:  105-block  2
+        -:  106:  }
+        -:  107:};
+        -:  108:
+        -:  109:template <class _AlgPolicy, class _InIter, class _Sent, class _OutIter>
+        -:  110:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_InIter, _OutIter>
+function _ZNSt3__16__moveB8ne180100INS_17_ClassicAlgPolicyENS_16reverse_iteratorIPPcEES5_S5_EENS_4pairIT0_T2_EES7_T1_S8_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__16__moveB8ne180100INS_17_ClassicAlgPolicyENS_11__wrap_iterIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEESA_NS_15insert_iteratorINS_6vectorIS8_NS6_IS8_EEEEEEEENS_4pairIT0_T2_EESH_T1_SI_ called 18 returned 100% blocks executed 100%
+function _ZNSt3__16__moveB8ne180100INS_17_ClassicAlgPolicyEPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEES8_S8_EENS_4pairIT0_T2_EESA_T1_SB_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__16__moveB8ne180100INS_17_ClassicAlgPolicyENS_11__wrap_iterIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEESA_NS_15insert_iteratorINS_13unordered_setIS8_NS_4hashIS8_EENS_8equal_toIS8_EENS6_IS8_EEEEEEEENS_4pairIT0_T2_EESL_T1_SM_ called 18 returned 100% blocks executed 100%
+function _ZNSt3__16__moveB8ne180100INS_17_ClassicAlgPolicyENS_16reverse_iteratorIPN7testing8internal13edit_distance8EditTypeEEES8_S8_EENS_4pairIT0_T2_EESA_T1_SB_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__16__moveB8ne180100INS_17_ClassicAlgPolicyENS_16reverse_iteratorIPmEES4_S4_EENS_4pairIT0_T2_EES6_T1_S7_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__16__moveB8ne180100INS_17_ClassicAlgPolicyENS_16reverse_iteratorIPPN7testing8TestInfoEEES7_S7_EENS_4pairIT0_T2_EES9_T1_SA_ called 24 returned 100% blocks executed 100%
+function _ZNSt3__16__moveB8ne180100INS_17_ClassicAlgPolicyENS_16reverse_iteratorIPiEES4_S4_EENS_4pairIT0_T2_EES6_T1_S7_ called 30 returned 100% blocks executed 100%
+function _ZNSt3__16__moveB8ne180100INS_17_ClassicAlgPolicyEPPN7testing8TestInfoES5_NS_11__wrap_iterIS5_EEEENS_4pairIT0_T2_EES9_T1_SA_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__16__moveB8ne180100INS_17_ClassicAlgPolicyENS_16reverse_iteratorIPPN7testing8TestInfoEEES7_NS2_INS_11__wrap_iterIS6_EEEEEENS_4pairIT0_T2_EESC_T1_SD_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__16__moveB8ne180100INS_17_ClassicAlgPolicyENS_11__wrap_iterIPPN7testing8TestInfoEEES7_S7_EENS_4pairIT0_T2_EES9_T1_SA_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__16__moveB8ne180100INS_17_ClassicAlgPolicyENS_16reverse_iteratorIPPN7testing17TestEventListenerEEES7_S7_EENS_4pairIT0_T2_EES9_T1_SA_ called 6 returned 100% blocks executed 100%
+function _ZNSt3__16__moveB8ne180100INS_17_ClassicAlgPolicyEPPN7testing17TestEventListenerES5_S5_EENS_4pairIT0_T2_EES7_T1_S8_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__16__moveB8ne180100INS_17_ClassicAlgPolicyENS_16reverse_iteratorIPPN7testing11EnvironmentEEES7_S7_EENS_4pairIT0_T2_EES9_T1_SA_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__16__moveB8ne180100INS_17_ClassicAlgPolicyEPPN7testing9TestSuiteES5_S5_EENS_4pairIT0_T2_EES7_T1_S8_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__16__moveB8ne180100INS_17_ClassicAlgPolicyENS_16reverse_iteratorIPPN7testing9TestSuiteEEES7_S7_EENS_4pairIT0_T2_EES9_T1_SA_ called 6 returned 100% blocks executed 100%
+      102:  111:__move(_InIter __first, _Sent __last, _OutIter __result) {
+      102:  112:  return std::__dispatch_copy_or_move<_AlgPolicy, __move_loop<_AlgPolicy>, __move_trivial>(
+    $$$$$:  112-block  0
+       18:  112-block  1
+    $$$$$:  112-block  2
+       18:  112-block  3
+    $$$$$:  112-block  4
+    $$$$$:  112-block  5
+       24:  112-block  6
+       30:  112-block  7
+    $$$$$:  112-block  8
+    $$$$$:  112-block  9
+    $$$$$:  112-block 10
+        6:  112-block 11
+    $$$$$:  112-block 12
+    $$$$$:  112-block 13
+    $$$$$:  112-block 14
+        6:  112-block 15
+      102:  113:      std::move(__first), std::move(__last), std::move(__result));
+        -:  114:}
+        -:  115:
+        -:  116:template <class _InputIterator, class _OutputIterator>
+        -:  117:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 _OutputIterator
+function _ZNSt3__14moveB8ne180100INS_16reverse_iteratorIPPcEES4_EET0_T_S6_S5_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14moveB8ne180100INS_11__wrap_iterIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEENS_15insert_iteratorINS_6vectorIS7_NS5_IS7_EEEEEEEET0_T_SG_SF_ called 18 returned 100% blocks executed 100%
+function _ZNSt3__14moveB8ne180100INS_11__wrap_iterIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEENS_15insert_iteratorINS_13unordered_setIS7_NS_4hashIS7_EENS_8equal_toIS7_EENS5_IS7_EEEEEEEET0_T_SK_SJ_ called 18 returned 100% blocks executed 100%
+function _ZNSt3__14moveB8ne180100IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEES7_EET0_T_S9_S8_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14moveB8ne180100INS_16reverse_iteratorIPN7testing8internal13edit_distance8EditTypeEEES7_EET0_T_S9_S8_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14moveB8ne180100INS_16reverse_iteratorIPmEES3_EET0_T_S5_S4_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14moveB8ne180100INS_16reverse_iteratorIPPN7testing8TestInfoEEES6_EET0_T_S8_S7_ called 24 returned 100% blocks executed 100%
+function _ZNSt3__14moveB8ne180100INS_16reverse_iteratorIPiEES3_EET0_T_S5_S4_ called 30 returned 100% blocks executed 100%
+function _ZNSt3__14moveB8ne180100INS_16reverse_iteratorIPPN7testing17TestEventListenerEEES6_EET0_T_S8_S7_ called 6 returned 100% blocks executed 100%
+function _ZNSt3__14moveB8ne180100IPPN7testing17TestEventListenerES4_EET0_T_S6_S5_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14moveB8ne180100INS_16reverse_iteratorIPPN7testing11EnvironmentEEES6_EET0_T_S8_S7_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14moveB8ne180100IPPN7testing9TestSuiteES4_EET0_T_S6_S5_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__14moveB8ne180100INS_16reverse_iteratorIPPN7testing9TestSuiteEEES6_EET0_T_S8_S7_ called 6 returned 100% blocks executed 100%
+      102:  118:move(_InputIterator __first, _InputIterator __last, _OutputIterator __result) {
+        -:  119:  static_assert(is_copy_constructible<_InputIterator>::value, "Iterators has to be copy constructible.");
+        -:  120:  static_assert(is_copy_constructible<_OutputIterator>::value, "The output iterator has to be copy constructible.");
+        -:  121:
+      102:  122:  return std::__move<_ClassicAlgPolicy>(std::move(__first), std::move(__last), std::move(__result)).second;
+    $$$$$:  122-block  0
+       18:  122-block  1
+       18:  122-block  2
+    $$$$$:  122-block  3
+    $$$$$:  122-block  4
+    $$$$$:  122-block  5
+       24:  122-block  6
+       30:  122-block  7
+        6:  122-block  8
+    $$$$$:  122-block  9
+    $$$$$:  122-block 10
+    $$$$$:  122-block 11
+        6:  122-block 12
+        -:  123:}
+        -:  124:
+        -:  125:_LIBCPP_END_NAMESPACE_STD
+        -:  126:
+        -:  127:_LIBCPP_POP_MACROS
+        -:  128:
+        -:  129:#endif // _LIBCPP___ALGORITHM_MOVE_H

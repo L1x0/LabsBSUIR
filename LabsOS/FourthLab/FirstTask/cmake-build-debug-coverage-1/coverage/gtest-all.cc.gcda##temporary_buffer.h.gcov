@@ -1,0 +1,102 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__memory/temporary_buffer.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// -*- C++ -*-
+        -:    2://===----------------------------------------------------------------------===//
+        -:    3://
+        -:    4:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    5:// See https://llvm.org/LICENSE.txt for license information.
+        -:    6:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    7://
+        -:    8://===----------------------------------------------------------------------===//
+        -:    9:
+        -:   10:#ifndef _LIBCPP___MEMORY_TEMPORARY_BUFFER_H
+        -:   11:#define _LIBCPP___MEMORY_TEMPORARY_BUFFER_H
+        -:   12:
+        -:   13:#include <__config>
+        -:   14:#include <__type_traits/alignment_of.h>
+        -:   15:#include <__utility/pair.h>
+        -:   16:#include <cstddef>
+        -:   17:#include <new>
+        -:   18:
+        -:   19:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   20:#  pragma GCC system_header
+        -:   21:#endif
+        -:   22:
+        -:   23:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   24:
+        -:   25:template <class _Tp>
+        -:   26:_LIBCPP_NODISCARD_EXT _LIBCPP_HIDE_FROM_ABI _LIBCPP_NO_CFI _LIBCPP_DEPRECATED_IN_CXX17 pair<_Tp*, ptrdiff_t>
+function _ZNSt3__120get_temporary_bufferB8ne180100IPN7testing8TestInfoEEENS_4pairIPT_lEEl called 0 returned 0% blocks executed 0%
+    #####:   27:get_temporary_buffer(ptrdiff_t __n) _NOEXCEPT {
+    #####:   28:  pair<_Tp*, ptrdiff_t> __r(0, 0);
+    #####:   29:  const ptrdiff_t __m =
+        -:   30:      (~ptrdiff_t(0) ^ ptrdiff_t(ptrdiff_t(1) << (sizeof(ptrdiff_t) * __CHAR_BIT__ - 1))) / sizeof(_Tp);
+    #####:   31:  if (__n > __m)
+    $$$$$:   31-block  0
+    $$$$$:   31-block  1
+    #####:   32:    __n = __m;
+    $$$$$:   32-block  0
+    #####:   33:  while (__n > 0) {
+    $$$$$:   33-block  0
+    $$$$$:   33-block  1
+    $$$$$:   33-block  2
+    $$$$$:   33-block  3
+        -:   34:#if !defined(_LIBCPP_HAS_NO_ALIGNED_ALLOCATION)
+        -:   35:    if (__is_overaligned_for_new(_LIBCPP_ALIGNOF(_Tp))) {
+        -:   36:      align_val_t __al = align_val_t(_LIBCPP_ALIGNOF(_Tp));
+        -:   37:      __r.first        = static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), __al, nothrow));
+        -:   38:    } else {
+        -:   39:      __r.first = static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), nothrow));
+        -:   40:    }
+        -:   41:#else
+        -:   42:    if (__is_overaligned_for_new(_LIBCPP_ALIGNOF(_Tp))) {
+        -:   43:      // Since aligned operator new is unavailable, return an empty
+        -:   44:      // buffer rather than one with invalid alignment.
+        -:   45:      return __r;
+        -:   46:    }
+        -:   47:
+    #####:   48:    __r.first = static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), nothrow));
+        -:   49:#endif
+        -:   50:
+    #####:   51:    if (__r.first) {
+    $$$$$:   51-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   52:      __r.second = __n;
+    #####:   53:      break;
+    $$$$$:   53-block  0
+        -:   54:    }
+    #####:   55:    __n /= 2;
+        -:   56:  }
+    #####:   57:  return __r;
+    $$$$$:   57-block  0
+        -:   58:}
+        -:   59:
+        -:   60:template <class _Tp>
+function _ZNSt3__123return_temporary_bufferB8ne180100IPN7testing8TestInfoEEEvPT_ called 0 returned 0% blocks executed 0%
+    #####:   61:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_DEPRECATED_IN_CXX17 void return_temporary_buffer(_Tp* __p) _NOEXCEPT {
+    #####:   62:  std::__libcpp_deallocate_unsized((void*)__p, _LIBCPP_ALIGNOF(_Tp));
+    $$$$$:   62-block  0
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   62-block  1
+    #####:   63:}
+    $$$$$:   63-block  0
+        -:   64:
+        -:   65:struct __return_temporary_buffer {
+        -:   66:  _LIBCPP_SUPPRESS_DEPRECATED_PUSH
+        -:   67:  template <class _Tp>
+function _ZNKSt3__125__return_temporary_bufferclB8ne180100IPN7testing8TestInfoEEEvPT_ called 0 returned 0% blocks executed 0%
+    #####:   68:  _LIBCPP_HIDE_FROM_ABI void operator()(_Tp* __p) const {
+    #####:   69:    std::return_temporary_buffer(__p);
+    #####:   70:  }
+    $$$$$:   70-block  0
+        -:   71:  _LIBCPP_SUPPRESS_DEPRECATED_POP
+        -:   72:};
+        -:   73:
+        -:   74:_LIBCPP_END_NAMESPACE_STD
+        -:   75:
+        -:   76:#endif // _LIBCPP___MEMORY_TEMPORARY_BUFFER_H

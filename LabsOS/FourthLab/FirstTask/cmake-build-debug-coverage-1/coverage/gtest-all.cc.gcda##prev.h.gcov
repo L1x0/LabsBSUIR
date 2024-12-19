@@ -1,0 +1,85 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__iterator/prev.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// -*- C++ -*-
+        -:    2://===----------------------------------------------------------------------===//
+        -:    3://
+        -:    4:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    5:// See https://llvm.org/LICENSE.txt for license information.
+        -:    6:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    7://
+        -:    8://===----------------------------------------------------------------------===//
+        -:    9:
+        -:   10:#ifndef _LIBCPP___ITERATOR_PREV_H
+        -:   11:#define _LIBCPP___ITERATOR_PREV_H
+        -:   12:
+        -:   13:#include <__assert>
+        -:   14:#include <__config>
+        -:   15:#include <__iterator/advance.h>
+        -:   16:#include <__iterator/concepts.h>
+        -:   17:#include <__iterator/incrementable_traits.h>
+        -:   18:#include <__iterator/iterator_traits.h>
+        -:   19:#include <__type_traits/enable_if.h>
+        -:   20:
+        -:   21:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   22:#  pragma GCC system_header
+        -:   23:#endif
+        -:   24:
+        -:   25:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   26:
+        -:   27:template <class _InputIter, __enable_if_t<__has_input_iterator_category<_InputIter>::value, int> = 0>
+        -:   28:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 _InputIter
+function _ZNSt3__14prevB8ne180100INS_11__wrap_iterIPcEELi0EEET_S4_NS_15iterator_traitsIS4_E15difference_typeE called 48 returned 100% blocks executed 100%
+function _ZNSt3__14prevB8ne180100INS_11__wrap_iterIPPN7testing8TestInfoEEELi0EEET_S7_NS_15iterator_traitsIS7_E15difference_typeE called 0 returned 0% blocks executed 0%
+       48:   29:prev(_InputIter __x, typename iterator_traits<_InputIter>::difference_type __n = 1) {
+        -:   30:  // Calling `advance` with a negative value on a non-bidirectional iterator is a no-op in the current implementation.
+        -:   31:  // Note that this check duplicates the similar check in `std::advance`.
+        -:   32:  _LIBCPP_ASSERT_PEDANTIC(__n <= 0 || __has_bidirectional_iterator_category<_InputIter>::value,
+        -:   33:                          "Attempt to prev(it, n) with a positive n on a non-bidirectional iterator");
+       48:   34:  std::advance(__x, -__n);
+       48:   35:  return __x;
+       48:   35-block  0
+    $$$$$:   35-block  1
+        -:   36:}
+        -:   37:
+        -:   38:#if _LIBCPP_STD_VER >= 20
+        -:   39:
+        -:   40:// [range.iter.op.prev]
+        -:   41:
+        -:   42:namespace ranges {
+        -:   43:namespace __prev {
+        -:   44:
+        -:   45:struct __fn {
+        -:   46:  template <bidirectional_iterator _Ip>
+        -:   47:  _LIBCPP_HIDE_FROM_ABI constexpr _Ip operator()(_Ip __x) const {
+        -:   48:    --__x;
+        -:   49:    return __x;
+        -:   50:  }
+        -:   51:
+        -:   52:  template <bidirectional_iterator _Ip>
+        -:   53:  _LIBCPP_HIDE_FROM_ABI constexpr _Ip operator()(_Ip __x, iter_difference_t<_Ip> __n) const {
+        -:   54:    ranges::advance(__x, -__n);
+        -:   55:    return __x;
+        -:   56:  }
+        -:   57:
+        -:   58:  template <bidirectional_iterator _Ip>
+        -:   59:  _LIBCPP_HIDE_FROM_ABI constexpr _Ip operator()(_Ip __x, iter_difference_t<_Ip> __n, _Ip __bound_iter) const {
+        -:   60:    ranges::advance(__x, -__n, __bound_iter);
+        -:   61:    return __x;
+        -:   62:  }
+        -:   63:};
+        -:   64:
+        -:   65:} // namespace __prev
+        -:   66:
+        -:   67:inline namespace __cpo {
+        -:   68:inline constexpr auto prev = __prev::__fn{};
+        -:   69:} // namespace __cpo
+        -:   70:} // namespace ranges
+        -:   71:
+        -:   72:#endif // _LIBCPP_STD_VER >= 20
+        -:   73:
+        -:   74:_LIBCPP_END_NAMESPACE_STD
+        -:   75:
+        -:   76:#endif // _LIBCPP___ITERATOR_PREV_H

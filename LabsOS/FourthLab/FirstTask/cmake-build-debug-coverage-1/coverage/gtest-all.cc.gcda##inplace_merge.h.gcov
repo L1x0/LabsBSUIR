@@ -1,0 +1,353 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/inplace_merge.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___ALGORITHM_INPLACE_MERGE_H
+        -:   10:#define _LIBCPP___ALGORITHM_INPLACE_MERGE_H
+        -:   11:
+        -:   12:#include <__algorithm/comp.h>
+        -:   13:#include <__algorithm/comp_ref_type.h>
+        -:   14:#include <__algorithm/iterator_operations.h>
+        -:   15:#include <__algorithm/lower_bound.h>
+        -:   16:#include <__algorithm/min.h>
+        -:   17:#include <__algorithm/move.h>
+        -:   18:#include <__algorithm/rotate.h>
+        -:   19:#include <__algorithm/upper_bound.h>
+        -:   20:#include <__config>
+        -:   21:#include <__functional/identity.h>
+        -:   22:#include <__iterator/advance.h>
+        -:   23:#include <__iterator/distance.h>
+        -:   24:#include <__iterator/iterator_traits.h>
+        -:   25:#include <__iterator/reverse_iterator.h>
+        -:   26:#include <__memory/destruct_n.h>
+        -:   27:#include <__memory/temporary_buffer.h>
+        -:   28:#include <__memory/unique_ptr.h>
+        -:   29:#include <__utility/pair.h>
+        -:   30:#include <new>
+        -:   31:
+        -:   32:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   33:#  pragma GCC system_header
+        -:   34:#endif
+        -:   35:
+        -:   36:_LIBCPP_PUSH_MACROS
+        -:   37:#include <__undef_macros>
+        -:   38:
+        -:   39:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   40:
+        -:   41:template <class _Predicate>
+        -:   42:class __invert // invert the sense of a comparison
+        -:   43:{
+        -:   44:private:
+        -:   45:  _Predicate __p_;
+        -:   46:
+        -:   47:public:
+        -:   48:  _LIBCPP_HIDE_FROM_ABI __invert() {}
+        -:   49:
+function _ZNSt3__18__invertIRZN7testing9TestSuite3RunEvE3$_0EC1B8ne180100ES4_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__18__invertIRZN7testing9TestSuite3RunEvE3$_0EC2B8ne180100ES4_ called 0 returned 0% blocks executed 0%
+    #####:   50:  _LIBCPP_HIDE_FROM_ABI explicit __invert(_Predicate __p) : __p_(__p) {}
+    $$$$$:   50-block  0
+    $$$$$:   50-block  1
+        -:   51:
+        -:   52:  template <class _T1>
+        -:   53:  _LIBCPP_HIDE_FROM_ABI bool operator()(const _T1& __x) {
+        -:   54:    return !__p_(__x);
+        -:   55:  }
+        -:   56:
+        -:   57:  template <class _T1, class _T2>
+function _ZNSt3__18__invertIRZN7testing9TestSuite3RunEvE3$_0EclB8ne180100IPNS1_8TestInfoES8_EEbRKT_RKT0_ called 0 returned 0% blocks executed 0%
+    #####:   58:  _LIBCPP_HIDE_FROM_ABI bool operator()(const _T1& __x, const _T2& __y) {
+    #####:   59:    return __p_(__y, __x);
+    $$$$$:   59-block  0
+        -:   60:  }
+        -:   61:};
+        -:   62:
+        -:   63:template <class _AlgPolicy,
+        -:   64:          class _Compare,
+        -:   65:          class _InputIterator1,
+        -:   66:          class _Sent1,
+        -:   67:          class _InputIterator2,
+        -:   68:          class _Sent2,
+        -:   69:          class _OutputIterator>
+function _ZNSt3__120__half_inplace_mergeB8ne180100INS_17_ClassicAlgPolicyERZN7testing9TestSuite3RunEvE3$_0PPNS2_8TestInfoES8_NS_11__wrap_iterIS8_EESA_SA_EEvT1_T2_T3_T4_T5_OT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__120__half_inplace_mergeB8ne180100INS_17_ClassicAlgPolicyENS_8__invertIRZN7testing9TestSuite3RunEvE3$_0EENS_16reverse_iteratorIPPNS3_8TestInfoEEESC_NS8_INS_11__wrap_iterISB_EEEESF_SF_EEvT1_T2_T3_T4_T5_OT0_ called 0 returned 0% blocks executed 0%
+    #####:   70:_LIBCPP_HIDE_FROM_ABI void __half_inplace_merge(
+        -:   71:    _InputIterator1 __first1,
+        -:   72:    _Sent1 __last1,
+        -:   73:    _InputIterator2 __first2,
+        -:   74:    _Sent2 __last2,
+        -:   75:    _OutputIterator __result,
+        -:   76:    _Compare&& __comp) {
+    #####:   77:  for (; __first1 != __last1; ++__result) {
+    $$$$$:   77-block  0
+    $$$$$:   77-block  1
+    $$$$$:   77-block  2
+    $$$$$:   77-block  3
+    $$$$$:   77-block  4
+    $$$$$:   77-block  5
+    $$$$$:   77-block  6
+    $$$$$:   77-block  7
+    #####:   78:    if (__first2 == __last2) {
+    $$$$$:   78-block  0
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   78-block  1
+branch  2 never executed
+branch  3 never executed
+    #####:   79:      std::__move<_AlgPolicy>(__first1, __last1, __result);
+    #####:   80:      return;
+    $$$$$:   80-block  0
+    $$$$$:   80-block  1
+        -:   81:    }
+        -:   82:
+    #####:   83:    if (__comp(*__first2, *__first1)) {
+    $$$$$:   83-block  0
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   83-block  1
+branch  2 never executed
+branch  3 never executed
+    #####:   84:      *__result = _IterOps<_AlgPolicy>::__iter_move(__first2);
+    #####:   85:      ++__first2;
+    #####:   86:    } else {
+    $$$$$:   86-block  0
+    $$$$$:   86-block  1
+    #####:   87:      *__result = _IterOps<_AlgPolicy>::__iter_move(__first1);
+    #####:   88:      ++__first1;
+    $$$$$:   88-block  0
+    $$$$$:   88-block  1
+        -:   89:    }
+    #####:   90:  }
+    $$$$$:   90-block  0
+    $$$$$:   90-block  1
+        -:   91:  // __first2 through __last2 are already in the right spot.
+    #####:   92:}
+    $$$$$:   92-block  0
+    $$$$$:   92-block  1
+        -:   93:
+        -:   94:template <class _AlgPolicy, class _Compare, class _BidirectionalIterator>
+function _ZNSt3__124__buffered_inplace_mergeB8ne180100INS_17_ClassicAlgPolicyERZN7testing9TestSuite3RunEvE3$_0NS_11__wrap_iterIPPNS2_8TestInfoEEEEEvT1_SB_SB_OT0_NS_15iterator_traitsISB_E15difference_typeESG_PNSF_10value_typeE called 0 returned 0% blocks executed 0%
+    #####:   95:_LIBCPP_HIDE_FROM_ABI void __buffered_inplace_merge(
+        -:   96:    _BidirectionalIterator __first,
+        -:   97:    _BidirectionalIterator __middle,
+        -:   98:    _BidirectionalIterator __last,
+        -:   99:    _Compare&& __comp,
+        -:  100:    typename iterator_traits<_BidirectionalIterator>::difference_type __len1,
+        -:  101:    typename iterator_traits<_BidirectionalIterator>::difference_type __len2,
+        -:  102:    typename iterator_traits<_BidirectionalIterator>::value_type* __buff) {
+        -:  103:  typedef typename iterator_traits<_BidirectionalIterator>::value_type value_type;
+    #####:  104:  __destruct_n __d(0);
+    #####:  105:  unique_ptr<value_type, __destruct_n&> __h2(__buff, __d);
+    #####:  106:  if (__len1 <= __len2) {
+    $$$$$:  106-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  107:    value_type* __p = __buff;
+    #####:  108:    for (_BidirectionalIterator __i = __first; __i != __middle;
+    $$$$$:  108-block  0
+    $$$$$:  108-block  1
+branch  0 never executed
+branch  1 never executed
+    $$$$$:  108-block  2
+    #####:  109:         __d.template __incr<value_type>(), (void)++__i, (void)++__p)
+    #####:  110:      ::new ((void*)__p) value_type(_IterOps<_AlgPolicy>::__iter_move(__i));
+    $$$$$:  110-block  0
+    $$$$$:  110-block  1
+    #####:  111:    std::__half_inplace_merge<_AlgPolicy>(__buff, __p, __middle, __last, __first, __comp);
+    $$$$$:  111-block  0
+    #####:  112:  } else {
+    $$$$$:  112-block  0
+    #####:  113:    value_type* __p = __buff;
+    #####:  114:    for (_BidirectionalIterator __i = __middle; __i != __last;
+    $$$$$:  114-block  0
+    $$$$$:  114-block  1
+branch  0 never executed
+branch  1 never executed
+    $$$$$:  114-block  2
+    #####:  115:         __d.template __incr<value_type>(), (void)++__i, (void)++__p)
+    #####:  116:      ::new ((void*)__p) value_type(_IterOps<_AlgPolicy>::__iter_move(__i));
+    $$$$$:  116-block  0
+    $$$$$:  116-block  1
+        -:  117:    typedef __unconstrained_reverse_iterator<_BidirectionalIterator> _RBi;
+        -:  118:    typedef __unconstrained_reverse_iterator<value_type*> _Rv;
+        -:  119:    typedef __invert<_Compare> _Inverted;
+    #####:  120:    std::__half_inplace_merge<_AlgPolicy>(
+    $$$$$:  120-block  0
+    #####:  121:        _Rv(__p), _Rv(__buff), _RBi(__middle), _RBi(__first), _RBi(__last), _Inverted(__comp));
+    $$$$$:  121-block  0
+    $$$$$:  121-block  1
+    $$$$$:  121-block  2
+    $$$$$:  121-block  3
+    $$$$$:  121-block  4
+    $$$$$:  121-block  5
+        -:  122:  }
+    #####:  123:}
+    $$$$$:  123-block  0
+    $$$$$:  123-block  1
+    $$$$$:  123-block  2
+        -:  124:
+        -:  125:template <class _AlgPolicy, class _Compare, class _BidirectionalIterator>
+function _ZNSt3__115__inplace_mergeINS_17_ClassicAlgPolicyERZN7testing9TestSuite3RunEvE3$_0NS_11__wrap_iterIPPNS2_8TestInfoEEEEEvT1_SB_SB_OT0_NS_15iterator_traitsISB_E15difference_typeESG_PNSF_10value_typeEl called 0 returned 0% blocks executed 0%
+    #####:  126:void __inplace_merge(
+        -:  127:    _BidirectionalIterator __first,
+        -:  128:    _BidirectionalIterator __middle,
+        -:  129:    _BidirectionalIterator __last,
+        -:  130:    _Compare&& __comp,
+        -:  131:    typename iterator_traits<_BidirectionalIterator>::difference_type __len1,
+        -:  132:    typename iterator_traits<_BidirectionalIterator>::difference_type __len2,
+        -:  133:    typename iterator_traits<_BidirectionalIterator>::value_type* __buff,
+        -:  134:    ptrdiff_t __buff_size) {
+        -:  135:  using _Ops = _IterOps<_AlgPolicy>;
+        -:  136:
+        -:  137:  typedef typename iterator_traits<_BidirectionalIterator>::difference_type difference_type;
+    #####:  138:  while (true) {
+    $$$$$:  138-block  0
+    $$$$$:  138-block  1
+        -:  139:    // if __middle == __last, we're done
+    #####:  140:    if (__len2 == 0)
+    $$$$$:  140-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  141:      return;
+    $$$$$:  141-block  0
+    #####:  142:    if (__len1 <= __buff_size || __len2 <= __buff_size)
+    $$$$$:  142-block  0
+    $$$$$:  142-block  1
+    $$$$$:  142-block  2
+    $$$$$:  142-block  3
+    #####:  143:      return std::__buffered_inplace_merge<_AlgPolicy>(__first, __middle, __last, __comp, __len1, __len2, __buff);
+    $$$$$:  143-block  0
+        -:  144:    // shrink [__first, __middle) as much as possible (with no moves), returning if it shrinks to 0
+    #####:  145:    for (; true; ++__first, (void)--__len1) {
+    $$$$$:  145-block  0
+    $$$$$:  145-block  1
+    $$$$$:  145-block  2
+    $$$$$:  145-block  3
+    #####:  146:      if (__len1 == 0)
+    $$$$$:  146-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  147:        return;
+    $$$$$:  147-block  0
+    #####:  148:      if (__comp(*__middle, *__first))
+    $$$$$:  148-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  149:        break;
+    $$$$$:  149-block  0
+    #####:  150:    }
+    $$$$$:  150-block  0
+        -:  151:    // __first < __middle < __last
+        -:  152:    // *__first > *__middle
+        -:  153:    // partition [__first, __m1) [__m1, __middle) [__middle, __m2) [__m2, __last) such that
+        -:  154:    //     all elements in:
+        -:  155:    //         [__first, __m1)  <= [__middle, __m2)
+        -:  156:    //         [__middle, __m2) <  [__m1, __middle)
+        -:  157:    //         [__m1, __middle) <= [__m2, __last)
+        -:  158:    //     and __m1 or __m2 is in the middle of its range
+    #####:  159:    _BidirectionalIterator __m1; // "median" of [__first, __middle)
+    #####:  160:    _BidirectionalIterator __m2; // "median" of [__middle, __last)
+        -:  161:    difference_type __len11;     // distance(__first, __m1)
+        -:  162:    difference_type __len21;     // distance(__middle, __m2)
+        -:  163:    // binary search smaller range
+    #####:  164:    if (__len1 < __len2) { // __len >= 1, __len2 >= 2
+    $$$$$:  164-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  165:      __len21 = __len2 / 2;
+    #####:  166:      __m2    = __middle;
+    #####:  167:      _Ops::advance(__m2, __len21);
+    #####:  168:      __m1    = std::__upper_bound<_AlgPolicy>(__first, __middle, *__m2, __comp, std::__identity());
+    #####:  169:      __len11 = _Ops::distance(__first, __m1);
+    #####:  170:    } else {
+    $$$$$:  170-block  0
+    #####:  171:      if (__len1 == 1) { // __len1 >= __len2 && __len2 > 0, therefore __len2 == 1
+    $$$$$:  171-block  0
+branch  0 never executed
+branch  1 never executed
+        -:  172:                         // It is known *__first > *__middle
+    #####:  173:        _Ops::iter_swap(__first, __middle);
+    #####:  174:        return;
+    $$$$$:  174-block  0
+        -:  175:      }
+        -:  176:      // __len1 >= 2, __len2 >= 1
+    #####:  177:      __len11 = __len1 / 2;
+    #####:  178:      __m1    = __first;
+    #####:  179:      _Ops::advance(__m1, __len11);
+    #####:  180:      __m2    = std::lower_bound(__middle, __last, *__m1, __comp);
+    #####:  181:      __len21 = _Ops::distance(__middle, __m2);
+    $$$$$:  181-block  0
+        -:  182:    }
+    #####:  183:    difference_type __len12 = __len1 - __len11; // distance(__m1, __middle)
+    #####:  184:    difference_type __len22 = __len2 - __len21; // distance(__m2, __last)
+        -:  185:    // [__first, __m1) [__m1, __middle) [__middle, __m2) [__m2, __last)
+        -:  186:    // swap middle two partitions
+    #####:  187:    __middle = std::__rotate<_AlgPolicy>(__m1, __middle, __m2).first;
+        -:  188:    // __len12 and __len21 now have swapped meanings
+        -:  189:    // merge smaller range with recursive call and larger with tail recursion elimination
+    #####:  190:    if (__len11 + __len21 < __len12 + __len22) {
+    $$$$$:  190-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  191:      std::__inplace_merge<_AlgPolicy>(__first, __m1, __middle, __comp, __len11, __len21, __buff, __buff_size);
+    #####:  192:      __first  = __middle;
+    #####:  193:      __middle = __m2;
+    #####:  194:      __len1   = __len12;
+    #####:  195:      __len2   = __len22;
+    #####:  196:    } else {
+    $$$$$:  196-block  0
+    #####:  197:      std::__inplace_merge<_AlgPolicy>(__middle, __m2, __last, __comp, __len12, __len22, __buff, __buff_size);
+    #####:  198:      __last   = __middle;
+    #####:  199:      __middle = __m1;
+    #####:  200:      __len1   = __len11;
+    #####:  201:      __len2   = __len21;
+    $$$$$:  201-block  0
+        -:  202:    }
+        -:  203:  }
+    #####:  204:}
+    $$$$$:  204-block  0
+        -:  205:
+        -:  206:template <class _AlgPolicy, class _BidirectionalIterator, class _Compare>
+        -:  207:_LIBCPP_HIDE_FROM_ABI void __inplace_merge(
+        -:  208:    _BidirectionalIterator __first, _BidirectionalIterator __middle, _BidirectionalIterator __last, _Compare&& __comp) {
+        -:  209:  typedef typename iterator_traits<_BidirectionalIterator>::value_type value_type;
+        -:  210:  typedef typename iterator_traits<_BidirectionalIterator>::difference_type difference_type;
+        -:  211:  difference_type __len1     = _IterOps<_AlgPolicy>::distance(__first, __middle);
+        -:  212:  difference_type __len2     = _IterOps<_AlgPolicy>::distance(__middle, __last);
+        -:  213:  difference_type __buf_size = std::min(__len1, __len2);
+        -:  214:  // TODO: Remove the use of std::get_temporary_buffer
+        -:  215:  _LIBCPP_SUPPRESS_DEPRECATED_PUSH
+        -:  216:  pair<value_type*, ptrdiff_t> __buf = std::get_temporary_buffer<value_type>(__buf_size);
+        -:  217:  _LIBCPP_SUPPRESS_DEPRECATED_POP
+        -:  218:  unique_ptr<value_type, __return_temporary_buffer> __h(__buf.first);
+        -:  219:  return std::__inplace_merge<_AlgPolicy>(
+        -:  220:      std::move(__first), std::move(__middle), std::move(__last), __comp, __len1, __len2, __buf.first, __buf.second);
+        -:  221:}
+        -:  222:
+        -:  223:template <class _BidirectionalIterator, class _Compare>
+        -:  224:inline _LIBCPP_HIDE_FROM_ABI void inplace_merge(
+        -:  225:    _BidirectionalIterator __first, _BidirectionalIterator __middle, _BidirectionalIterator __last, _Compare __comp) {
+        -:  226:  std::__inplace_merge<_ClassicAlgPolicy>(
+        -:  227:      std::move(__first), std::move(__middle), std::move(__last), static_cast<__comp_ref_type<_Compare> >(__comp));
+        -:  228:}
+        -:  229:
+        -:  230:template <class _BidirectionalIterator>
+        -:  231:inline _LIBCPP_HIDE_FROM_ABI void
+        -:  232:inplace_merge(_BidirectionalIterator __first, _BidirectionalIterator __middle, _BidirectionalIterator __last) {
+        -:  233:  std::inplace_merge(std::move(__first), std::move(__middle), std::move(__last), __less<>());
+        -:  234:}
+        -:  235:
+        -:  236:_LIBCPP_END_NAMESPACE_STD
+        -:  237:
+        -:  238:_LIBCPP_POP_MACROS
+        -:  239:
+        -:  240:#endif // _LIBCPP___ALGORITHM_INPLACE_MERGE_H

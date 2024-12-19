@@ -1,0 +1,77 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/swap_ranges.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___ALGORITHM_SWAP_RANGES_H
+        -:   10:#define _LIBCPP___ALGORITHM_SWAP_RANGES_H
+        -:   11:
+        -:   12:#include <__algorithm/iterator_operations.h>
+        -:   13:#include <__config>
+        -:   14:#include <__utility/move.h>
+        -:   15:#include <__utility/pair.h>
+        -:   16:
+        -:   17:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   18:#  pragma GCC system_header
+        -:   19:#endif
+        -:   20:
+        -:   21:_LIBCPP_PUSH_MACROS
+        -:   22:#include <__undef_macros>
+        -:   23:
+        -:   24:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   25:
+        -:   26:// 2+2 iterators: the shorter size will be used.
+        -:   27:template <class _AlgPolicy, class _ForwardIterator1, class _Sentinel1, class _ForwardIterator2, class _Sentinel2>
+        -:   28:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 pair<_ForwardIterator1, _ForwardIterator2>
+function _ZNSt3__113__swap_rangesB8ne180100INS_17_ClassicAlgPolicyENS_11__wrap_iterIPPN7testing8TestInfoEEES7_S7_S7_EENS_4pairIT0_T2_EES9_T1_SA_T3_ called 0 returned 0% blocks executed 0%
+    #####:   29:__swap_ranges(_ForwardIterator1 __first1, _Sentinel1 __last1, _ForwardIterator2 __first2, _Sentinel2 __last2) {
+    #####:   30:  while (__first1 != __last1 && __first2 != __last2) {
+    $$$$$:   30-block  0
+    $$$$$:   30-block  1
+    $$$$$:   30-block  2
+    $$$$$:   30-block  3
+    $$$$$:   30-block  4
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   30-block  5
+    #####:   31:    _IterOps<_AlgPolicy>::iter_swap(__first1, __first2);
+    #####:   32:    ++__first1;
+    #####:   33:    ++__first2;
+        -:   34:  }
+        -:   35:
+    #####:   36:  return pair<_ForwardIterator1, _ForwardIterator2>(std::move(__first1), std::move(__first2));
+    $$$$$:   36-block  0
+        -:   37:}
+        -:   38:
+        -:   39:// 2+1 iterators: size2 >= size1.
+        -:   40:template <class _AlgPolicy, class _ForwardIterator1, class _Sentinel1, class _ForwardIterator2>
+        -:   41:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 pair<_ForwardIterator1, _ForwardIterator2>
+        -:   42:__swap_ranges(_ForwardIterator1 __first1, _Sentinel1 __last1, _ForwardIterator2 __first2) {
+        -:   43:  while (__first1 != __last1) {
+        -:   44:    _IterOps<_AlgPolicy>::iter_swap(__first1, __first2);
+        -:   45:    ++__first1;
+        -:   46:    ++__first2;
+        -:   47:  }
+        -:   48:
+        -:   49:  return pair<_ForwardIterator1, _ForwardIterator2>(std::move(__first1), std::move(__first2));
+        -:   50:}
+        -:   51:
+        -:   52:template <class _ForwardIterator1, class _ForwardIterator2>
+        -:   53:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 _ForwardIterator2
+        -:   54:swap_ranges(_ForwardIterator1 __first1, _ForwardIterator1 __last1, _ForwardIterator2 __first2) {
+        -:   55:  return std::__swap_ranges<_ClassicAlgPolicy>(std::move(__first1), std::move(__last1), std::move(__first2)).second;
+        -:   56:}
+        -:   57:
+        -:   58:_LIBCPP_END_NAMESPACE_STD
+        -:   59:
+        -:   60:_LIBCPP_POP_MACROS
+        -:   61:
+        -:   62:#endif // _LIBCPP___ALGORITHM_SWAP_RANGES_H

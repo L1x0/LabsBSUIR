@@ -1,0 +1,178 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/iterator_operations.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/CMakeFiles/tests_for_lab.dir/TestsForLab.cpp.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/CMakeFiles/tests_for_lab.dir/TestsForLab.cpp.gcda
+        -:    0:Runs:6
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___ALGORITHM_ITERATOR_OPERATIONS_H
+        -:   10:#define _LIBCPP___ALGORITHM_ITERATOR_OPERATIONS_H
+        -:   11:
+        -:   12:#include <__algorithm/iter_swap.h>
+        -:   13:#include <__algorithm/ranges_iterator_concept.h>
+        -:   14:#include <__config>
+        -:   15:#include <__iterator/advance.h>
+        -:   16:#include <__iterator/distance.h>
+        -:   17:#include <__iterator/incrementable_traits.h>
+        -:   18:#include <__iterator/iter_move.h>
+        -:   19:#include <__iterator/iter_swap.h>
+        -:   20:#include <__iterator/iterator_traits.h>
+        -:   21:#include <__iterator/next.h>
+        -:   22:#include <__iterator/prev.h>
+        -:   23:#include <__iterator/readable_traits.h>
+        -:   24:#include <__type_traits/enable_if.h>
+        -:   25:#include <__type_traits/is_reference.h>
+        -:   26:#include <__type_traits/is_same.h>
+        -:   27:#include <__type_traits/remove_cvref.h>
+        -:   28:#include <__utility/declval.h>
+        -:   29:#include <__utility/forward.h>
+        -:   30:#include <__utility/move.h>
+        -:   31:
+        -:   32:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   33:#  pragma GCC system_header
+        -:   34:#endif
+        -:   35:
+        -:   36:_LIBCPP_PUSH_MACROS
+        -:   37:#include <__undef_macros>
+        -:   38:
+        -:   39:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   40:
+        -:   41:template <class _AlgPolicy>
+        -:   42:struct _IterOps;
+        -:   43:
+        -:   44:#if _LIBCPP_STD_VER >= 20
+        -:   45:struct _RangeAlgPolicy {};
+        -:   46:
+        -:   47:template <>
+        -:   48:struct _IterOps<_RangeAlgPolicy> {
+        -:   49:  template <class _Iter>
+        -:   50:  using __value_type = iter_value_t<_Iter>;
+        -:   51:
+        -:   52:  template <class _Iter>
+        -:   53:  using __iterator_category = ranges::__iterator_concept<_Iter>;
+        -:   54:
+        -:   55:  template <class _Iter>
+        -:   56:  using __difference_type = iter_difference_t<_Iter>;
+        -:   57:
+        -:   58:  static constexpr auto advance      = ranges::advance;
+        -:   59:  static constexpr auto distance     = ranges::distance;
+        -:   60:  static constexpr auto __iter_move  = ranges::iter_move;
+        -:   61:  static constexpr auto iter_swap    = ranges::iter_swap;
+        -:   62:  static constexpr auto next         = ranges::next;
+        -:   63:  static constexpr auto prev         = ranges::prev;
+        -:   64:  static constexpr auto __advance_to = ranges::advance;
+        -:   65:};
+        -:   66:
+        -:   67:#endif
+        -:   68:
+        -:   69:struct _ClassicAlgPolicy {};
+        -:   70:
+        -:   71:template <>
+        -:   72:struct _IterOps<_ClassicAlgPolicy> {
+        -:   73:  template <class _Iter>
+        -:   74:  using __value_type = typename iterator_traits<_Iter>::value_type;
+        -:   75:
+        -:   76:  template <class _Iter>
+        -:   77:  using __iterator_category = typename iterator_traits<_Iter>::iterator_category;
+        -:   78:
+        -:   79:  template <class _Iter>
+        -:   80:  using __difference_type = typename iterator_traits<_Iter>::difference_type;
+        -:   81:
+        -:   82:  // advance
+        -:   83:  template <class _Iter, class _Distance>
+        -:   84:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 static void advance(_Iter& __iter, _Distance __count) {
+        -:   85:    std::advance(__iter, __count);
+        -:   86:  }
+        -:   87:
+        -:   88:  // distance
+        -:   89:  template <class _Iter>
+        -:   90:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 static typename iterator_traits<_Iter>::difference_type
+        -:   91:  distance(_Iter __first, _Iter __last) {
+        -:   92:    return std::distance(__first, __last);
+        -:   93:  }
+        -:   94:
+        -:   95:  template <class _Iter>
+        -:   96:  using __deref_t = decltype(*std::declval<_Iter&>());
+        -:   97:
+        -:   98:  template <class _Iter>
+        -:   99:  using __move_t = decltype(std::move(*std::declval<_Iter&>()));
+        -:  100:
+        -:  101:  template <class _Iter>
+function _ZNSt3__18_IterOpsINS_17_ClassicAlgPolicyEE25__validate_iter_referenceB8ne180100IRPNS_4pairIPvmEEEEvv called 0 returned 0% blocks executed 0%
+    #####:  102:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 static void __validate_iter_reference() {
+        -:  103:    static_assert(
+        -:  104:        is_same<__deref_t<_Iter>, typename iterator_traits<__remove_cvref_t<_Iter> >::reference>::value,
+        -:  105:        "It looks like your iterator's `iterator_traits<It>::reference` does not match the return type of "
+        -:  106:        "dereferencing the iterator, i.e., calling `*it`. This is undefined behavior according to [input.iterators] "
+        -:  107:        "and can lead to dangling reference issues at runtime, so we are flagging this.");
+    #####:  108:  }
+    $$$$$:  108-block  0
+        -:  109:
+        -:  110:  // iter_move
+        -:  111:  template <class _Iter, __enable_if_t<is_reference<__deref_t<_Iter> >::value, int> = 0>
+        -:  112:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 static
+        -:  113:      // If the result of dereferencing `_Iter` is a reference type, deduce the result of calling `std::move` on it.
+        -:  114:      // Note that the C++03 mode doesn't support `decltype(auto)` as the return type.
+        -:  115:      __move_t<_Iter>
+function _ZNSt3__18_IterOpsINS_17_ClassicAlgPolicyEE11__iter_moveB8ne180100IRPNS_4pairIPvmEELi0EEEDTclsr3stdE4movedeclsr3stdE7declvalIRT_EEEEOS9_ called 0 returned 0% blocks executed 0%
+    #####:  116:      __iter_move(_Iter&& __i) {
+    #####:  117:    __validate_iter_reference<_Iter>();
+        -:  118:
+    #####:  119:    return std::move(*std::forward<_Iter>(__i));
+    $$$$$:  119-block  0
+        -:  120:  }
+        -:  121:
+        -:  122:  template <class _Iter, __enable_if_t<!is_reference<__deref_t<_Iter> >::value, int> = 0>
+        -:  123:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 static
+        -:  124:      // If the result of dereferencing `_Iter` is a value type, deduce the return value of this function to also be a
+        -:  125:      // value -- otherwise, after `operator*` returns a temporary, this function would return a dangling reference to
+        -:  126:      // that temporary. Note that the C++03 mode doesn't support `auto` as the return type.
+        -:  127:      __deref_t<_Iter>
+        -:  128:      __iter_move(_Iter&& __i) {
+        -:  129:    __validate_iter_reference<_Iter>();
+        -:  130:
+        -:  131:    return *std::forward<_Iter>(__i);
+        -:  132:  }
+        -:  133:
+        -:  134:  // iter_swap
+        -:  135:  template <class _Iter1, class _Iter2>
+        -:  136:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 static void iter_swap(_Iter1&& __a, _Iter2&& __b) {
+        -:  137:    std::iter_swap(std::forward<_Iter1>(__a), std::forward<_Iter2>(__b));
+        -:  138:  }
+        -:  139:
+        -:  140:  // next
+        -:  141:  template <class _Iterator>
+        -:  142:  _LIBCPP_HIDE_FROM_ABI static _LIBCPP_CONSTEXPR_SINCE_CXX14 _Iterator next(_Iterator, _Iterator __last) {
+        -:  143:    return __last;
+        -:  144:  }
+        -:  145:
+        -:  146:  template <class _Iter>
+        -:  147:  _LIBCPP_HIDE_FROM_ABI static _LIBCPP_CONSTEXPR_SINCE_CXX14 __remove_cvref_t<_Iter>
+        -:  148:  next(_Iter&& __it, typename iterator_traits<__remove_cvref_t<_Iter> >::difference_type __n = 1) {
+        -:  149:    return std::next(std::forward<_Iter>(__it), __n);
+        -:  150:  }
+        -:  151:
+        -:  152:  // prev
+        -:  153:  template <class _Iter>
+        -:  154:  _LIBCPP_HIDE_FROM_ABI static _LIBCPP_CONSTEXPR_SINCE_CXX14 __remove_cvref_t<_Iter>
+        -:  155:  prev(_Iter&& __iter, typename iterator_traits<__remove_cvref_t<_Iter> >::difference_type __n = 1) {
+        -:  156:    return std::prev(std::forward<_Iter>(__iter), __n);
+        -:  157:  }
+        -:  158:
+        -:  159:  template <class _Iter>
+        -:  160:  _LIBCPP_HIDE_FROM_ABI static _LIBCPP_CONSTEXPR_SINCE_CXX14 void __advance_to(_Iter& __first, _Iter __last) {
+        -:  161:    __first = __last;
+        -:  162:  }
+        -:  163:};
+        -:  164:
+        -:  165:_LIBCPP_END_NAMESPACE_STD
+        -:  166:
+        -:  167:_LIBCPP_POP_MACROS
+        -:  168:
+        -:  169:#endif // _LIBCPP___ALGORITHM_ITERATOR_OPERATIONS_H

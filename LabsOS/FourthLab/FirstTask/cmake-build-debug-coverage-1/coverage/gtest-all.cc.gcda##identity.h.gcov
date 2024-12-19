@@ -1,0 +1,74 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__functional/identity.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// -*- C++ -*-
+        -:    2://===----------------------------------------------------------------------===//
+        -:    3://
+        -:    4:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    5:// See https://llvm.org/LICENSE.txt for license information.
+        -:    6:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    7://
+        -:    8://===----------------------------------------------------------------------===//
+        -:    9:
+        -:   10:#ifndef _LIBCPP___FUNCTIONAL_IDENTITY_H
+        -:   11:#define _LIBCPP___FUNCTIONAL_IDENTITY_H
+        -:   12:
+        -:   13:#include <__config>
+        -:   14:#include <__functional/reference_wrapper.h>
+        -:   15:#include <__type_traits/integral_constant.h>
+        -:   16:#include <__utility/forward.h>
+        -:   17:
+        -:   18:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   19:#  pragma GCC system_header
+        -:   20:#endif
+        -:   21:
+        -:   22:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   23:
+        -:   24:template <class _Tp>
+        -:   25:struct __is_identity : false_type {};
+        -:   26:
+        -:   27:struct __identity {
+        -:   28:  template <class _Tp>
+function _ZNKSt3__110__identityclB8ne180100IRKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEOT_SB_ called 0 returned 0% blocks executed 0%
+function _ZNKSt3__110__identityclB8ne180100IRPN7testing8TestInfoEEEOT_S7_ called 0 returned 0% blocks executed 0%
+    #####:   29:  _LIBCPP_NODISCARD _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR _Tp&& operator()(_Tp&& __t) const _NOEXCEPT {
+    #####:   30:    return std::forward<_Tp>(__t);
+    $$$$$:   30-block  0
+    $$$$$:   30-block  1
+        -:   31:  }
+        -:   32:
+        -:   33:  using is_transparent = void;
+        -:   34:};
+        -:   35:
+        -:   36:template <>
+        -:   37:struct __is_identity<__identity> : true_type {};
+        -:   38:template <>
+        -:   39:struct __is_identity<reference_wrapper<__identity> > : true_type {};
+        -:   40:template <>
+        -:   41:struct __is_identity<reference_wrapper<const __identity> > : true_type {};
+        -:   42:
+        -:   43:#if _LIBCPP_STD_VER >= 20
+        -:   44:
+        -:   45:struct identity {
+        -:   46:  template <class _Tp>
+        -:   47:  _LIBCPP_NODISCARD_EXT _LIBCPP_HIDE_FROM_ABI constexpr _Tp&& operator()(_Tp&& __t) const noexcept {
+        -:   48:    return std::forward<_Tp>(__t);
+        -:   49:  }
+        -:   50:
+        -:   51:  using is_transparent = void;
+        -:   52:};
+        -:   53:
+        -:   54:template <>
+        -:   55:struct __is_identity<identity> : true_type {};
+        -:   56:template <>
+        -:   57:struct __is_identity<reference_wrapper<identity> > : true_type {};
+        -:   58:template <>
+        -:   59:struct __is_identity<reference_wrapper<const identity> > : true_type {};
+        -:   60:
+        -:   61:#endif // _LIBCPP_STD_VER >= 20
+        -:   62:
+        -:   63:_LIBCPP_END_NAMESPACE_STD
+        -:   64:
+        -:   65:#endif // _LIBCPP___FUNCTIONAL_IDENTITY_H

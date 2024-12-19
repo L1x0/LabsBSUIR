@@ -1,0 +1,165 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/move_backward.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___ALGORITHM_MOVE_BACKWARD_H
+        -:   10:#define _LIBCPP___ALGORITHM_MOVE_BACKWARD_H
+        -:   11:
+        -:   12:#include <__algorithm/copy_move_common.h>
+        -:   13:#include <__algorithm/iterator_operations.h>
+        -:   14:#include <__algorithm/min.h>
+        -:   15:#include <__config>
+        -:   16:#include <__iterator/segmented_iterator.h>
+        -:   17:#include <__type_traits/common_type.h>
+        -:   18:#include <__type_traits/is_copy_constructible.h>
+        -:   19:#include <__utility/move.h>
+        -:   20:#include <__utility/pair.h>
+        -:   21:
+        -:   22:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   23:#  pragma GCC system_header
+        -:   24:#endif
+        -:   25:
+        -:   26:_LIBCPP_PUSH_MACROS
+        -:   27:#include <__undef_macros>
+        -:   28:
+        -:   29:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   30:
+        -:   31:template <class _AlgPolicy, class _BidirectionalIterator1, class _Sentinel, class _BidirectionalIterator2>
+        -:   32:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 pair<_BidirectionalIterator1, _BidirectionalIterator2>
+        -:   33:__move_backward(_BidirectionalIterator1 __first, _Sentinel __last, _BidirectionalIterator2 __result);
+        -:   34:
+        -:   35:template <class _AlgPolicy>
+        -:   36:struct __move_backward_loop {
+        -:   37:  template <class _InIter, class _Sent, class _OutIter>
+        -:   38:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_InIter, _OutIter>
+function _ZNKSt3__120__move_backward_loopINS_17_ClassicAlgPolicyEEclB8ne180100IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEESA_SA_EENS_4pairIT_T1_EESC_T0_SD_ called 0 returned 0% blocks executed 0%
+    #####:   39:  operator()(_InIter __first, _Sent __last, _OutIter __result) const {
+    #####:   40:    auto __last_iter          = _IterOps<_AlgPolicy>::next(__first, __last);
+    #####:   41:    auto __original_last_iter = __last_iter;
+        -:   42:
+    #####:   43:    while (__first != __last_iter) {
+    $$$$$:   43-block  0
+    $$$$$:   43-block  1
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   43-block  2
+    #####:   44:      *--__result = _IterOps<_AlgPolicy>::__iter_move(--__last_iter);
+        -:   45:    }
+        -:   46:
+    #####:   47:    return std::make_pair(std::move(__original_last_iter), std::move(__result));
+    $$$$$:   47-block  0
+        -:   48:  }
+        -:   49:
+        -:   50:  template <class _InIter, class _OutIter, __enable_if_t<__is_segmented_iterator<_InIter>::value, int> = 0>
+        -:   51:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_InIter, _OutIter>
+        -:   52:  operator()(_InIter __first, _InIter __last, _OutIter __result) const {
+        -:   53:    using _Traits = __segmented_iterator_traits<_InIter>;
+        -:   54:    auto __sfirst = _Traits::__segment(__first);
+        -:   55:    auto __slast  = _Traits::__segment(__last);
+        -:   56:    if (__sfirst == __slast) {
+        -:   57:      auto __iters =
+        -:   58:          std::__move_backward<_AlgPolicy>(_Traits::__local(__first), _Traits::__local(__last), std::move(__result));
+        -:   59:      return std::make_pair(__last, __iters.second);
+        -:   60:    }
+        -:   61:
+        -:   62:    __result =
+        -:   63:        std::__move_backward<_AlgPolicy>(_Traits::__begin(__slast), _Traits::__local(__last), std::move(__result))
+        -:   64:            .second;
+        -:   65:    --__slast;
+        -:   66:    while (__sfirst != __slast) {
+        -:   67:      __result =
+        -:   68:          std::__move_backward<_AlgPolicy>(_Traits::__begin(__slast), _Traits::__end(__slast), std::move(__result))
+        -:   69:              .second;
+        -:   70:      --__slast;
+        -:   71:    }
+        -:   72:    __result = std::__move_backward<_AlgPolicy>(_Traits::__local(__first), _Traits::__end(__slast), std::move(__result))
+        -:   73:                   .second;
+        -:   74:    return std::make_pair(__last, std::move(__result));
+        -:   75:  }
+        -:   76:
+        -:   77:  template <class _InIter,
+        -:   78:            class _OutIter,
+        -:   79:            __enable_if_t<__has_random_access_iterator_category<_InIter>::value &&
+        -:   80:                              !__is_segmented_iterator<_InIter>::value && __is_segmented_iterator<_OutIter>::value,
+        -:   81:                          int> = 0>
+        -:   82:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_InIter, _OutIter>
+        -:   83:  operator()(_InIter __first, _InIter __last, _OutIter __result) const {
+        -:   84:    using _Traits = __segmented_iterator_traits<_OutIter>;
+        -:   85:    using _DiffT  = typename common_type<__iter_diff_t<_InIter>, __iter_diff_t<_OutIter> >::type;
+        -:   86:
+        -:   87:    // When the range contains no elements, __result might not be a valid iterator
+        -:   88:    if (__first == __last)
+        -:   89:      return std::make_pair(__first, __result);
+        -:   90:
+        -:   91:    auto __orig_last = __last;
+        -:   92:
+        -:   93:    auto __local_last       = _Traits::__local(__result);
+        -:   94:    auto __segment_iterator = _Traits::__segment(__result);
+        -:   95:    while (true) {
+        -:   96:      auto __local_first = _Traits::__begin(__segment_iterator);
+        -:   97:      auto __size        = std::min<_DiffT>(__local_last - __local_first, __last - __first);
+        -:   98:      auto __iter        = std::__move_backward<_AlgPolicy>(__last - __size, __last, __local_last).second;
+        -:   99:      __last -= __size;
+        -:  100:
+        -:  101:      if (__first == __last)
+        -:  102:        return std::make_pair(std::move(__orig_last), _Traits::__compose(__segment_iterator, std::move(__iter)));
+        -:  103:
+        -:  104:      __local_last = _Traits::__end(--__segment_iterator);
+        -:  105:    }
+        -:  106:  }
+        -:  107:};
+        -:  108:
+        -:  109:struct __move_backward_trivial {
+        -:  110:  // At this point, the iterators have been unwrapped so any `contiguous_iterator` has been unwrapped to a pointer.
+        -:  111:  template <class _In, class _Out, __enable_if_t<__can_lower_move_assignment_to_memmove<_In, _Out>::value, int> = 0>
+        -:  112:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_In*, _Out*>
+function _ZNKSt3__123__move_backward_trivialclB8ne180100IPN7testing8TestInfoES4_Li0EEENS_4pairIPT_PT0_EES7_S7_S9_ called 0 returned 0% blocks executed 0%
+function _ZNKSt3__123__move_backward_trivialclB8ne180100IPN7testing9TestSuiteES4_Li0EEENS_4pairIPT_PT0_EES7_S7_S9_ called 0 returned 0% blocks executed 0%
+    #####:  113:  operator()(_In* __first, _In* __last, _Out* __result) const {
+    #####:  114:    return std::__copy_backward_trivial_impl(__first, __last, __result);
+    $$$$$:  114-block  0
+    $$$$$:  114-block  1
+        -:  115:  }
+        -:  116:};
+        -:  117:
+        -:  118:template <class _AlgPolicy, class _BidirectionalIterator1, class _Sentinel, class _BidirectionalIterator2>
+        -:  119:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 pair<_BidirectionalIterator1, _BidirectionalIterator2>
+function _ZNSt3__115__move_backwardB8ne180100INS_17_ClassicAlgPolicyEPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEES8_S8_EENS_4pairIT0_T2_EESA_T1_SB_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__115__move_backwardB8ne180100INS_17_ClassicAlgPolicyENS_11__wrap_iterIPPN7testing8TestInfoEEES7_S7_EENS_4pairIT0_T2_EES9_T1_SA_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__115__move_backwardB8ne180100INS_17_ClassicAlgPolicyEPPN7testing9TestSuiteES5_S5_EENS_4pairIT0_T2_EES7_T1_S8_ called 0 returned 0% blocks executed 0%
+    #####:  120:__move_backward(_BidirectionalIterator1 __first, _Sentinel __last, _BidirectionalIterator2 __result) {
+        -:  121:  static_assert(std::is_copy_constructible<_BidirectionalIterator1>::value &&
+        -:  122:                    std::is_copy_constructible<_BidirectionalIterator1>::value,
+        -:  123:                "Iterators must be copy constructible.");
+        -:  124:
+    #####:  125:  return std::__dispatch_copy_or_move<_AlgPolicy, __move_backward_loop<_AlgPolicy>, __move_backward_trivial>(
+    $$$$$:  125-block  0
+    $$$$$:  125-block  1
+    $$$$$:  125-block  2
+    #####:  126:      std::move(__first), std::move(__last), std::move(__result));
+        -:  127:}
+        -:  128:
+        -:  129:template <class _BidirectionalIterator1, class _BidirectionalIterator2>
+        -:  130:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 _BidirectionalIterator2
+function _ZNSt3__113move_backwardB8ne180100IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEES7_EET0_T_S9_S8_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__113move_backwardB8ne180100IPPN7testing9TestSuiteES4_EET0_T_S6_S5_ called 0 returned 0% blocks executed 0%
+    #####:  131:move_backward(_BidirectionalIterator1 __first, _BidirectionalIterator1 __last, _BidirectionalIterator2 __result) {
+    #####:  132:  return std::__move_backward<_ClassicAlgPolicy>(std::move(__first), std::move(__last), std::move(__result)).second;
+    $$$$$:  132-block  0
+    $$$$$:  132-block  1
+        -:  133:}
+        -:  134:
+        -:  135:_LIBCPP_END_NAMESPACE_STD
+        -:  136:
+        -:  137:_LIBCPP_POP_MACROS
+        -:  138:
+        -:  139:#endif // _LIBCPP___ALGORITHM_MOVE_BACKWARD_H

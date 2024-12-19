@@ -1,0 +1,63 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/any_of.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// -*- C++ -*-
+        -:    2://===----------------------------------------------------------------------===//
+        -:    3://
+        -:    4:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    5:// See https://llvm.org/LICENSE.txt for license information.
+        -:    6:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    7://
+        -:    8://===----------------------------------------------------------------------===//
+        -:    9:
+        -:   10:#ifndef _LIBCPP___ALGORITHM_ANY_OF_H
+        -:   11:#define _LIBCPP___ALGORITHM_ANY_OF_H
+        -:   12:
+        -:   13:#include <__config>
+        -:   14:
+        -:   15:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   16:#  pragma GCC system_header
+        -:   17:#endif
+        -:   18:
+        -:   19:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   20:
+        -:   21:template <class _InputIterator, class _Predicate>
+        -:   22:_LIBCPP_NODISCARD_EXT inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 bool
+function _ZNSt3__16any_ofB8ne180100INS_11__wrap_iterIPKcEEZN7testing8internal12_GLOBAL__N_113IsGlobPatternERKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEE3$_0EEbT_SH_T0_ called 30 returned 100% blocks executed 100%
+function _ZNSt3__16any_ofB8ne180100INS_11__wrap_iterIPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEZNK7testing8internal12_GLOBAL__N_114UnitTestFilter11MatchesNameERS8_EUlSF_E_EEbT_SH_T0_ called 114 returned 100% blocks executed 87%
+      144:   23:any_of(_InputIterator __first, _InputIterator __last, _Predicate __pred) {
+      558:   24:  for (; __first != __last; ++__first)
+       30:   24-block  0
+      288:   24-block  1
+branch  0 taken 282
+branch  1 taken 6
+      258:   24-block  2
+      114:   24-block  3
+      270:   24-block  4
+branch  2 taken 156
+branch  3 taken 114
+      156:   24-block  5
+      438:   25:    if (__pred(*__first))
+      282:   25-block  0
+branch  0 taken 24
+branch  1 taken 258
+      258:   25-block  1
+      156:   25-block  2
+branch  2 taken 0
+branch  3 taken 156
+      156:   25-block  3
+       24:   26:      return true;
+       24:   26-block  0
+    $$$$$:   26-block  1
+      120:   27:  return false;
+        6:   27-block  0
+      114:   27-block  1
+      144:   28:}
+       30:   28-block  0
+      114:   28-block  1
+        -:   29:
+        -:   30:_LIBCPP_END_NAMESPACE_STD
+        -:   31:
+        -:   32:#endif // _LIBCPP___ALGORITHM_ANY_OF_H

@@ -1,0 +1,48 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/find_if.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// -*- C++ -*-
+        -:    2://===----------------------------------------------------------------------===//
+        -:    3://
+        -:    4:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    5:// See https://llvm.org/LICENSE.txt for license information.
+        -:    6:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    7://
+        -:    8://===----------------------------------------------------------------------===//
+        -:    9:
+        -:   10:#ifndef _LIBCPP___ALGORITHM_FIND_IF_H
+        -:   11:#define _LIBCPP___ALGORITHM_FIND_IF_H
+        -:   12:
+        -:   13:#include <__config>
+        -:   14:
+        -:   15:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   16:#  pragma GCC system_header
+        -:   17:#endif
+        -:   18:
+        -:   19:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   20:
+        -:   21:template <class _InputIterator, class _Predicate>
+        -:   22:_LIBCPP_NODISCARD_EXT inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 _InputIterator
+function _ZNSt3__17find_ifB8ne180100INS_11__wrap_iterIPN7testing12TestPropertyEEENS2_8internal17TestPropertyKeyIsEEET_S8_S8_T0_ called 0 returned 0% blocks executed 0%
+    #####:   23:find_if(_InputIterator __first, _InputIterator __last, _Predicate __pred) {
+    #####:   24:  for (; __first != __last; ++__first)
+    $$$$$:   24-block  0
+    $$$$$:   24-block  1
+    $$$$$:   24-block  2
+    $$$$$:   24-block  3
+    #####:   25:    if (__pred(*__first))
+    $$$$$:   25-block  0
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   25-block  1
+    #####:   26:      break;
+    $$$$$:   26-block  0
+    #####:   27:  return __first;
+    $$$$$:   27-block  0
+        -:   28:}
+        -:   29:
+        -:   30:_LIBCPP_END_NAMESPACE_STD
+        -:   31:
+        -:   32:#endif // _LIBCPP___ALGORITHM_FIND_IF_H

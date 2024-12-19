@@ -1,0 +1,371 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__iterator/move_iterator.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// -*- C++ -*-
+        -:    2://===----------------------------------------------------------------------===//
+        -:    3://
+        -:    4:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    5:// See https://llvm.org/LICENSE.txt for license information.
+        -:    6:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    7://
+        -:    8://===----------------------------------------------------------------------===//
+        -:    9:
+        -:   10:#ifndef _LIBCPP___ITERATOR_MOVE_ITERATOR_H
+        -:   11:#define _LIBCPP___ITERATOR_MOVE_ITERATOR_H
+        -:   12:
+        -:   13:#include <__compare/compare_three_way_result.h>
+        -:   14:#include <__compare/three_way_comparable.h>
+        -:   15:#include <__concepts/assignable.h>
+        -:   16:#include <__concepts/convertible_to.h>
+        -:   17:#include <__concepts/derived_from.h>
+        -:   18:#include <__concepts/same_as.h>
+        -:   19:#include <__config>
+        -:   20:#include <__iterator/concepts.h>
+        -:   21:#include <__iterator/incrementable_traits.h>
+        -:   22:#include <__iterator/iter_move.h>
+        -:   23:#include <__iterator/iter_swap.h>
+        -:   24:#include <__iterator/iterator_traits.h>
+        -:   25:#include <__iterator/move_sentinel.h>
+        -:   26:#include <__iterator/readable_traits.h>
+        -:   27:#include <__type_traits/conditional.h>
+        -:   28:#include <__type_traits/enable_if.h>
+        -:   29:#include <__type_traits/is_assignable.h>
+        -:   30:#include <__type_traits/is_constructible.h>
+        -:   31:#include <__type_traits/is_convertible.h>
+        -:   32:#include <__type_traits/is_reference.h>
+        -:   33:#include <__type_traits/is_same.h>
+        -:   34:#include <__type_traits/remove_reference.h>
+        -:   35:#include <__utility/declval.h>
+        -:   36:#include <__utility/move.h>
+        -:   37:
+        -:   38:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   39:#  pragma GCC system_header
+        -:   40:#endif
+        -:   41:
+        -:   42:_LIBCPP_PUSH_MACROS
+        -:   43:#include <__undef_macros>
+        -:   44:
+        -:   45:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   46:
+        -:   47:#if _LIBCPP_STD_VER >= 20
+        -:   48:template <class _Iter, class = void>
+        -:   49:struct __move_iter_category_base {};
+        -:   50:
+        -:   51:template <class _Iter>
+        -:   52:  requires requires { typename iterator_traits<_Iter>::iterator_category; }
+        -:   53:struct __move_iter_category_base<_Iter> {
+        -:   54:  using iterator_category =
+        -:   55:      _If< derived_from<typename iterator_traits<_Iter>::iterator_category, random_access_iterator_tag>,
+        -:   56:           random_access_iterator_tag,
+        -:   57:           typename iterator_traits<_Iter>::iterator_category >;
+        -:   58:};
+        -:   59:
+        -:   60:template <class _Iter, class _Sent>
+        -:   61:concept __move_iter_comparable = requires {
+        -:   62:  { std::declval<const _Iter&>() == std::declval<_Sent>() } -> convertible_to<bool>;
+        -:   63:};
+        -:   64:#endif // _LIBCPP_STD_VER >= 20
+        -:   65:
+        -:   66:template <class _Iter>
+        -:   67:class _LIBCPP_TEMPLATE_VIS move_iterator
+        -:   68:#if _LIBCPP_STD_VER >= 20
+        -:   69:    : public __move_iter_category_base<_Iter>
+        -:   70:#endif
+        -:   71:{
+        -:   72:#if _LIBCPP_STD_VER >= 20
+        -:   73:
+        -:   74:private:
+        -:   75:  _LIBCPP_HIDE_FROM_ABI static constexpr auto __get_iter_concept() {
+        -:   76:    if constexpr (random_access_iterator<_Iter>) {
+        -:   77:      return random_access_iterator_tag{};
+        -:   78:    } else if constexpr (bidirectional_iterator<_Iter>) {
+        -:   79:      return bidirectional_iterator_tag{};
+        -:   80:    } else if constexpr (forward_iterator<_Iter>) {
+        -:   81:      return forward_iterator_tag{};
+        -:   82:    } else {
+        -:   83:      return input_iterator_tag{};
+        -:   84:    }
+        -:   85:  }
+        -:   86:#endif // _LIBCPP_STD_VER >= 20
+        -:   87:
+        -:   88:public:
+        -:   89:#if _LIBCPP_STD_VER >= 20
+        -:   90:  using iterator_type    = _Iter;
+        -:   91:  using iterator_concept = decltype(__get_iter_concept());
+        -:   92:  // iterator_category is inherited and not always present
+        -:   93:  using value_type      = iter_value_t<_Iter>;
+        -:   94:  using difference_type = iter_difference_t<_Iter>;
+        -:   95:  using pointer         = _Iter;
+        -:   96:  using reference       = iter_rvalue_reference_t<_Iter>;
+        -:   97:#else
+        -:   98:  typedef _Iter iterator_type;
+        -:   99:  typedef _If< __has_random_access_iterator_category<_Iter>::value,
+        -:  100:               random_access_iterator_tag,
+        -:  101:               typename iterator_traits<_Iter>::iterator_category >
+        -:  102:      iterator_category;
+        -:  103:  typedef typename iterator_traits<iterator_type>::value_type value_type;
+        -:  104:  typedef typename iterator_traits<iterator_type>::difference_type difference_type;
+        -:  105:  typedef iterator_type pointer;
+        -:  106:
+        -:  107:  typedef typename iterator_traits<iterator_type>::reference __reference;
+        -:  108:  typedef typename conditional< is_reference<__reference>::value,
+        -:  109:                                __libcpp_remove_reference_t<__reference>&&,
+        -:  110:                                __reference >::type reference;
+        -:  111:#endif // _LIBCPP_STD_VER >= 20
+        -:  112:
+function _ZNSt3__113move_iteratorIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEC1B8ne180100ES7_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__113move_iteratorIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEC2B8ne180100ES7_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__113move_iteratorIPPN7testing9TestSuiteEEC1B8ne180100ES4_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__113move_iteratorIPPN7testing9TestSuiteEEC2B8ne180100ES4_ called 0 returned 0% blocks executed 0%
+    #####:  113:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 explicit move_iterator(_Iter __i) : __current_(std::move(__i)) {}
+    $$$$$:  113-block  0
+    $$$$$:  113-block  1
+    $$$$$:  113-block  2
+    $$$$$:  113-block  3
+        -:  114:
+function _ZNSt3__113move_iteratorIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__113move_iteratorIPPN7testing9TestSuiteEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+    #####:  115:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 move_iterator& operator++() {
+    #####:  116:    ++__current_;
+    #####:  117:    return *this;
+    $$$$$:  117-block  0
+    $$$$$:  117-block  1
+        -:  118:  }
+        -:  119:
+        -:  120:  _LIBCPP_DEPRECATED_IN_CXX20 _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 pointer operator->() const {
+        -:  121:    return __current_;
+        -:  122:  }
+        -:  123:
+        -:  124:#if _LIBCPP_STD_VER >= 20
+        -:  125:  _LIBCPP_HIDE_FROM_ABI constexpr move_iterator()
+        -:  126:    requires is_constructible_v<_Iter>
+        -:  127:      : __current_() {}
+        -:  128:
+        -:  129:  template <class _Up>
+        -:  130:    requires(!_IsSame<_Up, _Iter>::value) && convertible_to<const _Up&, _Iter>
+        -:  131:  _LIBCPP_HIDE_FROM_ABI constexpr move_iterator(const move_iterator<_Up>& __u) : __current_(__u.base()) {}
+        -:  132:
+        -:  133:  template <class _Up>
+        -:  134:    requires(!_IsSame<_Up, _Iter>::value) && convertible_to<const _Up&, _Iter> && assignable_from<_Iter&, const _Up&>
+        -:  135:  _LIBCPP_HIDE_FROM_ABI constexpr move_iterator& operator=(const move_iterator<_Up>& __u) {
+        -:  136:    __current_ = __u.base();
+        -:  137:    return *this;
+        -:  138:  }
+        -:  139:
+        -:  140:  _LIBCPP_HIDE_FROM_ABI constexpr const _Iter& base() const& noexcept { return __current_; }
+        -:  141:  _LIBCPP_HIDE_FROM_ABI constexpr _Iter base() && { return std::move(__current_); }
+        -:  142:
+        -:  143:  _LIBCPP_HIDE_FROM_ABI constexpr reference operator*() const { return ranges::iter_move(__current_); }
+        -:  144:  _LIBCPP_HIDE_FROM_ABI constexpr reference operator[](difference_type __n) const {
+        -:  145:    return ranges::iter_move(__current_ + __n);
+        -:  146:  }
+        -:  147:
+        -:  148:  _LIBCPP_HIDE_FROM_ABI constexpr auto operator++(int)
+        -:  149:    requires forward_iterator<_Iter>
+        -:  150:  {
+        -:  151:    move_iterator __tmp(*this);
+        -:  152:    ++__current_;
+        -:  153:    return __tmp;
+        -:  154:  }
+        -:  155:
+        -:  156:  _LIBCPP_HIDE_FROM_ABI constexpr void operator++(int) { ++__current_; }
+        -:  157:#else
+        -:  158:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 move_iterator() : __current_() {}
+        -:  159:
+        -:  160:  template <class _Up,
+        -:  161:            class = __enable_if_t< !is_same<_Up, _Iter>::value && is_convertible<const _Up&, _Iter>::value > >
+        -:  162:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 move_iterator(const move_iterator<_Up>& __u)
+        -:  163:      : __current_(__u.base()) {}
+        -:  164:
+        -:  165:  template <class _Up,
+        -:  166:            class = __enable_if_t< !is_same<_Up, _Iter>::value && is_convertible<const _Up&, _Iter>::value &&
+        -:  167:                                   is_assignable<_Iter&, const _Up&>::value > >
+        -:  168:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 move_iterator& operator=(const move_iterator<_Up>& __u) {
+        -:  169:    __current_ = __u.base();
+        -:  170:    return *this;
+        -:  171:  }
+        -:  172:
+function _ZNKSt3__113move_iteratorIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__113move_iteratorIPPN7testing9TestSuiteEE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+    #####:  173:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 _Iter base() const { return __current_; }
+    $$$$$:  173-block  0
+    $$$$$:  173-block  1
+        -:  174:
+function _ZNKSt3__113move_iteratorIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__113move_iteratorIPPN7testing9TestSuiteEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+    #####:  175:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reference operator*() const {
+    #####:  176:    return static_cast<reference>(*__current_);
+    $$$$$:  176-block  0
+    $$$$$:  176-block  1
+        -:  177:  }
+        -:  178:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reference operator[](difference_type __n) const {
+        -:  179:    return static_cast<reference>(__current_[__n]);
+        -:  180:  }
+        -:  181:
+        -:  182:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 move_iterator operator++(int) {
+        -:  183:    move_iterator __tmp(*this);
+        -:  184:    ++__current_;
+        -:  185:    return __tmp;
+        -:  186:  }
+        -:  187:#endif // _LIBCPP_STD_VER >= 20
+        -:  188:
+        -:  189:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 move_iterator& operator--() {
+        -:  190:    --__current_;
+        -:  191:    return *this;
+        -:  192:  }
+        -:  193:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 move_iterator operator--(int) {
+        -:  194:    move_iterator __tmp(*this);
+        -:  195:    --__current_;
+        -:  196:    return __tmp;
+        -:  197:  }
+        -:  198:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 move_iterator operator+(difference_type __n) const {
+        -:  199:    return move_iterator(__current_ + __n);
+        -:  200:  }
+        -:  201:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 move_iterator& operator+=(difference_type __n) {
+        -:  202:    __current_ += __n;
+        -:  203:    return *this;
+        -:  204:  }
+        -:  205:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 move_iterator operator-(difference_type __n) const {
+        -:  206:    return move_iterator(__current_ - __n);
+        -:  207:  }
+        -:  208:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 move_iterator& operator-=(difference_type __n) {
+        -:  209:    __current_ -= __n;
+        -:  210:    return *this;
+        -:  211:  }
+        -:  212:
+        -:  213:#if _LIBCPP_STD_VER >= 20
+        -:  214:  template <sentinel_for<_Iter> _Sent>
+        -:  215:  friend _LIBCPP_HIDE_FROM_ABI constexpr bool operator==(const move_iterator& __x, const move_sentinel<_Sent>& __y)
+        -:  216:    requires __move_iter_comparable<_Iter, _Sent>
+        -:  217:  {
+        -:  218:    return __x.base() == __y.base();
+        -:  219:  }
+        -:  220:
+        -:  221:  template <sized_sentinel_for<_Iter> _Sent>
+        -:  222:  friend _LIBCPP_HIDE_FROM_ABI constexpr iter_difference_t<_Iter>
+        -:  223:  operator-(const move_sentinel<_Sent>& __x, const move_iterator& __y) {
+        -:  224:    return __x.base() - __y.base();
+        -:  225:  }
+        -:  226:
+        -:  227:  template <sized_sentinel_for<_Iter> _Sent>
+        -:  228:  friend _LIBCPP_HIDE_FROM_ABI constexpr iter_difference_t<_Iter>
+        -:  229:  operator-(const move_iterator& __x, const move_sentinel<_Sent>& __y) {
+        -:  230:    return __x.base() - __y.base();
+        -:  231:  }
+        -:  232:
+        -:  233:  friend _LIBCPP_HIDE_FROM_ABI constexpr iter_rvalue_reference_t<_Iter>
+        -:  234:  iter_move(const move_iterator& __i) noexcept(noexcept(ranges::iter_move(__i.__current_))) {
+        -:  235:    return ranges::iter_move(__i.__current_);
+        -:  236:  }
+        -:  237:
+        -:  238:  template <indirectly_swappable<_Iter> _It2>
+        -:  239:  friend _LIBCPP_HIDE_FROM_ABI constexpr void
+        -:  240:  iter_swap(const move_iterator& __x,
+        -:  241:            const move_iterator<_It2>& __y) noexcept(noexcept(ranges::iter_swap(__x.__current_, __y.__current_))) {
+        -:  242:    return ranges::iter_swap(__x.__current_, __y.__current_);
+        -:  243:  }
+        -:  244:#endif // _LIBCPP_STD_VER >= 20
+        -:  245:
+        -:  246:private:
+        -:  247:  template <class _It2>
+        -:  248:  friend class move_iterator;
+        -:  249:
+        -:  250:  _Iter __current_;
+        -:  251:};
+        -:  252:_LIBCPP_CTAD_SUPPORTED_FOR_TYPE(move_iterator);
+        -:  253:
+        -:  254:template <class _Iter1, class _Iter2>
+        -:  255:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 bool
+        -:  256:operator==(const move_iterator<_Iter1>& __x, const move_iterator<_Iter2>& __y) {
+        -:  257:  return __x.base() == __y.base();
+        -:  258:}
+        -:  259:
+        -:  260:#if _LIBCPP_STD_VER <= 17
+        -:  261:template <class _Iter1, class _Iter2>
+        -:  262:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 bool
+        -:  263:operator!=(const move_iterator<_Iter1>& __x, const move_iterator<_Iter2>& __y) {
+        -:  264:  return __x.base() != __y.base();
+        -:  265:}
+        -:  266:#endif // _LIBCPP_STD_VER <= 17
+        -:  267:
+        -:  268:template <class _Iter1, class _Iter2>
+        -:  269:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 bool
+        -:  270:operator<(const move_iterator<_Iter1>& __x, const move_iterator<_Iter2>& __y) {
+        -:  271:  return __x.base() < __y.base();
+        -:  272:}
+        -:  273:
+        -:  274:template <class _Iter1, class _Iter2>
+        -:  275:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 bool
+        -:  276:operator>(const move_iterator<_Iter1>& __x, const move_iterator<_Iter2>& __y) {
+        -:  277:  return __x.base() > __y.base();
+        -:  278:}
+        -:  279:
+        -:  280:template <class _Iter1, class _Iter2>
+        -:  281:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 bool
+        -:  282:operator<=(const move_iterator<_Iter1>& __x, const move_iterator<_Iter2>& __y) {
+        -:  283:  return __x.base() <= __y.base();
+        -:  284:}
+        -:  285:
+        -:  286:template <class _Iter1, class _Iter2>
+        -:  287:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 bool
+        -:  288:operator>=(const move_iterator<_Iter1>& __x, const move_iterator<_Iter2>& __y) {
+        -:  289:  return __x.base() >= __y.base();
+        -:  290:}
+        -:  291:
+        -:  292:#if _LIBCPP_STD_VER >= 20
+        -:  293:template <class _Iter1, three_way_comparable_with<_Iter1> _Iter2>
+        -:  294:inline _LIBCPP_HIDE_FROM_ABI constexpr auto
+        -:  295:operator<=>(const move_iterator<_Iter1>& __x, const move_iterator<_Iter2>& __y)
+        -:  296:    -> compare_three_way_result_t<_Iter1, _Iter2> {
+        -:  297:  return __x.base() <=> __y.base();
+        -:  298:}
+        -:  299:#endif // _LIBCPP_STD_VER >= 20
+        -:  300:
+        -:  301:#ifndef _LIBCPP_CXX03_LANG
+        -:  302:template <class _Iter1, class _Iter2>
+        -:  303:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 auto
+function _ZNSt3__1miB8ne180100IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEES7_EEDTmicldtfp_4baseEcldtfp0_4baseEERKNS_13move_iteratorIT_EERKNS9_IT0_EE called 0 returned 0% blocks executed 0%
+function _ZNSt3__1miB8ne180100IPPN7testing9TestSuiteES4_EEDTmicldtfp_4baseEcldtfp0_4baseEERKNS_13move_iteratorIT_EERKNS6_IT0_EE called 0 returned 0% blocks executed 0%
+    #####:  304:operator-(const move_iterator<_Iter1>& __x, const move_iterator<_Iter2>& __y) -> decltype(__x.base() - __y.base()) {
+    #####:  305:  return __x.base() - __y.base();
+    $$$$$:  305-block  0
+    $$$$$:  305-block  1
+        -:  306:}
+        -:  307:#else
+        -:  308:template <class _Iter1, class _Iter2>
+        -:  309:inline _LIBCPP_HIDE_FROM_ABI typename move_iterator<_Iter1>::difference_type
+        -:  310:operator-(const move_iterator<_Iter1>& __x, const move_iterator<_Iter2>& __y) {
+        -:  311:  return __x.base() - __y.base();
+        -:  312:}
+        -:  313:#endif // !_LIBCPP_CXX03_LANG
+        -:  314:
+        -:  315:#if _LIBCPP_STD_VER >= 20
+        -:  316:template <class _Iter>
+        -:  317:inline _LIBCPP_HIDE_FROM_ABI constexpr move_iterator<_Iter>
+        -:  318:operator+(iter_difference_t<_Iter> __n, const move_iterator<_Iter>& __x)
+        -:  319:  requires requires {
+        -:  320:    { __x.base() + __n } -> same_as<_Iter>;
+        -:  321:  }
+        -:  322:{
+        -:  323:  return __x + __n;
+        -:  324:}
+        -:  325:#else
+        -:  326:template <class _Iter>
+        -:  327:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 move_iterator<_Iter>
+        -:  328:operator+(typename move_iterator<_Iter>::difference_type __n, const move_iterator<_Iter>& __x) {
+        -:  329:  return move_iterator<_Iter>(__x.base() + __n);
+        -:  330:}
+        -:  331:#endif // _LIBCPP_STD_VER >= 20
+        -:  332:
+        -:  333:template <class _Iter>
+        -:  334:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 move_iterator<_Iter> make_move_iterator(_Iter __i) {
+        -:  335:  return move_iterator<_Iter>(std::move(__i));
+        -:  336:}
+        -:  337:
+        -:  338:_LIBCPP_END_NAMESPACE_STD
+        -:  339:
+        -:  340:_LIBCPP_POP_MACROS
+        -:  341:
+        -:  342:#endif // _LIBCPP___ITERATOR_MOVE_ITERATOR_H

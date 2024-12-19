@@ -1,0 +1,903 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/ios
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// -*- C++ -*-
+        -:    2://===----------------------------------------------------------------------===//
+        -:    3://
+        -:    4:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    5:// See https://llvm.org/LICENSE.txt for license information.
+        -:    6:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    7://
+        -:    8://===----------------------------------------------------------------------===//
+        -:    9:
+        -:   10:#ifndef _LIBCPP_IOS
+        -:   11:#define _LIBCPP_IOS
+        -:   12:
+        -:   13:/*
+        -:   14:    ios synopsis
+        -:   15:
+        -:   16:#include <iosfwd>
+        -:   17:
+        -:   18:namespace std
+        -:   19:{
+        -:   20:
+        -:   21:typedef OFF_T streamoff;
+        -:   22:typedef SZ_T streamsize;
+        -:   23:template <class stateT> class fpos;
+        -:   24:
+        -:   25:class ios_base
+        -:   26:{
+        -:   27:public:
+        -:   28:    class failure;
+        -:   29:
+        -:   30:    typedef T1 fmtflags;
+        -:   31:    static constexpr fmtflags boolalpha;
+        -:   32:    static constexpr fmtflags dec;
+        -:   33:    static constexpr fmtflags fixed;
+        -:   34:    static constexpr fmtflags hex;
+        -:   35:    static constexpr fmtflags internal;
+        -:   36:    static constexpr fmtflags left;
+        -:   37:    static constexpr fmtflags oct;
+        -:   38:    static constexpr fmtflags right;
+        -:   39:    static constexpr fmtflags scientific;
+        -:   40:    static constexpr fmtflags showbase;
+        -:   41:    static constexpr fmtflags showpoint;
+        -:   42:    static constexpr fmtflags showpos;
+        -:   43:    static constexpr fmtflags skipws;
+        -:   44:    static constexpr fmtflags unitbuf;
+        -:   45:    static constexpr fmtflags uppercase;
+        -:   46:    static constexpr fmtflags adjustfield;
+        -:   47:    static constexpr fmtflags basefield;
+        -:   48:    static constexpr fmtflags floatfield;
+        -:   49:
+        -:   50:    typedef T2 iostate;
+        -:   51:    static constexpr iostate badbit;
+        -:   52:    static constexpr iostate eofbit;
+        -:   53:    static constexpr iostate failbit;
+        -:   54:    static constexpr iostate goodbit;
+        -:   55:
+        -:   56:    typedef T3 openmode;
+        -:   57:    static constexpr openmode app;
+        -:   58:    static constexpr openmode ate;
+        -:   59:    static constexpr openmode binary;
+        -:   60:    static constexpr openmode in;
+        -:   61:    static constexpr openmode noreplace; // since C++23
+        -:   62:    static constexpr openmode out;
+        -:   63:    static constexpr openmode trunc;
+        -:   64:
+        -:   65:    typedef T4 seekdir;
+        -:   66:    static constexpr seekdir beg;
+        -:   67:    static constexpr seekdir cur;
+        -:   68:    static constexpr seekdir end;
+        -:   69:
+        -:   70:    class Init;
+        -:   71:
+        -:   72:    // 27.5.2.2 fmtflags state:
+        -:   73:    fmtflags flags() const;
+        -:   74:    fmtflags flags(fmtflags fmtfl);
+        -:   75:    fmtflags setf(fmtflags fmtfl);
+        -:   76:    fmtflags setf(fmtflags fmtfl, fmtflags mask);
+        -:   77:    void unsetf(fmtflags mask);
+        -:   78:
+        -:   79:    streamsize precision() const;
+        -:   80:    streamsize precision(streamsize prec);
+        -:   81:    streamsize width() const;
+        -:   82:    streamsize width(streamsize wide);
+        -:   83:
+        -:   84:    // 27.5.2.3 locales:
+        -:   85:    locale imbue(const locale& loc);
+        -:   86:    locale getloc() const;
+        -:   87:
+        -:   88:    // 27.5.2.5 storage:
+        -:   89:    static int xalloc();
+        -:   90:    long& iword(int index);
+        -:   91:    void*& pword(int index);
+        -:   92:
+        -:   93:    // destructor
+        -:   94:    virtual ~ios_base();
+        -:   95:
+        -:   96:    // 27.5.2.6 callbacks;
+        -:   97:    enum event { erase_event, imbue_event, copyfmt_event };
+        -:   98:    typedef void (*event_callback)(event, ios_base&, int index);
+        -:   99:    void register_callback(event_callback fn, int index);
+        -:  100:
+        -:  101:    ios_base(const ios_base&) = delete;
+        -:  102:    ios_base& operator=(const ios_base&) = delete;
+        -:  103:
+        -:  104:    static bool sync_with_stdio(bool sync = true);
+        -:  105:
+        -:  106:protected:
+        -:  107:    ios_base();
+        -:  108:};
+        -:  109:
+        -:  110:template <class charT, class traits = char_traits<charT> >
+        -:  111:class basic_ios
+        -:  112:    : public ios_base
+        -:  113:{
+        -:  114:public:
+        -:  115:    // types:
+        -:  116:    typedef charT char_type;
+        -:  117:    typedef typename traits::int_type int_type;  // removed in C++17
+        -:  118:    typedef typename traits::pos_type pos_type;  // removed in C++17
+        -:  119:    typedef typename traits::off_type off_type;  // removed in C++17
+        -:  120:    typedef traits traits_type;
+        -:  121:
+        -:  122:    operator unspecified-bool-type() const;
+        -:  123:    bool operator!() const;
+        -:  124:    iostate rdstate() const;
+        -:  125:    void clear(iostate state = goodbit);
+        -:  126:    void setstate(iostate state);
+        -:  127:    bool good() const;
+        -:  128:    bool eof() const;
+        -:  129:    bool fail() const;
+        -:  130:    bool bad() const;
+        -:  131:
+        -:  132:    iostate exceptions() const;
+        -:  133:    void exceptions(iostate except);
+        -:  134:
+        -:  135:    // 27.5.4.1 Constructor/destructor:
+        -:  136:    explicit basic_ios(basic_streambuf<charT,traits>* sb);
+        -:  137:    virtual ~basic_ios();
+        -:  138:
+        -:  139:    // 27.5.4.2 Members:
+        -:  140:    basic_ostream<charT,traits>* tie() const;
+        -:  141:    basic_ostream<charT,traits>* tie(basic_ostream<charT,traits>* tiestr);
+        -:  142:
+        -:  143:    basic_streambuf<charT,traits>* rdbuf() const;
+        -:  144:    basic_streambuf<charT,traits>* rdbuf(basic_streambuf<charT,traits>* sb);
+        -:  145:
+        -:  146:    basic_ios& copyfmt(const basic_ios& rhs);
+        -:  147:
+        -:  148:    char_type fill() const;
+        -:  149:    char_type fill(char_type ch);
+        -:  150:
+        -:  151:    locale imbue(const locale& loc);
+        -:  152:
+        -:  153:    char narrow(char_type c, char dfault) const;
+        -:  154:    char_type widen(char c) const;
+        -:  155:
+        -:  156:    basic_ios(const basic_ios& ) = delete;
+        -:  157:    basic_ios& operator=(const basic_ios&) = delete;
+        -:  158:
+        -:  159:protected:
+        -:  160:    basic_ios();
+        -:  161:    void init(basic_streambuf<charT,traits>* sb);
+        -:  162:    void move(basic_ios& rhs);
+        -:  163:    void swap(basic_ios& rhs) noexcept;
+        -:  164:    void set_rdbuf(basic_streambuf<charT, traits>* sb);
+        -:  165:};
+        -:  166:
+        -:  167:// 27.5.5, manipulators:
+        -:  168:ios_base& boolalpha (ios_base& str);
+        -:  169:ios_base& noboolalpha(ios_base& str);
+        -:  170:ios_base& showbase (ios_base& str);
+        -:  171:ios_base& noshowbase (ios_base& str);
+        -:  172:ios_base& showpoint (ios_base& str);
+        -:  173:ios_base& noshowpoint(ios_base& str);
+        -:  174:ios_base& showpos (ios_base& str);
+        -:  175:ios_base& noshowpos (ios_base& str);
+        -:  176:ios_base& skipws (ios_base& str);
+        -:  177:ios_base& noskipws (ios_base& str);
+        -:  178:ios_base& uppercase (ios_base& str);
+        -:  179:ios_base& nouppercase(ios_base& str);
+        -:  180:ios_base& unitbuf (ios_base& str);
+        -:  181:ios_base& nounitbuf (ios_base& str);
+        -:  182:
+        -:  183:// 27.5.5.2 adjustfield:
+        -:  184:ios_base& internal (ios_base& str);
+        -:  185:ios_base& left (ios_base& str);
+        -:  186:ios_base& right (ios_base& str);
+        -:  187:
+        -:  188:// 27.5.5.3 basefield:
+        -:  189:ios_base& dec (ios_base& str);
+        -:  190:ios_base& hex (ios_base& str);
+        -:  191:ios_base& oct (ios_base& str);
+        -:  192:
+        -:  193:// 27.5.5.4 floatfield:
+        -:  194:ios_base& fixed (ios_base& str);
+        -:  195:ios_base& scientific (ios_base& str);
+        -:  196:ios_base& hexfloat (ios_base& str);
+        -:  197:ios_base& defaultfloat(ios_base& str);
+        -:  198:
+        -:  199:// 27.5.5.5 error reporting:
+        -:  200:enum class io_errc
+        -:  201:{
+        -:  202:    stream = 1
+        -:  203:};
+        -:  204:
+        -:  205:concept_map ErrorCodeEnum<io_errc> { };
+        -:  206:error_code make_error_code(io_errc e) noexcept;
+        -:  207:error_condition make_error_condition(io_errc e) noexcept;
+        -:  208:storage-class-specifier const error_category& iostream_category() noexcept;
+        -:  209:
+        -:  210:}  // std
+        -:  211:
+        -:  212:*/
+        -:  213:
+        -:  214:#include <__config>
+        -:  215:
+        -:  216:#if defined(_LIBCPP_HAS_NO_LOCALIZATION)
+        -:  217:#  error "The iostreams library is not supported since libc++ has been configured without support for localization."
+        -:  218:#endif
+        -:  219:
+        -:  220:#include <__assert> // all public C++ headers provide the assertion handler
+        -:  221:#include <__fwd/ios.h>
+        -:  222:#include <__ios/fpos.h>
+        -:  223:#include <__locale>
+        -:  224:#include <__system_error/error_category.h>
+        -:  225:#include <__system_error/error_code.h>
+        -:  226:#include <__system_error/error_condition.h>
+        -:  227:#include <__system_error/system_error.h>
+        -:  228:#include <__utility/swap.h>
+        -:  229:#include <__verbose_abort>
+        -:  230:#include <version>
+        -:  231:
+        -:  232:// standard-mandated includes
+        -:  233:
+        -:  234:// [ios.syn]
+        -:  235:#include <iosfwd>
+        -:  236:
+        -:  237:#if !defined(_LIBCPP_HAS_NO_ATOMIC_HEADER)
+        -:  238:#  include <__atomic/atomic.h> // for __xindex_
+        -:  239:#endif
+        -:  240:
+        -:  241:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:  242:#  pragma GCC system_header
+        -:  243:#endif
+        -:  244:
+        -:  245:_LIBCPP_PUSH_MACROS
+        -:  246:#include <__undef_macros>
+        -:  247:
+        -:  248:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:  249:
+        -:  250:typedef ptrdiff_t streamsize;
+        -:  251:
+        -:  252:class _LIBCPP_EXPORTED_FROM_ABI ios_base {
+        -:  253:public:
+        -:  254:  class _LIBCPP_EXPORTED_FROM_ABI failure;
+        -:  255:
+        -:  256:  typedef unsigned int fmtflags;
+        -:  257:  static const fmtflags boolalpha   = 0x0001;
+        -:  258:  static const fmtflags dec         = 0x0002;
+        -:  259:  static const fmtflags fixed       = 0x0004;
+        -:  260:  static const fmtflags hex         = 0x0008;
+        -:  261:  static const fmtflags internal    = 0x0010;
+        -:  262:  static const fmtflags left        = 0x0020;
+        -:  263:  static const fmtflags oct         = 0x0040;
+        -:  264:  static const fmtflags right       = 0x0080;
+        -:  265:  static const fmtflags scientific  = 0x0100;
+        -:  266:  static const fmtflags showbase    = 0x0200;
+        -:  267:  static const fmtflags showpoint   = 0x0400;
+        -:  268:  static const fmtflags showpos     = 0x0800;
+        -:  269:  static const fmtflags skipws      = 0x1000;
+        -:  270:  static const fmtflags unitbuf     = 0x2000;
+        -:  271:  static const fmtflags uppercase   = 0x4000;
+        -:  272:  static const fmtflags adjustfield = left | right | internal;
+        -:  273:  static const fmtflags basefield   = dec | oct | hex;
+        -:  274:  static const fmtflags floatfield  = scientific | fixed;
+        -:  275:
+        -:  276:  typedef unsigned int iostate;
+        -:  277:  static const iostate badbit  = 0x1;
+        -:  278:  static const iostate eofbit  = 0x2;
+        -:  279:  static const iostate failbit = 0x4;
+        -:  280:  static const iostate goodbit = 0x0;
+        -:  281:
+        -:  282:  typedef unsigned int openmode;
+        -:  283:  static const openmode app    = 0x01;
+        -:  284:  static const openmode ate    = 0x02;
+        -:  285:  static const openmode binary = 0x04;
+        -:  286:  static const openmode in     = 0x08;
+        -:  287:  static const openmode out    = 0x10;
+        -:  288:  static const openmode trunc  = 0x20;
+        -:  289:#if _LIBCPP_STD_VER >= 23
+        -:  290:  static const openmode noreplace = 0x40;
+        -:  291:#endif
+        -:  292:
+        -:  293:  enum seekdir { beg, cur, end };
+        -:  294:
+        -:  295:#if _LIBCPP_STD_VER <= 14
+        -:  296:  typedef iostate io_state;
+        -:  297:  typedef openmode open_mode;
+        -:  298:  typedef seekdir seek_dir;
+        -:  299:
+        -:  300:  typedef std::streamoff streamoff;
+        -:  301:  typedef std::streampos streampos;
+        -:  302:#endif
+        -:  303:
+        -:  304:  class _LIBCPP_EXPORTED_FROM_ABI Init;
+        -:  305:
+        -:  306:  // 27.5.2.2 fmtflags state:
+        -:  307:  _LIBCPP_HIDE_FROM_ABI fmtflags flags() const;
+        -:  308:  _LIBCPP_HIDE_FROM_ABI fmtflags flags(fmtflags __fmtfl);
+        -:  309:  _LIBCPP_HIDE_FROM_ABI fmtflags setf(fmtflags __fmtfl);
+        -:  310:  _LIBCPP_HIDE_FROM_ABI fmtflags setf(fmtflags __fmtfl, fmtflags __mask);
+        -:  311:  _LIBCPP_HIDE_FROM_ABI void unsetf(fmtflags __mask);
+        -:  312:
+        -:  313:  _LIBCPP_HIDE_FROM_ABI streamsize precision() const;
+        -:  314:  _LIBCPP_HIDE_FROM_ABI streamsize precision(streamsize __prec);
+        -:  315:  _LIBCPP_HIDE_FROM_ABI streamsize width() const;
+        -:  316:  _LIBCPP_HIDE_FROM_ABI streamsize width(streamsize __wide);
+        -:  317:
+        -:  318:  // 27.5.2.3 locales:
+        -:  319:  locale imbue(const locale& __loc);
+        -:  320:  locale getloc() const;
+        -:  321:
+        -:  322:  // 27.5.2.5 storage:
+        -:  323:  static int xalloc();
+        -:  324:  long& iword(int __index);
+        -:  325:  void*& pword(int __index);
+        -:  326:
+        -:  327:  // destructor
+        -:  328:  virtual ~ios_base();
+        -:  329:
+        -:  330:  // 27.5.2.6 callbacks;
+        -:  331:  enum event { erase_event, imbue_event, copyfmt_event };
+        -:  332:  typedef void (*event_callback)(event, ios_base&, int __index);
+        -:  333:  void register_callback(event_callback __fn, int __index);
+        -:  334:
+        -:  335:  ios_base(const ios_base&)            = delete;
+        -:  336:  ios_base& operator=(const ios_base&) = delete;
+        -:  337:
+        -:  338:  static bool sync_with_stdio(bool __sync = true);
+        -:  339:
+        -:  340:  _LIBCPP_HIDE_FROM_ABI iostate rdstate() const;
+        -:  341:  void clear(iostate __state = goodbit);
+        -:  342:  _LIBCPP_HIDE_FROM_ABI void setstate(iostate __state);
+        -:  343:
+        -:  344:  _LIBCPP_HIDE_FROM_ABI bool good() const;
+        -:  345:  _LIBCPP_HIDE_FROM_ABI bool eof() const;
+        -:  346:  _LIBCPP_HIDE_FROM_ABI bool fail() const;
+        -:  347:  _LIBCPP_HIDE_FROM_ABI bool bad() const;
+        -:  348:
+        -:  349:  _LIBCPP_HIDE_FROM_ABI iostate exceptions() const;
+        -:  350:  _LIBCPP_HIDE_FROM_ABI void exceptions(iostate __iostate);
+        -:  351:
+        -:  352:  void __set_badbit_and_consider_rethrow();
+        -:  353:  void __set_failbit_and_consider_rethrow();
+        -:  354:
+        -:  355:  _LIBCPP_HIDE_FROM_ABI void __setstate_nothrow(iostate __state) {
+        -:  356:    if (__rdbuf_)
+        -:  357:      __rdstate_ |= __state;
+        -:  358:    else
+        -:  359:      __rdstate_ |= __state | ios_base::badbit;
+        -:  360:  }
+        -:  361:
+        -:  362:protected:
+function _ZNSt3__18ios_baseC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+    #####:  363:  _LIBCPP_HIDE_FROM_ABI ios_base() { // purposefully does no initialization
+    #####:  364:  }
+    $$$$$:  364-block  0
+        -:  365:
+        -:  366:  void init(void* __sb);
+function _ZNKSt3__18ios_base5rdbufB8ne180100Ev called 0 returned 0% blocks executed 0%
+    #####:  367:  _LIBCPP_HIDE_FROM_ABI void* rdbuf() const { return __rdbuf_; }
+    $$$$$:  367-block  0
+        -:  368:
+        -:  369:  _LIBCPP_HIDE_FROM_ABI void rdbuf(void* __sb) {
+        -:  370:    __rdbuf_ = __sb;
+        -:  371:    clear();
+        -:  372:  }
+        -:  373:
+        -:  374:  void __call_callbacks(event);
+        -:  375:  void copyfmt(const ios_base&);
+        -:  376:  void move(ios_base&);
+        -:  377:  void swap(ios_base&) _NOEXCEPT;
+        -:  378:
+        -:  379:  _LIBCPP_HIDE_FROM_ABI void set_rdbuf(void* __sb) { __rdbuf_ = __sb; }
+        -:  380:
+        -:  381:private:
+        -:  382:  // All data members must be scalars
+        -:  383:  fmtflags __fmtflags_;
+        -:  384:  streamsize __precision_;
+        -:  385:  streamsize __width_;
+        -:  386:  iostate __rdstate_;
+        -:  387:  iostate __exceptions_;
+        -:  388:  void* __rdbuf_;
+        -:  389:  void* __loc_;
+        -:  390:  event_callback* __fn_;
+        -:  391:  int* __index_;
+        -:  392:  size_t __event_size_;
+        -:  393:  size_t __event_cap_;
+        -:  394:// TODO(EricWF): Enable this for both Clang and GCC. Currently it is only
+        -:  395:// enabled with clang.
+        -:  396:#if defined(_LIBCPP_HAS_C_ATOMIC_IMP) && !defined(_LIBCPP_HAS_NO_THREADS)
+        -:  397:  static atomic<int> __xindex_;
+        -:  398:#else
+        -:  399:  static int __xindex_;
+        -:  400:#endif
+        -:  401:  long* __iarray_;
+        -:  402:  size_t __iarray_size_;
+        -:  403:  size_t __iarray_cap_;
+        -:  404:  void** __parray_;
+        -:  405:  size_t __parray_size_;
+        -:  406:  size_t __parray_cap_;
+        -:  407:};
+        -:  408:
+        -:  409:// enum class io_errc
+        -:  410:_LIBCPP_DECLARE_STRONG_ENUM(io_errc){stream = 1};
+        -:  411:_LIBCPP_DECLARE_STRONG_ENUM_EPILOG(io_errc)
+        -:  412:
+        -:  413:template <>
+        -:  414:struct _LIBCPP_TEMPLATE_VIS is_error_code_enum<io_errc> : public true_type {};
+        -:  415:
+        -:  416:#ifdef _LIBCPP_CXX03_LANG
+        -:  417:template <>
+        -:  418:struct _LIBCPP_TEMPLATE_VIS is_error_code_enum<io_errc::__lx> : public true_type {};
+        -:  419:#endif
+        -:  420:
+        -:  421:_LIBCPP_EXPORTED_FROM_ABI const error_category& iostream_category() _NOEXCEPT;
+        -:  422:
+        -:  423:inline _LIBCPP_HIDE_FROM_ABI error_code make_error_code(io_errc __e) _NOEXCEPT {
+        -:  424:  return error_code(static_cast<int>(__e), iostream_category());
+        -:  425:}
+        -:  426:
+        -:  427:inline _LIBCPP_HIDE_FROM_ABI error_condition make_error_condition(io_errc __e) _NOEXCEPT {
+        -:  428:  return error_condition(static_cast<int>(__e), iostream_category());
+        -:  429:}
+        -:  430:
+        -:  431:class _LIBCPP_EXPORTED_FROM_ABI ios_base::failure : public system_error {
+        -:  432:public:
+        -:  433:  explicit failure(const string& __msg, const error_code& __ec = io_errc::stream);
+        -:  434:  explicit failure(const char* __msg, const error_code& __ec = io_errc::stream);
+        -:  435:  _LIBCPP_HIDE_FROM_ABI failure(const failure&) _NOEXCEPT = default;
+        -:  436:  ~failure() _NOEXCEPT override;
+        -:  437:};
+        -:  438:
+        -:  439:_LIBCPP_NORETURN inline _LIBCPP_HIDE_FROM_ABI void __throw_failure(char const* __msg) {
+        -:  440:#ifndef _LIBCPP_HAS_NO_EXCEPTIONS
+        -:  441:  throw ios_base::failure(__msg);
+        -:  442:#else
+        -:  443:  _LIBCPP_VERBOSE_ABORT("ios_base::failure was thrown in -fno-exceptions mode with message \"%s\"", __msg);
+        -:  444:#endif
+        -:  445:}
+        -:  446:
+        -:  447:class _LIBCPP_EXPORTED_FROM_ABI ios_base::Init {
+        -:  448:public:
+        -:  449:  Init();
+        -:  450:  ~Init();
+        -:  451:};
+        -:  452:
+        -:  453:// fmtflags
+        -:  454:
+function _ZNKSt3__18ios_base5flagsB8ne180100Ev called 0 returned 0% blocks executed 0%
+    #####:  455:inline _LIBCPP_HIDE_FROM_ABI ios_base::fmtflags ios_base::flags() const { return __fmtflags_; }
+    $$$$$:  455-block  0
+        -:  456:
+function _ZNSt3__18ios_base5flagsB8ne180100Ej called 0 returned 0% blocks executed 0%
+    #####:  457:inline _LIBCPP_HIDE_FROM_ABI ios_base::fmtflags ios_base::flags(fmtflags __fmtfl) {
+    #####:  458:  fmtflags __r = __fmtflags_;
+    #####:  459:  __fmtflags_  = __fmtfl;
+    #####:  460:  return __r;
+    $$$$$:  460-block  0
+        -:  461:}
+        -:  462:
+function _ZNSt3__18ios_base4setfB8ne180100Ej called 0 returned 0% blocks executed 0%
+    #####:  463:inline _LIBCPP_HIDE_FROM_ABI ios_base::fmtflags ios_base::setf(fmtflags __fmtfl) {
+    #####:  464:  fmtflags __r = __fmtflags_;
+    #####:  465:  __fmtflags_ |= __fmtfl;
+    #####:  466:  return __r;
+    $$$$$:  466-block  0
+        -:  467:}
+        -:  468:
+function _ZNSt3__18ios_base6unsetfB8ne180100Ej called 0 returned 0% blocks executed 0%
+    #####:  469:inline _LIBCPP_HIDE_FROM_ABI void ios_base::unsetf(fmtflags __mask) { __fmtflags_ &= ~__mask; }
+    $$$$$:  469-block  0
+        -:  470:
+function _ZNSt3__18ios_base4setfB8ne180100Ejj called 0 returned 0% blocks executed 0%
+    #####:  471:inline _LIBCPP_HIDE_FROM_ABI ios_base::fmtflags ios_base::setf(fmtflags __fmtfl, fmtflags __mask) {
+    #####:  472:  fmtflags __r = __fmtflags_;
+    #####:  473:  unsetf(__mask);
+    #####:  474:  __fmtflags_ |= __fmtfl & __mask;
+    #####:  475:  return __r;
+    $$$$$:  475-block  0
+        -:  476:}
+        -:  477:
+        -:  478:// precision
+        -:  479:
+        -:  480:inline _LIBCPP_HIDE_FROM_ABI streamsize ios_base::precision() const { return __precision_; }
+        -:  481:
+function _ZNSt3__18ios_base9precisionB8ne180100El called 342 returned 100% blocks executed 100%
+      342:  482:inline _LIBCPP_HIDE_FROM_ABI streamsize ios_base::precision(streamsize __prec) {
+      342:  483:  streamsize __r = __precision_;
+      342:  484:  __precision_   = __prec;
+      342:  485:  return __r;
+      342:  485-block  0
+        -:  486:}
+        -:  487:
+        -:  488:// width
+        -:  489:
+function _ZNKSt3__18ios_base5widthB8ne180100Ev called 0 returned 0% blocks executed 0%
+    #####:  490:inline _LIBCPP_HIDE_FROM_ABI streamsize ios_base::width() const { return __width_; }
+    $$$$$:  490-block  0
+        -:  491:
+function _ZNSt3__18ios_base5widthB8ne180100El called 0 returned 0% blocks executed 0%
+    #####:  492:inline _LIBCPP_HIDE_FROM_ABI streamsize ios_base::width(streamsize __wide) {
+    #####:  493:  streamsize __r = __width_;
+    #####:  494:  __width_       = __wide;
+    #####:  495:  return __r;
+    $$$$$:  495-block  0
+        -:  496:}
+        -:  497:
+        -:  498:// iostate
+        -:  499:
+        -:  500:inline _LIBCPP_HIDE_FROM_ABI ios_base::iostate ios_base::rdstate() const { return __rdstate_; }
+        -:  501:
+function _ZNSt3__18ios_base8setstateB8ne180100Ej called 0 returned 0% blocks executed 0%
+    #####:  502:inline _LIBCPP_HIDE_FROM_ABI void ios_base::setstate(iostate __state) { clear(__rdstate_ | __state); }
+    $$$$$:  502-block  0
+        -:  503:
+        -:  504:inline _LIBCPP_HIDE_FROM_ABI bool ios_base::good() const { return __rdstate_ == 0; }
+        -:  505:
+        -:  506:inline _LIBCPP_HIDE_FROM_ABI bool ios_base::eof() const { return (__rdstate_ & eofbit) != 0; }
+        -:  507:
+        -:  508:inline _LIBCPP_HIDE_FROM_ABI bool ios_base::fail() const { return (__rdstate_ & (failbit | badbit)) != 0; }
+        -:  509:
+        -:  510:inline _LIBCPP_HIDE_FROM_ABI bool ios_base::bad() const { return (__rdstate_ & badbit) != 0; }
+        -:  511:
+        -:  512:inline _LIBCPP_HIDE_FROM_ABI ios_base::iostate ios_base::exceptions() const { return __exceptions_; }
+        -:  513:
+        -:  514:inline _LIBCPP_HIDE_FROM_ABI void ios_base::exceptions(iostate __iostate) {
+        -:  515:  __exceptions_ = __iostate;
+        -:  516:  clear(__rdstate_);
+        -:  517:}
+        -:  518:
+        -:  519:template <class _CharT, class _Traits>
+        -:  520:class _LIBCPP_TEMPLATE_VIS basic_ios : public ios_base {
+        -:  521:public:
+        -:  522:  // types:
+        -:  523:  typedef _CharT char_type;
+        -:  524:  typedef _Traits traits_type;
+        -:  525:
+        -:  526:  typedef typename traits_type::int_type int_type;
+        -:  527:  typedef typename traits_type::pos_type pos_type;
+        -:  528:  typedef typename traits_type::off_type off_type;
+        -:  529:
+        -:  530:  static_assert((is_same<_CharT, typename traits_type::char_type>::value),
+        -:  531:                "traits_type::char_type must be the same type as CharT");
+        -:  532:
+        -:  533:#ifdef _LIBCPP_CXX03_LANG
+        -:  534:  // Preserve the ability to compare with literal 0,
+        -:  535:  // and implicitly convert to bool, but not implicitly convert to int.
+        -:  536:  _LIBCPP_HIDE_FROM_ABI operator void*() const { return fail() ? nullptr : (void*)this; }
+        -:  537:#else
+        -:  538:  _LIBCPP_HIDE_FROM_ABI explicit operator bool() const { return !fail(); }
+        -:  539:#endif
+        -:  540:
+        -:  541:  _LIBCPP_HIDE_FROM_ABI bool operator!() const { return fail(); }
+        -:  542:  _LIBCPP_HIDE_FROM_ABI iostate rdstate() const { return ios_base::rdstate(); }
+        -:  543:  _LIBCPP_HIDE_FROM_ABI void clear(iostate __state = goodbit) { ios_base::clear(__state); }
+function _ZNSt3__19basic_iosIcNS_11char_traitsIcEEE8setstateB8ne180100Ej called 0 returned 0% blocks executed 0%
+    #####:  544:  _LIBCPP_HIDE_FROM_ABI void setstate(iostate __state) { ios_base::setstate(__state); }
+    $$$$$:  544-block  0
+        -:  545:  _LIBCPP_HIDE_FROM_ABI bool good() const { return ios_base::good(); }
+        -:  546:  _LIBCPP_HIDE_FROM_ABI bool eof() const { return ios_base::eof(); }
+        -:  547:  _LIBCPP_HIDE_FROM_ABI bool fail() const { return ios_base::fail(); }
+        -:  548:  _LIBCPP_HIDE_FROM_ABI bool bad() const { return ios_base::bad(); }
+        -:  549:
+        -:  550:  _LIBCPP_HIDE_FROM_ABI iostate exceptions() const { return ios_base::exceptions(); }
+        -:  551:  _LIBCPP_HIDE_FROM_ABI void exceptions(iostate __iostate) { ios_base::exceptions(__iostate); }
+        -:  552:
+        -:  553:  // 27.5.4.1 Constructor/destructor:
+        -:  554:  _LIBCPP_HIDE_FROM_ABI explicit basic_ios(basic_streambuf<char_type, traits_type>* __sb);
+        -:  555:  ~basic_ios() override;
+        -:  556:
+        -:  557:  // 27.5.4.2 Members:
+        -:  558:  _LIBCPP_HIDE_FROM_ABI basic_ostream<char_type, traits_type>* tie() const;
+        -:  559:  _LIBCPP_HIDE_FROM_ABI basic_ostream<char_type, traits_type>* tie(basic_ostream<char_type, traits_type>* __tiestr);
+        -:  560:
+        -:  561:  _LIBCPP_HIDE_FROM_ABI basic_streambuf<char_type, traits_type>* rdbuf() const;
+        -:  562:  _LIBCPP_HIDE_FROM_ABI basic_streambuf<char_type, traits_type>* rdbuf(basic_streambuf<char_type, traits_type>* __sb);
+        -:  563:
+        -:  564:  basic_ios& copyfmt(const basic_ios& __rhs);
+        -:  565:
+        -:  566:  _LIBCPP_HIDE_FROM_ABI char_type fill() const;
+        -:  567:  _LIBCPP_HIDE_FROM_ABI char_type fill(char_type __ch);
+        -:  568:
+        -:  569:  _LIBCPP_HIDE_FROM_ABI locale imbue(const locale& __loc);
+        -:  570:
+        -:  571:  _LIBCPP_HIDE_FROM_ABI char narrow(char_type __c, char __dfault) const;
+        -:  572:  _LIBCPP_HIDE_FROM_ABI char_type widen(char __c) const;
+        -:  573:
+        -:  574:protected:
+function _ZNSt3__19basic_iosIcNS_11char_traitsIcEEEC2B8ne180100Ev called 0 returned 0% blocks executed 0%
+    #####:  575:  _LIBCPP_HIDE_FROM_ABI basic_ios() { // purposefully does no initialization
+    #####:  576:  }
+    $$$$$:  576-block  0
+        -:  577:  _LIBCPP_HIDE_FROM_ABI void init(basic_streambuf<char_type, traits_type>* __sb);
+        -:  578:
+        -:  579:  _LIBCPP_HIDE_FROM_ABI void move(basic_ios& __rhs);
+        -:  580:  _LIBCPP_HIDE_FROM_ABI void move(basic_ios&& __rhs) { move(__rhs); }
+        -:  581:  _LIBCPP_HIDE_FROM_ABI void swap(basic_ios& __rhs) _NOEXCEPT;
+        -:  582:  _LIBCPP_HIDE_FROM_ABI void set_rdbuf(basic_streambuf<char_type, traits_type>* __sb);
+        -:  583:
+        -:  584:private:
+        -:  585:  basic_ostream<char_type, traits_type>* __tie_;
+        -:  586:  mutable int_type __fill_;
+        -:  587:};
+        -:  588:
+        -:  589:template <class _CharT, class _Traits>
+        -:  590:inline _LIBCPP_HIDE_FROM_ABI basic_ios<_CharT, _Traits>::basic_ios(basic_streambuf<char_type, traits_type>* __sb) {
+        -:  591:  init(__sb);
+        -:  592:}
+        -:  593:
+        -:  594:template <class _CharT, class _Traits>
+        -:  595:basic_ios<_CharT, _Traits>::~basic_ios() {}
+        -:  596:
+        -:  597:template <class _CharT, class _Traits>
+function _ZNSt3__19basic_iosIcNS_11char_traitsIcEEE4initB8ne180100EPNS_15basic_streambufIcS2_EE called 0 returned 0% blocks executed 0%
+    #####:  598:inline _LIBCPP_HIDE_FROM_ABI void basic_ios<_CharT, _Traits>::init(basic_streambuf<char_type, traits_type>* __sb) {
+    #####:  599:  ios_base::init(__sb);
+    #####:  600:  __tie_  = nullptr;
+    #####:  601:  __fill_ = traits_type::eof();
+    #####:  602:}
+    $$$$$:  602-block  0
+        -:  603:
+        -:  604:template <class _CharT, class _Traits>
+        -:  605:inline _LIBCPP_HIDE_FROM_ABI basic_ostream<_CharT, _Traits>* basic_ios<_CharT, _Traits>::tie() const {
+        -:  606:  return __tie_;
+        -:  607:}
+        -:  608:
+        -:  609:template <class _CharT, class _Traits>
+        -:  610:inline _LIBCPP_HIDE_FROM_ABI basic_ostream<_CharT, _Traits>*
+        -:  611:basic_ios<_CharT, _Traits>::tie(basic_ostream<char_type, traits_type>* __tiestr) {
+        -:  612:  basic_ostream<char_type, traits_type>* __r = __tie_;
+        -:  613:  __tie_                                     = __tiestr;
+        -:  614:  return __r;
+        -:  615:}
+        -:  616:
+        -:  617:template <class _CharT, class _Traits>
+function _ZNKSt3__19basic_iosIcNS_11char_traitsIcEEE5rdbufB8ne180100Ev called 0 returned 0% blocks executed 0%
+    #####:  618:inline _LIBCPP_HIDE_FROM_ABI basic_streambuf<_CharT, _Traits>* basic_ios<_CharT, _Traits>::rdbuf() const {
+    #####:  619:  return static_cast<basic_streambuf<char_type, traits_type>*>(ios_base::rdbuf());
+    $$$$$:  619-block  0
+        -:  620:}
+        -:  621:
+        -:  622:template <class _CharT, class _Traits>
+        -:  623:inline _LIBCPP_HIDE_FROM_ABI basic_streambuf<_CharT, _Traits>*
+        -:  624:basic_ios<_CharT, _Traits>::rdbuf(basic_streambuf<char_type, traits_type>* __sb) {
+        -:  625:  basic_streambuf<char_type, traits_type>* __r = rdbuf();
+        -:  626:  ios_base::rdbuf(__sb);
+        -:  627:  return __r;
+        -:  628:}
+        -:  629:
+        -:  630:template <class _CharT, class _Traits>
+        -:  631:inline _LIBCPP_HIDE_FROM_ABI locale basic_ios<_CharT, _Traits>::imbue(const locale& __loc) {
+        -:  632:  locale __r = getloc();
+        -:  633:  ios_base::imbue(__loc);
+        -:  634:  if (rdbuf())
+        -:  635:    rdbuf()->pubimbue(__loc);
+        -:  636:  return __r;
+        -:  637:}
+        -:  638:
+        -:  639:template <class _CharT, class _Traits>
+        -:  640:inline _LIBCPP_HIDE_FROM_ABI char basic_ios<_CharT, _Traits>::narrow(char_type __c, char __dfault) const {
+        -:  641:  return std::use_facet<ctype<char_type> >(getloc()).narrow(__c, __dfault);
+        -:  642:}
+        -:  643:
+        -:  644:template <class _CharT, class _Traits>
+function _ZNKSt3__19basic_iosIcNS_11char_traitsIcEEE5widenB8ne180100Ec called 0 returned 0% blocks executed 0%
+    #####:  645:inline _LIBCPP_HIDE_FROM_ABI _CharT basic_ios<_CharT, _Traits>::widen(char __c) const {
+    #####:  646:  return std::use_facet<ctype<char_type> >(getloc()).widen(__c);
+    $$$$$:  646-block  0
+    $$$$$:  646-block  1
+    $$$$$:  646-block  2
+    $$$$$:  646-block  3
+    $$$$$:  646-block  4
+    #####:  647:}
+        -:  648:
+        -:  649:template <class _CharT, class _Traits>
+function _ZNKSt3__19basic_iosIcNS_11char_traitsIcEEE4fillB8ne180100Ev called 0 returned 0% blocks executed 0%
+    #####:  650:inline _LIBCPP_HIDE_FROM_ABI _CharT basic_ios<_CharT, _Traits>::fill() const {
+    #####:  651:  if (traits_type::eq_int_type(traits_type::eof(), __fill_))
+    $$$$$:  651-block  0
+    $$$$$:  651-block  1
+    #####:  652:    __fill_ = widen(' ');
+    $$$$$:  652-block  0
+    #####:  653:  return __fill_;
+    $$$$$:  653-block  0
+        -:  654:}
+        -:  655:
+        -:  656:template <class _CharT, class _Traits>
+function _ZNSt3__19basic_iosIcNS_11char_traitsIcEEE4fillB8ne180100Ec called 0 returned 0% blocks executed 0%
+    #####:  657:inline _LIBCPP_HIDE_FROM_ABI _CharT basic_ios<_CharT, _Traits>::fill(char_type __ch) {
+    #####:  658:  if (traits_type::eq_int_type(traits_type::eof(), __fill_))
+    $$$$$:  658-block  0
+    $$$$$:  658-block  1
+    #####:  659:    __fill_ = widen(' ');
+    $$$$$:  659-block  0
+    #####:  660:  char_type __r = __fill_;
+    #####:  661:  __fill_       = __ch;
+    #####:  662:  return __r;
+    $$$$$:  662-block  0
+        -:  663:}
+        -:  664:
+        -:  665:template <class _CharT, class _Traits>
+        -:  666:basic_ios<_CharT, _Traits>& basic_ios<_CharT, _Traits>::copyfmt(const basic_ios& __rhs) {
+        -:  667:  if (this != &__rhs) {
+        -:  668:    __call_callbacks(erase_event);
+        -:  669:    ios_base::copyfmt(__rhs);
+        -:  670:    __tie_  = __rhs.__tie_;
+        -:  671:    __fill_ = __rhs.__fill_;
+        -:  672:    __call_callbacks(copyfmt_event);
+        -:  673:    exceptions(__rhs.exceptions());
+        -:  674:  }
+        -:  675:  return *this;
+        -:  676:}
+        -:  677:
+        -:  678:template <class _CharT, class _Traits>
+        -:  679:inline _LIBCPP_HIDE_FROM_ABI void basic_ios<_CharT, _Traits>::move(basic_ios& __rhs) {
+        -:  680:  ios_base::move(__rhs);
+        -:  681:  __tie_       = __rhs.__tie_;
+        -:  682:  __rhs.__tie_ = nullptr;
+        -:  683:  __fill_      = __rhs.__fill_;
+        -:  684:}
+        -:  685:
+        -:  686:template <class _CharT, class _Traits>
+        -:  687:inline _LIBCPP_HIDE_FROM_ABI void basic_ios<_CharT, _Traits>::swap(basic_ios& __rhs) _NOEXCEPT {
+        -:  688:  ios_base::swap(__rhs);
+        -:  689:  std::swap(__tie_, __rhs.__tie_);
+        -:  690:  std::swap(__fill_, __rhs.__fill_);
+        -:  691:}
+        -:  692:
+        -:  693:template <class _CharT, class _Traits>
+        -:  694:inline _LIBCPP_HIDE_FROM_ABI void basic_ios<_CharT, _Traits>::set_rdbuf(basic_streambuf<char_type, traits_type>* __sb) {
+        -:  695:  ios_base::set_rdbuf(__sb);
+        -:  696:}
+        -:  697:
+        -:  698:extern template class _LIBCPP_EXTERN_TEMPLATE_TYPE_VIS basic_ios<char>;
+        -:  699:
+        -:  700:#ifndef _LIBCPP_HAS_NO_WIDE_CHARACTERS
+        -:  701:extern template class _LIBCPP_EXTERN_TEMPLATE_TYPE_VIS basic_ios<wchar_t>;
+        -:  702:#endif
+        -:  703:
+        -:  704:_LIBCPP_HIDE_FROM_ABI inline ios_base& boolalpha(ios_base& __str) {
+        -:  705:  __str.setf(ios_base::boolalpha);
+        -:  706:  return __str;
+        -:  707:}
+        -:  708:
+        -:  709:_LIBCPP_HIDE_FROM_ABI inline ios_base& noboolalpha(ios_base& __str) {
+        -:  710:  __str.unsetf(ios_base::boolalpha);
+        -:  711:  return __str;
+        -:  712:}
+        -:  713:
+        -:  714:_LIBCPP_HIDE_FROM_ABI inline ios_base& showbase(ios_base& __str) {
+        -:  715:  __str.setf(ios_base::showbase);
+        -:  716:  return __str;
+        -:  717:}
+        -:  718:
+        -:  719:_LIBCPP_HIDE_FROM_ABI inline ios_base& noshowbase(ios_base& __str) {
+        -:  720:  __str.unsetf(ios_base::showbase);
+        -:  721:  return __str;
+        -:  722:}
+        -:  723:
+function _ZNSt3__19showpointB8ne180100ERNS_8ios_baseE called 0 returned 0% blocks executed 0%
+    #####:  724:_LIBCPP_HIDE_FROM_ABI inline ios_base& showpoint(ios_base& __str) {
+    #####:  725:  __str.setf(ios_base::showpoint);
+    #####:  726:  return __str;
+    $$$$$:  726-block  0
+        -:  727:}
+        -:  728:
+        -:  729:_LIBCPP_HIDE_FROM_ABI inline ios_base& noshowpoint(ios_base& __str) {
+        -:  730:  __str.unsetf(ios_base::showpoint);
+        -:  731:  return __str;
+        -:  732:}
+        -:  733:
+        -:  734:_LIBCPP_HIDE_FROM_ABI inline ios_base& showpos(ios_base& __str) {
+        -:  735:  __str.setf(ios_base::showpos);
+        -:  736:  return __str;
+        -:  737:}
+        -:  738:
+        -:  739:_LIBCPP_HIDE_FROM_ABI inline ios_base& noshowpos(ios_base& __str) {
+        -:  740:  __str.unsetf(ios_base::showpos);
+        -:  741:  return __str;
+        -:  742:}
+        -:  743:
+        -:  744:_LIBCPP_HIDE_FROM_ABI inline ios_base& skipws(ios_base& __str) {
+        -:  745:  __str.setf(ios_base::skipws);
+        -:  746:  return __str;
+        -:  747:}
+        -:  748:
+        -:  749:_LIBCPP_HIDE_FROM_ABI inline ios_base& noskipws(ios_base& __str) {
+        -:  750:  __str.unsetf(ios_base::skipws);
+        -:  751:  return __str;
+        -:  752:}
+        -:  753:
+function _ZNSt3__19uppercaseB8ne180100ERNS_8ios_baseE called 0 returned 0% blocks executed 0%
+    #####:  754:_LIBCPP_HIDE_FROM_ABI inline ios_base& uppercase(ios_base& __str) {
+    #####:  755:  __str.setf(ios_base::uppercase);
+    #####:  756:  return __str;
+    $$$$$:  756-block  0
+        -:  757:}
+        -:  758:
+        -:  759:_LIBCPP_HIDE_FROM_ABI inline ios_base& nouppercase(ios_base& __str) {
+        -:  760:  __str.unsetf(ios_base::uppercase);
+        -:  761:  return __str;
+        -:  762:}
+        -:  763:
+        -:  764:_LIBCPP_HIDE_FROM_ABI inline ios_base& unitbuf(ios_base& __str) {
+        -:  765:  __str.setf(ios_base::unitbuf);
+        -:  766:  return __str;
+        -:  767:}
+        -:  768:
+        -:  769:_LIBCPP_HIDE_FROM_ABI inline ios_base& nounitbuf(ios_base& __str) {
+        -:  770:  __str.unsetf(ios_base::unitbuf);
+        -:  771:  return __str;
+        -:  772:}
+        -:  773:
+        -:  774:_LIBCPP_HIDE_FROM_ABI inline ios_base& internal(ios_base& __str) {
+        -:  775:  __str.setf(ios_base::internal, ios_base::adjustfield);
+        -:  776:  return __str;
+        -:  777:}
+        -:  778:
+        -:  779:_LIBCPP_HIDE_FROM_ABI inline ios_base& left(ios_base& __str) {
+        -:  780:  __str.setf(ios_base::left, ios_base::adjustfield);
+        -:  781:  return __str;
+        -:  782:}
+        -:  783:
+        -:  784:_LIBCPP_HIDE_FROM_ABI inline ios_base& right(ios_base& __str) {
+        -:  785:  __str.setf(ios_base::right, ios_base::adjustfield);
+        -:  786:  return __str;
+        -:  787:}
+        -:  788:
+        -:  789:_LIBCPP_HIDE_FROM_ABI inline ios_base& dec(ios_base& __str) {
+        -:  790:  __str.setf(ios_base::dec, ios_base::basefield);
+        -:  791:  return __str;
+        -:  792:}
+        -:  793:
+function _ZNSt3__13hexB8ne180100ERNS_8ios_baseE called 0 returned 0% blocks executed 0%
+    #####:  794:_LIBCPP_HIDE_FROM_ABI inline ios_base& hex(ios_base& __str) {
+    #####:  795:  __str.setf(ios_base::hex, ios_base::basefield);
+    #####:  796:  return __str;
+    $$$$$:  796-block  0
+        -:  797:}
+        -:  798:
+        -:  799:_LIBCPP_HIDE_FROM_ABI inline ios_base& oct(ios_base& __str) {
+        -:  800:  __str.setf(ios_base::oct, ios_base::basefield);
+        -:  801:  return __str;
+        -:  802:}
+        -:  803:
+function _ZNSt3__15fixedB8ne180100ERNS_8ios_baseE called 0 returned 0% blocks executed 0%
+    #####:  804:_LIBCPP_HIDE_FROM_ABI inline ios_base& fixed(ios_base& __str) {
+    #####:  805:  __str.setf(ios_base::fixed, ios_base::floatfield);
+    #####:  806:  return __str;
+    $$$$$:  806-block  0
+        -:  807:}
+        -:  808:
+        -:  809:_LIBCPP_HIDE_FROM_ABI inline ios_base& scientific(ios_base& __str) {
+        -:  810:  __str.setf(ios_base::scientific, ios_base::floatfield);
+        -:  811:  return __str;
+        -:  812:}
+        -:  813:
+        -:  814:_LIBCPP_HIDE_FROM_ABI inline ios_base& hexfloat(ios_base& __str) {
+        -:  815:  __str.setf(ios_base::fixed | ios_base::scientific, ios_base::floatfield);
+        -:  816:  return __str;
+        -:  817:}
+        -:  818:
+        -:  819:_LIBCPP_HIDE_FROM_ABI inline ios_base& defaultfloat(ios_base& __str) {
+        -:  820:  __str.unsetf(ios_base::floatfield);
+        -:  821:  return __str;
+        -:  822:}
+        -:  823:
+        -:  824:_LIBCPP_END_NAMESPACE_STD
+        -:  825:
+        -:  826:_LIBCPP_POP_MACROS
+        -:  827:
+        -:  828:#if !defined(_LIBCPP_REMOVE_TRANSITIVE_INCLUDES) && _LIBCPP_STD_VER <= 20
+        -:  829:#  include <atomic>
+        -:  830:#  include <concepts>
+        -:  831:#  include <cstddef>
+        -:  832:#  include <cstdlib>
+        -:  833:#  include <cstring>
+        -:  834:#  include <initializer_list>
+        -:  835:#  include <limits>
+        -:  836:#  include <mutex>
+        -:  837:#  include <new>
+        -:  838:#  include <stdexcept>
+        -:  839:#  include <system_error>
+        -:  840:#  include <type_traits>
+        -:  841:#  include <typeinfo>
+        -:  842:#endif
+        -:  843:
+        -:  844:#endif // _LIBCPP_IOS

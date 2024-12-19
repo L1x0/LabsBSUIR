@@ -1,0 +1,19 @@
+# ninja log v6
+1	500	1734268570283618541	CMakeFiles/FirstTask.dir/main.cpp.o	7578fcc0dc7cea11
+1	537	1734268570283454248	googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o	59e0bad95eca0d4b
+502	550	1734268570784482936	FirstTask	65750b279d79970
+2	651	1734268570284511551	googletest/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o	3f15364262aebd08
+2	702	1734268570284239631	CMakeFiles/tests_for_lab.dir/TestsForLab.cpp.o	876a53db0c8d1dc4
+1	1075	1734268570283303246	googletest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o	bc9ed4314d521bc9
+1	2203	1734268570282972576	googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o	23df895358142cd9
+2204	2262	1734268572485956916	lib/libgtest.a	c5b6a42ad5bc32bd
+2263	2302	1734268572545096792	lib/libgtest_main.a	bb0dc1de61ddf4eb
+2262	2310	1734268572544832664	lib/libgmock.a	c9d2ce5165a124a4
+2310	2350	1734268572592891006	lib/libgmock_main.a	504f7ed2bed4c9de
+2302	2920	1734268573201367442	tests_for_lab	8f53e21c3f288e06
+2302	2920	1734268573201367442	tests_for_lab[1]_tests.cmake	8f53e21c3f288e06
+2302	2920	1734268573201367442	/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/tests_for_lab[1]_tests.cmake	8f53e21c3f288e06
+23	861	1734334836524152271	CMakeFiles/tests_for_lab.dir/TestsForLab.cpp.o	876a53db0c8d1dc4
+861	1537	1734334838037372434	tests_for_lab	8f53e21c3f288e06
+861	1537	1734334838037372434	tests_for_lab[1]_tests.cmake	8f53e21c3f288e06
+861	1537	1734334838037372434	/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/tests_for_lab[1]_tests.cmake	8f53e21c3f288e06

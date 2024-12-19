@@ -1,0 +1,65 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__memory/swap_allocator.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___MEMORY_SWAP_ALLOCATOR_H
+        -:   10:#define _LIBCPP___MEMORY_SWAP_ALLOCATOR_H
+        -:   11:
+        -:   12:#include <__config>
+        -:   13:#include <__memory/allocator_traits.h>
+        -:   14:#include <__type_traits/integral_constant.h>
+        -:   15:#include <__type_traits/is_swappable.h>
+        -:   16:#include <__utility/swap.h>
+        -:   17:
+        -:   18:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   19:#  pragma GCC system_header
+        -:   20:#endif
+        -:   21:
+        -:   22:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   23:
+        -:   24:template <typename _Alloc>
+        -:   25:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 void __swap_allocator(_Alloc& __a1, _Alloc& __a2, true_type)
+        -:   26:#if _LIBCPP_STD_VER >= 14
+        -:   27:    _NOEXCEPT
+        -:   28:#else
+        -:   29:    _NOEXCEPT_(__is_nothrow_swappable<_Alloc>::value)
+        -:   30:#endif
+        -:   31:{
+        -:   32:  using std::swap;
+        -:   33:  swap(__a1, __a2);
+        -:   34:}
+        -:   35:
+        -:   36:template <typename _Alloc>
+        -:   37:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 void
+function _ZNSt3__116__swap_allocatorB8ne180100INS_9allocatorINS_12basic_stringIcNS_11char_traitsIcEENS1_IcEEEEEEEEvRT_S9_NS_17integral_constantIbLb0EEE called 24 returned 100% blocks executed 100%
+function _ZNSt3__116__swap_allocatorB8ne180100INS_9allocatorIcEEEEvRT_S4_NS_17integral_constantIbLb0EEE called 0 returned 0% blocks executed 0%
+       24:   38:__swap_allocator(_Alloc&, _Alloc&, false_type) _NOEXCEPT {}
+       24:   38-block  0
+    $$$$$:   38-block  1
+        -:   39:
+        -:   40:template <typename _Alloc>
+function _ZNSt3__116__swap_allocatorB8ne180100INS_9allocatorIcEEEEvRT_S4_ called 0 returned 0% blocks executed 0%
+    #####:   41:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 void __swap_allocator(_Alloc& __a1, _Alloc& __a2)
+        -:   42:#if _LIBCPP_STD_VER >= 14
+        -:   43:    _NOEXCEPT
+        -:   44:#else
+        -:   45:    _NOEXCEPT_(__is_nothrow_swappable<_Alloc>::value)
+        -:   46:#endif
+        -:   47:{
+    #####:   48:  std::__swap_allocator(
+    #####:   49:      __a1, __a2, integral_constant<bool, allocator_traits<_Alloc>::propagate_on_container_swap::value>());
+    #####:   50:}
+    $$$$$:   50-block  0
+        -:   51:
+        -:   52:_LIBCPP_END_NAMESPACE_STD
+        -:   53:
+        -:   54:#endif // _LIBCPP___MEMORY_SWAP_ALLOCATOR_H

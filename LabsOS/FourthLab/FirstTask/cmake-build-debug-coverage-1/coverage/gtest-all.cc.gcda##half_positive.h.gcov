@@ -1,0 +1,44 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/half_positive.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___ALGORITHM_HALF_POSITIVE_H
+        -:   10:#define _LIBCPP___ALGORITHM_HALF_POSITIVE_H
+        -:   11:
+        -:   12:#include <__config>
+        -:   13:#include <__type_traits/enable_if.h>
+        -:   14:#include <__type_traits/is_integral.h>
+        -:   15:#include <__type_traits/make_unsigned.h>
+        -:   16:
+        -:   17:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   18:#  pragma GCC system_header
+        -:   19:#endif
+        -:   20:
+        -:   21:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   22:
+        -:   23:// Perform division by two quickly for positive integers (llvm.org/PR39129)
+        -:   24:
+        -:   25:template <typename _Integral, __enable_if_t<is_integral<_Integral>::value, int> = 0>
+function _ZNSt3__115__half_positiveB8ne180100IlLi0EEET_S1_ called 0 returned 0% blocks executed 0%
+    #####:   26:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR _Integral __half_positive(_Integral __value) {
+    #####:   27:  return static_cast<_Integral>(static_cast<__make_unsigned_t<_Integral> >(__value) / 2);
+    $$$$$:   27-block  0
+        -:   28:}
+        -:   29:
+        -:   30:template <typename _Tp, __enable_if_t<!is_integral<_Tp>::value, int> = 0>
+        -:   31:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR _Tp __half_positive(_Tp __value) {
+        -:   32:  return __value / 2;
+        -:   33:}
+        -:   34:
+        -:   35:_LIBCPP_END_NAMESPACE_STD
+        -:   36:
+        -:   37:#endif // _LIBCPP___ALGORITHM_HALF_POSITIVE_H

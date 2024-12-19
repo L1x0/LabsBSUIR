@@ -1,0 +1,627 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__atomic/atomic.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___ATOMIC_ATOMIC_H
+        -:   10:#define _LIBCPP___ATOMIC_ATOMIC_H
+        -:   11:
+        -:   12:#include <__atomic/atomic_base.h>
+        -:   13:#include <__atomic/check_memory_order.h>
+        -:   14:#include <__atomic/cxx_atomic_impl.h>
+        -:   15:#include <__atomic/memory_order.h>
+        -:   16:#include <__config>
+        -:   17:#include <__functional/operations.h>
+        -:   18:#include <__memory/addressof.h>
+        -:   19:#include <__type_traits/is_floating_point.h>
+        -:   20:#include <__type_traits/is_function.h>
+        -:   21:#include <__type_traits/is_same.h>
+        -:   22:#include <__type_traits/remove_const.h>
+        -:   23:#include <__type_traits/remove_pointer.h>
+        -:   24:#include <__type_traits/remove_volatile.h>
+        -:   25:#include <__utility/forward.h>
+        -:   26:#include <cstddef>
+        -:   27:#include <cstring>
+        -:   28:
+        -:   29:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   30:#  pragma GCC system_header
+        -:   31:#endif
+        -:   32:
+        -:   33:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   34:
+        -:   35:template <class _Tp>
+        -:   36:struct atomic : public __atomic_base<_Tp> {
+        -:   37:  using __base          = __atomic_base<_Tp>;
+        -:   38:  using value_type      = _Tp;
+        -:   39:  using difference_type = value_type;
+        -:   40:
+        -:   41:#if _LIBCPP_STD_VER >= 20
+        -:   42:  _LIBCPP_HIDE_FROM_ABI atomic() = default;
+        -:   43:#else
+        -:   44:  _LIBCPP_HIDE_FROM_ABI atomic() _NOEXCEPT = default;
+        -:   45:#endif
+        -:   46:
+function _ZNSt3__16atomicIiEC1B8ne180100Ei called 0 returned 0% blocks executed 0%
+function _ZNSt3__16atomicIiEC2B8ne180100Ei called 0 returned 0% blocks executed 0%
+    #####:   47:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR atomic(_Tp __d) _NOEXCEPT : __base(__d) {}
+    $$$$$:   47-block  0
+    $$$$$:   47-block  1
+        -:   48:
+        -:   49:  _LIBCPP_HIDE_FROM_ABI _Tp operator=(_Tp __d) volatile _NOEXCEPT {
+        -:   50:    __base::store(__d);
+        -:   51:    return __d;
+        -:   52:  }
+        -:   53:  _LIBCPP_HIDE_FROM_ABI _Tp operator=(_Tp __d) _NOEXCEPT {
+        -:   54:    __base::store(__d);
+        -:   55:    return __d;
+        -:   56:  }
+        -:   57:
+        -:   58:  atomic& operator=(const atomic&)          = delete;
+        -:   59:  atomic& operator=(const atomic&) volatile = delete;
+        -:   60:};
+        -:   61:
+        -:   62:// atomic<T*>
+        -:   63:
+        -:   64:template <class _Tp>
+        -:   65:struct atomic<_Tp*> : public __atomic_base<_Tp*> {
+        -:   66:  using __base          = __atomic_base<_Tp*>;
+        -:   67:  using value_type      = _Tp*;
+        -:   68:  using difference_type = ptrdiff_t;
+        -:   69:
+        -:   70:  _LIBCPP_HIDE_FROM_ABI atomic() _NOEXCEPT = default;
+        -:   71:
+        -:   72:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR atomic(_Tp* __d) _NOEXCEPT : __base(__d) {}
+        -:   73:
+        -:   74:  _LIBCPP_HIDE_FROM_ABI _Tp* operator=(_Tp* __d) volatile _NOEXCEPT {
+        -:   75:    __base::store(__d);
+        -:   76:    return __d;
+        -:   77:  }
+        -:   78:  _LIBCPP_HIDE_FROM_ABI _Tp* operator=(_Tp* __d) _NOEXCEPT {
+        -:   79:    __base::store(__d);
+        -:   80:    return __d;
+        -:   81:  }
+        -:   82:
+        -:   83:  _LIBCPP_HIDE_FROM_ABI _Tp* fetch_add(ptrdiff_t __op, memory_order __m = memory_order_seq_cst) volatile _NOEXCEPT {
+        -:   84:    // __atomic_fetch_add accepts function pointers, guard against them.
+        -:   85:    static_assert(!is_function<__remove_pointer_t<_Tp> >::value, "Pointer to function isn't allowed");
+        -:   86:    return std::__cxx_atomic_fetch_add(std::addressof(this->__a_), __op, __m);
+        -:   87:  }
+        -:   88:
+        -:   89:  _LIBCPP_HIDE_FROM_ABI _Tp* fetch_add(ptrdiff_t __op, memory_order __m = memory_order_seq_cst) _NOEXCEPT {
+        -:   90:    // __atomic_fetch_add accepts function pointers, guard against them.
+        -:   91:    static_assert(!is_function<__remove_pointer_t<_Tp> >::value, "Pointer to function isn't allowed");
+        -:   92:    return std::__cxx_atomic_fetch_add(std::addressof(this->__a_), __op, __m);
+        -:   93:  }
+        -:   94:
+        -:   95:  _LIBCPP_HIDE_FROM_ABI _Tp* fetch_sub(ptrdiff_t __op, memory_order __m = memory_order_seq_cst) volatile _NOEXCEPT {
+        -:   96:    // __atomic_fetch_add accepts function pointers, guard against them.
+        -:   97:    static_assert(!is_function<__remove_pointer_t<_Tp> >::value, "Pointer to function isn't allowed");
+        -:   98:    return std::__cxx_atomic_fetch_sub(std::addressof(this->__a_), __op, __m);
+        -:   99:  }
+        -:  100:
+        -:  101:  _LIBCPP_HIDE_FROM_ABI _Tp* fetch_sub(ptrdiff_t __op, memory_order __m = memory_order_seq_cst) _NOEXCEPT {
+        -:  102:    // __atomic_fetch_add accepts function pointers, guard against them.
+        -:  103:    static_assert(!is_function<__remove_pointer_t<_Tp> >::value, "Pointer to function isn't allowed");
+        -:  104:    return std::__cxx_atomic_fetch_sub(std::addressof(this->__a_), __op, __m);
+        -:  105:  }
+        -:  106:
+        -:  107:  _LIBCPP_HIDE_FROM_ABI _Tp* operator++(int) volatile _NOEXCEPT { return fetch_add(1); }
+        -:  108:  _LIBCPP_HIDE_FROM_ABI _Tp* operator++(int) _NOEXCEPT { return fetch_add(1); }
+        -:  109:  _LIBCPP_HIDE_FROM_ABI _Tp* operator--(int) volatile _NOEXCEPT { return fetch_sub(1); }
+        -:  110:  _LIBCPP_HIDE_FROM_ABI _Tp* operator--(int) _NOEXCEPT { return fetch_sub(1); }
+        -:  111:  _LIBCPP_HIDE_FROM_ABI _Tp* operator++() volatile _NOEXCEPT { return fetch_add(1) + 1; }
+        -:  112:  _LIBCPP_HIDE_FROM_ABI _Tp* operator++() _NOEXCEPT { return fetch_add(1) + 1; }
+        -:  113:  _LIBCPP_HIDE_FROM_ABI _Tp* operator--() volatile _NOEXCEPT { return fetch_sub(1) - 1; }
+        -:  114:  _LIBCPP_HIDE_FROM_ABI _Tp* operator--() _NOEXCEPT { return fetch_sub(1) - 1; }
+        -:  115:  _LIBCPP_HIDE_FROM_ABI _Tp* operator+=(ptrdiff_t __op) volatile _NOEXCEPT { return fetch_add(__op) + __op; }
+        -:  116:  _LIBCPP_HIDE_FROM_ABI _Tp* operator+=(ptrdiff_t __op) _NOEXCEPT { return fetch_add(__op) + __op; }
+        -:  117:  _LIBCPP_HIDE_FROM_ABI _Tp* operator-=(ptrdiff_t __op) volatile _NOEXCEPT { return fetch_sub(__op) - __op; }
+        -:  118:  _LIBCPP_HIDE_FROM_ABI _Tp* operator-=(ptrdiff_t __op) _NOEXCEPT { return fetch_sub(__op) - __op; }
+        -:  119:
+        -:  120:  atomic& operator=(const atomic&)          = delete;
+        -:  121:  atomic& operator=(const atomic&) volatile = delete;
+        -:  122:};
+        -:  123:
+        -:  124:#if _LIBCPP_STD_VER >= 20
+        -:  125:template <class _Tp>
+        -:  126:  requires is_floating_point_v<_Tp>
+        -:  127:struct atomic<_Tp> : __atomic_base<_Tp> {
+        -:  128:private:
+        -:  129:  _LIBCPP_HIDE_FROM_ABI static constexpr bool __is_fp80_long_double() {
+        -:  130:    // Only x87-fp80 long double has 64-bit mantissa
+        -:  131:    return __LDBL_MANT_DIG__ == 64 && std::is_same_v<_Tp, long double>;
+        -:  132:  }
+        -:  133:
+        -:  134:  _LIBCPP_HIDE_FROM_ABI static constexpr bool __has_rmw_builtin() {
+        -:  135:#  ifndef _LIBCPP_COMPILER_CLANG_BASED
+        -:  136:    return false;
+        -:  137:#  else
+        -:  138:    // The builtin __cxx_atomic_fetch_add errors during compilation for
+        -:  139:    // long double on platforms with fp80 format.
+        -:  140:    // For more details, see
+        -:  141:    // lib/Sema/SemaChecking.cpp function IsAllowedValueType
+        -:  142:    // LLVM Parser does not allow atomicrmw with x86_fp80 type.
+        -:  143:    // if (ValType->isSpecificBuiltinType(BuiltinType::LongDouble) &&
+        -:  144:    //    &Context.getTargetInfo().getLongDoubleFormat() ==
+        -:  145:    //        &llvm::APFloat::x87DoubleExtended())
+        -:  146:    // For more info
+        -:  147:    // https://github.com/llvm/llvm-project/issues/68602
+        -:  148:    // https://reviews.llvm.org/D53965
+        -:  149:    return !__is_fp80_long_double();
+        -:  150:#  endif
+        -:  151:  }
+        -:  152:
+        -:  153:  template <class _This, class _Operation, class _BuiltinOp>
+        -:  154:  _LIBCPP_HIDE_FROM_ABI static _Tp
+        -:  155:  __rmw_op(_This&& __self, _Tp __operand, memory_order __m, _Operation __operation, _BuiltinOp __builtin_op) {
+        -:  156:    if constexpr (__has_rmw_builtin()) {
+        -:  157:      return __builtin_op(std::addressof(std::forward<_This>(__self).__a_), __operand, __m);
+        -:  158:    } else {
+        -:  159:      _Tp __old = __self.load(memory_order_relaxed);
+        -:  160:      _Tp __new = __operation(__old, __operand);
+        -:  161:      while (!__self.compare_exchange_weak(__old, __new, __m, memory_order_relaxed)) {
+        -:  162:#  ifdef _LIBCPP_COMPILER_CLANG_BASED
+        -:  163:        if constexpr (__is_fp80_long_double()) {
+        -:  164:          // https://github.com/llvm/llvm-project/issues/47978
+        -:  165:          // clang bug: __old is not updated on failure for atomic<long double>::compare_exchange_weak
+        -:  166:          // Note __old = __self.load(memory_order_relaxed) will not work
+        -:  167:          std::__cxx_atomic_load_inplace(std::addressof(__self.__a_), &__old, memory_order_relaxed);
+        -:  168:        }
+        -:  169:#  endif
+        -:  170:        __new = __operation(__old, __operand);
+        -:  171:      }
+        -:  172:      return __old;
+        -:  173:    }
+        -:  174:  }
+        -:  175:
+        -:  176:  template <class _This>
+        -:  177:  _LIBCPP_HIDE_FROM_ABI static _Tp __fetch_add(_This&& __self, _Tp __operand, memory_order __m) {
+        -:  178:    auto __builtin_op = [](auto __a, auto __builtin_operand, auto __order) {
+        -:  179:      return std::__cxx_atomic_fetch_add(__a, __builtin_operand, __order);
+        -:  180:    };
+        -:  181:    return __rmw_op(std::forward<_This>(__self), __operand, __m, std::plus<>{}, __builtin_op);
+        -:  182:  }
+        -:  183:
+        -:  184:  template <class _This>
+        -:  185:  _LIBCPP_HIDE_FROM_ABI static _Tp __fetch_sub(_This&& __self, _Tp __operand, memory_order __m) {
+        -:  186:    auto __builtin_op = [](auto __a, auto __builtin_operand, auto __order) {
+        -:  187:      return std::__cxx_atomic_fetch_sub(__a, __builtin_operand, __order);
+        -:  188:    };
+        -:  189:    return __rmw_op(std::forward<_This>(__self), __operand, __m, std::minus<>{}, __builtin_op);
+        -:  190:  }
+        -:  191:
+        -:  192:public:
+        -:  193:  using __base          = __atomic_base<_Tp>;
+        -:  194:  using value_type      = _Tp;
+        -:  195:  using difference_type = value_type;
+        -:  196:
+        -:  197:  _LIBCPP_HIDE_FROM_ABI constexpr atomic() noexcept = default;
+        -:  198:  _LIBCPP_HIDE_FROM_ABI constexpr atomic(_Tp __d) noexcept : __base(__d) {}
+        -:  199:
+        -:  200:  atomic(const atomic&)                     = delete;
+        -:  201:  atomic& operator=(const atomic&)          = delete;
+        -:  202:  atomic& operator=(const atomic&) volatile = delete;
+        -:  203:
+        -:  204:  _LIBCPP_HIDE_FROM_ABI _Tp operator=(_Tp __d) volatile noexcept
+        -:  205:    requires __base::is_always_lock_free
+        -:  206:  {
+        -:  207:    __base::store(__d);
+        -:  208:    return __d;
+        -:  209:  }
+        -:  210:  _LIBCPP_HIDE_FROM_ABI _Tp operator=(_Tp __d) noexcept {
+        -:  211:    __base::store(__d);
+        -:  212:    return __d;
+        -:  213:  }
+        -:  214:
+        -:  215:  _LIBCPP_HIDE_FROM_ABI _Tp fetch_add(_Tp __op, memory_order __m = memory_order_seq_cst) volatile noexcept
+        -:  216:    requires __base::is_always_lock_free
+        -:  217:  {
+        -:  218:    return __fetch_add(*this, __op, __m);
+        -:  219:  }
+        -:  220:
+        -:  221:  _LIBCPP_HIDE_FROM_ABI _Tp fetch_add(_Tp __op, memory_order __m = memory_order_seq_cst) noexcept {
+        -:  222:    return __fetch_add(*this, __op, __m);
+        -:  223:  }
+        -:  224:
+        -:  225:  _LIBCPP_HIDE_FROM_ABI _Tp fetch_sub(_Tp __op, memory_order __m = memory_order_seq_cst) volatile noexcept
+        -:  226:    requires __base::is_always_lock_free
+        -:  227:  {
+        -:  228:    return __fetch_sub(*this, __op, __m);
+        -:  229:  }
+        -:  230:
+        -:  231:  _LIBCPP_HIDE_FROM_ABI _Tp fetch_sub(_Tp __op, memory_order __m = memory_order_seq_cst) noexcept {
+        -:  232:    return __fetch_sub(*this, __op, __m);
+        -:  233:  }
+        -:  234:
+        -:  235:  _LIBCPP_HIDE_FROM_ABI _Tp operator+=(_Tp __op) volatile noexcept
+        -:  236:    requires __base::is_always_lock_free
+        -:  237:  {
+        -:  238:    return fetch_add(__op) + __op;
+        -:  239:  }
+        -:  240:
+        -:  241:  _LIBCPP_HIDE_FROM_ABI _Tp operator+=(_Tp __op) noexcept { return fetch_add(__op) + __op; }
+        -:  242:
+        -:  243:  _LIBCPP_HIDE_FROM_ABI _Tp operator-=(_Tp __op) volatile noexcept
+        -:  244:    requires __base::is_always_lock_free
+        -:  245:  {
+        -:  246:    return fetch_sub(__op) - __op;
+        -:  247:  }
+        -:  248:
+        -:  249:  _LIBCPP_HIDE_FROM_ABI _Tp operator-=(_Tp __op) noexcept { return fetch_sub(__op) - __op; }
+        -:  250:};
+        -:  251:
+        -:  252:#endif // _LIBCPP_STD_VER >= 20
+        -:  253:
+        -:  254:// atomic_is_lock_free
+        -:  255:
+        -:  256:template <class _Tp>
+        -:  257:_LIBCPP_HIDE_FROM_ABI bool atomic_is_lock_free(const volatile atomic<_Tp>* __o) _NOEXCEPT {
+        -:  258:  return __o->is_lock_free();
+        -:  259:}
+        -:  260:
+        -:  261:template <class _Tp>
+        -:  262:_LIBCPP_HIDE_FROM_ABI bool atomic_is_lock_free(const atomic<_Tp>* __o) _NOEXCEPT {
+        -:  263:  return __o->is_lock_free();
+        -:  264:}
+        -:  265:
+        -:  266:// atomic_init
+        -:  267:
+        -:  268:template <class _Tp>
+        -:  269:_LIBCPP_DEPRECATED_IN_CXX20 _LIBCPP_HIDE_FROM_ABI void
+        -:  270:atomic_init(volatile atomic<_Tp>* __o, typename atomic<_Tp>::value_type __d) _NOEXCEPT {
+        -:  271:  std::__cxx_atomic_init(std::addressof(__o->__a_), __d);
+        -:  272:}
+        -:  273:
+        -:  274:template <class _Tp>
+        -:  275:_LIBCPP_DEPRECATED_IN_CXX20 _LIBCPP_HIDE_FROM_ABI void
+        -:  276:atomic_init(atomic<_Tp>* __o, typename atomic<_Tp>::value_type __d) _NOEXCEPT {
+        -:  277:  std::__cxx_atomic_init(std::addressof(__o->__a_), __d);
+        -:  278:}
+        -:  279:
+        -:  280:// atomic_store
+        -:  281:
+        -:  282:template <class _Tp>
+        -:  283:_LIBCPP_HIDE_FROM_ABI void atomic_store(volatile atomic<_Tp>* __o, typename atomic<_Tp>::value_type __d) _NOEXCEPT {
+        -:  284:  __o->store(__d);
+        -:  285:}
+        -:  286:
+        -:  287:template <class _Tp>
+        -:  288:_LIBCPP_HIDE_FROM_ABI void atomic_store(atomic<_Tp>* __o, typename atomic<_Tp>::value_type __d) _NOEXCEPT {
+        -:  289:  __o->store(__d);
+        -:  290:}
+        -:  291:
+        -:  292:// atomic_store_explicit
+        -:  293:
+        -:  294:template <class _Tp>
+        -:  295:_LIBCPP_HIDE_FROM_ABI void
+        -:  296:atomic_store_explicit(volatile atomic<_Tp>* __o, typename atomic<_Tp>::value_type __d, memory_order __m) _NOEXCEPT
+        -:  297:    _LIBCPP_CHECK_STORE_MEMORY_ORDER(__m) {
+        -:  298:  __o->store(__d, __m);
+        -:  299:}
+        -:  300:
+        -:  301:template <class _Tp>
+        -:  302:_LIBCPP_HIDE_FROM_ABI void
+        -:  303:atomic_store_explicit(atomic<_Tp>* __o, typename atomic<_Tp>::value_type __d, memory_order __m) _NOEXCEPT
+        -:  304:    _LIBCPP_CHECK_STORE_MEMORY_ORDER(__m) {
+        -:  305:  __o->store(__d, __m);
+        -:  306:}
+        -:  307:
+        -:  308:// atomic_load
+        -:  309:
+        -:  310:template <class _Tp>
+        -:  311:_LIBCPP_HIDE_FROM_ABI _Tp atomic_load(const volatile atomic<_Tp>* __o) _NOEXCEPT {
+        -:  312:  return __o->load();
+        -:  313:}
+        -:  314:
+        -:  315:template <class _Tp>
+        -:  316:_LIBCPP_HIDE_FROM_ABI _Tp atomic_load(const atomic<_Tp>* __o) _NOEXCEPT {
+        -:  317:  return __o->load();
+        -:  318:}
+        -:  319:
+        -:  320:// atomic_load_explicit
+        -:  321:
+        -:  322:template <class _Tp>
+        -:  323:_LIBCPP_HIDE_FROM_ABI _Tp atomic_load_explicit(const volatile atomic<_Tp>* __o, memory_order __m) _NOEXCEPT
+        -:  324:    _LIBCPP_CHECK_LOAD_MEMORY_ORDER(__m) {
+        -:  325:  return __o->load(__m);
+        -:  326:}
+        -:  327:
+        -:  328:template <class _Tp>
+        -:  329:_LIBCPP_HIDE_FROM_ABI _Tp atomic_load_explicit(const atomic<_Tp>* __o, memory_order __m) _NOEXCEPT
+        -:  330:    _LIBCPP_CHECK_LOAD_MEMORY_ORDER(__m) {
+        -:  331:  return __o->load(__m);
+        -:  332:}
+        -:  333:
+        -:  334:// atomic_exchange
+        -:  335:
+        -:  336:template <class _Tp>
+        -:  337:_LIBCPP_HIDE_FROM_ABI _Tp atomic_exchange(volatile atomic<_Tp>* __o, typename atomic<_Tp>::value_type __d) _NOEXCEPT {
+        -:  338:  return __o->exchange(__d);
+        -:  339:}
+        -:  340:
+        -:  341:template <class _Tp>
+        -:  342:_LIBCPP_HIDE_FROM_ABI _Tp atomic_exchange(atomic<_Tp>* __o, typename atomic<_Tp>::value_type __d) _NOEXCEPT {
+        -:  343:  return __o->exchange(__d);
+        -:  344:}
+        -:  345:
+        -:  346:// atomic_exchange_explicit
+        -:  347:
+        -:  348:template <class _Tp>
+        -:  349:_LIBCPP_HIDE_FROM_ABI _Tp
+        -:  350:atomic_exchange_explicit(volatile atomic<_Tp>* __o, typename atomic<_Tp>::value_type __d, memory_order __m) _NOEXCEPT {
+        -:  351:  return __o->exchange(__d, __m);
+        -:  352:}
+        -:  353:
+        -:  354:template <class _Tp>
+        -:  355:_LIBCPP_HIDE_FROM_ABI _Tp
+        -:  356:atomic_exchange_explicit(atomic<_Tp>* __o, typename atomic<_Tp>::value_type __d, memory_order __m) _NOEXCEPT {
+        -:  357:  return __o->exchange(__d, __m);
+        -:  358:}
+        -:  359:
+        -:  360:// atomic_compare_exchange_weak
+        -:  361:
+        -:  362:template <class _Tp>
+        -:  363:_LIBCPP_HIDE_FROM_ABI bool atomic_compare_exchange_weak(
+        -:  364:    volatile atomic<_Tp>* __o, typename atomic<_Tp>::value_type* __e, typename atomic<_Tp>::value_type __d) _NOEXCEPT {
+        -:  365:  return __o->compare_exchange_weak(*__e, __d);
+        -:  366:}
+        -:  367:
+        -:  368:template <class _Tp>
+        -:  369:_LIBCPP_HIDE_FROM_ABI bool atomic_compare_exchange_weak(
+        -:  370:    atomic<_Tp>* __o, typename atomic<_Tp>::value_type* __e, typename atomic<_Tp>::value_type __d) _NOEXCEPT {
+        -:  371:  return __o->compare_exchange_weak(*__e, __d);
+        -:  372:}
+        -:  373:
+        -:  374:// atomic_compare_exchange_strong
+        -:  375:
+        -:  376:template <class _Tp>
+        -:  377:_LIBCPP_HIDE_FROM_ABI bool atomic_compare_exchange_strong(
+        -:  378:    volatile atomic<_Tp>* __o, typename atomic<_Tp>::value_type* __e, typename atomic<_Tp>::value_type __d) _NOEXCEPT {
+        -:  379:  return __o->compare_exchange_strong(*__e, __d);
+        -:  380:}
+        -:  381:
+        -:  382:template <class _Tp>
+        -:  383:_LIBCPP_HIDE_FROM_ABI bool atomic_compare_exchange_strong(
+        -:  384:    atomic<_Tp>* __o, typename atomic<_Tp>::value_type* __e, typename atomic<_Tp>::value_type __d) _NOEXCEPT {
+        -:  385:  return __o->compare_exchange_strong(*__e, __d);
+        -:  386:}
+        -:  387:
+        -:  388:// atomic_compare_exchange_weak_explicit
+        -:  389:
+        -:  390:template <class _Tp>
+        -:  391:_LIBCPP_HIDE_FROM_ABI bool atomic_compare_exchange_weak_explicit(
+        -:  392:    volatile atomic<_Tp>* __o,
+        -:  393:    typename atomic<_Tp>::value_type* __e,
+        -:  394:    typename atomic<_Tp>::value_type __d,
+        -:  395:    memory_order __s,
+        -:  396:    memory_order __f) _NOEXCEPT _LIBCPP_CHECK_EXCHANGE_MEMORY_ORDER(__s, __f) {
+        -:  397:  return __o->compare_exchange_weak(*__e, __d, __s, __f);
+        -:  398:}
+        -:  399:
+        -:  400:template <class _Tp>
+        -:  401:_LIBCPP_HIDE_FROM_ABI bool atomic_compare_exchange_weak_explicit(
+        -:  402:    atomic<_Tp>* __o,
+        -:  403:    typename atomic<_Tp>::value_type* __e,
+        -:  404:    typename atomic<_Tp>::value_type __d,
+        -:  405:    memory_order __s,
+        -:  406:    memory_order __f) _NOEXCEPT _LIBCPP_CHECK_EXCHANGE_MEMORY_ORDER(__s, __f) {
+        -:  407:  return __o->compare_exchange_weak(*__e, __d, __s, __f);
+        -:  408:}
+        -:  409:
+        -:  410:// atomic_compare_exchange_strong_explicit
+        -:  411:
+        -:  412:template <class _Tp>
+        -:  413:_LIBCPP_HIDE_FROM_ABI bool atomic_compare_exchange_strong_explicit(
+        -:  414:    volatile atomic<_Tp>* __o,
+        -:  415:    typename atomic<_Tp>::value_type* __e,
+        -:  416:    typename atomic<_Tp>::value_type __d,
+        -:  417:    memory_order __s,
+        -:  418:    memory_order __f) _NOEXCEPT _LIBCPP_CHECK_EXCHANGE_MEMORY_ORDER(__s, __f) {
+        -:  419:  return __o->compare_exchange_strong(*__e, __d, __s, __f);
+        -:  420:}
+        -:  421:
+        -:  422:template <class _Tp>
+        -:  423:_LIBCPP_HIDE_FROM_ABI bool atomic_compare_exchange_strong_explicit(
+        -:  424:    atomic<_Tp>* __o,
+        -:  425:    typename atomic<_Tp>::value_type* __e,
+        -:  426:    typename atomic<_Tp>::value_type __d,
+        -:  427:    memory_order __s,
+        -:  428:    memory_order __f) _NOEXCEPT _LIBCPP_CHECK_EXCHANGE_MEMORY_ORDER(__s, __f) {
+        -:  429:  return __o->compare_exchange_strong(*__e, __d, __s, __f);
+        -:  430:}
+        -:  431:
+        -:  432:// atomic_wait
+        -:  433:
+        -:  434:template <class _Tp>
+        -:  435:_LIBCPP_AVAILABILITY_SYNC _LIBCPP_HIDE_FROM_ABI void
+        -:  436:atomic_wait(const volatile atomic<_Tp>* __o, typename atomic<_Tp>::value_type __v) _NOEXCEPT {
+        -:  437:  return __o->wait(__v);
+        -:  438:}
+        -:  439:
+        -:  440:template <class _Tp>
+        -:  441:_LIBCPP_AVAILABILITY_SYNC _LIBCPP_HIDE_FROM_ABI void
+        -:  442:atomic_wait(const atomic<_Tp>* __o, typename atomic<_Tp>::value_type __v) _NOEXCEPT {
+        -:  443:  return __o->wait(__v);
+        -:  444:}
+        -:  445:
+        -:  446:// atomic_wait_explicit
+        -:  447:
+        -:  448:template <class _Tp>
+        -:  449:_LIBCPP_AVAILABILITY_SYNC _LIBCPP_HIDE_FROM_ABI void
+        -:  450:atomic_wait_explicit(const volatile atomic<_Tp>* __o, typename atomic<_Tp>::value_type __v, memory_order __m) _NOEXCEPT
+        -:  451:    _LIBCPP_CHECK_LOAD_MEMORY_ORDER(__m) {
+        -:  452:  return __o->wait(__v, __m);
+        -:  453:}
+        -:  454:
+        -:  455:template <class _Tp>
+        -:  456:_LIBCPP_AVAILABILITY_SYNC _LIBCPP_HIDE_FROM_ABI void
+        -:  457:atomic_wait_explicit(const atomic<_Tp>* __o, typename atomic<_Tp>::value_type __v, memory_order __m) _NOEXCEPT
+        -:  458:    _LIBCPP_CHECK_LOAD_MEMORY_ORDER(__m) {
+        -:  459:  return __o->wait(__v, __m);
+        -:  460:}
+        -:  461:
+        -:  462:// atomic_notify_one
+        -:  463:
+        -:  464:template <class _Tp>
+        -:  465:_LIBCPP_AVAILABILITY_SYNC _LIBCPP_HIDE_FROM_ABI void atomic_notify_one(volatile atomic<_Tp>* __o) _NOEXCEPT {
+        -:  466:  __o->notify_one();
+        -:  467:}
+        -:  468:template <class _Tp>
+        -:  469:_LIBCPP_AVAILABILITY_SYNC _LIBCPP_HIDE_FROM_ABI void atomic_notify_one(atomic<_Tp>* __o) _NOEXCEPT {
+        -:  470:  __o->notify_one();
+        -:  471:}
+        -:  472:
+        -:  473:// atomic_notify_all
+        -:  474:
+        -:  475:template <class _Tp>
+        -:  476:_LIBCPP_AVAILABILITY_SYNC _LIBCPP_HIDE_FROM_ABI void atomic_notify_all(volatile atomic<_Tp>* __o) _NOEXCEPT {
+        -:  477:  __o->notify_all();
+        -:  478:}
+        -:  479:template <class _Tp>
+        -:  480:_LIBCPP_AVAILABILITY_SYNC _LIBCPP_HIDE_FROM_ABI void atomic_notify_all(atomic<_Tp>* __o) _NOEXCEPT {
+        -:  481:  __o->notify_all();
+        -:  482:}
+        -:  483:
+        -:  484:// atomic_fetch_add
+        -:  485:
+        -:  486:template <class _Tp>
+        -:  487:_LIBCPP_HIDE_FROM_ABI _Tp
+        -:  488:atomic_fetch_add(volatile atomic<_Tp>* __o, typename atomic<_Tp>::difference_type __op) _NOEXCEPT {
+        -:  489:  return __o->fetch_add(__op);
+        -:  490:}
+        -:  491:
+        -:  492:template <class _Tp>
+        -:  493:_LIBCPP_HIDE_FROM_ABI _Tp atomic_fetch_add(atomic<_Tp>* __o, typename atomic<_Tp>::difference_type __op) _NOEXCEPT {
+        -:  494:  return __o->fetch_add(__op);
+        -:  495:}
+        -:  496:
+        -:  497:// atomic_fetch_add_explicit
+        -:  498:
+        -:  499:template <class _Tp>
+        -:  500:_LIBCPP_HIDE_FROM_ABI _Tp atomic_fetch_add_explicit(
+        -:  501:    volatile atomic<_Tp>* __o, typename atomic<_Tp>::difference_type __op, memory_order __m) _NOEXCEPT {
+        -:  502:  return __o->fetch_add(__op, __m);
+        -:  503:}
+        -:  504:
+        -:  505:template <class _Tp>
+        -:  506:_LIBCPP_HIDE_FROM_ABI _Tp
+        -:  507:atomic_fetch_add_explicit(atomic<_Tp>* __o, typename atomic<_Tp>::difference_type __op, memory_order __m) _NOEXCEPT {
+        -:  508:  return __o->fetch_add(__op, __m);
+        -:  509:}
+        -:  510:
+        -:  511:// atomic_fetch_sub
+        -:  512:
+        -:  513:template <class _Tp>
+        -:  514:_LIBCPP_HIDE_FROM_ABI _Tp
+        -:  515:atomic_fetch_sub(volatile atomic<_Tp>* __o, typename atomic<_Tp>::difference_type __op) _NOEXCEPT {
+        -:  516:  return __o->fetch_sub(__op);
+        -:  517:}
+        -:  518:
+        -:  519:template <class _Tp>
+        -:  520:_LIBCPP_HIDE_FROM_ABI _Tp atomic_fetch_sub(atomic<_Tp>* __o, typename atomic<_Tp>::difference_type __op) _NOEXCEPT {
+        -:  521:  return __o->fetch_sub(__op);
+        -:  522:}
+        -:  523:
+        -:  524:// atomic_fetch_sub_explicit
+        -:  525:
+        -:  526:template <class _Tp>
+        -:  527:_LIBCPP_HIDE_FROM_ABI _Tp atomic_fetch_sub_explicit(
+        -:  528:    volatile atomic<_Tp>* __o, typename atomic<_Tp>::difference_type __op, memory_order __m) _NOEXCEPT {
+        -:  529:  return __o->fetch_sub(__op, __m);
+        -:  530:}
+        -:  531:
+        -:  532:template <class _Tp>
+        -:  533:_LIBCPP_HIDE_FROM_ABI _Tp
+        -:  534:atomic_fetch_sub_explicit(atomic<_Tp>* __o, typename atomic<_Tp>::difference_type __op, memory_order __m) _NOEXCEPT {
+        -:  535:  return __o->fetch_sub(__op, __m);
+        -:  536:}
+        -:  537:
+        -:  538:// atomic_fetch_and
+        -:  539:
+        -:  540:template <class _Tp, __enable_if_t<is_integral<_Tp>::value && !is_same<_Tp, bool>::value, int> = 0>
+        -:  541:_LIBCPP_HIDE_FROM_ABI _Tp atomic_fetch_and(volatile atomic<_Tp>* __o, typename atomic<_Tp>::value_type __op) _NOEXCEPT {
+        -:  542:  return __o->fetch_and(__op);
+        -:  543:}
+        -:  544:
+        -:  545:template <class _Tp, __enable_if_t<is_integral<_Tp>::value && !is_same<_Tp, bool>::value, int> = 0>
+        -:  546:_LIBCPP_HIDE_FROM_ABI _Tp atomic_fetch_and(atomic<_Tp>* __o, typename atomic<_Tp>::value_type __op) _NOEXCEPT {
+        -:  547:  return __o->fetch_and(__op);
+        -:  548:}
+        -:  549:
+        -:  550:// atomic_fetch_and_explicit
+        -:  551:
+        -:  552:template <class _Tp, __enable_if_t<is_integral<_Tp>::value && !is_same<_Tp, bool>::value, int> = 0>
+        -:  553:_LIBCPP_HIDE_FROM_ABI _Tp atomic_fetch_and_explicit(
+        -:  554:    volatile atomic<_Tp>* __o, typename atomic<_Tp>::value_type __op, memory_order __m) _NOEXCEPT {
+        -:  555:  return __o->fetch_and(__op, __m);
+        -:  556:}
+        -:  557:
+        -:  558:template <class _Tp, __enable_if_t<is_integral<_Tp>::value && !is_same<_Tp, bool>::value, int> = 0>
+        -:  559:_LIBCPP_HIDE_FROM_ABI _Tp
+        -:  560:atomic_fetch_and_explicit(atomic<_Tp>* __o, typename atomic<_Tp>::value_type __op, memory_order __m) _NOEXCEPT {
+        -:  561:  return __o->fetch_and(__op, __m);
+        -:  562:}
+        -:  563:
+        -:  564:// atomic_fetch_or
+        -:  565:
+        -:  566:template <class _Tp, __enable_if_t<is_integral<_Tp>::value && !is_same<_Tp, bool>::value, int> = 0>
+        -:  567:_LIBCPP_HIDE_FROM_ABI _Tp atomic_fetch_or(volatile atomic<_Tp>* __o, typename atomic<_Tp>::value_type __op) _NOEXCEPT {
+        -:  568:  return __o->fetch_or(__op);
+        -:  569:}
+        -:  570:
+        -:  571:template <class _Tp, __enable_if_t<is_integral<_Tp>::value && !is_same<_Tp, bool>::value, int> = 0>
+        -:  572:_LIBCPP_HIDE_FROM_ABI _Tp atomic_fetch_or(atomic<_Tp>* __o, typename atomic<_Tp>::value_type __op) _NOEXCEPT {
+        -:  573:  return __o->fetch_or(__op);
+        -:  574:}
+        -:  575:
+        -:  576:// atomic_fetch_or_explicit
+        -:  577:
+        -:  578:template <class _Tp, __enable_if_t<is_integral<_Tp>::value && !is_same<_Tp, bool>::value, int> = 0>
+        -:  579:_LIBCPP_HIDE_FROM_ABI _Tp
+        -:  580:atomic_fetch_or_explicit(volatile atomic<_Tp>* __o, typename atomic<_Tp>::value_type __op, memory_order __m) _NOEXCEPT {
+        -:  581:  return __o->fetch_or(__op, __m);
+        -:  582:}
+        -:  583:
+        -:  584:template <class _Tp, __enable_if_t<is_integral<_Tp>::value && !is_same<_Tp, bool>::value, int> = 0>
+        -:  585:_LIBCPP_HIDE_FROM_ABI _Tp
+        -:  586:atomic_fetch_or_explicit(atomic<_Tp>* __o, typename atomic<_Tp>::value_type __op, memory_order __m) _NOEXCEPT {
+        -:  587:  return __o->fetch_or(__op, __m);
+        -:  588:}
+        -:  589:
+        -:  590:// atomic_fetch_xor
+        -:  591:
+        -:  592:template <class _Tp, __enable_if_t<is_integral<_Tp>::value && !is_same<_Tp, bool>::value, int> = 0>
+        -:  593:_LIBCPP_HIDE_FROM_ABI _Tp atomic_fetch_xor(volatile atomic<_Tp>* __o, typename atomic<_Tp>::value_type __op) _NOEXCEPT {
+        -:  594:  return __o->fetch_xor(__op);
+        -:  595:}
+        -:  596:
+        -:  597:template <class _Tp, __enable_if_t<is_integral<_Tp>::value && !is_same<_Tp, bool>::value, int> = 0>
+        -:  598:_LIBCPP_HIDE_FROM_ABI _Tp atomic_fetch_xor(atomic<_Tp>* __o, typename atomic<_Tp>::value_type __op) _NOEXCEPT {
+        -:  599:  return __o->fetch_xor(__op);
+        -:  600:}
+        -:  601:
+        -:  602:// atomic_fetch_xor_explicit
+        -:  603:
+        -:  604:template <class _Tp, __enable_if_t<is_integral<_Tp>::value && !is_same<_Tp, bool>::value, int> = 0>
+        -:  605:_LIBCPP_HIDE_FROM_ABI _Tp atomic_fetch_xor_explicit(
+        -:  606:    volatile atomic<_Tp>* __o, typename atomic<_Tp>::value_type __op, memory_order __m) _NOEXCEPT {
+        -:  607:  return __o->fetch_xor(__op, __m);
+        -:  608:}
+        -:  609:
+        -:  610:template <class _Tp, __enable_if_t<is_integral<_Tp>::value && !is_same<_Tp, bool>::value, int> = 0>
+        -:  611:_LIBCPP_HIDE_FROM_ABI _Tp
+        -:  612:atomic_fetch_xor_explicit(atomic<_Tp>* __o, typename atomic<_Tp>::value_type __op, memory_order __m) _NOEXCEPT {
+        -:  613:  return __o->fetch_xor(__op, __m);
+        -:  614:}
+        -:  615:
+        -:  616:_LIBCPP_END_NAMESPACE_STD
+        -:  617:
+        -:  618:#endif // _LIBCPP___ATOMIC_ATOMIC_H

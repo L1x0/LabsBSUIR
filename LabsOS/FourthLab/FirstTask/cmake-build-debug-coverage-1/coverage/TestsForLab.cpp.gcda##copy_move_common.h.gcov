@@ -1,0 +1,150 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/copy_move_common.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/CMakeFiles/tests_for_lab.dir/TestsForLab.cpp.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/CMakeFiles/tests_for_lab.dir/TestsForLab.cpp.gcda
+        -:    0:Runs:6
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___ALGORITHM_COPY_MOVE_COMMON_H
+        -:   10:#define _LIBCPP___ALGORITHM_COPY_MOVE_COMMON_H
+        -:   11:
+        -:   12:#include <__algorithm/iterator_operations.h>
+        -:   13:#include <__algorithm/unwrap_iter.h>
+        -:   14:#include <__algorithm/unwrap_range.h>
+        -:   15:#include <__config>
+        -:   16:#include <__iterator/iterator_traits.h>
+        -:   17:#include <__memory/pointer_traits.h>
+        -:   18:#include <__string/constexpr_c_functions.h>
+        -:   19:#include <__type_traits/enable_if.h>
+        -:   20:#include <__type_traits/is_always_bitcastable.h>
+        -:   21:#include <__type_traits/is_constant_evaluated.h>
+        -:   22:#include <__type_traits/is_copy_constructible.h>
+        -:   23:#include <__type_traits/is_trivially_assignable.h>
+        -:   24:#include <__type_traits/is_trivially_copyable.h>
+        -:   25:#include <__type_traits/is_volatile.h>
+        -:   26:#include <__utility/move.h>
+        -:   27:#include <__utility/pair.h>
+        -:   28:#include <cstddef>
+        -:   29:
+        -:   30:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   31:#  pragma GCC system_header
+        -:   32:#endif
+        -:   33:
+        -:   34:_LIBCPP_PUSH_MACROS
+        -:   35:#include <__undef_macros>
+        -:   36:
+        -:   37:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   38:
+        -:   39:// Type traits.
+        -:   40:
+        -:   41:template <class _From, class _To>
+        -:   42:struct __can_lower_copy_assignment_to_memmove {
+        -:   43:  static const bool value =
+        -:   44:      // If the types are always bitcastable, it's valid to do a bitwise copy between them.
+        -:   45:      __is_always_bitcastable<_From, _To>::value &&
+        -:   46:      // Reject conversions that wouldn't be performed by the regular built-in assignment (e.g. between arrays).
+        -:   47:      is_trivially_assignable<_To&, const _From&>::value &&
+        -:   48:      // `memmove` doesn't accept `volatile` pointers, make sure the optimization SFINAEs away in that case.
+        -:   49:      !is_volatile<_From>::value && !is_volatile<_To>::value;
+        -:   50:};
+        -:   51:
+        -:   52:template <class _From, class _To>
+        -:   53:struct __can_lower_move_assignment_to_memmove {
+        -:   54:  static const bool value =
+        -:   55:      __is_always_bitcastable<_From, _To>::value && is_trivially_assignable<_To&, _From&&>::value &&
+        -:   56:      !is_volatile<_From>::value && !is_volatile<_To>::value;
+        -:   57:};
+        -:   58:
+        -:   59:// `memmove` algorithms implementation.
+        -:   60:
+        -:   61:template <class _In, class _Out>
+        -:   62:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_In*, _Out*>
+        -:   63:__copy_trivial_impl(_In* __first, _In* __last, _Out* __result) {
+        -:   64:  const size_t __n = static_cast<size_t>(__last - __first);
+        -:   65:
+        -:   66:  std::__constexpr_memmove(__result, __first, __element_count(__n));
+        -:   67:
+        -:   68:  return std::make_pair(__last, __result + __n);
+        -:   69:}
+        -:   70:
+        -:   71:template <class _In, class _Out>
+        -:   72:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 pair<_In*, _Out*>
+        -:   73:__copy_backward_trivial_impl(_In* __first, _In* __last, _Out* __result) {
+        -:   74:  const size_t __n = static_cast<size_t>(__last - __first);
+        -:   75:  __result -= __n;
+        -:   76:
+        -:   77:  std::__constexpr_memmove(__result, __first, __element_count(__n));
+        -:   78:
+        -:   79:  return std::make_pair(__last, __result);
+        -:   80:}
+        -:   81:
+        -:   82:// Iterator unwrapping and dispatching to the correct overload.
+        -:   83:
+        -:   84:template <class _F1, class _F2>
+        -:   85:struct __overload : _F1, _F2 {
+        -:   86:  using _F1::operator();
+        -:   87:  using _F2::operator();
+        -:   88:};
+        -:   89:
+        -:   90:template <class _InIter, class _Sent, class _OutIter, class = void>
+        -:   91:struct __can_rewrap : false_type {};
+        -:   92:
+        -:   93:template <class _InIter, class _Sent, class _OutIter>
+        -:   94:struct __can_rewrap<_InIter,
+        -:   95:                    _Sent,
+        -:   96:                    _OutIter,
+        -:   97:                    // Note that sentinels are always copy-constructible.
+        -:   98:                    __enable_if_t< is_copy_constructible<_InIter>::value && is_copy_constructible<_OutIter>::value > >
+        -:   99:    : true_type {};
+        -:  100:
+        -:  101:template <class _Algorithm,
+        -:  102:          class _InIter,
+        -:  103:          class _Sent,
+        -:  104:          class _OutIter,
+        -:  105:          __enable_if_t<__can_rewrap<_InIter, _Sent, _OutIter>::value, int> = 0>
+        -:  106:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 pair<_InIter, _OutIter>
+function _ZNSt3__121__unwrap_and_dispatchB8ne180100INS_10__overloadINS_11__move_loopINS_17_ClassicAlgPolicyEEENS_14__move_trivialEEEPNS_4pairIPvmEESA_SA_Li0EEENS7_IT0_T2_EESB_T1_SC_ called 7 returned 100% blocks executed 100%
+        7:  107:__unwrap_and_dispatch(_InIter __first, _Sent __last, _OutIter __out_first) {
+        7:  108:  auto __range  = std::__unwrap_range(__first, std::move(__last));
+        7:  109:  auto __result = _Algorithm()(std::move(__range.first), std::move(__range.second), std::__unwrap_iter(__out_first));
+       14:  110:  return std::make_pair(std::__rewrap_range<_Sent>(std::move(__first), std::move(__result.first)),
+        7:  110-block  0
+        7:  110-block  1
+        7:  111:                        std::__rewrap_iter(std::move(__out_first), std::move(__result.second)));
+        -:  112:}
+        -:  113:
+        -:  114:template <class _Algorithm,
+        -:  115:          class _InIter,
+        -:  116:          class _Sent,
+        -:  117:          class _OutIter,
+        -:  118:          __enable_if_t<!__can_rewrap<_InIter, _Sent, _OutIter>::value, int> = 0>
+        -:  119:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 pair<_InIter, _OutIter>
+        -:  120:__unwrap_and_dispatch(_InIter __first, _Sent __last, _OutIter __out_first) {
+        -:  121:  return _Algorithm()(std::move(__first), std::move(__last), std::move(__out_first));
+        -:  122:}
+        -:  123:
+        -:  124:template <class _AlgPolicy,
+        -:  125:          class _NaiveAlgorithm,
+        -:  126:          class _OptimizedAlgorithm,
+        -:  127:          class _InIter,
+        -:  128:          class _Sent,
+        -:  129:          class _OutIter>
+        -:  130:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 pair<_InIter, _OutIter>
+function _ZNSt3__123__dispatch_copy_or_moveB8ne180100INS_17_ClassicAlgPolicyENS_11__move_loopIS1_EENS_14__move_trivialEPNS_4pairIPvmEES8_S8_EENS5_IT2_T4_EES9_T3_SA_ called 7 returned 100% blocks executed 100%
+        7:  131:__dispatch_copy_or_move(_InIter __first, _Sent __last, _OutIter __out_first) {
+        -:  132:  using _Algorithm = __overload<_NaiveAlgorithm, _OptimizedAlgorithm>;
+        7:  133:  return std::__unwrap_and_dispatch<_Algorithm>(std::move(__first), std::move(__last), std::move(__out_first));
+        7:  133-block  0
+        -:  134:}
+        -:  135:
+        -:  136:_LIBCPP_END_NAMESPACE_STD
+        -:  137:
+        -:  138:_LIBCPP_POP_MACROS
+        -:  139:
+        -:  140:#endif // _LIBCPP___ALGORITHM_COPY_MOVE_COMMON_H

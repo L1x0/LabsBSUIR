@@ -1,0 +1,109 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__bit/countl.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___BIT_COUNTL_H
+        -:   10:#define _LIBCPP___BIT_COUNTL_H
+        -:   11:
+        -:   12:#include <__bit/rotate.h>
+        -:   13:#include <__concepts/arithmetic.h>
+        -:   14:#include <__config>
+        -:   15:#include <__type_traits/is_unsigned_integer.h>
+        -:   16:#include <limits>
+        -:   17:
+        -:   18:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   19:#  pragma GCC system_header
+        -:   20:#endif
+        -:   21:
+        -:   22:_LIBCPP_PUSH_MACROS
+        -:   23:#include <__undef_macros>
+        -:   24:
+        -:   25:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   26:
+        -:   27:_LIBCPP_NODISCARD inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR int __libcpp_clz(unsigned __x) _NOEXCEPT {
+        -:   28:  return __builtin_clz(__x);
+        -:   29:}
+        -:   30:
+function _ZNSt3__112__libcpp_clzB8ne180100Em called 0 returned 0% blocks executed 0%
+    #####:   31:_LIBCPP_NODISCARD inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR int __libcpp_clz(unsigned long __x) _NOEXCEPT {
+    #####:   32:  return __builtin_clzl(__x);
+    $$$$$:   32-block  0
+        -:   33:}
+        -:   34:
+        -:   35:_LIBCPP_NODISCARD inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR int __libcpp_clz(unsigned long long __x) _NOEXCEPT {
+        -:   36:  return __builtin_clzll(__x);
+        -:   37:}
+        -:   38:
+        -:   39:#ifndef _LIBCPP_HAS_NO_INT128
+        -:   40:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR int __libcpp_clz(__uint128_t __x) _NOEXCEPT {
+        -:   41:  // The function is written in this form due to C++ constexpr limitations.
+        -:   42:  // The algorithm:
+        -:   43:  // - Test whether any bit in the high 64-bits is set
+        -:   44:  // - No bits set:
+        -:   45:  //   - The high 64-bits contain 64 leading zeros,
+        -:   46:  //   - Add the result of the low 64-bits.
+        -:   47:  // - Any bits set:
+        -:   48:  //   - The number of leading zeros of the input is the number of leading
+        -:   49:  //     zeros in the high 64-bits.
+        -:   50:  return ((__x >> 64) == 0) ? (64 + __builtin_clzll(static_cast<unsigned long long>(__x)))
+        -:   51:                            : __builtin_clzll(static_cast<unsigned long long>(__x >> 64));
+        -:   52:}
+        -:   53:#endif // _LIBCPP_HAS_NO_INT128
+        -:   54:
+        -:   55:template <class _Tp>
+        -:   56:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 int __countl_zero(_Tp __t) _NOEXCEPT {
+        -:   57:  static_assert(__libcpp_is_unsigned_integer<_Tp>::value, "__countl_zero requires an unsigned integer type");
+        -:   58:  if (__t == 0)
+        -:   59:    return numeric_limits<_Tp>::digits;
+        -:   60:
+        -:   61:  if (sizeof(_Tp) <= sizeof(unsigned int))
+        -:   62:    return std::__libcpp_clz(static_cast<unsigned int>(__t)) -
+        -:   63:           (numeric_limits<unsigned int>::digits - numeric_limits<_Tp>::digits);
+        -:   64:  else if (sizeof(_Tp) <= sizeof(unsigned long))
+        -:   65:    return std::__libcpp_clz(static_cast<unsigned long>(__t)) -
+        -:   66:           (numeric_limits<unsigned long>::digits - numeric_limits<_Tp>::digits);
+        -:   67:  else if (sizeof(_Tp) <= sizeof(unsigned long long))
+        -:   68:    return std::__libcpp_clz(static_cast<unsigned long long>(__t)) -
+        -:   69:           (numeric_limits<unsigned long long>::digits - numeric_limits<_Tp>::digits);
+        -:   70:  else {
+        -:   71:    int __ret                      = 0;
+        -:   72:    int __iter                     = 0;
+        -:   73:    const unsigned int __ulldigits = numeric_limits<unsigned long long>::digits;
+        -:   74:    while (true) {
+        -:   75:      __t = std::__rotl(__t, __ulldigits);
+        -:   76:      if ((__iter = std::__countl_zero(static_cast<unsigned long long>(__t))) != __ulldigits)
+        -:   77:        break;
+        -:   78:      __ret += __iter;
+        -:   79:    }
+        -:   80:    return __ret + __iter;
+        -:   81:  }
+        -:   82:}
+        -:   83:
+        -:   84:#if _LIBCPP_STD_VER >= 20
+        -:   85:
+        -:   86:template <__libcpp_unsigned_integer _Tp>
+        -:   87:_LIBCPP_NODISCARD_EXT _LIBCPP_HIDE_FROM_ABI constexpr int countl_zero(_Tp __t) noexcept {
+        -:   88:  return std::__countl_zero(__t);
+        -:   89:}
+        -:   90:
+        -:   91:template <__libcpp_unsigned_integer _Tp>
+        -:   92:_LIBCPP_NODISCARD_EXT _LIBCPP_HIDE_FROM_ABI constexpr int countl_one(_Tp __t) noexcept {
+        -:   93:  return __t != numeric_limits<_Tp>::max() ? std::countl_zero(static_cast<_Tp>(~__t)) : numeric_limits<_Tp>::digits;
+        -:   94:}
+        -:   95:
+        -:   96:#endif // _LIBCPP_STD_VER >= 20
+        -:   97:
+        -:   98:_LIBCPP_END_NAMESPACE_STD
+        -:   99:
+        -:  100:_LIBCPP_POP_MACROS
+        -:  101:
+        -:  102:#endif // _LIBCPP___BIT_COUNTL_H

@@ -1,0 +1,205 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/find.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// -*- C++ -*-
+        -:    2://===----------------------------------------------------------------------===//
+        -:    3://
+        -:    4:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    5:// See https://llvm.org/LICENSE.txt for license information.
+        -:    6:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    7://
+        -:    8://===----------------------------------------------------------------------===//
+        -:    9:
+        -:   10:#ifndef _LIBCPP___ALGORITHM_FIND_H
+        -:   11:#define _LIBCPP___ALGORITHM_FIND_H
+        -:   12:
+        -:   13:#include <__algorithm/find_segment_if.h>
+        -:   14:#include <__algorithm/min.h>
+        -:   15:#include <__algorithm/unwrap_iter.h>
+        -:   16:#include <__bit/countr.h>
+        -:   17:#include <__bit/invert_if.h>
+        -:   18:#include <__config>
+        -:   19:#include <__functional/identity.h>
+        -:   20:#include <__functional/invoke.h>
+        -:   21:#include <__fwd/bit_reference.h>
+        -:   22:#include <__iterator/segmented_iterator.h>
+        -:   23:#include <__string/constexpr_c_functions.h>
+        -:   24:#include <__type_traits/is_integral.h>
+        -:   25:#include <__type_traits/is_same.h>
+        -:   26:#include <__type_traits/is_signed.h>
+        -:   27:#include <__utility/move.h>
+        -:   28:#include <limits>
+        -:   29:
+        -:   30:#ifndef _LIBCPP_HAS_NO_WIDE_CHARACTERS
+        -:   31:#  include <cwchar>
+        -:   32:#endif
+        -:   33:
+        -:   34:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   35:#  pragma GCC system_header
+        -:   36:#endif
+        -:   37:
+        -:   38:_LIBCPP_PUSH_MACROS
+        -:   39:#include <__undef_macros>
+        -:   40:
+        -:   41:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   42:
+        -:   43:// generic implementation
+        -:   44:template <class _Iter, class _Sent, class _Tp, class _Proj>
+        -:   45:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 _Iter
+function _ZNSt3__111__find_implB8ne180100IPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEES8_S6_NS_10__identityEEET_SA_T0_RKT1_RT2_ called 0 returned 0% blocks executed 0%
+    #####:   46:__find_impl(_Iter __first, _Sent __last, const _Tp& __value, _Proj& __proj) {
+    #####:   47:  for (; __first != __last; ++__first)
+    $$$$$:   47-block  0
+    $$$$$:   47-block  1
+    $$$$$:   47-block  2
+    $$$$$:   47-block  3
+    #####:   48:    if (std::__invoke(__proj, *__first) == __value)
+    $$$$$:   48-block  0
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   48-block  1
+    #####:   49:      break;
+    $$$$$:   49-block  0
+    #####:   50:  return __first;
+    $$$$$:   50-block  0
+        -:   51:}
+        -:   52:
+        -:   53:// trivially equality comparable implementations
+        -:   54:template <class _Tp,
+        -:   55:          class _Up,
+        -:   56:          class _Proj,
+        -:   57:          __enable_if_t<__is_identity<_Proj>::value && __libcpp_is_trivially_equality_comparable<_Tp, _Up>::value &&
+        -:   58:                            sizeof(_Tp) == 1,
+        -:   59:                        int> = 0>
+        -:   60:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 _Tp*
+        -:   61:__find_impl(_Tp* __first, _Tp* __last, const _Up& __value, _Proj&) {
+        -:   62:  if (auto __ret = std::__constexpr_memchr(__first, __value, __last - __first))
+        -:   63:    return __ret;
+        -:   64:  return __last;
+        -:   65:}
+        -:   66:
+        -:   67:#ifndef _LIBCPP_HAS_NO_WIDE_CHARACTERS
+        -:   68:// TODO: Enable this unconditionally once Clang allows casting from a pointer to an ARC pointer to a
+        -:   69://       normal pointer. See rdar://114039220 for details.
+        -:   70:#  ifndef _LIBCPP_HAS_OBJC_ARC
+        -:   71:template <class _Tp,
+        -:   72:          class _Up,
+        -:   73:          class _Proj,
+        -:   74:          __enable_if_t<__is_identity<_Proj>::value && __libcpp_is_trivially_equality_comparable<_Tp, _Up>::value &&
+        -:   75:                            sizeof(_Tp) == sizeof(wchar_t) && _LIBCPP_ALIGNOF(_Tp) >= _LIBCPP_ALIGNOF(wchar_t),
+        -:   76:                        int> = 0>
+        -:   77:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 _Tp*
+        -:   78:__find_impl(_Tp* __first, _Tp* __last, const _Up& __value, _Proj&) {
+        -:   79:  if (auto __ret = std::__constexpr_wmemchr(__first, __value, __last - __first))
+        -:   80:    return __ret;
+        -:   81:  return __last;
+        -:   82:}
+        -:   83:#  endif
+        -:   84:#endif // _LIBCPP_HAS_NO_WIDE_CHARACTERS
+        -:   85:
+        -:   86:// TODO: This should also be possible to get right with different signedness
+        -:   87:// cast integral types to allow vectorization
+        -:   88:template <class _Tp,
+        -:   89:          class _Up,
+        -:   90:          class _Proj,
+        -:   91:          __enable_if_t<__is_identity<_Proj>::value && !__libcpp_is_trivially_equality_comparable<_Tp, _Up>::value &&
+        -:   92:                            is_integral<_Tp>::value && is_integral<_Up>::value &&
+        -:   93:                            is_signed<_Tp>::value == is_signed<_Up>::value,
+        -:   94:                        int> = 0>
+        -:   95:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 _Tp*
+        -:   96:__find_impl(_Tp* __first, _Tp* __last, const _Up& __value, _Proj& __proj) {
+        -:   97:  if (__value < numeric_limits<_Tp>::min() || __value > numeric_limits<_Tp>::max())
+        -:   98:    return __last;
+        -:   99:  return std::__find_impl(__first, __last, _Tp(__value), __proj);
+        -:  100:}
+        -:  101:
+        -:  102:// __bit_iterator implementation
+        -:  103:template <bool _ToFind, class _Cp, bool _IsConst>
+        -:  104:_LIBCPP_CONSTEXPR_SINCE_CXX20 _LIBCPP_HIDE_FROM_ABI __bit_iterator<_Cp, _IsConst>
+        -:  105:__find_bool(__bit_iterator<_Cp, _IsConst> __first, typename _Cp::size_type __n) {
+        -:  106:  using _It            = __bit_iterator<_Cp, _IsConst>;
+        -:  107:  using __storage_type = typename _It::__storage_type;
+        -:  108:
+        -:  109:  const int __bits_per_word = _It::__bits_per_word;
+        -:  110:  // do first partial word
+        -:  111:  if (__first.__ctz_ != 0) {
+        -:  112:    __storage_type __clz_f = static_cast<__storage_type>(__bits_per_word - __first.__ctz_);
+        -:  113:    __storage_type __dn    = std::min(__clz_f, __n);
+        -:  114:    __storage_type __m     = (~__storage_type(0) << __first.__ctz_) & (~__storage_type(0) >> (__clz_f - __dn));
+        -:  115:    __storage_type __b     = std::__invert_if<!_ToFind>(*__first.__seg_) & __m;
+        -:  116:    if (__b)
+        -:  117:      return _It(__first.__seg_, static_cast<unsigned>(std::__libcpp_ctz(__b)));
+        -:  118:    if (__n == __dn)
+        -:  119:      return __first + __n;
+        -:  120:    __n -= __dn;
+        -:  121:    ++__first.__seg_;
+        -:  122:  }
+        -:  123:  // do middle whole words
+        -:  124:  for (; __n >= __bits_per_word; ++__first.__seg_, __n -= __bits_per_word) {
+        -:  125:    __storage_type __b = std::__invert_if<!_ToFind>(*__first.__seg_);
+        -:  126:    if (__b)
+        -:  127:      return _It(__first.__seg_, static_cast<unsigned>(std::__libcpp_ctz(__b)));
+        -:  128:  }
+        -:  129:  // do last partial word
+        -:  130:  if (__n > 0) {
+        -:  131:    __storage_type __m = ~__storage_type(0) >> (__bits_per_word - __n);
+        -:  132:    __storage_type __b = std::__invert_if<!_ToFind>(*__first.__seg_) & __m;
+        -:  133:    if (__b)
+        -:  134:      return _It(__first.__seg_, static_cast<unsigned>(std::__libcpp_ctz(__b)));
+        -:  135:  }
+        -:  136:  return _It(__first.__seg_, static_cast<unsigned>(__n));
+        -:  137:}
+        -:  138:
+        -:  139:template <class _Cp, bool _IsConst, class _Tp, class _Proj, __enable_if_t<__is_identity<_Proj>::value, int> = 0>
+        -:  140:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 __bit_iterator<_Cp, _IsConst>
+        -:  141:__find_impl(__bit_iterator<_Cp, _IsConst> __first, __bit_iterator<_Cp, _IsConst> __last, const _Tp& __value, _Proj&) {
+        -:  142:  if (static_cast<bool>(__value))
+        -:  143:    return std::__find_bool<true>(__first, static_cast<typename _Cp::size_type>(__last - __first));
+        -:  144:  return std::__find_bool<false>(__first, static_cast<typename _Cp::size_type>(__last - __first));
+        -:  145:}
+        -:  146:
+        -:  147:// segmented iterator implementation
+        -:  148:
+        -:  149:template <class>
+        -:  150:struct __find_segment;
+        -:  151:
+        -:  152:template <class _SegmentedIterator,
+        -:  153:          class _Tp,
+        -:  154:          class _Proj,
+        -:  155:          __enable_if_t<__is_segmented_iterator<_SegmentedIterator>::value, int> = 0>
+        -:  156:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 _SegmentedIterator
+        -:  157:__find_impl(_SegmentedIterator __first, _SegmentedIterator __last, const _Tp& __value, _Proj& __proj) {
+        -:  158:  return std::__find_segment_if(std::move(__first), std::move(__last), __find_segment<_Tp>(__value), __proj);
+        -:  159:}
+        -:  160:
+        -:  161:template <class _Tp>
+        -:  162:struct __find_segment {
+        -:  163:  const _Tp& __value_;
+        -:  164:
+        -:  165:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR __find_segment(const _Tp& __value) : __value_(__value) {}
+        -:  166:
+        -:  167:  template <class _InputIterator, class _Proj>
+        -:  168:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR _InputIterator
+        -:  169:  operator()(_InputIterator __first, _InputIterator __last, _Proj& __proj) const {
+        -:  170:    return std::__find_impl(__first, __last, __value_, __proj);
+        -:  171:  }
+        -:  172:};
+        -:  173:
+        -:  174:// public API
+        -:  175:template <class _InputIterator, class _Tp>
+        -:  176:_LIBCPP_NODISCARD_EXT inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 _InputIterator
+function _ZNSt3__14findB8ne180100INS_11__wrap_iterIPKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEES7_EET_SB_SB_RKT0_ called 0 returned 0% blocks executed 0%
+    #####:  177:find(_InputIterator __first, _InputIterator __last, const _Tp& __value) {
+        -:  178:  __identity __proj;
+    #####:  179:  return std::__rewrap_iter(
+    $$$$$:  179-block  0
+    #####:  180:      __first, std::__find_impl(std::__unwrap_iter(__first), std::__unwrap_iter(__last), __value, __proj));
+        -:  181:}
+        -:  182:
+        -:  183:_LIBCPP_END_NAMESPACE_STD
+        -:  184:
+        -:  185:_LIBCPP_POP_MACROS
+        -:  186:
+        -:  187:#endif // _LIBCPP___ALGORITHM_FIND_H

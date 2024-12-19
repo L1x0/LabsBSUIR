@@ -1,0 +1,236 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__chrono/time_point.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// -*- C++ -*-
+        -:    2://===----------------------------------------------------------------------===//
+        -:    3://
+        -:    4:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    5:// See https://llvm.org/LICENSE.txt for license information.
+        -:    6:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    7://
+        -:    8://===----------------------------------------------------------------------===//
+        -:    9:
+        -:   10:#ifndef _LIBCPP___CHRONO_TIME_POINT_H
+        -:   11:#define _LIBCPP___CHRONO_TIME_POINT_H
+        -:   12:
+        -:   13:#include <__chrono/duration.h>
+        -:   14:#include <__compare/ordering.h>
+        -:   15:#include <__compare/three_way_comparable.h>
+        -:   16:#include <__config>
+        -:   17:#include <__type_traits/common_type.h>
+        -:   18:#include <__type_traits/enable_if.h>
+        -:   19:#include <__type_traits/is_convertible.h>
+        -:   20:#include <limits>
+        -:   21:
+        -:   22:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   23:#  pragma GCC system_header
+        -:   24:#endif
+        -:   25:
+        -:   26:_LIBCPP_PUSH_MACROS
+        -:   27:#include <__undef_macros>
+        -:   28:
+        -:   29:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   30:
+        -:   31:namespace chrono {
+        -:   32:
+        -:   33:template <class _Clock, class _Duration = typename _Clock::duration>
+        -:   34:class _LIBCPP_TEMPLATE_VIS time_point {
+        -:   35:  static_assert(__is_duration<_Duration>::value,
+        -:   36:                "Second template parameter of time_point must be a std::chrono::duration");
+        -:   37:
+        -:   38:public:
+        -:   39:  typedef _Clock clock;
+        -:   40:  typedef _Duration duration;
+        -:   41:  typedef typename duration::rep rep;
+        -:   42:  typedef typename duration::period period;
+        -:   43:
+        -:   44:private:
+        -:   45:  duration __d_;
+        -:   46:
+        -:   47:public:
+        -:   48:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 time_point() : __d_(duration::zero()) {}
+        -:   49:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 explicit time_point(const duration& __d) : __d_(__d) {}
+        -:   50:
+        -:   51:  // conversions
+        -:   52:  template <class _Duration2, __enable_if_t<is_convertible<_Duration2, duration>::value, int> = 0>
+        -:   53:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 time_point(const time_point<clock, _Duration2>& __t)
+        -:   54:      : __d_(__t.time_since_epoch()) {}
+        -:   55:
+        -:   56:  // observer
+        -:   57:
+function _ZNKSt3__16chrono10time_pointINS0_12system_clockENS0_8durationIxNS_5ratioILl1ELl1000000EEEEEE16time_since_epochB8ne180100Ev called 48 returned 100% blocks executed 100%
+function _ZNKSt3__16chrono10time_pointINS0_12steady_clockENS0_8durationIxNS_5ratioILl1ELl1000000000EEEEEE16time_since_epochB8ne180100Ev called 36 returned 100% blocks executed 100%
+       84:   58:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 duration time_since_epoch() const { return __d_; }
+       48:   58-block  0
+       36:   58-block  1
+        -:   59:
+        -:   60:  // arithmetic
+        -:   61:
+        -:   62:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 time_point& operator+=(const duration& __d) {
+        -:   63:    __d_ += __d;
+        -:   64:    return *this;
+        -:   65:  }
+        -:   66:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 time_point& operator-=(const duration& __d) {
+        -:   67:    __d_ -= __d;
+        -:   68:    return *this;
+        -:   69:  }
+        -:   70:
+        -:   71:  // special values
+        -:   72:
+        -:   73:  _LIBCPP_HIDE_FROM_ABI static _LIBCPP_CONSTEXPR time_point min() _NOEXCEPT { return time_point(duration::min()); }
+        -:   74:  _LIBCPP_HIDE_FROM_ABI static _LIBCPP_CONSTEXPR time_point max() _NOEXCEPT { return time_point(duration::max()); }
+        -:   75:};
+        -:   76:
+        -:   77:} // namespace chrono
+        -:   78:
+        -:   79:template <class _Clock, class _Duration1, class _Duration2>
+        -:   80:struct _LIBCPP_TEMPLATE_VIS
+        -:   81:    common_type<chrono::time_point<_Clock, _Duration1>, chrono::time_point<_Clock, _Duration2> > {
+        -:   82:  typedef chrono::time_point<_Clock, typename common_type<_Duration1, _Duration2>::type> type;
+        -:   83:};
+        -:   84:
+        -:   85:namespace chrono {
+        -:   86:
+        -:   87:template <class _ToDuration, class _Clock, class _Duration>
+        -:   88:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 time_point<_Clock, _ToDuration>
+        -:   89:time_point_cast(const time_point<_Clock, _Duration>& __t) {
+        -:   90:  return time_point<_Clock, _ToDuration>(chrono::duration_cast<_ToDuration>(__t.time_since_epoch()));
+        -:   91:}
+        -:   92:
+        -:   93:#if _LIBCPP_STD_VER >= 17
+        -:   94:template <class _ToDuration, class _Clock, class _Duration, enable_if_t<__is_duration<_ToDuration>::value, int> = 0>
+        -:   95:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR time_point<_Clock, _ToDuration>
+        -:   96:floor(const time_point<_Clock, _Duration>& __t) {
+        -:   97:  return time_point<_Clock, _ToDuration>{chrono::floor<_ToDuration>(__t.time_since_epoch())};
+        -:   98:}
+        -:   99:
+        -:  100:template <class _ToDuration, class _Clock, class _Duration, enable_if_t<__is_duration<_ToDuration>::value, int> = 0>
+        -:  101:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR time_point<_Clock, _ToDuration>
+        -:  102:ceil(const time_point<_Clock, _Duration>& __t) {
+        -:  103:  return time_point<_Clock, _ToDuration>{chrono::ceil<_ToDuration>(__t.time_since_epoch())};
+        -:  104:}
+        -:  105:
+        -:  106:template <class _ToDuration, class _Clock, class _Duration, enable_if_t<__is_duration<_ToDuration>::value, int> = 0>
+        -:  107:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR time_point<_Clock, _ToDuration>
+        -:  108:round(const time_point<_Clock, _Duration>& __t) {
+        -:  109:  return time_point<_Clock, _ToDuration>{chrono::round<_ToDuration>(__t.time_since_epoch())};
+        -:  110:}
+        -:  111:
+        -:  112:template <class _Rep, class _Period, enable_if_t<numeric_limits<_Rep>::is_signed, int> = 0>
+        -:  113:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR duration<_Rep, _Period> abs(duration<_Rep, _Period> __d) {
+        -:  114:  return __d >= __d.zero() ? +__d : -__d;
+        -:  115:}
+        -:  116:#endif // _LIBCPP_STD_VER >= 17
+        -:  117:
+        -:  118:// time_point ==
+        -:  119:
+        -:  120:template <class _Clock, class _Duration1, class _Duration2>
+        -:  121:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 bool
+        -:  122:operator==(const time_point<_Clock, _Duration1>& __lhs, const time_point<_Clock, _Duration2>& __rhs) {
+        -:  123:  return __lhs.time_since_epoch() == __rhs.time_since_epoch();
+        -:  124:}
+        -:  125:
+        -:  126:#if _LIBCPP_STD_VER <= 17
+        -:  127:
+        -:  128:// time_point !=
+        -:  129:
+        -:  130:template <class _Clock, class _Duration1, class _Duration2>
+        -:  131:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 bool
+        -:  132:operator!=(const time_point<_Clock, _Duration1>& __lhs, const time_point<_Clock, _Duration2>& __rhs) {
+        -:  133:  return !(__lhs == __rhs);
+        -:  134:}
+        -:  135:
+        -:  136:#endif // _LIBCPP_STD_VER <= 17
+        -:  137:
+        -:  138:// time_point <
+        -:  139:
+        -:  140:template <class _Clock, class _Duration1, class _Duration2>
+        -:  141:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 bool
+        -:  142:operator<(const time_point<_Clock, _Duration1>& __lhs, const time_point<_Clock, _Duration2>& __rhs) {
+        -:  143:  return __lhs.time_since_epoch() < __rhs.time_since_epoch();
+        -:  144:}
+        -:  145:
+        -:  146:// time_point >
+        -:  147:
+        -:  148:template <class _Clock, class _Duration1, class _Duration2>
+        -:  149:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 bool
+        -:  150:operator>(const time_point<_Clock, _Duration1>& __lhs, const time_point<_Clock, _Duration2>& __rhs) {
+        -:  151:  return __rhs < __lhs;
+        -:  152:}
+        -:  153:
+        -:  154:// time_point <=
+        -:  155:
+        -:  156:template <class _Clock, class _Duration1, class _Duration2>
+        -:  157:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 bool
+        -:  158:operator<=(const time_point<_Clock, _Duration1>& __lhs, const time_point<_Clock, _Duration2>& __rhs) {
+        -:  159:  return !(__rhs < __lhs);
+        -:  160:}
+        -:  161:
+        -:  162:// time_point >=
+        -:  163:
+        -:  164:template <class _Clock, class _Duration1, class _Duration2>
+        -:  165:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 bool
+        -:  166:operator>=(const time_point<_Clock, _Duration1>& __lhs, const time_point<_Clock, _Duration2>& __rhs) {
+        -:  167:  return !(__lhs < __rhs);
+        -:  168:}
+        -:  169:
+        -:  170:#if _LIBCPP_STD_VER >= 20
+        -:  171:
+        -:  172:template <class _Clock, class _Duration1, three_way_comparable_with<_Duration1> _Duration2>
+        -:  173:_LIBCPP_HIDE_FROM_ABI constexpr auto
+        -:  174:operator<=>(const time_point<_Clock, _Duration1>& __lhs, const time_point<_Clock, _Duration2>& __rhs) {
+        -:  175:  return __lhs.time_since_epoch() <=> __rhs.time_since_epoch();
+        -:  176:}
+        -:  177:
+        -:  178:#endif // _LIBCPP_STD_VER >= 20
+        -:  179:
+        -:  180:// time_point operator+(time_point x, duration y);
+        -:  181:
+        -:  182:template <class _Clock, class _Duration1, class _Rep2, class _Period2>
+        -:  183:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14
+        -:  184:    time_point<_Clock, typename common_type<_Duration1, duration<_Rep2, _Period2> >::type>
+        -:  185:    operator+(const time_point<_Clock, _Duration1>& __lhs, const duration<_Rep2, _Period2>& __rhs) {
+        -:  186:  typedef time_point<_Clock, typename common_type<_Duration1, duration<_Rep2, _Period2> >::type> _Tr;
+        -:  187:  return _Tr(__lhs.time_since_epoch() + __rhs);
+        -:  188:}
+        -:  189:
+        -:  190:// time_point operator+(duration x, time_point y);
+        -:  191:
+        -:  192:template <class _Rep1, class _Period1, class _Clock, class _Duration2>
+        -:  193:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14
+        -:  194:    time_point<_Clock, typename common_type<duration<_Rep1, _Period1>, _Duration2>::type>
+        -:  195:    operator+(const duration<_Rep1, _Period1>& __lhs, const time_point<_Clock, _Duration2>& __rhs) {
+        -:  196:  return __rhs + __lhs;
+        -:  197:}
+        -:  198:
+        -:  199:// time_point operator-(time_point x, duration y);
+        -:  200:
+        -:  201:template <class _Clock, class _Duration1, class _Rep2, class _Period2>
+        -:  202:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14
+        -:  203:    time_point<_Clock, typename common_type<_Duration1, duration<_Rep2, _Period2> >::type>
+        -:  204:    operator-(const time_point<_Clock, _Duration1>& __lhs, const duration<_Rep2, _Period2>& __rhs) {
+        -:  205:  typedef time_point<_Clock, typename common_type<_Duration1, duration<_Rep2, _Period2> >::type> _Ret;
+        -:  206:  return _Ret(__lhs.time_since_epoch() - __rhs);
+        -:  207:}
+        -:  208:
+        -:  209:// duration operator-(time_point x, time_point y);
+        -:  210:
+        -:  211:template <class _Clock, class _Duration1, class _Duration2>
+        -:  212:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX14 typename common_type<_Duration1, _Duration2>::type
+function _ZNSt3__16chronomiB8ne180100INS0_12system_clockENS0_8durationIxNS_5ratioILl1ELl1000000EEEEES6_EENS_11common_typeIJT0_T1_EE4typeERKNS0_10time_pointIT_S8_EERKNSC_ISD_S9_EE called 24 returned 100% blocks executed 100%
+function _ZNSt3__16chronomiB8ne180100INS0_12steady_clockENS0_8durationIxNS_5ratioILl1ELl1000000000EEEEES6_EENS_11common_typeIJT0_T1_EE4typeERKNS0_10time_pointIT_S8_EERKNSC_ISD_S9_EE called 18 returned 100% blocks executed 100%
+       42:  213:operator-(const time_point<_Clock, _Duration1>& __lhs, const time_point<_Clock, _Duration2>& __rhs) {
+       42:  214:  return __lhs.time_since_epoch() - __rhs.time_since_epoch();
+       24:  214-block  0
+       18:  214-block  1
+        -:  215:}
+        -:  216:
+        -:  217:} // namespace chrono
+        -:  218:
+        -:  219:_LIBCPP_END_NAMESPACE_STD
+        -:  220:
+        -:  221:_LIBCPP_POP_MACROS
+        -:  222:
+        -:  223:#endif // _LIBCPP___CHRONO_TIME_POINT_H

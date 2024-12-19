@@ -1,0 +1,85 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__algorithm/upper_bound.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://===----------------------------------------------------------------------===//
+        -:    2://
+        -:    3:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    4:// See https://llvm.org/LICENSE.txt for license information.
+        -:    5:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    6://
+        -:    7://===----------------------------------------------------------------------===//
+        -:    8:
+        -:    9:#ifndef _LIBCPP___ALGORITHM_UPPER_BOUND_H
+        -:   10:#define _LIBCPP___ALGORITHM_UPPER_BOUND_H
+        -:   11:
+        -:   12:#include <__algorithm/comp.h>
+        -:   13:#include <__algorithm/half_positive.h>
+        -:   14:#include <__algorithm/iterator_operations.h>
+        -:   15:#include <__config>
+        -:   16:#include <__functional/identity.h>
+        -:   17:#include <__functional/invoke.h>
+        -:   18:#include <__iterator/advance.h>
+        -:   19:#include <__iterator/distance.h>
+        -:   20:#include <__iterator/iterator_traits.h>
+        -:   21:#include <__type_traits/is_copy_constructible.h>
+        -:   22:#include <__utility/move.h>
+        -:   23:
+        -:   24:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   25:#  pragma GCC system_header
+        -:   26:#endif
+        -:   27:
+        -:   28:_LIBCPP_PUSH_MACROS
+        -:   29:#include <__undef_macros>
+        -:   30:
+        -:   31:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   32:
+        -:   33:template <class _AlgPolicy, class _Compare, class _Iter, class _Sent, class _Tp, class _Proj>
+        -:   34:_LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 _Iter
+function _ZNSt3__113__upper_boundB8ne180100INS_17_ClassicAlgPolicyERZN7testing9TestSuite3RunEvE3$_0NS_11__wrap_iterIPPNS2_8TestInfoEEESA_S8_NS_10__identityEEET1_SC_T2_RKT3_OT0_OT4_ called 0 returned 0% blocks executed 0%
+    #####:   35:__upper_bound(_Iter __first, _Sent __last, const _Tp& __value, _Compare&& __comp, _Proj&& __proj) {
+    #####:   36:  auto __len = _IterOps<_AlgPolicy>::distance(__first, __last);
+    #####:   37:  while (__len != 0) {
+    $$$$$:   37-block  0
+    $$$$$:   37-block  1
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   37-block  2
+    #####:   38:    auto __half_len = std::__half_positive(__len);
+    #####:   39:    auto __mid      = _IterOps<_AlgPolicy>::next(__first, __half_len);
+    #####:   40:    if (std::__invoke(__comp, __value, std::__invoke(__proj, *__mid)))
+    $$$$$:   40-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   41:      __len = __half_len;
+    $$$$$:   41-block  0
+        -:   42:    else {
+    #####:   43:      __first = ++__mid;
+    #####:   44:      __len -= __half_len + 1;
+    $$$$$:   44-block  0
+        -:   45:    }
+        -:   46:  }
+    #####:   47:  return __first;
+    $$$$$:   47-block  0
+        -:   48:}
+        -:   49:
+        -:   50:template <class _ForwardIterator, class _Tp, class _Compare>
+        -:   51:_LIBCPP_NODISCARD_EXT inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 _ForwardIterator
+        -:   52:upper_bound(_ForwardIterator __first, _ForwardIterator __last, const _Tp& __value, _Compare __comp) {
+        -:   53:  static_assert(is_copy_constructible<_ForwardIterator>::value, "Iterator has to be copy constructible");
+        -:   54:  return std::__upper_bound<_ClassicAlgPolicy>(
+        -:   55:      std::move(__first), std::move(__last), __value, std::move(__comp), std::__identity());
+        -:   56:}
+        -:   57:
+        -:   58:template <class _ForwardIterator, class _Tp>
+        -:   59:_LIBCPP_NODISCARD_EXT inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX20 _ForwardIterator
+        -:   60:upper_bound(_ForwardIterator __first, _ForwardIterator __last, const _Tp& __value) {
+        -:   61:  return std::upper_bound(std::move(__first), std::move(__last), __value, __less<>());
+        -:   62:}
+        -:   63:
+        -:   64:_LIBCPP_END_NAMESPACE_STD
+        -:   65:
+        -:   66:_LIBCPP_POP_MACROS
+        -:   67:
+        -:   68:#endif // _LIBCPP___ALGORITHM_UPPER_BOUND_H

@@ -1,0 +1,768 @@
+        -:    0:Source:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/c++/v1/__iterator/reverse_iterator.h
+        -:    0:Graph:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcno
+        -:    0:Data:/Users/artemastahov/All_files/styding/LabsBSUIR/LabsOS/FourthLab/FirstTask/cmake-build-debug-coverage-1/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// -*- C++ -*-
+        -:    2://===----------------------------------------------------------------------===//
+        -:    3://
+        -:    4:// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+        -:    5:// See https://llvm.org/LICENSE.txt for license information.
+        -:    6:// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+        -:    7://
+        -:    8://===----------------------------------------------------------------------===//
+        -:    9:
+        -:   10:#ifndef _LIBCPP___ITERATOR_REVERSE_ITERATOR_H
+        -:   11:#define _LIBCPP___ITERATOR_REVERSE_ITERATOR_H
+        -:   12:
+        -:   13:#include <__algorithm/unwrap_iter.h>
+        -:   14:#include <__compare/compare_three_way_result.h>
+        -:   15:#include <__compare/three_way_comparable.h>
+        -:   16:#include <__concepts/convertible_to.h>
+        -:   17:#include <__config>
+        -:   18:#include <__iterator/advance.h>
+        -:   19:#include <__iterator/concepts.h>
+        -:   20:#include <__iterator/incrementable_traits.h>
+        -:   21:#include <__iterator/iter_move.h>
+        -:   22:#include <__iterator/iter_swap.h>
+        -:   23:#include <__iterator/iterator.h>
+        -:   24:#include <__iterator/iterator_traits.h>
+        -:   25:#include <__iterator/next.h>
+        -:   26:#include <__iterator/prev.h>
+        -:   27:#include <__iterator/readable_traits.h>
+        -:   28:#include <__iterator/segmented_iterator.h>
+        -:   29:#include <__memory/addressof.h>
+        -:   30:#include <__ranges/access.h>
+        -:   31:#include <__ranges/concepts.h>
+        -:   32:#include <__ranges/subrange.h>
+        -:   33:#include <__type_traits/conditional.h>
+        -:   34:#include <__type_traits/enable_if.h>
+        -:   35:#include <__type_traits/is_assignable.h>
+        -:   36:#include <__type_traits/is_convertible.h>
+        -:   37:#include <__type_traits/is_nothrow_copy_constructible.h>
+        -:   38:#include <__type_traits/is_pointer.h>
+        -:   39:#include <__type_traits/is_same.h>
+        -:   40:#include <__utility/declval.h>
+        -:   41:#include <__utility/move.h>
+        -:   42:
+        -:   43:#if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
+        -:   44:#  pragma GCC system_header
+        -:   45:#endif
+        -:   46:
+        -:   47:_LIBCPP_BEGIN_NAMESPACE_STD
+        -:   48:
+        -:   49:_LIBCPP_SUPPRESS_DEPRECATED_PUSH
+        -:   50:template <class _Iter>
+        -:   51:class _LIBCPP_TEMPLATE_VIS reverse_iterator
+        -:   52:#if _LIBCPP_STD_VER <= 14 || !defined(_LIBCPP_ABI_NO_ITERATOR_BASES)
+        -:   53:    : public iterator<typename iterator_traits<_Iter>::iterator_category,
+        -:   54:                      typename iterator_traits<_Iter>::value_type,
+        -:   55:                      typename iterator_traits<_Iter>::difference_type,
+        -:   56:                      typename iterator_traits<_Iter>::pointer,
+        -:   57:                      typename iterator_traits<_Iter>::reference>
+        -:   58:#endif
+        -:   59:{
+        -:   60:  _LIBCPP_SUPPRESS_DEPRECATED_POP
+        -:   61:
+        -:   62:private:
+        -:   63:#ifndef _LIBCPP_ABI_NO_ITERATOR_BASES
+        -:   64:  _Iter __t_; // no longer used as of LWG #2360, not removed due to ABI break
+        -:   65:#endif
+        -:   66:
+        -:   67:#if _LIBCPP_STD_VER >= 20
+        -:   68:  static_assert(__has_bidirectional_iterator_category<_Iter>::value || bidirectional_iterator<_Iter>,
+        -:   69:                "reverse_iterator<It> requires It to be a bidirectional iterator.");
+        -:   70:#endif // _LIBCPP_STD_VER >= 20
+        -:   71:
+        -:   72:protected:
+        -:   73:  _Iter current;
+        -:   74:
+        -:   75:public:
+        -:   76:  using iterator_type = _Iter;
+        -:   77:
+        -:   78:  using iterator_category =
+        -:   79:      _If<__has_random_access_iterator_category<_Iter>::value,
+        -:   80:          random_access_iterator_tag,
+        -:   81:          typename iterator_traits<_Iter>::iterator_category>;
+        -:   82:  using pointer = typename iterator_traits<_Iter>::pointer;
+        -:   83:#if _LIBCPP_STD_VER >= 20
+        -:   84:  using iterator_concept = _If<random_access_iterator<_Iter>, random_access_iterator_tag, bidirectional_iterator_tag>;
+        -:   85:  using value_type       = iter_value_t<_Iter>;
+        -:   86:  using difference_type  = iter_difference_t<_Iter>;
+        -:   87:  using reference        = iter_reference_t<_Iter>;
+        -:   88:#else
+        -:   89:  using value_type      = typename iterator_traits<_Iter>::value_type;
+        -:   90:  using difference_type = typename iterator_traits<_Iter>::difference_type;
+        -:   91:  using reference       = typename iterator_traits<_Iter>::reference;
+        -:   92:#endif
+        -:   93:
+        -:   94:#ifndef _LIBCPP_ABI_NO_ITERATOR_BASES
+        -:   95:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reverse_iterator() : __t_(), current() {}
+        -:   96:
+function _ZNSt3__116reverse_iteratorIPPcEC1B8ne180100ES2_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPPcEC2B8ne180100ES2_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEC1B8ne180100ES7_ called 198 returned 100% blocks executed 100%
+function _ZNSt3__116reverse_iteratorINS0_IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEEC1B8ne180100ES8_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorINS0_IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEEC2B8ne180100ES8_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEC2B8ne180100ES7_ called 198 returned 100% blocks executed 100%
+function _ZNSt3__116reverse_iteratorIPN7testing14TestPartResultEEC1B8ne180100ES3_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorINS0_IPN7testing14TestPartResultEEEEC1B8ne180100ES4_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorINS0_IPN7testing14TestPartResultEEEEC2B8ne180100ES4_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPN7testing14TestPartResultEEC2B8ne180100ES3_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPN7testing8internal13edit_distance8EditTypeEEC1B8ne180100ES5_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPN7testing8internal13edit_distance8EditTypeEEC2B8ne180100ES5_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPmEC1B8ne180100ES1_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPmEC2B8ne180100ES1_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPN7testing12TestPropertyEEC1B8ne180100ES3_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorINS0_IPN7testing12TestPropertyEEEEC1B8ne180100ES4_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorINS0_IPN7testing12TestPropertyEEEEC2B8ne180100ES4_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPN7testing12TestPropertyEEC2B8ne180100ES3_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPPN7testing8TestInfoEEC1B8ne180100ES4_ called 72 returned 100% blocks executed 100%
+function _ZNSt3__116reverse_iteratorIPPN7testing8TestInfoEEC2B8ne180100ES4_ called 72 returned 100% blocks executed 100%
+function _ZNSt3__116reverse_iteratorIPiEC1B8ne180100ES1_ called 90 returned 100% blocks executed 100%
+function _ZNSt3__116reverse_iteratorIPiEC2B8ne180100ES1_ called 90 returned 100% blocks executed 100%
+function _ZNSt3__116reverse_iteratorINS_11__wrap_iterIPPN7testing8TestInfoEEEEC1B8ne180100ES6_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorINS_11__wrap_iterIPPN7testing8TestInfoEEEEC2B8ne180100ES6_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPPN7testing17TestEventListenerEEC1B8ne180100ES4_ called 18 returned 100% blocks executed 100%
+function _ZNSt3__116reverse_iteratorIPPN7testing17TestEventListenerEEC2B8ne180100ES4_ called 18 returned 100% blocks executed 100%
+function _ZNSt3__116reverse_iteratorIPPN7testing11EnvironmentEEC1B8ne180100ES4_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPPN7testing11EnvironmentEEC2B8ne180100ES4_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPN7testing8internal9TraceInfoEEC1B8ne180100ES4_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorINS0_IPN7testing8internal9TraceInfoEEEEC1B8ne180100ES5_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorINS0_IPN7testing8internal9TraceInfoEEEEC2B8ne180100ES5_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPN7testing8internal9TraceInfoEEC2B8ne180100ES4_ called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorINS_11__wrap_iterIPPN7testing9TestSuiteEEEEC1B8ne180100ES6_ called 60 returned 100% blocks executed 100%
+function _ZNSt3__116reverse_iteratorINS_11__wrap_iterIPPN7testing9TestSuiteEEEEC2B8ne180100ES6_ called 60 returned 100% blocks executed 100%
+function _ZNSt3__116reverse_iteratorIPPN7testing9TestSuiteEEC1B8ne180100ES4_ called 18 returned 100% blocks executed 100%
+function _ZNSt3__116reverse_iteratorIPPN7testing9TestSuiteEEC2B8ne180100ES4_ called 18 returned 100% blocks executed 100%
+function _ZNSt3__116reverse_iteratorINS_11__wrap_iterIPPN7testing11EnvironmentEEEEC1B8ne180100ES6_ called 12 returned 100% blocks executed 100%
+function _ZNSt3__116reverse_iteratorINS_11__wrap_iterIPPN7testing11EnvironmentEEEEC2B8ne180100ES6_ called 12 returned 100% blocks executed 100%
+      936:   97:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 explicit reverse_iterator(_Iter __x) : __t_(__x), current(__x) {}
+    $$$$$:   97-block  0
+    $$$$$:   97-block  1
+      198:   97-block  2
+    $$$$$:   97-block  3
+    $$$$$:   97-block  4
+      198:   97-block  5
+    $$$$$:   97-block  6
+    $$$$$:   97-block  7
+    $$$$$:   97-block  8
+    $$$$$:   97-block  9
+    $$$$$:   97-block 10
+    $$$$$:   97-block 11
+    $$$$$:   97-block 12
+    $$$$$:   97-block 13
+    $$$$$:   97-block 14
+    $$$$$:   97-block 15
+    $$$$$:   97-block 16
+    $$$$$:   97-block 17
+       72:   97-block 18
+       72:   97-block 19
+       90:   97-block 20
+       90:   97-block 21
+    $$$$$:   97-block 22
+    $$$$$:   97-block 23
+       18:   97-block 24
+       18:   97-block 25
+    $$$$$:   97-block 26
+    $$$$$:   97-block 27
+    $$$$$:   97-block 28
+    $$$$$:   97-block 29
+    $$$$$:   97-block 30
+    $$$$$:   97-block 31
+       60:   97-block 32
+       60:   97-block 33
+       18:   97-block 34
+       18:   97-block 35
+       12:   97-block 36
+       12:   97-block 37
+        -:   98:
+        -:   99:  template <class _Up,
+        -:  100:            class = __enable_if_t< !is_same<_Up, _Iter>::value && is_convertible<_Up const&, _Iter>::value > >
+        -:  101:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reverse_iterator(const reverse_iterator<_Up>& __u)
+        -:  102:      : __t_(__u.base()), current(__u.base()) {}
+        -:  103:
+        -:  104:  template <class _Up,
+        -:  105:            class = __enable_if_t< !is_same<_Up, _Iter>::value && is_convertible<_Up const&, _Iter>::value &&
+        -:  106:                                   is_assignable<_Iter&, _Up const&>::value > >
+        -:  107:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reverse_iterator& operator=(const reverse_iterator<_Up>& __u) {
+        -:  108:    __t_ = current = __u.base();
+        -:  109:    return *this;
+        -:  110:  }
+        -:  111:#else
+        -:  112:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reverse_iterator() : current() {}
+        -:  113:
+        -:  114:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 explicit reverse_iterator(_Iter __x) : current(__x) {}
+        -:  115:
+        -:  116:  template <class _Up,
+        -:  117:            class = __enable_if_t< !is_same<_Up, _Iter>::value && is_convertible<_Up const&, _Iter>::value > >
+        -:  118:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reverse_iterator(const reverse_iterator<_Up>& __u)
+        -:  119:      : current(__u.base()) {}
+        -:  120:
+        -:  121:  template <class _Up,
+        -:  122:            class = __enable_if_t< !is_same<_Up, _Iter>::value && is_convertible<_Up const&, _Iter>::value &&
+        -:  123:                                   is_assignable<_Iter&, _Up const&>::value > >
+        -:  124:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reverse_iterator& operator=(const reverse_iterator<_Up>& __u) {
+        -:  125:    current = __u.base();
+        -:  126:    return *this;
+        -:  127:  }
+        -:  128:#endif
+function _ZNKSt3__116reverse_iteratorIPPcE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEE4baseB8ne180100Ev called 258 returned 100% blocks executed 100%
+function _ZNKSt3__116reverse_iteratorINS0_IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPN7testing14TestPartResultEE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorINS0_IPN7testing14TestPartResultEEEE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPN7testing8internal13edit_distance8EditTypeEE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPmE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPN7testing12TestPropertyEE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorINS0_IPN7testing12TestPropertyEEEE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPPN7testing8TestInfoEE4baseB8ne180100Ev called 156 returned 100% blocks executed 100%
+function _ZNKSt3__116reverse_iteratorIPiE4baseB8ne180100Ev called 174 returned 100% blocks executed 100%
+function _ZNKSt3__116reverse_iteratorINS_11__wrap_iterIPPN7testing8TestInfoEEEE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPPN7testing17TestEventListenerEE4baseB8ne180100Ev called 18 returned 100% blocks executed 100%
+function _ZNKSt3__116reverse_iteratorIPPN7testing11EnvironmentEE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPN7testing8internal9TraceInfoEE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorINS0_IPN7testing8internal9TraceInfoEEEE4baseB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPPN7testing9TestSuiteEE4baseB8ne180100Ev called 18 returned 100% blocks executed 100%
+function _ZNKSt3__116reverse_iteratorINS_11__wrap_iterIPPN7testing11EnvironmentEEEE4baseB8ne180100Ev called 12 returned 100% blocks executed 100%
+      636:  129:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 _Iter base() const { return current; }
+    $$$$$:  129-block  0
+      258:  129-block  1
+    $$$$$:  129-block  2
+    $$$$$:  129-block  3
+    $$$$$:  129-block  4
+    $$$$$:  129-block  5
+    $$$$$:  129-block  6
+    $$$$$:  129-block  7
+    $$$$$:  129-block  8
+      156:  129-block  9
+      174:  129-block 10
+    $$$$$:  129-block 11
+       18:  129-block 12
+    $$$$$:  129-block 13
+    $$$$$:  129-block 14
+    $$$$$:  129-block 15
+       18:  129-block 16
+       12:  129-block 17
+function _ZNKSt3__116reverse_iteratorINS_11__wrap_iterIPPN7testing9TestSuiteEEEEdeB8ne180100Ev called 60 returned 100% blocks executed 100%
+function _ZNKSt3__116reverse_iteratorIPPcEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEdeB8ne180100Ev called 60 returned 100% blocks executed 100%
+function _ZNKSt3__116reverse_iteratorINS0_IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPN7testing14TestPartResultEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorINS0_IPN7testing14TestPartResultEEEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPN7testing8internal13edit_distance8EditTypeEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPmEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPN7testing12TestPropertyEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorINS0_IPN7testing12TestPropertyEEEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPPN7testing8TestInfoEEdeB8ne180100Ev called 84 returned 100% blocks executed 100%
+function _ZNKSt3__116reverse_iteratorIPiEdeB8ne180100Ev called 84 returned 100% blocks executed 100%
+function _ZNKSt3__116reverse_iteratorINS_11__wrap_iterIPPN7testing8TestInfoEEEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPPN7testing17TestEventListenerEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPPN7testing11EnvironmentEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPN7testing8internal9TraceInfoEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorINS0_IPN7testing8internal9TraceInfoEEEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPPN7testing9TestSuiteEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorINS_11__wrap_iterIPPN7testing11EnvironmentEEEEdeB8ne180100Ev called 0 returned 0% blocks executed 0%
+      288:  130:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reference operator*() const {
+      288:  131:    _Iter __tmp = current;
+      288:  132:    return *--__tmp;
+       60:  132-block  0
+    $$$$$:  132-block  1
+       60:  132-block  2
+    $$$$$:  132-block  3
+    $$$$$:  132-block  4
+    $$$$$:  132-block  5
+    $$$$$:  132-block  6
+    $$$$$:  132-block  7
+    $$$$$:  132-block  8
+    $$$$$:  132-block  9
+       84:  132-block 10
+       84:  132-block 11
+    $$$$$:  132-block 12
+    $$$$$:  132-block 13
+    $$$$$:  132-block 14
+    $$$$$:  132-block 15
+    $$$$$:  132-block 16
+    $$$$$:  132-block 17
+    $$$$$:  132-block 18
+        -:  133:  }
+        -:  134:
+        -:  135:#if _LIBCPP_STD_VER >= 20
+        -:  136:  _LIBCPP_HIDE_FROM_ABI constexpr pointer operator->() const
+        -:  137:    requires is_pointer_v<_Iter> || requires(const _Iter __i) { __i.operator->(); }
+        -:  138:  {
+        -:  139:    if constexpr (is_pointer_v<_Iter>) {
+        -:  140:      return std::prev(current);
+        -:  141:    } else {
+        -:  142:      return std::prev(current).operator->();
+        -:  143:    }
+        -:  144:  }
+        -:  145:#else
+function _ZNKSt3__116reverse_iteratorIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEptB8ne180100Ev called 30 returned 100% blocks executed 100%
+function _ZNKSt3__116reverse_iteratorINS0_IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEEptB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPN7testing14TestPartResultEEptB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorINS0_IPN7testing14TestPartResultEEEEptB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPN7testing12TestPropertyEEptB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorINS0_IPN7testing12TestPropertyEEEEptB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorIPN7testing8internal9TraceInfoEEptB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNKSt3__116reverse_iteratorINS0_IPN7testing8internal9TraceInfoEEEEptB8ne180100Ev called 0 returned 0% blocks executed 0%
+       30:  146:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 pointer operator->() const { return std::addressof(operator*()); }
+       30:  146-block  0
+    $$$$$:  146-block  1
+    $$$$$:  146-block  2
+    $$$$$:  146-block  3
+    $$$$$:  146-block  4
+    $$$$$:  146-block  5
+    $$$$$:  146-block  6
+    $$$$$:  146-block  7
+        -:  147:#endif // _LIBCPP_STD_VER >= 20
+        -:  148:
+function _ZNSt3__116reverse_iteratorIPPcEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEppB8ne180100Ev called 60 returned 100% blocks executed 100%
+function _ZNSt3__116reverse_iteratorINS0_IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPN7testing14TestPartResultEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorINS0_IPN7testing14TestPartResultEEEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPN7testing8internal13edit_distance8EditTypeEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPmEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPN7testing12TestPropertyEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorINS0_IPN7testing12TestPropertyEEEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPPN7testing8TestInfoEEppB8ne180100Ev called 84 returned 100% blocks executed 100%
+function _ZNSt3__116reverse_iteratorIPiEppB8ne180100Ev called 84 returned 100% blocks executed 100%
+function _ZNSt3__116reverse_iteratorINS_11__wrap_iterIPPN7testing8TestInfoEEEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPPN7testing17TestEventListenerEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPPN7testing11EnvironmentEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPN7testing8internal9TraceInfoEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorINS0_IPN7testing8internal9TraceInfoEEEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPPN7testing9TestSuiteEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorINS_11__wrap_iterIPPN7testing11EnvironmentEEEEppB8ne180100Ev called 0 returned 0% blocks executed 0%
+      228:  149:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reverse_iterator& operator++() {
+      228:  150:    --current;
+      228:  151:    return *this;
+    $$$$$:  151-block  0
+       60:  151-block  1
+    $$$$$:  151-block  2
+    $$$$$:  151-block  3
+    $$$$$:  151-block  4
+    $$$$$:  151-block  5
+    $$$$$:  151-block  6
+    $$$$$:  151-block  7
+    $$$$$:  151-block  8
+       84:  151-block  9
+       84:  151-block 10
+    $$$$$:  151-block 11
+    $$$$$:  151-block 12
+    $$$$$:  151-block 13
+    $$$$$:  151-block 14
+    $$$$$:  151-block 15
+    $$$$$:  151-block 16
+    $$$$$:  151-block 17
+        -:  152:  }
+        -:  153:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reverse_iterator operator++(int) {
+        -:  154:    reverse_iterator __tmp(*this);
+        -:  155:    --current;
+        -:  156:    return __tmp;
+        -:  157:  }
+function _ZNSt3__116reverse_iteratorIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEmmB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPN7testing14TestPartResultEEmmB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPN7testing12TestPropertyEEmmB8ne180100Ev called 0 returned 0% blocks executed 0%
+function _ZNSt3__116reverse_iteratorIPN7testing8internal9TraceInfoEEmmB8ne180100Ev called 0 returned 0% blocks executed 0%
+    #####:  158:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reverse_iterator& operator--() {
+    #####:  159:    ++current;
+    #####:  160:    return *this;
+    $$$$$:  160-block  0
+    $$$$$:  160-block  1
+    $$$$$:  160-block  2
+    $$$$$:  160-block  3
+        -:  161:  }
+        -:  162:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reverse_iterator operator--(int) {
+        -:  163:    reverse_iterator __tmp(*this);
+        -:  164:    ++current;
+        -:  165:    return __tmp;
+        -:  166:  }
+        -:  167:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reverse_iterator operator+(difference_type __n) const {
+        -:  168:    return reverse_iterator(current - __n);
+        -:  169:  }
+        -:  170:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reverse_iterator& operator+=(difference_type __n) {
+        -:  171:    current -= __n;
+        -:  172:    return *this;
+        -:  173:  }
+        -:  174:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reverse_iterator operator-(difference_type __n) const {
+        -:  175:    return reverse_iterator(current + __n);
+        -:  176:  }
+        -:  177:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reverse_iterator& operator-=(difference_type __n) {
+        -:  178:    current += __n;
+        -:  179:    return *this;
+        -:  180:  }
+        -:  181:  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reference operator[](difference_type __n) const {
+        -:  182:    return *(*this + __n);
+        -:  183:  }
+        -:  184:
+        -:  185:#if _LIBCPP_STD_VER >= 20
+        -:  186:  _LIBCPP_HIDE_FROM_ABI friend constexpr iter_rvalue_reference_t<_Iter> iter_move(const reverse_iterator& __i) noexcept(
+        -:  187:      is_nothrow_copy_constructible_v<_Iter>&& noexcept(ranges::iter_move(--std::declval<_Iter&>()))) {
+        -:  188:    auto __tmp = __i.base();
+        -:  189:    return ranges::iter_move(--__tmp);
+        -:  190:  }
+        -:  191:
+        -:  192:  template <indirectly_swappable<_Iter> _Iter2>
+        -:  193:  _LIBCPP_HIDE_FROM_ABI friend constexpr void
+        -:  194:  iter_swap(const reverse_iterator& __x, const reverse_iterator<_Iter2>& __y) noexcept(
+        -:  195:      is_nothrow_copy_constructible_v<_Iter> &&
+        -:  196:      is_nothrow_copy_constructible_v<_Iter2>&& noexcept(
+        -:  197:          ranges::iter_swap(--std::declval<_Iter&>(), --std::declval<_Iter2&>()))) {
+        -:  198:    auto __xtmp = __x.base();
+        -:  199:    auto __ytmp = __y.base();
+        -:  200:    ranges::iter_swap(--__xtmp, --__ytmp);
+        -:  201:  }
+        -:  202:#endif // _LIBCPP_STD_VER >= 20
+        -:  203:};
+        -:  204:
+        -:  205:template <class _Iter1, class _Iter2>
+        -:  206:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 bool
+function _ZNSt3__1eqB8ne180100INS_11__wrap_iterIPPN7testing8TestInfoEEES6_EEbRKNS_16reverse_iteratorIT_EERKNS7_IT0_EE called 0 returned 0% blocks executed 0%
+    #####:  207:operator==(const reverse_iterator<_Iter1>& __x, const reverse_iterator<_Iter2>& __y)
+        -:  208:#if _LIBCPP_STD_VER >= 20
+        -:  209:  requires requires {
+        -:  210:    { __x.base() == __y.base() } -> convertible_to<bool>;
+        -:  211:  }
+        -:  212:#endif // _LIBCPP_STD_VER >= 20
+        -:  213:{
+    #####:  214:  return __x.base() == __y.base();
+    $$$$$:  214-block  0
+        -:  215:}
+        -:  216:
+        -:  217:template <class _Iter1, class _Iter2>
+        -:  218:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 bool
+        -:  219:operator<(const reverse_iterator<_Iter1>& __x, const reverse_iterator<_Iter2>& __y)
+        -:  220:#if _LIBCPP_STD_VER >= 20
+        -:  221:  requires requires {
+        -:  222:    { __x.base() > __y.base() } -> convertible_to<bool>;
+        -:  223:  }
+        -:  224:#endif // _LIBCPP_STD_VER >= 20
+        -:  225:{
+        -:  226:  return __x.base() > __y.base();
+        -:  227:}
+        -:  228:
+        -:  229:template <class _Iter1, class _Iter2>
+        -:  230:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 bool
+function _ZNSt3__1neB8ne180100IPPcS2_EEbRKNS_16reverse_iteratorIT_EERKNS3_IT0_EE called 0 returned 0% blocks executed 0%
+function _ZNSt3__1neB8ne180100IPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEES7_EEbRKNS_16reverse_iteratorIT_EERKNS8_IT0_EE called 96 returned 100% blocks executed 100%
+function _ZNSt3__1neB8ne180100INS_16reverse_iteratorIPNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEES9_EEbRKNS1_IT_EERKNS1_IT0_EE called 0 returned 0% blocks executed 0%
+function _ZNSt3__1neB8ne180100IPN7testing14TestPartResultES3_EEbRKNS_16reverse_iteratorIT_EERKNS4_IT0_EE called 0 returned 0% blocks executed 0%
+function _ZNSt3__1neB8ne180100INS_16reverse_iteratorIPN7testing14TestPartResultEEES5_EEbRKNS1_IT_EERKNS1_IT0_EE called 0 returned 0% blocks executed 0%
+function _ZNSt3__1neB8ne180100IPN7testing8internal13edit_distance8EditTypeES5_EEbRKNS_16reverse_iteratorIT_EERKNS6_IT0_EE called 0 returned 0% blocks executed 0%
+function _ZNSt3__1neB8ne180100IPmS1_EEbRKNS_16reverse_iteratorIT_EERKNS2_IT0_EE called 0 returned 0% blocks executed 0%
+function _ZNSt3__1neB8ne180100IPN7testing12TestPropertyES3_EEbRKNS_16reverse_iteratorIT_EERKNS4_IT0_EE called 0 returned 0% blocks executed 0%
+function _ZNSt3__1neB8ne180100INS_16reverse_iteratorIPN7testing12TestPropertyEEES5_EEbRKNS1_IT_EERKNS1_IT0_EE called 0 returned 0% blocks executed 0%
+function _ZNSt3__1neB8ne180100IPPN7testing8TestInfoES4_EEbRKNS_16reverse_iteratorIT_EERKNS5_IT0_EE called 66 returned 100% blocks executed 100%
+function _ZNSt3__1neB8ne180100IPiS1_EEbRKNS_16reverse_iteratorIT_EERKNS2_IT0_EE called 72 returned 100% blocks executed 100%
+function _ZNSt3__1neB8ne180100IPPN7testing17TestEventListenerES4_EEbRKNS_16reverse_iteratorIT_EERKNS5_IT0_EE called 6 returned 100% blocks executed 100%
+function _ZNSt3__1neB8ne180100IPPN7testing11EnvironmentES4_EEbRKNS_16reverse_iteratorIT_EERKNS5_IT0_EE called 0 returned 0% blocks executed 0%
+function _ZNSt3__1neB8ne180100IPN7testing8internal9TraceInfoES4_EEbRKNS_16reverse_iteratorIT_EERKNS5_IT0_EE called 0 returned 0% blocks executed 0%
+function _ZNSt3__1neB8ne180100INS_16reverse_iteratorIPN7testing8internal9TraceInfoEEES6_EEbRKNS1_IT_EERKNS1_IT0_EE called 0 returned 0% blocks executed 0%
+function _ZNSt3__1neB8ne180100IPPN7testing9TestSuiteES4_EEbRKNS_16reverse_iteratorIT_EERKNS5_IT0_EE called 6 returned 100% blocks executed 100%
+function _ZNSt3__1neB8ne180100INS_11__wrap_iterIPPN7testing11EnvironmentEEES6_EEbRKNS_16reverse_iteratorIT_EERKNS7_IT0_EE called 6 returned 100% blocks executed 100%
+      252:  231:operator!=(const reverse_iterator<_Iter1>& __x, const reverse_iterator<_Iter2>& __y)
+        -:  232:#if _LIBCPP_STD_VER >= 20
+        -:  233:  requires requires {
+        -:  234:    { __x.base() != __y.base() } -> convertible_to<bool>;
+        -:  235:  }
+        -:  236:#endif // _LIBCPP_STD_VER >= 20
+        -:  237:{
+      252:  238:  return __x.base() != __y.base();
+    $$$$$:  238-block  0
+       96:  238-block  1
+    $$$$$:  238-block  2
+    $$$$$:  238-block  3
+    $$$$$:  238-block  4
+    $$$$$:  238-block  5
+    $$$$$:  238-block  6
+    $$$$$:  238-block  7
+    $$$$$:  238-block  8
+       66:  238-block  9
+       72:  238-block 10
+        6:  238-block 11
+    $$$$$:  238-block 12
+    $$$$$:  238-block 13
+    $$$$$:  238-block 14
+        6:  238-block 15
+        6:  238-block 16
+        -:  239:}
+        -:  240:
+        -:  241:template <class _Iter1, class _Iter2>
+        -:  242:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 bool
+        -:  243:operator>(const reverse_iterator<_Iter1>& __x, const reverse_iterator<_Iter2>& __y)
+        -:  244:#if _LIBCPP_STD_VER >= 20
+        -:  245:  requires requires {
+        -:  246:    { __x.base() < __y.base() } -> convertible_to<bool>;
+        -:  247:  }
+        -:  248:#endif // _LIBCPP_STD_VER >= 20
+        -:  249:{
+        -:  250:  return __x.base() < __y.base();
+        -:  251:}
+        -:  252:
+        -:  253:template <class _Iter1, class _Iter2>
+        -:  254:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 bool
+        -:  255:operator>=(const reverse_iterator<_Iter1>& __x, const reverse_iterator<_Iter2>& __y)
+        -:  256:#if _LIBCPP_STD_VER >= 20
+        -:  257:  requires requires {
+        -:  258:    { __x.base() <= __y.base() } -> convertible_to<bool>;
+        -:  259:  }
+        -:  260:#endif // _LIBCPP_STD_VER >= 20
+        -:  261:{
+        -:  262:  return __x.base() <= __y.base();
+        -:  263:}
+        -:  264:
+        -:  265:template <class _Iter1, class _Iter2>
+        -:  266:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 bool
+        -:  267:operator<=(const reverse_iterator<_Iter1>& __x, const reverse_iterator<_Iter2>& __y)
+        -:  268:#if _LIBCPP_STD_VER >= 20
+        -:  269:  requires requires {
+        -:  270:    { __x.base() >= __y.base() } -> convertible_to<bool>;
+        -:  271:  }
+        -:  272:#endif // _LIBCPP_STD_VER >= 20
+        -:  273:{
+        -:  274:  return __x.base() >= __y.base();
+        -:  275:}
+        -:  276:
+        -:  277:#if _LIBCPP_STD_VER >= 20
+        -:  278:template <class _Iter1, three_way_comparable_with<_Iter1> _Iter2>
+        -:  279:_LIBCPP_HIDE_FROM_ABI constexpr compare_three_way_result_t<_Iter1, _Iter2>
+        -:  280:operator<=>(const reverse_iterator<_Iter1>& __x, const reverse_iterator<_Iter2>& __y) {
+        -:  281:  return __y.base() <=> __x.base();
+        -:  282:}
+        -:  283:#endif // _LIBCPP_STD_VER >= 20
+        -:  284:
+        -:  285:#ifndef _LIBCPP_CXX03_LANG
+        -:  286:template <class _Iter1, class _Iter2>
+        -:  287:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 auto
+        -:  288:operator-(const reverse_iterator<_Iter1>& __x, const reverse_iterator<_Iter2>& __y)
+        -:  289:    -> decltype(__y.base() - __x.base()) {
+        -:  290:  return __y.base() - __x.base();
+        -:  291:}
+        -:  292:#else
+        -:  293:template <class _Iter1, class _Iter2>
+        -:  294:inline _LIBCPP_HIDE_FROM_ABI typename reverse_iterator<_Iter1>::difference_type
+        -:  295:operator-(const reverse_iterator<_Iter1>& __x, const reverse_iterator<_Iter2>& __y) {
+        -:  296:  return __y.base() - __x.base();
+        -:  297:}
+        -:  298:#endif
+        -:  299:
+        -:  300:template <class _Iter>
+        -:  301:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reverse_iterator<_Iter>
+        -:  302:operator+(typename reverse_iterator<_Iter>::difference_type __n, const reverse_iterator<_Iter>& __x) {
+        -:  303:  return reverse_iterator<_Iter>(__x.base() - __n);
+        -:  304:}
+        -:  305:
+        -:  306:#if _LIBCPP_STD_VER >= 20
+        -:  307:template <class _Iter1, class _Iter2>
+        -:  308:  requires(!sized_sentinel_for<_Iter1, _Iter2>)
+        -:  309:inline constexpr bool disable_sized_sentinel_for<reverse_iterator<_Iter1>, reverse_iterator<_Iter2>> = true;
+        -:  310:#endif // _LIBCPP_STD_VER >= 20
+        -:  311:
+        -:  312:#if _LIBCPP_STD_VER >= 14
+        -:  313:template <class _Iter>
+        -:  314:inline _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR_SINCE_CXX17 reverse_iterator<_Iter> make_reverse_iterator(_Iter __i) {
+        -:  315:  return reverse_iterator<_Iter>(__i);
+        -:  316:}
+        -:  317:#endif
+        -:  318:
+        -:  319:#if _LIBCPP_STD_VER <= 17
+        -:  320:template <class _Iter>
+        -:  321:using __unconstrained_reverse_iterator = reverse_iterator<_Iter>;
+        -:  322:#else
+        -:  323:
+        -:  324:// __unconstrained_reverse_iterator allows us to use reverse iterators in the implementation of algorithms by working
+        -:  325:// around a language issue in C++20.
+        -:  326:// In C++20, when a reverse iterator wraps certain C++20-hostile iterators, calling comparison operators on it will
+        -:  327:// result in a compilation error. However, calling comparison operators on the pristine hostile iterator is not
+        -:  328:// an error. Thus, we cannot use reverse_iterators in the implementation of an algorithm that accepts a
+        -:  329:// C++20-hostile iterator. This class is an internal workaround -- it is a copy of reverse_iterator with
+        -:  330:// tweaks to make it support hostile iterators.
+        -:  331://
+        -:  332:// A C++20-hostile iterator is one that defines a comparison operator where one of the arguments is an exact match
+        -:  333:// and the other requires an implicit conversion, for example:
+        -:  334://   friend bool operator==(const BaseIter&, const DerivedIter&);
+        -:  335://
+        -:  336:// C++20 rules for rewriting equality operators create another overload of this function with parameters reversed:
+        -:  337://   friend bool operator==(const DerivedIter&, const BaseIter&);
+        -:  338://
+        -:  339:// This creates an ambiguity in overload resolution.
+        -:  340://
+        -:  341:// Clang treats this ambiguity differently in different contexts. When operator== is actually called in the function
+        -:  342:// body, the code is accepted with a warning. When a concept requires operator== to be a valid expression, however,
+        -:  343:// it evaluates to false. Thus, the implementation of reverse_iterator::operator== can actually call operator== on its
+        -:  344:// base iterators, but the constraints on reverse_iterator::operator== prevent it from being considered during overload
+        -:  345:// resolution. This class simply removes the problematic constraints from comparison functions.
+        -:  346:template <class _Iter>
+        -:  347:class __unconstrained_reverse_iterator {
+        -:  348:  _Iter __iter_;
+        -:  349:
+        -:  350:public:
+        -:  351:  static_assert(__has_bidirectional_iterator_category<_Iter>::value || bidirectional_iterator<_Iter>);
+        -:  352:
+        -:  353:  using iterator_type = _Iter;
+        -:  354:  using iterator_category =
+        -:  355:      _If<__has_random_access_iterator_category<_Iter>::value,
+        -:  356:          random_access_iterator_tag,
+        -:  357:          __iterator_category_type<_Iter>>;
+        -:  358:  using pointer         = __iterator_pointer_type<_Iter>;
+        -:  359:  using value_type      = iter_value_t<_Iter>;
+        -:  360:  using difference_type = iter_difference_t<_Iter>;
+        -:  361:  using reference       = iter_reference_t<_Iter>;
+        -:  362:
+        -:  363:  _LIBCPP_HIDE_FROM_ABI constexpr __unconstrained_reverse_iterator()                                        = default;
+        -:  364:  _LIBCPP_HIDE_FROM_ABI constexpr __unconstrained_reverse_iterator(const __unconstrained_reverse_iterator&) = default;
+        -:  365:  _LIBCPP_HIDE_FROM_ABI constexpr explicit __unconstrained_reverse_iterator(_Iter __iter) : __iter_(__iter) {}
+        -:  366:
+        -:  367:  _LIBCPP_HIDE_FROM_ABI constexpr _Iter base() const { return __iter_; }
+        -:  368:  _LIBCPP_HIDE_FROM_ABI constexpr reference operator*() const {
+        -:  369:    auto __tmp = __iter_;
+        -:  370:    return *--__tmp;
+        -:  371:  }
+        -:  372:
+        -:  373:  _LIBCPP_HIDE_FROM_ABI constexpr pointer operator->() const {
+        -:  374:    if constexpr (is_pointer_v<_Iter>) {
+        -:  375:      return std::prev(__iter_);
+        -:  376:    } else {
+        -:  377:      return std::prev(__iter_).operator->();
+        -:  378:    }
+        -:  379:  }
+        -:  380:
+        -:  381:  _LIBCPP_HIDE_FROM_ABI friend constexpr iter_rvalue_reference_t<_Iter>
+        -:  382:  iter_move(const __unconstrained_reverse_iterator& __i) noexcept(
+        -:  383:      is_nothrow_copy_constructible_v<_Iter>&& noexcept(ranges::iter_move(--std::declval<_Iter&>()))) {
+        -:  384:    auto __tmp = __i.base();
+        -:  385:    return ranges::iter_move(--__tmp);
+        -:  386:  }
+        -:  387:
+        -:  388:  _LIBCPP_HIDE_FROM_ABI constexpr __unconstrained_reverse_iterator& operator++() {
+        -:  389:    --__iter_;
+        -:  390:    return *this;
+        -:  391:  }
+        -:  392:
+        -:  393:  _LIBCPP_HIDE_FROM_ABI constexpr __unconstrained_reverse_iterator operator++(int) {
+        -:  394:    auto __tmp = *this;
+        -:  395:    --__iter_;
+        -:  396:    return __tmp;
+        -:  397:  }
+        -:  398:
+        -:  399:  _LIBCPP_HIDE_FROM_ABI constexpr __unconstrained_reverse_iterator& operator--() {
+        -:  400:    ++__iter_;
+        -:  401:    return *this;
+        -:  402:  }
+        -:  403:
+        -:  404:  _LIBCPP_HIDE_FROM_ABI constexpr __unconstrained_reverse_iterator operator--(int) {
+        -:  405:    auto __tmp = *this;
+        -:  406:    ++__iter_;
+        -:  407:    return __tmp;
+        -:  408:  }
+        -:  409:
+        -:  410:  _LIBCPP_HIDE_FROM_ABI constexpr __unconstrained_reverse_iterator& operator+=(difference_type __n) {
+        -:  411:    __iter_ -= __n;
+        -:  412:    return *this;
+        -:  413:  }
+        -:  414:
+        -:  415:  _LIBCPP_HIDE_FROM_ABI constexpr __unconstrained_reverse_iterator& operator-=(difference_type __n) {
+        -:  416:    __iter_ += __n;
+        -:  417:    return *this;
+        -:  418:  }
+        -:  419:
+        -:  420:  _LIBCPP_HIDE_FROM_ABI constexpr __unconstrained_reverse_iterator operator+(difference_type __n) const {
+        -:  421:    return __unconstrained_reverse_iterator(__iter_ - __n);
+        -:  422:  }
+        -:  423:
+        -:  424:  _LIBCPP_HIDE_FROM_ABI constexpr __unconstrained_reverse_iterator operator-(difference_type __n) const {
+        -:  425:    return __unconstrained_reverse_iterator(__iter_ + __n);
+        -:  426:  }
+        -:  427:
+        -:  428:  _LIBCPP_HIDE_FROM_ABI constexpr difference_type operator-(const __unconstrained_reverse_iterator& __other) const {
+        -:  429:    return __other.__iter_ - __iter_;
+        -:  430:  }
+        -:  431:
+        -:  432:  _LIBCPP_HIDE_FROM_ABI constexpr auto operator[](difference_type __n) const { return *(*this + __n); }
+        -:  433:
+        -:  434:  // Deliberately unconstrained unlike the comparison functions in `reverse_iterator` -- see the class comment for the
+        -:  435:  // rationale.
+        -:  436:  _LIBCPP_HIDE_FROM_ABI friend constexpr bool
+        -:  437:  operator==(const __unconstrained_reverse_iterator& __lhs, const __unconstrained_reverse_iterator& __rhs) {
+        -:  438:    return __lhs.base() == __rhs.base();
+        -:  439:  }
+        -:  440:
+        -:  441:  _LIBCPP_HIDE_FROM_ABI friend constexpr bool
+        -:  442:  operator!=(const __unconstrained_reverse_iterator& __lhs, const __unconstrained_reverse_iterator& __rhs) {
+        -:  443:    return __lhs.base() != __rhs.base();
+        -:  444:  }
+        -:  445:
+        -:  446:  _LIBCPP_HIDE_FROM_ABI friend constexpr bool
+        -:  447:  operator<(const __unconstrained_reverse_iterator& __lhs, const __unconstrained_reverse_iterator& __rhs) {
+        -:  448:    return __lhs.base() > __rhs.base();
+        -:  449:  }
+        -:  450:
+        -:  451:  _LIBCPP_HIDE_FROM_ABI friend constexpr bool
+        -:  452:  operator>(const __unconstrained_reverse_iterator& __lhs, const __unconstrained_reverse_iterator& __rhs) {
+        -:  453:    return __lhs.base() < __rhs.base();
+        -:  454:  }
+        -:  455:
+        -:  456:  _LIBCPP_HIDE_FROM_ABI friend constexpr bool
+        -:  457:  operator<=(const __unconstrained_reverse_iterator& __lhs, const __unconstrained_reverse_iterator& __rhs) {
+        -:  458:    return __lhs.base() >= __rhs.base();
+        -:  459:  }
+        -:  460:
+        -:  461:  _LIBCPP_HIDE_FROM_ABI friend constexpr bool
+        -:  462:  operator>=(const __unconstrained_reverse_iterator& __lhs, const __unconstrained_reverse_iterator& __rhs) {
+        -:  463:    return __lhs.base() <= __rhs.base();
+        -:  464:  }
+        -:  465:};
+        -:  466:
+        -:  467:#endif // _LIBCPP_STD_VER <= 17
+        -:  468:
+        -:  469:template <template <class> class _RevIter1, template <class> class _RevIter2, class _Iter>
+        -:  470:struct __unwrap_reverse_iter_impl {
+        -:  471:  using _UnwrappedIter  = decltype(__unwrap_iter_impl<_Iter>::__unwrap(std::declval<_Iter>()));
+        -:  472:  using _ReverseWrapper = _RevIter1<_RevIter2<_Iter> >;
+        -:  473:
+        -:  474:  static _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR _ReverseWrapper
+        -:  475:  __rewrap(_ReverseWrapper __orig_iter, _UnwrappedIter __unwrapped_iter) {
+        -:  476:    return _ReverseWrapper(
+        -:  477:        _RevIter2<_Iter>(__unwrap_iter_impl<_Iter>::__rewrap(__orig_iter.base().base(), __unwrapped_iter)));
+        -:  478:  }
+        -:  479:
+        -:  480:  static _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR _UnwrappedIter __unwrap(_ReverseWrapper __i) _NOEXCEPT {
+        -:  481:    return __unwrap_iter_impl<_Iter>::__unwrap(__i.base().base());
+        -:  482:  }
+        -:  483:};
+        -:  484:
+        -:  485:#if _LIBCPP_STD_VER >= 20
+        -:  486:template <ranges::bidirectional_range _Range>
+        -:  487:_LIBCPP_HIDE_FROM_ABI constexpr ranges::subrange<reverse_iterator<ranges::iterator_t<_Range>>,
+        -:  488:                                                 reverse_iterator<ranges::iterator_t<_Range>>>
+        -:  489:__reverse_range(_Range&& __range) {
+        -:  490:  auto __first = ranges::begin(__range);
+        -:  491:  return {std::make_reverse_iterator(ranges::next(__first, ranges::end(__range))), std::make_reverse_iterator(__first)};
+        -:  492:}
+        -:  493:#endif
+        -:  494:
+        -:  495:template <class _Iter, bool __b>
+        -:  496:struct __unwrap_iter_impl<reverse_iterator<reverse_iterator<_Iter> >, __b>
+        -:  497:    : __unwrap_reverse_iter_impl<reverse_iterator, reverse_iterator, _Iter> {};
+        -:  498:
+        -:  499:#if _LIBCPP_STD_VER >= 20
+        -:  500:
+        -:  501:template <class _Iter, bool __b>
+        -:  502:struct __unwrap_iter_impl<reverse_iterator<__unconstrained_reverse_iterator<_Iter>>, __b>
+        -:  503:    : __unwrap_reverse_iter_impl<reverse_iterator, __unconstrained_reverse_iterator, _Iter> {};
+        -:  504:
+        -:  505:template <class _Iter, bool __b>
+        -:  506:struct __unwrap_iter_impl<__unconstrained_reverse_iterator<reverse_iterator<_Iter>>, __b>
+        -:  507:    : __unwrap_reverse_iter_impl<__unconstrained_reverse_iterator, reverse_iterator, _Iter> {};
+        -:  508:
+        -:  509:template <class _Iter, bool __b>
+        -:  510:struct __unwrap_iter_impl<__unconstrained_reverse_iterator<__unconstrained_reverse_iterator<_Iter>>, __b>
+        -:  511:    : __unwrap_reverse_iter_impl<__unconstrained_reverse_iterator, __unconstrained_reverse_iterator, _Iter> {};
+        -:  512:
+        -:  513:#endif // _LIBCPP_STD_VER >= 20
+        -:  514:
+        -:  515:_LIBCPP_END_NAMESPACE_STD
+        -:  516:
+        -:  517:#endif // _LIBCPP___ITERATOR_REVERSE_ITERATOR_H

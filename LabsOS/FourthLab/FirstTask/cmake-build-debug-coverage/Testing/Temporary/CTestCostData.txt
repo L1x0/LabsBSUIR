@@ -1,0 +1,7 @@
+MemoryManagerTest.AllocateDeallocate 1 0.0115382
+MemoryManagerTest.WriteRead 1 0.00722004
+MemoryManagerTest.AllocateMoreThanAvailable 1 0.00685279
+MemoryManagerTest.WriteExceedsBlock 1 0.00683462
+MemoryManagerTest.DoubleDeallocate 1 0.00712908
+MemoryManagerTest.PrintStatus 1 0.00761896
+---
