@@ -27,8 +27,8 @@ public class HelloController {
     @FXML
     private TextArea infoArea;
 
-    private List<Vertex> vertices = new ArrayList<>();
-    private List<Edge> edges = new ArrayList<>();
+    private final List<Vertex> vertices = new ArrayList<>();
+    private final List<Edge> edges = new ArrayList<>();
     private boolean isGreen = true; // Флаг для переключения цвета
 
     private int[][] firstGraphMatrix;
@@ -282,9 +282,9 @@ public class HelloController {
 
     // Внутренние классы для представления вершины и ребра
     private class Vertex {
-        private Circle circle;
-        private Text text;
-        private String label;
+        private final Circle circle;
+        private final Text text;
+        private final String label;
 
         // Текущие координаты для отслеживания перемещения
         private double initialX;
@@ -364,9 +364,9 @@ public class HelloController {
     }
 
     private class Edge {
-        private Vertex start;
-        private Vertex end;
-        private Line line;
+        private final Vertex start;
+        private final Vertex end;
+        private final Line line;
 
         public Edge(Vertex start, Vertex end, Line line) {
             this.start = start;
