@@ -1,0 +1,80 @@
+### Добавление нового сотрудника в Финансовый отдел
+POST http://localhost:8080/api/company/finance/employees
+Content-Type: application/json
+
+{
+  "name": "Александр Петров",
+  "age": 28,
+  "salary": 60000,
+  "experience": 3,
+  "department": "FinanceDepartment"
+}
+
+###
+
+### Получение списка всех сотрудников Финансового отдела
+GET http://localhost:8080/api/company/finance/employees
+Accept: application/json
+
+###
+
+### Удаление сотрудника по ID из Финансового отдела
+DELETE http://localhost:8080/api/company/finance/employees/5
+Accept: application/json
+
+###
+
+### Добавление нового грузовика в Технический отдел
+POST http://localhost:8080/api/company/technical/trucks
+Content-Type: application/json
+
+{
+  "color": "Красный",
+  "model": "Volvo FH16",
+  "engine": "Diesel",
+  "maxSpeed": 120,
+  "weight": 8000,
+  "maxWeight": 25000,
+  "numberOfAxes": 3
+}
+
+###
+
+### Получение списка всех грузовиков Технического отдела
+GET http://localhost:8080/api/company/technical/trucks
+Accept: application/json
+
+###
+
+### Удаление грузовика по ID из Технического отдела
+DELETE http://localhost:8080/api/company/technical/trucks/1
+Accept: application/json
+
+###
+
+### Создание нового заказа в Маркетинговый отдел
+
+POST http://localhost:8080/api/company/marketing/orders
+Content-Type: application/json
+
+{
+  "id": null,
+  "client_id": 1,
+  "product": "Автомобильные запчасти",
+  "destination_country": "Германия"
+}
+
+###
+
+### Получение списка всех заказов Маркетингового отдела
+GET http://localhost:8080/api/company/marketing/orders
+Accept: application/json
+
+###
+
+### Удаление заказа по ID из Маркетингового отдела
+DELETE http://localhost:8080/api/company/marketing/orders/1
+Accept: application/json
+
+###
+
