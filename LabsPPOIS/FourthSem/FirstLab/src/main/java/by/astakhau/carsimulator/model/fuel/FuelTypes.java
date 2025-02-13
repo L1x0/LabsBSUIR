@@ -1,4 +1,4 @@
-package by.astakhau.carsimulator.fuel;
+package by.astakhau.carsimulator.model.fuel;
 
 public enum FuelTypes {
     petrol,

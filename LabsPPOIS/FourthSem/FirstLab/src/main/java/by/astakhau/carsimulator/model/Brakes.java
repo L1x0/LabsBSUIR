@@ -1,6 +1,4 @@
-package by.astakhau.carsimulator;
-
-import java.text.BreakIterator;
+package by.astakhau.carsimulator.model;
 
 public class Brakes {
     short maxBrakesDiskTemperature;

@@ -1,6 +1,4 @@
-package by.astakhau.carsimulator.fuel;
-
-import by.astakhau.carsimulator.Car;
+package by.astakhau.carsimulator.model.fuel;
 
 public class GasStation {
     int quantityOfExistingPetrol;
