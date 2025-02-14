@@ -105,7 +105,7 @@ public class Car {
     }
 
     public double checkOilLevel() {
-        return engine.getOilLevel();
+        return engine.getEngineOilQuantity();
     }
 
     public void onHeadlights() {
@@ -114,5 +114,61 @@ public class Car {
 
     public void offHeadlights() {
         lightIndicator.setHeadlightsState(false);
+    }
+
+    public Brakes getBrakes() {
+        return brakes;
+    }
+
+    public void setBrakes(Brakes brakes) {
+        this.brakes = brakes;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+
+    public LightIndicators getLightIndicator() {
+        return lightIndicator;
+    }
+
+    public void setLightIndicator(LightIndicators lightIndicator) {
+        this.lightIndicator = lightIndicator;
+    }
+
+    public Transmission getTransmission() {
+        return transmission;
+    }
+
+    public void setTransmission(Transmission transmission) {
+        this.transmission = transmission;
+    }
+
+    public Fuel getLocalFuel() {
+        return localFuel;
+    }
+
+    public void setLocalFuel(Fuel localFuel) {
+        this.localFuel = localFuel;
+    }
+
+    public MovementState getMovementState() {
+        return movementState;
+    }
+
+    public void setMovementState(MovementState movementState) {
+        this.movementState = movementState;
+    }
+
+    public TurnState getTurnState() {
+        return turnState;
+    }
+
+    public void setTurnState(TurnState turnState) {
+        this.turnState = turnState;
     }
 }

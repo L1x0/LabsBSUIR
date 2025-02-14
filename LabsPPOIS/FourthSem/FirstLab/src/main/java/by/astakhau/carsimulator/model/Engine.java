@@ -66,8 +66,20 @@ public class Engine {
         }
     }
 
-    public double getOilLevel() {
+    public double getEngineOilQuantity() {
         return engineOilQuantity;
+    }
+
+    public void setEngineOilQuantity(double engineOilQuantity) {
+        this.engineOilQuantity = engineOilQuantity;
+    }
+
+    public double getMaxEngineOilQuantity() {
+        return maxEngineOilQuantity;
+    }
+
+    public void setMaxEngineOilQuantity(double maxEngineOilQuantity) {
+        this.maxEngineOilQuantity = maxEngineOilQuantity;
     }
 
     public void updateOil() {

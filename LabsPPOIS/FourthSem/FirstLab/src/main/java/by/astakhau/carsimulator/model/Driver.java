@@ -55,4 +55,19 @@ public class Driver {
     public Car getCar() {
         return car;
     }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Driver{" +
+                "name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", driverLicencePresence=" + driverLicencePresence +
+                ", car=" + car.toString() +
+                '}';
+    }
 }

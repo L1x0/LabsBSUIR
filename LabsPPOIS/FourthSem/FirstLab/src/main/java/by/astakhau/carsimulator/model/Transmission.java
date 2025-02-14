@@ -57,6 +57,8 @@ public class Transmission {
         frontWheels.add(new Wheel(WheelTypes.front));
     }
 
+    public Transmission() {}
+
     public boolean isBreading() {
         return isBreading;
     }

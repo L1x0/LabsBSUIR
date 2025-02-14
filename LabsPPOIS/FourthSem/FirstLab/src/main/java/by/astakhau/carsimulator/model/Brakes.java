@@ -43,10 +43,6 @@ public class Brakes {
         return brakesDiskDiameter;
     }
 
-    public void setBrakesDiskDiameter(short brakesDiskDiameter) {
-        this.brakesDiskDiameter = brakesDiskDiameter;
-    }
-
     public double getBrakeForce() {
         return brakeForce;
     }

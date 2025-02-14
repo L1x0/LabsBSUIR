@@ -1,0 +1,44 @@
+{
+  "name" : "1",
+  "lastName" : "1",
+  "age" : 20,
+  "driverLicencePresence" : true,
+  "car" : {
+    "brakes" : {
+      "maxBrakesDiskTemperature" : 138,
+      "actualBrakesDiskTemperature" : 28,
+      "brakesDiskDiameter" : 262.6,
+      "brakeForce" : 0.0,
+      "applied" : false,
+      "absActive" : false,
+      "handbrakeOn" : false,
+      "breading" : false
+    },
+    "engine" : {
+      "engineOilQuantity" : 3.6,
+      "maxEngineOilQuantity" : 4.5,
+      "breading" : false
+    },
+    "lightIndicator" : {
+      "headlightsOn" : false,
+      "highBeamOn" : false,
+      "leftTurnSignal" : false,
+      "rightTurnSignal" : false,
+      "brakeLights" : false,
+      "fogLightsOn" : false,
+      "hazardLightsOn" : false
+    },
+    "transmission" : {
+      "actualGear" : 1,
+      "maxGear" : 6,
+      "breading" : false
+    },
+    "localFuel" : {
+      "fuelType" : "petrol",
+      "quantity" : 50,
+      "octaneNumber" : 95
+    },
+    "movementState" : "stop",
+    "turnState" : "straight"
+  }
+}
