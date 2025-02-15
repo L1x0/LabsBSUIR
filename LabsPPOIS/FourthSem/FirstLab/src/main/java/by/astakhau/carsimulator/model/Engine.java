@@ -40,6 +40,8 @@ public class Engine {
         engineOilQuantity = 3.6;
         breading = false;
         maxEngineOilQuantity = 4.5;
+
+        state = State.stopped;
     }
 
     public boolean isBreading() {
