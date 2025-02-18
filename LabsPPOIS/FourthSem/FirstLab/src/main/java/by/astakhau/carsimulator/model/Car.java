@@ -24,7 +24,7 @@ public class Car {
         left,
         straight
     }
-    
+
     private static final int STRAIGHT_WHEEL_ANGLE = 90;
     
     private Brakes brakes;
@@ -74,12 +74,18 @@ public class Car {
         turnState = TurnState.left;
         transmission.frontWheels.get(0).setAngle(30);
         transmission.frontWheels.get(0).setAngle(45);
+
+        this.lightIndicator.setRightTurnSignal(false);
+        this.lightIndicator.setLeftTurnSignal(true);
     }
 
     public void turnRudderStraight() {
         turnState = TurnState.straight;
         transmission.frontWheels.get(0).setAngle(90);
         transmission.frontWheels.get(0).setAngle(90);
+
+        this.lightIndicator.setRightTurnSignal(false);
+        this.lightIndicator.setLeftTurnSignal(false);
     }
 
     public void rideForward() {
@@ -114,13 +120,6 @@ public class Car {
                 && engine.getEngineOilQuantity() > engine.getMaxEngineOilQuantity() - 1.5;
     }
 
-    public void onHeadlights() {
-        lightIndicator.setHeadlightsOn(true);
-    }
-
-    public void offHeadlights() {
-        lightIndicator.setHeadlightsOn(false);
-    }
 
     @Override
     public String toString() {
