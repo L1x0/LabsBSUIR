@@ -28,15 +28,14 @@ public class UI {
     }
 
     public void doProgram() {
-        boolean program = true;
         Scanner scanner = new Scanner(System.in);
 
         int chosenCar;
         chosenCar = carChoice();
 
-        while (program) {
+        while (true) {
             int otherCar = 0;
-            int choise;
+            int choice;
 
             System.out.println("Выберете операцию из списка:");
             System.out.println("1) Завести автомобиль");
@@ -55,8 +54,8 @@ public class UI {
             System.out.println("14) Удалить автомобиль из гаража");
             System.out.println("15) Выход из программы\n\n\n\n");
 
-            choise = scanner.nextInt();
-            switch (choise) {
+            choice = scanner.nextInt();
+            switch (choice) {
                 case 1:
                     driver.startVehicle(chosenCar);
 

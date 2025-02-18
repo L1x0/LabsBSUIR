@@ -1,36 +1,29 @@
 package by.astakhau.carsimulator.model;
 
 import by.astakhau.carsimulator.model.fuel.FuelTypes;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
 public class Engine {
     enum State {
         stopped,
         launched
     }
 
-    String engineName;
-
-    double volume;
-    double consumption;
-    double engineOilQuantity;
-    double maxEngineOilQuantity;
-
-    boolean breading;
-
-    FuelTypes fuelType;
-    State state;
-
-    public Engine(double volume, String engineName, double consumption,
-                  FuelTypes fuelType, double engineOilQuantity, double maxEngineOilQuantity) {
-        this.volume = volume;
-        this.engineName = engineName;
-        this.consumption = consumption;
-        this.fuelType = fuelType;
-        this.engineOilQuantity = engineOilQuantity;
-        this.maxEngineOilQuantity = maxEngineOilQuantity;
-
-        this.breading = engineOilQuantity > maxEngineOilQuantity;
-    }
+    private String engineName;
+    private double volume;
+    private double consumption;
+    private double engineOilQuantity;
+    private double maxEngineOilQuantity;
+    private boolean breading;
+    private FuelTypes fuelType;
+    private State state;
 
     public Engine() {
         volume = 1.9;
@@ -42,14 +35,6 @@ public class Engine {
         maxEngineOilQuantity = 4.5;
 
         state = State.stopped;
-    }
-
-    public boolean isBreading() {
-        return breading;
-    }
-
-    public void setBreading(boolean breading) {
-        this.breading = breading;
     }
 
     public void start() {
@@ -66,22 +51,6 @@ public class Engine {
         } else {
             throw new IllegalStateException("Engine already stopped");
         }
-    }
-
-    public double getEngineOilQuantity() {
-        return engineOilQuantity;
-    }
-
-    public void setEngineOilQuantity(double engineOilQuantity) {
-        this.engineOilQuantity = engineOilQuantity;
-    }
-
-    public double getMaxEngineOilQuantity() {
-        return maxEngineOilQuantity;
-    }
-
-    public void setMaxEngineOilQuantity(double maxEngineOilQuantity) {
-        this.maxEngineOilQuantity = maxEngineOilQuantity;
     }
 
     public void updateOil() {

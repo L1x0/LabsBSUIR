@@ -26,6 +26,8 @@ public class StateManager {
         if (file.exists()) {
             try {
                 Driver driver = MAPPER.readValue(file, Driver.class);
+
+                return driver;
             } catch (IOException e) {
                 e.printStackTrace();
                 System.err.println("ошибка загрузки");

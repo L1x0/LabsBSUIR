@@ -1,12 +1,18 @@
 package by.astakhau.carsimulator.model.wheels;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter @Setter @NoArgsConstructor
 public class Wheel {
-    WheelTypes orientation;
+    private WheelTypes orientation;
 
-    double diameter;
-    double width;
+    private double diameter;
+    private double width;
 
-    int angle;
+    private int angle;
 
     public Wheel(WheelTypes orientation, double diameter, double width, int angle) {
         this.orientation = orientation;
@@ -20,37 +26,5 @@ public class Wheel {
         this.diameter = 16;
         this.width = 20.05;
         this.angle = 90;
-    }
-
-    public WheelTypes getOrientation() {
-        return orientation;
-    }
-
-    public void setOrientation(WheelTypes orientation) {
-        this.orientation = orientation;
-    }
-
-    public double getDiameter() {
-        return diameter;
-    }
-
-    public void setDiameter(double diameter) {
-        this.diameter = diameter;
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public void setWidth(double width) {
-        this.width = width;
-    }
-
-    public int getAngle() {
-        return angle;
-    }
-
-    public void setAngle(int angle) {
-        this.angle = angle;
     }
 }

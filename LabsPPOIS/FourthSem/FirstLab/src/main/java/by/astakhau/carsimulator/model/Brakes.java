@@ -1,16 +1,17 @@
 package by.astakhau.carsimulator.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Brakes {
-    short maxBrakesDiskTemperature;
-    short actualBrakesDiskTemperature;
-
-    double brakesDiskDiameter;
-    double brakeForce;
-
-    boolean applied;
-    boolean absActive;
-    boolean handbrakeOn;
-    boolean breading;
+    @Getter @Setter private short maxBrakesDiskTemperature;
+    @Getter @Setter private short actualBrakesDiskTemperature;
+    @Getter @Setter private double brakesDiskDiameter;
+    @Getter @Setter private double brakeForce;
+    @Getter @Setter private boolean applied;
+    @Getter @Setter private boolean absActive;
+    @Getter @Setter private boolean handbrakeOn;
+    @Getter @Setter private boolean breading;
 
     public Brakes(short maxBrakesDiskTemperature, double brakesDiskDiameter,
                   short actualBrakesDiskTemperature, double brakeForce) {

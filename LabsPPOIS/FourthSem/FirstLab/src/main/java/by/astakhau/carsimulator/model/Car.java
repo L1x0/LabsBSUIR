@@ -6,7 +6,12 @@ import by.astakhau.carsimulator.model.fuel.GasStation;
 import by.astakhau.carsimulator.model.wheels.Wheel;
 import by.astakhau.carsimulator.model.wheels.WheelTypes;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
+@Setter
+@Getter
+@Builder
+@AllArgsConstructor
 public class Car {
     public enum MovementState {
         stop,
@@ -19,26 +24,18 @@ public class Car {
         left,
         straight
     }
-
-    Brakes brakes;
-    Engine engine;
-    LightIndicators lightIndicator;
-    Transmission transmission;
-    Fuel localFuel;
-    String name;
-
-    MovementState movementState = MovementState.stop;
-    TurnState turnState = TurnState.straight;
-
-    public Car(Brakes brakes, Engine engine, LightIndicators lightIndicator,
-               Transmission transmission, Fuel localFuel, String name) {
-        this.brakes = brakes;
-        this.engine = engine;
-        this.lightIndicator = lightIndicator;
-        this.transmission = transmission;
-        this.localFuel = localFuel;
-        this.name = name;
-    }
+    
+    private static final int STRAIGHT_WHEEL_ANGLE = 90;
+    
+    private Brakes brakes;
+    private Engine engine;
+    private LightIndicators lightIndicator;
+    private Transmission transmission;
+    private Fuel localFuel;
+    private String name;
+    
+    private MovementState movementState;
+    private TurnState turnState;
 
     public Car() {
         brakes = new Brakes();
@@ -48,6 +45,8 @@ public class Car {
         localFuel = new Fuel();
 
         name = "volkswagen passat B6 1.9 TDI";
+        movementState = MovementState.stop;
+        turnState = TurnState.straight;
     }
 
     public void tankUp(GasStation gasStation, FuelTypes fuelType, int count) {
@@ -69,8 +68,6 @@ public class Car {
         turnState = TurnState.right;
         transmission.frontWheels.get(0).setAngle(45);
         transmission.frontWheels.get(0).setAngle(30);
-
-        
     }
 
     public void turnLeft() {
@@ -117,78 +114,12 @@ public class Car {
                 && engine.getEngineOilQuantity() > engine.getMaxEngineOilQuantity() - 1.5;
     }
 
-
-
     public void onHeadlights() {
-        lightIndicator.setHeadlightsState(true);
+        lightIndicator.setHeadlightsOn(true);
     }
 
     public void offHeadlights() {
-        lightIndicator.setHeadlightsState(false);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Brakes getBrakes() {
-        return brakes;
-    }
-
-    public void setBrakes(Brakes brakes) {
-        this.brakes = brakes;
-    }
-
-    public Engine getEngine() {
-        return engine;
-    }
-
-    public void setEngine(Engine engine) {
-        this.engine = engine;
-    }
-
-    public LightIndicators getLightIndicator() {
-        return lightIndicator;
-    }
-
-    public void setLightIndicator(LightIndicators lightIndicator) {
-        this.lightIndicator = lightIndicator;
-    }
-
-    public Transmission getTransmission() {
-        return transmission;
-    }
-
-    public void setTransmission(Transmission transmission) {
-        this.transmission = transmission;
-    }
-
-    public Fuel getLocalFuel() {
-        return localFuel;
-    }
-
-    public void setLocalFuel(Fuel localFuel) {
-        this.localFuel = localFuel;
-    }
-
-    public MovementState getMovementState() {
-        return movementState;
-    }
-
-    public void setMovementState(MovementState movementState) {
-        this.movementState = movementState;
-    }
-
-    public TurnState getTurnState() {
-        return turnState;
-    }
-
-    public void setTurnState(TurnState turnState) {
-        this.turnState = turnState;
+        lightIndicator.setHeadlightsOn(false);
     }
 
     @Override

@@ -1,9 +1,13 @@
 package by.astakhau.carsimulator.model.fuel;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 public class Fuel {
-    FuelTypes fuelType;
-    short quantity;
-    public int octaneNumber;
+    private FuelTypes fuelType;
+    private short quantity;
+    private int octaneNumber;
 
     public Fuel(FuelTypes fuelType, short quantity, int octaneNumber) {
         this.fuelType = fuelType;
@@ -15,30 +19,6 @@ public class Fuel {
         this.fuelType = FuelTypes.petrol;
         this.quantity = 50;
         this.octaneNumber = 95;
-    }
-
-    public FuelTypes getFuelType() {
-        return fuelType;
-    }
-
-    public void setFuelType(FuelTypes fuelType) {
-        this.fuelType = fuelType;
-    }
-
-    public short getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(short quantity) {
-        this.quantity = quantity;
-    }
-
-    public int getOctaneNumber() {
-        return octaneNumber;
-    }
-
-    public void setOctaneNumber(int octaneNumber) {
-        this.octaneNumber = octaneNumber;
     }
 
     public void addFuel(int count) {

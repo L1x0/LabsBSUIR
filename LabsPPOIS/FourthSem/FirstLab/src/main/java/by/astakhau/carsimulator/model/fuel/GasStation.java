@@ -1,9 +1,13 @@
 package by.astakhau.carsimulator.model.fuel;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 public class GasStation {
-    int quantityOfExistingPetrol;
-    int quantityOfExistingDiesel;
-    int quantityOfStations;
+    private int quantityOfExistingPetrol;
+    private int quantityOfExistingDiesel;
+    private int quantityOfStations;
 
     public GasStation(int quantityOfExistingPetrol, int quantityOfExistingDiesel, int quantityOfStations) {
         this.quantityOfExistingPetrol = quantityOfExistingPetrol;
@@ -15,22 +19,6 @@ public class GasStation {
         this.quantityOfExistingPetrol = 500;
         this.quantityOfExistingDiesel = 500;
         this.quantityOfStations = 6;
-    }
-
-    public int getQuantityOfExistingDiesel() {
-        return quantityOfExistingDiesel;
-    }
-
-    public void setQuantityOfExistingDiesel(int quantityOfExistingDiesel) {
-        this.quantityOfExistingDiesel = quantityOfExistingDiesel;
-    }
-
-    public int getQuantityOfExistingPetrol() {
-        return quantityOfExistingPetrol;
-    }
-
-    public void setQuantityOfExistingPetrol(int quantityOfExistingPetrol) {
-        this.quantityOfExistingPetrol = quantityOfExistingPetrol;
     }
 
     public int takeFuel(int count, FuelTypes fuelType) {

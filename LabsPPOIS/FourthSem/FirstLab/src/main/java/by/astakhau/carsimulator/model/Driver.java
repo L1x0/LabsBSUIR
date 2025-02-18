@@ -3,18 +3,19 @@ package by.astakhau.carsimulator.model;
 import by.astakhau.carsimulator.model.fuel.FuelTypes;
 import by.astakhau.carsimulator.model.fuel.GasStation;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 public class Driver {
-    String name;
-    String lastName;
-
-    int age;
-
-    boolean driverLicencePresence;
-
+    private String name;
+    private String lastName;
+    private int age;
+    private boolean driverLicencePresence;
     private List<Car> cars;
 
     public Driver(String name, String lastName, int age, boolean driverLicencePresence, Car car) {
@@ -36,22 +37,6 @@ public class Driver {
 
         cars = new ArrayList<>();
         cars.add(new Car());
-    }
-
-    public List<Car> getCars() {
-        return cars;
-    }
-
-    public void setCars(List<Car> cars) {
-        this.cars = cars;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String CarsListToString() {
@@ -115,32 +100,8 @@ public class Driver {
         cars.set(number - 1, car);
     }
 
-    public void setDriverLicencePresence(boolean driverLicencePresence) {
-        this.driverLicencePresence = driverLicencePresence;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public boolean isDriverLicencePresence() {
-        return driverLicencePresence;
-    }
-
     public Car getCar(int index) {
         return cars.get(index - 1);
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     @Override

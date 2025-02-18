@@ -2,9 +2,13 @@ package by.astakhau.carsimulator.model;
 
 import by.astakhau.carsimulator.model.wheels.Wheel;
 import by.astakhau.carsimulator.model.wheels.WheelTypes;
+import lombok.*;
 
 import java.util.ArrayList;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class Transmission {
     ArrayList<Wheel> frontWheels;
 
@@ -57,29 +61,8 @@ public class Transmission {
         frontWheels.add(new Wheel(WheelTypes.front));
     }
 
-    public Transmission() {}
-
     public boolean isBreading() {
         return isBreading;
     }
 
-    public void setBreading(boolean breading) {
-        isBreading = breading;
-    }
-
-    public void setActualGear(int actualGear) {
-        this.actualGear = actualGear;
-    }
-
-    public int getMaxGear() {
-        return maxGear;
-    }
-
-    public void setMaxGear(int maxGear) {
-        this.maxGear = maxGear;
-    }
-
-    public int getActualGear() {
-        return actualGear;
-    }
 }
