@@ -69,6 +69,8 @@ public class Car {
         turnState = TurnState.right;
         transmission.frontWheels.get(0).setAngle(45);
         transmission.frontWheels.get(0).setAngle(30);
+
+        
     }
 
     public void turnLeft() {

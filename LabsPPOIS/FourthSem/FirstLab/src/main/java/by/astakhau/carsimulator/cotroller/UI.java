@@ -32,12 +32,10 @@ public class UI {
         Scanner scanner = new Scanner(System.in);
 
         int chosenCar;
-        System.out.println("Выберете машину, введите её номер");
-        System.out.println(driver.CarsListToString());
-        chosenCar = scanner.nextInt();
+        chosenCar = carChoice();
 
         while (program) {
-
+            int otherCar = 0;
             int choise;
 
             System.out.println("Выберете операцию из списка:");
@@ -53,7 +51,9 @@ public class UI {
             System.out.println("10) Удаление сохранённого состояния");
             System.out.println("11) Добавить автомобиль");
             System.out.println("12) Вывести все машины");
-            System.out.println("13) Выход из программы\n\n\n\n");
+            System.out.println("13) Пересесть на другую машину");
+            System.out.println("14) Удалить автомобиль из гаража");
+            System.out.println("15) Выход из программы\n\n\n\n");
 
             choise = scanner.nextInt();
             switch (choise) {
@@ -94,21 +94,27 @@ public class UI {
                     break;
 
                 case 7:
+                    otherCar = carChoice();
+
                     GasStation station = null;
                     FuelTypes type = null;
                     int count = 0;
 
-                    driver.tankUp(station, type, count, chosenCar);
+                    driver.tankUp(station, type, count, otherCar);
 
                     StateManager.saveState(driver);
                     break;
 
                 case 8:
-                    driver.isOilOK(chosenCar);
+                    otherCar = carChoice();
+
+                    driver.isOilOK(otherCar);
                     break;
 
                 case 9:
-                    driver.repair(chosenCar);
+                    otherCar = carChoice();
+
+                    driver.repair(otherCar);
 
                     StateManager.saveState(driver);
                     break;
@@ -131,11 +137,36 @@ public class UI {
                     break;
 
                 case 13:
+                    chosenCar = carChoice();
+
+                    break;
+
+                case 14:
+                    System.out.println("Выберете машину для удаления, введите её номер");
+                    System.out.println(driver.CarsListToString());
+                    otherCar = scanner.nextInt();
+
+                    driver.removeCar(otherCar);
+
+                    chosenCar = carChoice();
+                    break;
+
+                case 15:
                     System.exit(0);
 
                 default:
                     System.out.println("Введена неверная команда");
+                    break;
             }
         }
+    }
+
+    public int carChoice() {
+        System.out.println("Выберете машину, введите её номер");
+        System.out.println(driver.CarsListToString());
+
+        Scanner scanner = new Scanner(System.in);
+
+        return scanner.nextInt();
     }
 }
