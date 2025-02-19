@@ -31,7 +31,7 @@ public class Transmission {
         frontWheels.add(fouthWheel);
 
         for (int i = 0; i < frontWheels.size(); i++) {
-            if (!frontWheels.get(i).getOrientation().equals(WheelTypes.front)) {
+            if (!frontWheels.get(i).getOrientation().equals(WheelTypes.FRONT)) {
                 frontWheels.remove(i);
             }
         }
@@ -57,8 +57,8 @@ public class Transmission {
         }
 
         frontWheels = new ArrayList<>();
-        frontWheels.add(new Wheel(WheelTypes.front));
-        frontWheels.add(new Wheel(WheelTypes.front));
+        frontWheels.add(new Wheel(WheelTypes.FRONT));
+        frontWheels.add(new Wheel(WheelTypes.FRONT));
     }
 
     public boolean isBreading() {

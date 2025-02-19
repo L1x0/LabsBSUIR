@@ -22,7 +22,7 @@ public class GasStation {
     }
 
     public int takeFuel(int count, FuelTypes fuelType) {
-        if (fuelType.equals(FuelTypes.diesel)) {
+        if (fuelType.equals(FuelTypes.DIESEL)) {
             if (quantityOfExistingDiesel < count) {
                 quantityOfExistingDiesel = 0;
 

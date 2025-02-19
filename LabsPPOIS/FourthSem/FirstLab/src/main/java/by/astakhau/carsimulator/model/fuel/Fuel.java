@@ -16,7 +16,7 @@ public class Fuel {
     }
 
     public Fuel() {
-        this.fuelType = FuelTypes.petrol;
+        this.fuelType = FuelTypes.PETROL;
         this.quantity = 50;
         this.octaneNumber = 95;
     }

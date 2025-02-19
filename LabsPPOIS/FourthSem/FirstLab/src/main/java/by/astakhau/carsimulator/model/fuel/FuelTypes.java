@@ -1,6 +1,6 @@
 package by.astakhau.carsimulator.model.fuel;
 
 public enum FuelTypes {
-    petrol,
-    diesel
+    PETROL,
+    DIESEL
 }

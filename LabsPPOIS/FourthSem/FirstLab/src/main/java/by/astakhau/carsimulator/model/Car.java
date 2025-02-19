@@ -14,15 +14,15 @@ import lombok.*;
 @AllArgsConstructor
 public class Car {
     public enum MovementState {
-        stop,
-        forward,
-        back
+        STOP,
+        FORWARD,
+        BACK
     }
 
     public enum TurnState {
-        right,
-        left,
-        straight
+        RIGHT,
+        LEFT,
+        STRAIGHT
     }
 
     private static final int STRAIGHT_WHEEL_ANGLE = 90;
@@ -45,8 +45,8 @@ public class Car {
         localFuel = new Fuel();
 
         name = "volkswagen passat B6 1.9 TDI";
-        movementState = MovementState.stop;
-        turnState = TurnState.straight;
+        movementState = MovementState.STOP;
+        turnState = TurnState.STRAIGHT;
     }
 
     public void tankUp(GasStation gasStation, FuelTypes fuelType, int count) {
@@ -60,18 +60,18 @@ public class Car {
 
     public void stop() {
         engine.stop();
-        movementState = MovementState.stop;
+        movementState = MovementState.STOP;
         brakes.setHandbrakeOn(true);
     }
 
     public void turnRight() {
-        turnState = TurnState.right;
+        turnState = TurnState.RIGHT;
         transmission.frontWheels.get(0).setAngle(45);
         transmission.frontWheels.get(0).setAngle(30);
     }
 
     public void turnLeft() {
-        turnState = TurnState.left;
+        turnState = TurnState.LEFT;
         transmission.frontWheels.get(0).setAngle(30);
         transmission.frontWheels.get(0).setAngle(45);
 
@@ -80,7 +80,7 @@ public class Car {
     }
 
     public void turnRudderStraight() {
-        turnState = TurnState.straight;
+        turnState = TurnState.STRAIGHT;
         transmission.frontWheels.get(0).setAngle(90);
         transmission.frontWheels.get(0).setAngle(90);
 
@@ -89,11 +89,11 @@ public class Car {
     }
 
     public void rideForward() {
-        movementState = MovementState.forward;
+        movementState = MovementState.FORWARD;
     }
 
     public void rideBackward() {
-        movementState = MovementState.back;
+        movementState = MovementState.BACK;
     }
 
     public void repair() {
@@ -103,10 +103,10 @@ public class Car {
         engine.updateOil();
         engine.setBreading(false);
 
-        transmission.frontWheels.removeIf(wheel -> wheel.getOrientation().equals(WheelTypes.back));
+        transmission.frontWheels.removeIf(wheel -> wheel.getOrientation().equals(WheelTypes.BACK));
 
         while (transmission.frontWheels.size() < 2) {
-            transmission.frontWheels.add(0, new Wheel(WheelTypes.front));
+            transmission.frontWheels.add(0, new Wheel(WheelTypes.FRONT));
         }
 
         transmission.setActualGear(0);

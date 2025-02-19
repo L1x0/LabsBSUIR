@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.File;
 import java.io.IOException;
 
-public class StateManager {
+public class SimulatorManager {
     private static final String STATE_FILE = "driver_state.json";
     private static final ObjectMapper MAPPER = new ObjectMapper()
             .enable(SerializationFeature.INDENT_OUTPUT);

@@ -11,19 +11,19 @@ public class UI {
     Driver driver;
 
     public UI(Driver driver) {
-        StateManager.clearState();
+        SimulatorManager.clearState();
 
         this.driver = driver;
-        StateManager.saveState(driver);
+        SimulatorManager.saveState(driver);
     }
 
     public UI() {
-        driver = StateManager.loadState();
+        driver = SimulatorManager.loadState();
 
         if (driver == null) {
             driver = new Driver();
 
-            StateManager.saveState(driver);
+            SimulatorManager.saveState(driver);
         }
     }
 
@@ -59,37 +59,37 @@ public class UI {
                 case 1:
                     driver.startVehicle(chosenCar);
 
-                    StateManager.saveState(driver);
+                    SimulatorManager.saveState(driver);
                     break;
 
                 case 2:
                     driver.stopVehicle(chosenCar);
 
-                    StateManager.saveState(driver);
+                    SimulatorManager.saveState(driver);
                     break;
 
                 case 3:
                     driver.rideForward(chosenCar);
 
-                    StateManager.saveState(driver);
+                    SimulatorManager.saveState(driver);
                     break;
 
                 case 4:
                     driver.rideBackward(chosenCar);
 
-                    StateManager.saveState(driver);
+                    SimulatorManager.saveState(driver);
                     break;
 
                 case 5:
                     driver.turnRight(chosenCar);
 
-                    StateManager.saveState(driver);
+                    SimulatorManager.saveState(driver);
                     break;
 
                 case  6:
                     driver.turnLeft(chosenCar);
 
-                    StateManager.saveState(driver);
+                    SimulatorManager.saveState(driver);
                     break;
 
                 case 7:
@@ -101,7 +101,7 @@ public class UI {
 
                     driver.tankUp(station, type, count, otherCar);
 
-                    StateManager.saveState(driver);
+                    SimulatorManager.saveState(driver);
                     break;
 
                 case 8:
@@ -115,11 +115,11 @@ public class UI {
 
                     driver.repair(otherCar);
 
-                    StateManager.saveState(driver);
+                    SimulatorManager.saveState(driver);
                     break;
 
                 case 10:
-                    StateManager.clearState();
+                    SimulatorManager.clearState();
                     break;
 
                 case 11:
@@ -127,7 +127,7 @@ public class UI {
                     temp.setName("BIBA");
                     driver.addCar(temp);
 
-                    StateManager.saveState(driver);
+                    SimulatorManager.saveState(driver);
                     break;
 
                 case 12:

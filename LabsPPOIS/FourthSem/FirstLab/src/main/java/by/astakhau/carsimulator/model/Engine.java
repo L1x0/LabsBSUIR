@@ -29,7 +29,7 @@ public class Engine {
         volume = 1.9;
         engineName = "1.9 TDI";
         consumption = 7.3;
-        fuelType = FuelTypes.diesel;
+        fuelType = FuelTypes.DIESEL;
         engineOilQuantity = 3.6;
         breading = false;
         maxEngineOilQuantity = 4.5;
