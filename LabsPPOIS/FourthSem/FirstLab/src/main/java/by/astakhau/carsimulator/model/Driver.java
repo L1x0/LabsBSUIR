@@ -17,6 +17,7 @@ public class Driver {
     private int age;
     private boolean driverLicencePresence;
     private List<Car> cars;
+    private int currentCarIndex;
 
     public Driver(String name, String lastName, int age, boolean driverLicencePresence, Car car) {
         this.name = name;
@@ -101,7 +102,7 @@ public class Driver {
     }
 
     public Car getCar(int index) {
-        return cars.get(index - 1);
+        return cars.get(index);
     }
 
     @Override

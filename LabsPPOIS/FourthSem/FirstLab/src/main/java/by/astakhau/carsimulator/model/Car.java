@@ -26,16 +26,33 @@ public class Car {
     }
 
     private static final int STRAIGHT_WHEEL_ANGLE = 90;
-    
+
     private Brakes brakes;
     private Engine engine;
     private LightIndicators lightIndicator;
     private Transmission transmission;
     private Fuel localFuel;
+    private Fuel maxFuel;
     private String name;
-    
+
     private MovementState movementState;
     private TurnState turnState;
+    private boolean isRunning = false;
+
+    public Car(String name) {
+        brakes = new Brakes();
+        engine = new Engine();
+        lightIndicator = new LightIndicators();
+        transmission = new Transmission(0, 6);
+        localFuel = new Fuel();
+        maxFuel = new Fuel();
+
+        maxFuel.setQuantity((short) 90);
+
+        this.name = name;
+        movementState = MovementState.STOP;
+        turnState = TurnState.STRAIGHT;
+    }
 
     public Car() {
         brakes = new Brakes();
@@ -43,6 +60,9 @@ public class Car {
         lightIndicator = new LightIndicators();
         transmission = new Transmission(0, 6);
         localFuel = new Fuel();
+        maxFuel = new Fuel();
+
+        maxFuel.setQuantity((short) 90);
 
         name = "volkswagen passat B6 1.9 TDI";
         movementState = MovementState.STOP;
@@ -56,12 +76,14 @@ public class Car {
     public void startCar() {
         engine.start();
         brakes.setHandbrakeOn(false);
+        isRunning = true;
     }
 
     public void stop() {
         engine.stop();
         movementState = MovementState.STOP;
         brakes.setHandbrakeOn(true);
+        isRunning = false;
     }
 
     public void turnRight() {
