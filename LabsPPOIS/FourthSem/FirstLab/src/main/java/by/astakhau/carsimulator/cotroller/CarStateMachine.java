@@ -269,7 +269,7 @@ public class CarStateMachine extends AbstractStateMachine<CarStateMachine, CarSt
     protected void onStartRefuel(CarState from, CarState to, CarEvent event, Car context) {
         try {
             System.out.println("Введите количество топлива:");
-            int amount = scanner.nextInt();
+            int amount = InputValidator.getPositiveIntInput();
             GasStation station = new GasStation();
             driver.tankUp(station, context.getLocalFuel().getFuelType(), amount, currentCarIndex);
             SimulatorManager.saveState(driver);
@@ -302,7 +302,7 @@ public class CarStateMachine extends AbstractStateMachine<CarStateMachine, CarSt
         try {
             System.out.println("\n=== Добавление нового автомобиля ===");
             System.out.println("Введите название автомобиля:");
-            String name = scanner.nextLine();
+            String name = InputValidator.getValidStringInput();
 
             Car newCar = new Car(name);
             driver.addCar(newCar);
@@ -327,7 +327,7 @@ public class CarStateMachine extends AbstractStateMachine<CarStateMachine, CarSt
             }
 
             System.out.println("\nВведите номер автомобиля для удаления:");
-            int carIndex = scanner.nextInt() - 1;
+            int carIndex = InputValidator.getPositiveIntInput() - 1;
 
             if (carIndex < 1 || carIndex > driver.getCars().size()) {
                 System.out.println("⚠ Неверный номер автомобиля!");
@@ -368,7 +368,7 @@ public class CarStateMachine extends AbstractStateMachine<CarStateMachine, CarSt
             }
 
             System.out.println("\nВведите номер автомобиля:");
-            int newCarIndex = scanner.nextInt();
+            int newCarIndex = InputValidator.getPositiveIntInput();
 
             if (newCarIndex < 1 || newCarIndex > driver.getCars().size()) {
                 System.out.println("⚠ Неверный номер автомобиля!");
