@@ -80,7 +80,6 @@ public class Car {
     }
 
     public void stop() {
-        engine.stop();
         movementState = MovementState.STOP;
         brakes.setHandbrakeOn(true);
         isRunning = false;

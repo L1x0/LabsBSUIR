@@ -2,13 +2,14 @@ package by.astakhau.carsimulator.cotroller;
 
 import by.astakhau.carsimulator.model.Car;
 import by.astakhau.carsimulator.model.Driver;
+
 import java.util.Scanner;
 
 public class UI {
     private Driver driver;
-    private CarStateMachine stateMachine;
+    private SimulatorStateMachine stateMachine;
     private Scanner scanner;
-    
+
     public UI() {
         initializeDriver();
         scanner = new Scanner(System.in);
@@ -25,7 +26,7 @@ public class UI {
     }
 
     private void initStateMachine() {
-        stateMachine = CarStateMachine.BUILDER.newStateMachine(CarState.WAITING,
+        stateMachine = SimulatorStateMachine.BUILDER.newStateMachine(SimulatorState.WAITING,
                 driver.getCar(driver.getCurrentCarIndex()));
 
         stateMachine.setup(driver, driver.getCurrentCarIndex());
@@ -43,13 +44,12 @@ public class UI {
         System.out.println("╚════════════════════════════════════╝");
         System.out.println("\nТекущий водитель: " + driver.getName() + " " + driver.getLastName());
         System.out.println("Текущий автомобиль: " + driver.getCar(driver.getCurrentCarIndex()).getName());
-        stateMachine.fire(CarEvent.SHOW_MENU, driver.getCar(driver.getCurrentCarIndex()));
+        stateMachine.fire(SimulatorEvent.SHOW_MENU, driver.getCar(driver.getCurrentCarIndex()));
     }
 
     private void mainLoop() {
         while (true) {
             try {
-                clearConsole();
                 showWelcomeMessage();
                 System.out.print("\nВыберите действие: ");
                 processUserInput();
@@ -61,7 +61,7 @@ public class UI {
 
     private void processUserInput() {
         Car currentCar = driver.getCar(driver.getCurrentCarIndex());
-        
+
         switch (stateMachine.getCurrentState()) {
             case WAITING:
                 processMainMenuChoice(currentCar);
@@ -76,7 +76,7 @@ public class UI {
                 processGarageChoice(currentCar);
                 break;
             default:
-                stateMachine.fire(CarEvent.ERROR_OCCURRED, currentCar);
+                stateMachine.fire(SimulatorEvent.ERROR_OCCURRED, currentCar);
         }
     }
 
@@ -85,20 +85,30 @@ public class UI {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1: // Управление автомобилем
-                stateMachine.fire(CarEvent.IN_VEHICLE, currentCar);
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.IN_VEHICLE, currentCar);
                 break;
             case 2: // Обслуживание
-                stateMachine.fire(CarEvent.IN_MAINTENANCE, currentCar);
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.IN_MAINTENANCE, currentCar);
                 processMaintenanceChoice(currentCar);
                 break;
             case 3: // Управление гаражом
-                stateMachine.fire(CarEvent.IN_GARAGE, currentCar);
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.IN_GARAGE, currentCar);
                 processGarageChoice(currentCar);
                 break;
             case 4: // Выход
-                stateMachine.fire(CarEvent.EXIT_PROGRAM, currentCar);
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.EXIT_PROGRAM, currentCar);
                 break;
             default:
+                clearConsole();
+
                 System.out.println("Неверный выбор. Попробуйте снова.");
         }
     }
@@ -108,27 +118,53 @@ public class UI {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-                stateMachine.fire(CarEvent.START_ENGINE, currentCar);
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.MOVE_FORWARD, currentCar);
                 break;
-            case 2: // Заглушить двигатель
-                stateMachine.fire(CarEvent.STOP_ENGINE, currentCar);
+            case 2:
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.MOVE_BACKWARD, currentCar);
                 break;
-            case 3: // Движение вперед
-                stateMachine.fire(CarEvent.MOVE_FORWARD, currentCar);
+            case 3:
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.TURN_LEFT, currentCar);
                 break;
-            case 4: // Движение назад
-                stateMachine.fire(CarEvent.MOVE_BACKWARD, currentCar);
+            case 4:
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.TURN_RIGHT, currentCar);
                 break;
-            case 5: // Поворот влево
-                stateMachine.fire(CarEvent.TURN_LEFT, currentCar);
+            case 5:
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.SET_WHEELS_STRAIGHT, currentCar);
                 break;
-            case 6: // Поворот вправо
-                stateMachine.fire(CarEvent.TURN_RIGHT, currentCar);
+            case 6:
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.START_ENGINE, currentCar);
                 break;
-            case 7: // Вернуться в главное меню
-                stateMachine.fire(CarEvent.RETURN_TO_MENU, currentCar);
+            case 7:
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.STOP_ENGINE, currentCar);
+                break;
+            case 8:
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.STOP_MOVEMENT, currentCar);
+                break;
+            case 9:
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.RETURN_TO_MENU, currentCar);
                 break;
             default:
+                clearConsole();
+
                 System.out.println("Неверный выбор. Попробуйте снова.");
         }
     }
@@ -138,18 +174,28 @@ public class UI {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1: // Заправка
-                stateMachine.fire(CarEvent.START_REFUEL, currentCar);
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.START_REFUEL, currentCar);
                 break;
             case 2: // Проверка масла
-                stateMachine.fire(CarEvent.CHECK_OIL, currentCar);
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.CHECK_OIL, currentCar);
                 break;
             case 3: // Ремонт
-                stateMachine.fire(CarEvent.START_REPAIR, currentCar);
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.START_REPAIR, currentCar);
                 break;
             case 4: // Вернуться в главное меню
-                stateMachine.fire(CarEvent.RETURN_TO_MENU, currentCar);
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.RETURN_TO_MENU, currentCar);
                 break;
             default:
+                clearConsole();
+
                 System.out.println("Неверный выбор. Попробуйте снова.");
         }
     }
@@ -159,22 +205,34 @@ public class UI {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1: // Добавить автомобиль
-                stateMachine.fire(CarEvent.ADD_CAR, currentCar);
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.ADD_CAR, currentCar);
                 break;
             case 2: // Удалить автомобиль
-                stateMachine.fire(CarEvent.REMOVE_CAR, currentCar);
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.REMOVE_CAR, currentCar);
                 break;
             case 3: // Список автомобилей
-                stateMachine.fire(CarEvent.LIST_CARS, currentCar);
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.LIST_CARS, currentCar);
                 break;
             case 4: // Сменить текущий автомобиль
-                stateMachine.fire(CarEvent.SWITCH_CAR, currentCar);
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.SWITCH_CAR, currentCar);
                 driver.setCurrentCarIndex(stateMachine.getCurrentCarIndex());
                 break;
             case 5: // Вернуться в главное меню
-                stateMachine.fire(CarEvent.RETURN_TO_MENU, currentCar);
+                clearConsole();
+
+                stateMachine.fire(SimulatorEvent.RETURN_TO_MENU, currentCar);
                 break;
             default:
+                clearConsole();
+
                 System.out.println("Неверный выбор. Попробуйте снова.");
         }
     }
@@ -194,9 +252,11 @@ public class UI {
         System.out.println("2. Движение назад");
         System.out.println("3. Поворот влево");
         System.out.println("4. Поворот вправо");
-        System.out.println("5. Заглушить двигатель");
-        System.out.println("6. Остановить движение");
-        System.out.println("7. Вернуться в главное меню");
+        System.out.println("5. Выставить колёса прямо");
+        System.out.println("6. Завести двигатель");
+        System.out.println("7. Заглушить двигатель");
+        System.out.println("8. Остановить движение");
+        System.out.println("9. Вернуться в главное меню");
         System.out.println("\nВыберите действие:");
     }
 
@@ -248,22 +308,28 @@ public class UI {
         System.err.println("\n⚠ Ошибка: " + e.getMessage());
         System.err.println("Пожалуйста, попробуйте снова.");
         scanner.nextLine(); // Очистка буфера
-        stateMachine.fire(CarEvent.ERROR_OCCURRED, driver.getCar(driver.getCurrentCarIndex()));
+        stateMachine.fire(SimulatorEvent.ERROR_OCCURRED, driver.getCar(driver.getCurrentCarIndex()));
     }
 
     private String getMovementStateString(Car.MovementState state) {
         switch (state) {
-            case FORWARD: return "➡ Движение вперед";
-            case BACK: return "⬅ Движение назад";
-            default: return "⚫ Остановлен";
+            case FORWARD:
+                return "➡ Движение вперед";
+            case BACK:
+                return "⬅ Движение назад";
+            default:
+                return "⚫ Остановлен";
         }
     }
 
     private String getTurnStateString(Car.TurnState state) {
         switch (state) {
-            case LEFT: return "↖ Влево";
-            case RIGHT: return "↗ Вправо";
-            default: return "⬆ Прямо";
+            case LEFT:
+                return "↖ Влево";
+            case RIGHT:
+                return "↗ Вправо";
+            default:
+                return "⬆ Прямо";
         }
     }
 

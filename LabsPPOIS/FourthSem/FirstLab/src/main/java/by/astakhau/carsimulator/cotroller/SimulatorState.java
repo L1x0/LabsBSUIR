@@ -1,6 +1,6 @@
 package by.astakhau.carsimulator.cotroller;
 
-public enum CarState {
+public enum SimulatorState {
     WAITING,            // Состояние ожидания ввода команды
     CHOOSING_CAR,       // Выбор автомобиля
     VEHICLE_CONTROL,    // Управление автомобилем

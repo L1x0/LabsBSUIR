@@ -56,49 +56,53 @@ public class Driver {
         cars.add(car);
     }
 
-    public void removeCar(int number) {
-        cars.remove(number - 1);
+    public void removeCar() {
+        cars.remove(currentCarIndex);
     }
 
-    public void startVehicle(int number) {
-        cars.get(number - 1).startCar();
+    public void startVehicle() {
+        cars.get(currentCarIndex).startCar();
     }
 
-    public void rideForward(int number) {
-        cars.get(number - 1).rideForward();
+    public void rideForward() {
+        cars.get(currentCarIndex).rideForward();
     }
 
-    public void rideBackward(int number) {
-        cars.get(number - 1).rideBackward();
+    public void rideBackward() {
+        cars.get(currentCarIndex).rideBackward();
     }
 
-    public void turnRight(int number) {
-        cars.get(number - 1).turnRight();
+    public void turnRight() {
+        cars.get(currentCarIndex).turnRight();
     }
 
-    public void turnLeft(int number) {
-        cars.get(number - 1).turnLeft();
+    public void turnLeft() {
+        cars.get(currentCarIndex).turnLeft();
     }
 
-    public void stopVehicle(int number) {
-        cars.get(number - 1).stop();
+    public void setWheelsStraight() {
+        cars.get(currentCarIndex).setTurnState(Car.TurnState.STRAIGHT);
+    }
+
+    public void stopVehicle() {
+        cars.get(currentCarIndex).stop();
     }
 
     @JsonIgnore
-    public boolean isOilOK(int number) {
-        return cars.get(number - 1).isOilLevelOK();
+    public boolean isOilOK() {
+        return cars.get(currentCarIndex).isOilLevelOK();
     }
 
-    public void repair(int number) {
-        cars.get(number - 1).repair();
+    public void repair() {
+        cars.get(currentCarIndex).repair();
     }
 
-    public void tankUp(GasStation gasStation, FuelTypes type, int count, int number) {
-        cars.get(number - 1).tankUp(gasStation, type, count);
+    public void tankUp(GasStation gasStation, FuelTypes type, int count) {
+        cars.get(currentCarIndex).tankUp(gasStation, type, count);
     }
 
-    public void setCar(Car car, int number) {
-        cars.set(number - 1, car);
+    public void setCar(Car car) {
+        cars.set(currentCarIndex, car);
     }
 
     public Car getCar(int index) {

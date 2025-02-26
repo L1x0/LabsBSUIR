@@ -13,179 +13,186 @@ import org.squirrelframework.foundation.fsm.impl.AbstractStateMachine;
 import java.util.Scanner;
 import java.util.List;
 
-@StateMachineParameters(stateType = CarState.class, eventType = CarEvent.class, contextType = Car.class)
-public class CarStateMachine extends AbstractStateMachine<CarStateMachine, CarState, CarEvent, Car> {
+@StateMachineParameters(stateType = SimulatorState.class, eventType = SimulatorEvent.class, contextType = Car.class)
+public class SimulatorStateMachine extends AbstractStateMachine<SimulatorStateMachine, SimulatorState, SimulatorEvent, Car> {
     private Driver driver;
-    @Getter private int currentCarIndex;
+    @Getter
+    private int currentCarIndex;
     private Scanner scanner;
-    public static final StateMachineBuilder<CarStateMachine, CarState, CarEvent, Car> BUILDER;
+    public static final StateMachineBuilder<SimulatorStateMachine, SimulatorState, SimulatorEvent, Car> BUILDER;
 
-    public CarStateMachine() {
+    public SimulatorStateMachine() {
         this.scanner = new Scanner(System.in);
     }
 
     public void setup(Driver driver, int currentCarIndex) {
         this.driver = driver;
         this.currentCarIndex = currentCarIndex;
-        BUILDER.newStateMachine(CarState.WAITING);
+        BUILDER.newStateMachine(SimulatorState.WAITING);
     }
 
     static {
-        BUILDER = StateMachineBuilderFactory.create(CarStateMachine.class,
-                CarState.class,
-                CarEvent.class,
+        BUILDER = StateMachineBuilderFactory.create(SimulatorStateMachine.class,
+                SimulatorState.class,
+                SimulatorEvent.class,
                 Car.class);
 
         // Переходы из WAITING в другие состояния
-        BUILDER.externalTransition().from(CarState.WAITING)
-                .to(CarState.VEHICLE_CONTROL)
-                .on(CarEvent.IN_VEHICLE);
+        BUILDER.externalTransition().from(SimulatorState.WAITING)
+                .to(SimulatorState.VEHICLE_CONTROL)
+                .on(SimulatorEvent.IN_VEHICLE);
 
-        BUILDER.externalTransition().from(CarState.WAITING)
-                .to(CarState.MAINTENANCE)
-                .on(CarEvent.IN_MAINTENANCE);
+        BUILDER.externalTransition().from(SimulatorState.WAITING)
+                .to(SimulatorState.MAINTENANCE)
+                .on(SimulatorEvent.IN_MAINTENANCE);
 
-        BUILDER.externalTransition().from(CarState.WAITING)
-                .to(CarState.GARAGE_MANAGEMENT)
-                .on(CarEvent.ADD_CAR);
+        BUILDER.externalTransition().from(SimulatorState.WAITING)
+                .to(SimulatorState.GARAGE_MANAGEMENT)
+                .on(SimulatorEvent.ADD_CAR);
 
-        BUILDER.externalTransition().from(CarState.WAITING)
-                .to(CarState.CHOOSING_CAR)
-                .on(CarEvent.SELECT_CAR);
+        BUILDER.externalTransition().from(SimulatorState.WAITING)
+                .to(SimulatorState.CHOOSING_CAR)
+                .on(SimulatorEvent.SELECT_CAR);
 
-        BUILDER.externalTransition().from(CarState.WAITING)
-                .to(CarState.GARAGE_MANAGEMENT)
-                .on(CarEvent.IN_GARAGE);
-
+        BUILDER.externalTransition().from(SimulatorState.WAITING)
+                .to(SimulatorState.GARAGE_MANAGEMENT)
+                .on(SimulatorEvent.IN_GARAGE);
 
         // События управления автомобилем (остаются в том же состоянии)
-        BUILDER.internalTransition().within(CarState.VEHICLE_CONTROL)
-                .on(CarEvent.START_ENGINE)
+        BUILDER.internalTransition().within(SimulatorState.VEHICLE_CONTROL)
+                .on(SimulatorEvent.START_ENGINE)
                 .callMethod("onStartEngine");
 
-        BUILDER.internalTransition().within(CarState.VEHICLE_CONTROL)
-                .on(CarEvent.MOVE_FORWARD)
+        BUILDER.internalTransition().within(SimulatorState.VEHICLE_CONTROL)
+                .on(SimulatorEvent.MOVE_FORWARD)
                 .callMethod("onMoveForward");
 
-        BUILDER.internalTransition().within(CarState.VEHICLE_CONTROL)
-                .on(CarEvent.MOVE_BACKWARD)
+        BUILDER.internalTransition().within(SimulatorState.VEHICLE_CONTROL)
+                .on(SimulatorEvent.MOVE_BACKWARD)
                 .callMethod("onMoveBackward");
 
-        BUILDER.internalTransition().within(CarState.VEHICLE_CONTROL)
-                .on(CarEvent.TURN_LEFT)
+        BUILDER.internalTransition().within(SimulatorState.VEHICLE_CONTROL)
+                .on(SimulatorEvent.STOP_MOVEMENT)
+                .callMethod("onStopMovement");
+
+        BUILDER.internalTransition().within(SimulatorState.VEHICLE_CONTROL)
+                .on(SimulatorEvent.TURN_LEFT)
                 .callMethod("onTurnLeft");
 
-        BUILDER.internalTransition().within(CarState.VEHICLE_CONTROL)
-                .on(CarEvent.TURN_RIGHT)
+        BUILDER.internalTransition().within(SimulatorState.VEHICLE_CONTROL)
+                .on(SimulatorEvent.TURN_RIGHT)
                 .callMethod("onTurnRight");
 
-        BUILDER.internalTransition().within(CarState.VEHICLE_CONTROL)
-                .on(CarEvent.STOP_ENGINE)
+        BUILDER.internalTransition().within(SimulatorState.VEHICLE_CONTROL)
+                .on(SimulatorEvent.SET_WHEELS_STRAIGHT)
+                .callMethod("onSetWheelsStraight");
+
+        BUILDER.internalTransition().within(SimulatorState.VEHICLE_CONTROL)
+                .on(SimulatorEvent.STOP_ENGINE)
                 .callMethod("onStopEngine");
 
         // События обслуживания (остаются в состоянии MAINTENANCE)
-        BUILDER.internalTransition().within(CarState.MAINTENANCE)
-                .on(CarEvent.CHECK_OIL)
+        BUILDER.internalTransition().within(SimulatorState.MAINTENANCE)
+                .on(SimulatorEvent.CHECK_OIL)
                 .callMethod("onCheckOil");
 
-        BUILDER.internalTransition().within(CarState.MAINTENANCE)
-                .on(CarEvent.START_REPAIR)
+        BUILDER.internalTransition().within(SimulatorState.MAINTENANCE)
+                .on(SimulatorEvent.START_REPAIR)
                 .callMethod("onStartRepair");
 
-        BUILDER.internalTransition().within(CarState.MAINTENANCE)
-                .on(CarEvent.START_REFUEL)
+        BUILDER.internalTransition().within(SimulatorState.MAINTENANCE)
+                .on(SimulatorEvent.START_REFUEL)
                 .callMethod("onStartRefuel");
 
         // События управления гаражом (остаются в состоянии GARAGE_MANAGEMENT)
-        BUILDER.internalTransition().within(CarState.GARAGE_MANAGEMENT)
-                .on(CarEvent.ADD_CAR)
+        BUILDER.internalTransition().within(SimulatorState.GARAGE_MANAGEMENT)
+                .on(SimulatorEvent.ADD_CAR)
                 .callMethod("onAddCar");
 
-        BUILDER.internalTransition().within(CarState.GARAGE_MANAGEMENT)
-                .on(CarEvent.REMOVE_CAR)
+        BUILDER.internalTransition().within(SimulatorState.GARAGE_MANAGEMENT)
+                .on(SimulatorEvent.REMOVE_CAR)
                 .callMethod("onRemoveCar");
 
-        BUILDER.internalTransition().within(CarState.GARAGE_MANAGEMENT)
-                .on(CarEvent.LIST_CARS)
+        BUILDER.internalTransition().within(SimulatorState.GARAGE_MANAGEMENT)
+                .on(SimulatorEvent.LIST_CARS)
                 .callMethod("onListCars");
 
-        BUILDER.internalTransition().within(CarState.GARAGE_MANAGEMENT)
-                .on(CarEvent.SWITCH_CAR)
+        BUILDER.internalTransition().within(SimulatorState.GARAGE_MANAGEMENT)
+                .on(SimulatorEvent.SWITCH_CAR)
                 .callMethod("onSwitchCar");
 
         // Возвраты в главное меню
-        BUILDER.externalTransition().from(CarState.VEHICLE_CONTROL)
-                .to(CarState.WAITING)
-                .on(CarEvent.RETURN_TO_MENU);
+        BUILDER.externalTransition().from(SimulatorState.VEHICLE_CONTROL)
+                .to(SimulatorState.WAITING)
+                .on(SimulatorEvent.RETURN_TO_MENU);
 
-        BUILDER.externalTransition().from(CarState.MAINTENANCE)
-                .to(CarState.WAITING)
-                .on(CarEvent.RETURN_TO_MENU);
+        BUILDER.externalTransition().from(SimulatorState.MAINTENANCE)
+                .to(SimulatorState.WAITING)
+                .on(SimulatorEvent.RETURN_TO_MENU);
 
-        BUILDER.externalTransition().from(CarState.GARAGE_MANAGEMENT)
-                .to(CarState.WAITING)
-                .on(CarEvent.RETURN_TO_MENU);
+        BUILDER.externalTransition().from(SimulatorState.GARAGE_MANAGEMENT)
+                .to(SimulatorState.WAITING)
+                .on(SimulatorEvent.RETURN_TO_MENU);
 
 
         // Обработка ошибок
-        for (CarState state : CarState.values()) {
-            if (state != CarState.ERROR && state != CarState.EXIT) {
+        for (SimulatorState state : SimulatorState.values()) {
+            if (state != SimulatorState.ERROR && state != SimulatorState.EXIT) {
                 BUILDER.externalTransition().from(state)
-                        .to(CarState.ERROR)
-                        .on(CarEvent.ERROR_OCCURRED)
+                        .to(SimulatorState.ERROR)
+                        .on(SimulatorEvent.ERROR_OCCURRED)
                         .callMethod("onError");
             }
         }
 
         // Выход из программы
-        for (CarState state : CarState.values()) {
-            if (state != CarState.EXIT) {
+        for (SimulatorState state : SimulatorState.values()) {
+            if (state != SimulatorState.EXIT) {
                 BUILDER.externalTransition().from(state)
-                        .to(CarState.EXIT)
-                        .on(CarEvent.EXIT_PROGRAM)
+                        .to(SimulatorState.EXIT)
+                        .on(SimulatorEvent.EXIT_PROGRAM)
                         .callMethod("onExit");
             }
         }
     }
 
 
-    protected void onStartEngine(CarState from, CarState to, CarEvent event, Car context) {
+    protected void onStartEngine(SimulatorState from, SimulatorState to, SimulatorEvent event, Car context) {
         try {
             Car currentCar = driver.getCar(currentCarIndex);
             if (currentCar.isRunning()) {
                 System.out.println("⚠ Двигатель уже запущен!");
                 return;
             }
-            driver.startVehicle(currentCarIndex);
+            driver.startVehicle();
             System.out.println("✓ Двигатель успешно запущен");
             SimulatorManager.saveState(driver);
         } catch (Exception e) {
             System.out.println("⚠ Ошибка: " + e.getMessage());
-            showVehicleControlMenu();
         }
     }
 
-    protected void onStopEngine(CarState from, CarState to, CarEvent event, Car context) {
+    protected void onStopEngine(SimulatorState from, SimulatorState to, SimulatorEvent event, Car context) {
         try {
             Car currentCar = driver.getCar(currentCarIndex);
             if (!currentCar.isRunning()) {
                 System.out.println("⚠ Двигатель уже остановлен!");
                 return;
             }
-            if (currentCar.getMovementState() != Car.MovementState.STOP) {
+            if (currentCar.getMovementState() == Car.MovementState.STOP) {
                 System.out.println("⚠ Нельзя заглушить двигатель во время движения!");
                 return;
             }
-            driver.stopVehicle(currentCarIndex);
+            driver.stopVehicle();
             System.out.println("✓ Двигатель успешно остановлен");
             SimulatorManager.saveState(driver);
         } catch (Exception e) {
             System.out.println("⚠ Ошибка: " + e.getMessage());
-            showVehicleControlMenu();
+
         }
     }
 
-    protected void onMoveForward(CarState from, CarState to, CarEvent event, Car context) {
+    protected void onMoveForward(SimulatorState from, SimulatorState to, SimulatorEvent event, Car context) {
         try {
             Car currentCar = driver.getCar(currentCarIndex);
             if (!currentCar.isRunning()) {
@@ -196,16 +203,16 @@ public class CarStateMachine extends AbstractStateMachine<CarStateMachine, CarSt
                 System.out.println("⚠ Сначала остановите движение назад!");
                 return;
             }
-            driver.rideForward(currentCarIndex);
+            driver.rideForward();
             System.out.println("✓ Машина движется вперед");
             SimulatorManager.saveState(driver);
         } catch (Exception e) {
             System.out.println("⚠ Ошибка: " + e.getMessage());
-            showVehicleControlMenu();
+
         }
     }
 
-    protected void onMoveBackward(CarState from, CarState to, CarEvent event, Car context) {
+    protected void onMoveBackward(SimulatorState from, SimulatorState to, SimulatorEvent event, Car context) {
         try {
             Car currentCar = driver.getCar(currentCarIndex);
             if (!currentCar.isRunning()) {
@@ -216,16 +223,16 @@ public class CarStateMachine extends AbstractStateMachine<CarStateMachine, CarSt
                 System.out.println("⚠ Сначала остановите движение вперед!");
                 return;
             }
-            driver.rideBackward(currentCarIndex);
+            driver.rideBackward();
             System.out.println("✓ Машина движется назад");
             SimulatorManager.saveState(driver);
         } catch (Exception e) {
             System.out.println("⚠ Ошибка: " + e.getMessage());
-            showVehicleControlMenu();
+
         }
     }
 
-    protected void onTurnLeft(CarState from, CarState to, CarEvent event, Car context) {
+    protected void onTurnLeft(SimulatorState from, SimulatorState to, SimulatorEvent event, Car context) {
         try {
             Car currentCar = driver.getCar(currentCarIndex);
             if (!currentCar.isRunning()) {
@@ -236,16 +243,16 @@ public class CarStateMachine extends AbstractStateMachine<CarStateMachine, CarSt
                 System.out.println("⚠ Сначала выровняйте колеса!");
                 return;
             }
-            driver.turnLeft(currentCarIndex);
+            driver.turnLeft();
             System.out.println("✓ Поворот налево");
             SimulatorManager.saveState(driver);
         } catch (Exception e) {
             System.out.println("⚠ Ошибка: " + e.getMessage());
-            showVehicleControlMenu();
+
         }
     }
 
-    protected void onTurnRight(CarState from, CarState to, CarEvent event, Car context) {
+    protected void onTurnRight(SimulatorState from, SimulatorState to, SimulatorEvent event, Car context) {
         try {
             Car currentCar = driver.getCar(currentCarIndex);
             if (!currentCar.isRunning()) {
@@ -256,49 +263,69 @@ public class CarStateMachine extends AbstractStateMachine<CarStateMachine, CarSt
                 System.out.println("⚠ Сначала выровняйте колеса!");
                 return;
             }
-            driver.turnRight(currentCarIndex);
+            driver.turnRight();
             System.out.println("✓ Поворот направо");
             SimulatorManager.saveState(driver);
         } catch (Exception e) {
             System.out.println("⚠ Ошибка: " + e.getMessage());
-            showVehicleControlMenu();
+
+        }
+    }
+
+    protected void onSetWheelsStraight(SimulatorState from, SimulatorState to, SimulatorEvent event, Car context) {
+        try {
+            Car currentCar = driver.getCar(currentCarIndex);
+            if (!currentCar.isRunning()) {
+                System.out.println("⚠ Сначала нужно запустить двигатель!");
+                return;
+            }
+            if (currentCar.getTurnState() == Car.TurnState.STRAIGHT) {
+                System.out.println("⚠ Колёса и так стоят прямо!");
+                return;
+            }
+            driver.setWheelsStraight();
+            System.out.println("✓ Колёса выставлены прямо");
+            SimulatorManager.saveState(driver);
+        } catch (Exception e) {
+            System.out.println("⚠ Ошибка: " + e.getMessage());
+
         }
     }
 
     // Методы обслуживания
-    protected void onStartRefuel(CarState from, CarState to, CarEvent event, Car context) {
+    protected void onStartRefuel(SimulatorState from, SimulatorState to, SimulatorEvent event, Car context) {
         try {
             System.out.println("Введите количество топлива:");
             int amount = InputValidator.getPositiveIntInput();
             GasStation station = new GasStation();
-            driver.tankUp(station, context.getLocalFuel().getFuelType(), amount, currentCarIndex);
+            driver.tankUp(station, context.getLocalFuel().getFuelType(), amount);
             SimulatorManager.saveState(driver);
         } catch (Exception e) {
-            fire(CarEvent.ERROR_OCCURRED, context);
+            fire(SimulatorEvent.ERROR_OCCURRED, context);
         }
     }
 
-    protected void onCheckOil(CarState from, CarState to, CarEvent event, Car context) {
+    protected void onCheckOil(SimulatorState from, SimulatorState to, SimulatorEvent event, Car context) {
         try {
-            boolean isOilOk = driver.isOilOK(currentCarIndex);
+            boolean isOilOk = driver.isOilOK();
             System.out.println("Уровень масла " + (isOilOk ? "в норме" : "требует внимания"));
         } catch (Exception e) {
-            fire(CarEvent.ERROR_OCCURRED, context);
+            fire(SimulatorEvent.ERROR_OCCURRED, context);
         }
     }
 
-    protected void onStartRepair(CarState from, CarState to, CarEvent event, Car context) {
+    protected void onStartRepair(SimulatorState from, SimulatorState to, SimulatorEvent event, Car context) {
         try {
-            driver.repair(currentCarIndex);
+            driver.repair();
             SimulatorManager.saveState(driver);
             System.out.println("Ремонт выполнен успешно");
         } catch (Exception e) {
-            fire(CarEvent.ERROR_OCCURRED, context);
+            fire(SimulatorEvent.ERROR_OCCURRED, context);
         }
     }
 
     // Методы управления гаражом
-    protected void onAddCar(CarState from, CarState to, CarEvent event, Car context) {
+    protected void onAddCar(SimulatorState from, SimulatorState to, SimulatorEvent event, Car context) {
         try {
             System.out.println("\n=== Добавление нового автомобиля ===");
             System.out.println("Введите название автомобиля:");
@@ -316,7 +343,7 @@ public class CarStateMachine extends AbstractStateMachine<CarStateMachine, CarSt
         }
     }
 
-    protected void onRemoveCar(CarState from, CarState to, CarEvent event, Car context) {
+    protected void onRemoveCar(SimulatorState from, SimulatorState to, SimulatorEvent event, Car context) {
         try {
             System.out.println("\n=== Удаление автомобиля ===");
             showCarsList();
@@ -342,7 +369,7 @@ public class CarStateMachine extends AbstractStateMachine<CarStateMachine, CarSt
             currentCarIndex = carIndex;
 
             String carName = driver.getCar(currentCarIndex).getName();
-            driver.removeCar(currentCarIndex);
+            driver.removeCar();
             SimulatorManager.saveState(driver);
 
             System.out.println("✓ Автомобиль " + carName + " удален из гаража");
@@ -353,11 +380,11 @@ public class CarStateMachine extends AbstractStateMachine<CarStateMachine, CarSt
         }
     }
 
-    protected void onListCars(CarState from, CarState to, CarEvent event, Car context) {
+    protected void onListCars(SimulatorState from, SimulatorState to, SimulatorEvent event, Car context) {
         showCarsList();
     }
 
-    protected void onSwitchCar(CarState from, CarState to, CarEvent event, Car context) {
+    protected void onSwitchCar(SimulatorState from, SimulatorState to, SimulatorEvent event, Car context) {
         try {
             System.out.println("\n=== Выбор автомобиля ===");
             showCarsList();
@@ -390,14 +417,13 @@ public class CarStateMachine extends AbstractStateMachine<CarStateMachine, CarSt
     }
 
 
-
     // Системные методы
-    protected void onError(CarState from, CarState to, CarEvent event, Car context) {
+    protected void onError(SimulatorState from, SimulatorState to, SimulatorEvent event, Car context) {
         System.err.println("Произошла ошибка! Возврат в главное меню...");
-        fire(CarEvent.RETURN_TO_MENU, context);
+        fire(SimulatorEvent.RETURN_TO_MENU, context);
     }
 
-    protected void onExit(CarState from, CarState to, CarEvent event, Car context) {
+    protected void onExit(SimulatorState from, SimulatorState to, SimulatorEvent event, Car context) {
         System.out.println("Выход из программы...");
         SimulatorManager.saveState(driver);
         System.exit(0);
@@ -473,22 +499,26 @@ public class CarStateMachine extends AbstractStateMachine<CarStateMachine, CarSt
     }
 
     // Добавляем метод остановки движения
-    protected void onStopMovement(CarState from, CarState to, CarEvent event, Car context) {
+    protected void onStopMovement(SimulatorState from, SimulatorState to, SimulatorEvent event, Car context) {
         try {
             Car currentCar = driver.getCar(currentCarIndex);
             if (currentCar.getMovementState() == Car.MovementState.STOP) {
                 System.out.println("⚠ Автомобиль уже остановлен!");
-                showVehicleControlMenu();
+
                 return;
             }
             currentCar.stop();
             System.out.println("✓ Автомобиль остановлен");
-            showVehicleControlMenu();
+
             SimulatorManager.saveState(driver);
         } catch (Exception e) {
             System.out.println("⚠ Ошибка: " + e.getMessage());
-            showVehicleControlMenu();
+
         }
+    }
+
+    private void onClearState() {
+        SimulatorManager.clearState();
     }
 
     private void showCarsList() {
@@ -504,19 +534,20 @@ public class CarStateMachine extends AbstractStateMachine<CarStateMachine, CarSt
             Car car = cars.get(0);
             System.out.println("В гараже только один автомобиль:");
             System.out.println("1. " + car.getName() + (1 == currentCarIndex ? " (Текущий)" : ""));
-            printCarDetails(car);
+            printCarDetails();
         } else {
             System.out.println("Всего автомобилей: " + cars.size());
             for (int i = 0; i < cars.size(); i++) {
                 Car car = cars.get(i);
                 System.out.println("\n" + (i + 1) + ". " + car.getName() +
                         ((i + 1) == currentCarIndex ? " (Текущий)" : ""));
-                printCarDetails(car);
+                printCarDetails();
             }
         }
     }
 
-    private void printCarDetails(Car car) {
+    private void printCarDetails() {
+        Car car = driver.getCar(currentCarIndex);
         System.out.println("   Состояние двигателя: " +
                 (car.isRunning() ? "✓ Работает" : "⚫ Остановлен"));
         System.out.println("   Топливо: " + car.getLocalFuel().getQuantity() + "/" +

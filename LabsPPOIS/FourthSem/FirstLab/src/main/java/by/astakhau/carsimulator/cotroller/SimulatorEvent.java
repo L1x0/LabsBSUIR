@@ -1,6 +1,6 @@
 package by.astakhau.carsimulator.cotroller;
 
-public enum CarEvent {
+public enum SimulatorEvent {
     // События выбора действий
     IN_VEHICLE,
     SHOW_MENU,
@@ -31,8 +31,6 @@ public enum CarEvent {
     SWITCH_CAR,
 
     // Системные события
-    CLEAR_SAVE,
     EXIT_PROGRAM,
     ERROR_OCCURRED,
-    OPERATION_COMPLETE
-    }
+}
