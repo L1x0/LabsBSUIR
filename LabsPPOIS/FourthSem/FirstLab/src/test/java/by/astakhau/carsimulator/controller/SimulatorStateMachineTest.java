@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SimulatorStateMachineTest {
     Driver driver;
@@ -29,12 +29,9 @@ public class SimulatorStateMachineTest {
     }
 
     private void initializeDriver() {
-        driver = SimulatorManager.loadState();
-        if (driver == null) {
-            driver = new Driver();
-            SimulatorManager.saveState(driver);
-            driver.setCurrentCarIndex(1);
-        }
+        driver = new Driver();
+        SimulatorManager.saveState(driver);
+        driver.setCurrentCarIndex(0);
     }
 
     private void initStateMachine() {
@@ -70,5 +67,14 @@ public class SimulatorStateMachineTest {
         assertEquals(stateMachine.getCurrentState(), SimulatorState.VEHICLE_CONTROL);
     }
 
+    @Test
+    public void engineControlTest() {
+        stateMachine.fire(SimulatorEvent.IN_VEHICLE, driver.getCar(driver.getCurrentCarIndex()));
 
+        stateMachine.fire(SimulatorEvent.START_ENGINE, driver.getCar(driver.getCurrentCarIndex()));
+        assertTrue(driver.getCar(0).isRunning());
+
+        stateMachine.fire(SimulatorEvent.STOP_ENGINE, driver.getCar(driver.getCurrentCarIndex()));
+        assertFalse(driver.getCar(0).isRunning());
+    }
 }

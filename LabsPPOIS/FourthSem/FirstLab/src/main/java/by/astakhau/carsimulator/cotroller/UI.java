@@ -21,7 +21,7 @@ public class UI {
         if (driver == null) {
             driver = new Driver();
             SimulatorManager.saveState(driver);
-            driver.setCurrentCarIndex(1);
+            driver.setCurrentCarIndex(0);
         }
     }
 
