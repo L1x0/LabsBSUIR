@@ -4,7 +4,6 @@ public enum SimulatorEvent {
     // События выбора действий
     IN_VEHICLE,
     SHOW_MENU,
-    SELECT_CAR,
     RETURN_TO_MENU,
 
     // События управления автомобилем
