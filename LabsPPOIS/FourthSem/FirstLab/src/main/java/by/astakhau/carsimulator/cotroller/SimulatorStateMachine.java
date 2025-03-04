@@ -45,11 +45,7 @@ public class SimulatorStateMachine extends AbstractStateMachine<SimulatorStateMa
         BUILDER.externalTransition().from(SimulatorState.WAITING)
                 .to(SimulatorState.MAINTENANCE)
                 .on(SimulatorEvent.IN_MAINTENANCE);
-
-        BUILDER.externalTransition().from(SimulatorState.WAITING)
-                .to(SimulatorState.GARAGE_MANAGEMENT)
-                .on(SimulatorEvent.ADD_CAR);
-
+        
         BUILDER.externalTransition().from(SimulatorState.WAITING)
                 .to(SimulatorState.GARAGE_MANAGEMENT)
                 .on(SimulatorEvent.IN_GARAGE);
