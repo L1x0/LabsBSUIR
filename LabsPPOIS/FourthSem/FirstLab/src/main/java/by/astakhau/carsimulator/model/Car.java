@@ -37,7 +37,7 @@ public class Car {
 
     private MovementState movementState;
     private TurnState turnState;
-    private boolean isRunning = false;
+    private boolean isRunning;
 
     public Car(String name) {
         brakes = new Brakes();
@@ -82,6 +82,10 @@ public class Car {
     public void stop() {
         movementState = MovementState.STOP;
         brakes.setHandbrakeOn(true);
+    }
+
+    public void stopEngine() {
+        engine.stop();
         isRunning = false;
     }
 

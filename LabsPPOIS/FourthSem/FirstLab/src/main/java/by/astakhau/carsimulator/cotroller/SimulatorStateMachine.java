@@ -179,11 +179,11 @@ public class SimulatorStateMachine extends AbstractStateMachine<SimulatorStateMa
                 System.out.println("⚠ Двигатель уже остановлен!");
                 return;
             }
-            if (currentCar.getMovementState() == Car.MovementState.STOP) {
+            if (currentCar.getMovementState() != Car.MovementState.STOP) {
                 System.out.println("⚠ Нельзя заглушить двигатель во время движения!");
                 return;
             }
-            driver.stopVehicle();
+            driver.stopEngine();
             System.out.println("✓ Двигатель успешно остановлен");
             SimulatorManager.saveState(driver);
         } catch (Exception e) {
@@ -430,33 +430,6 @@ public class SimulatorStateMachine extends AbstractStateMachine<SimulatorStateMa
     }
 
     // Вспомогательные методы
-    private void showMainMenu() {
-        System.out.println("\n=== Главное меню ===");
-        System.out.println("1. Управление автомобилем");
-        System.out.println("2. Обслуживание");
-        System.out.println("3. Управление гаражом");
-        System.out.println("4. Сменить автомобиль");
-        System.out.println("5. Выход");
-    }
-
-    private void showVehicleControlMenu() {
-        Car currentCar = driver.getCar(currentCarIndex);
-        System.out.println("\n=== Статус автомобиля ===");
-        System.out.println("Двигатель: " + (currentCar.isRunning() ? "✓ Работает" : "⚫ Остановлен"));
-        System.out.println("Движение: " + getMovementStateString(currentCar.getMovementState()));
-        System.out.println("Поворот: " + getTurnStateString(currentCar.getTurnState()));
-
-        System.out.println("\n=== Управление автомобилем ===");
-        System.out.println("1. Движение вперед");
-        System.out.println("2. Движение назад");
-        System.out.println("3. Поворот влево");
-        System.out.println("4. Поворот вправо");
-        System.out.println("5. Заглушить двигатель");
-        System.out.println("6. Остановить движение");
-        System.out.println("7. Вернуться в главное меню");
-        System.out.println("\nВыберите действие:");
-    }
-
     private String getMovementStateString(Car.MovementState state) {
         switch (state) {
             case FORWARD:
@@ -479,25 +452,6 @@ public class SimulatorStateMachine extends AbstractStateMachine<SimulatorStateMa
         }
     }
 
-    private void showMaintenanceMenu() {
-        Car currentCar = driver.getCar(currentCarIndex);
-        System.out.println("\n=== Состояние автомобиля ===");
-        System.out.println("Топливо: " + currentCar.getLocalFuel().getQuantity() + "/" +
-                currentCar.getMaxFuel().getQuantity() + " л");
-
-        System.out.println("Масло: " + currentCar.getEngine().getEngineOilQuantity() + "/" +
-                currentCar.getEngine().getMaxEngineOilQuantity() + " л");
-
-        System.out.println("Состояние: " + (currentCar.getEngine().isBreading() ? "⚠ Требуется ремонт" : "✓ В порядке"));
-
-        System.out.println("\n=== Обслуживание автомобиля ===");
-        System.out.println("1. Заправка");
-        System.out.println("2. Проверка масла");
-        System.out.println("3. Ремонт");
-        System.out.println("4. Вернуться в главное меню");
-        System.out.println("\nВыберите действие:");
-    }
-
     // Добавляем метод остановки движения
     protected void onStopMovement(SimulatorState from, SimulatorState to, SimulatorEvent event, Car context) {
         try {
@@ -507,7 +461,7 @@ public class SimulatorStateMachine extends AbstractStateMachine<SimulatorStateMa
 
                 return;
             }
-            currentCar.stop();
+            driver.stopVehicle();
             System.out.println("✓ Автомобиль остановлен");
 
             SimulatorManager.saveState(driver);
@@ -515,10 +469,6 @@ public class SimulatorStateMachine extends AbstractStateMachine<SimulatorStateMa
             System.out.println("⚠ Ошибка: " + e.getMessage());
 
         }
-    }
-
-    private void onClearState() {
-        SimulatorManager.clearState();
     }
 
     private void showCarsList() {

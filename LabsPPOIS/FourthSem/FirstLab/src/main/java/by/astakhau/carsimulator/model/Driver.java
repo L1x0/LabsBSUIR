@@ -88,6 +88,10 @@ public class Driver {
         cars.get(currentCarIndex).stop();
     }
 
+    public void stopEngine() {
+        cars.get(currentCarIndex).stopEngine();
+    }
+
     @JsonIgnore
     public boolean isOilOK() {
         return cars.get(currentCarIndex).isOilLevelOK();
