@@ -9,8 +9,6 @@ import org.squirrelframework.foundation.fsm.StateMachineBuilderFactory;
 import org.squirrelframework.foundation.fsm.annotation.StateMachineParameters;
 import org.squirrelframework.foundation.fsm.impl.AbstractStateMachine;
 
-
-import java.util.Scanner;
 import java.util.List;
 
 @StateMachineParameters(stateType = SimulatorState.class, eventType = SimulatorEvent.class, contextType = Car.class)
