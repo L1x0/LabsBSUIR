@@ -127,6 +127,7 @@ public class Car {
 
         engine.updateOil();
         engine.setBreading(false);
+        this.setLocalFuel(new Fuel());
 
         transmission.frontWheels.removeIf(wheel -> wheel.getOrientation().equals(WheelTypes.BACK));
 

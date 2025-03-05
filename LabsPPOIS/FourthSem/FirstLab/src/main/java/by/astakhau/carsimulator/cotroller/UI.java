@@ -82,7 +82,7 @@ public class UI {
 
     private void processMainMenuChoice(Car currentCar) {
         showMainMenu();
-        int choice = scanner.nextInt();
+        int choice = InputValidator.getIntForMenu();
         switch (choice) {
             case 1: // Управление автомобилем
                 clearConsole();
@@ -115,7 +115,7 @@ public class UI {
 
     private void processVehicleControlChoice(Car currentCar) {
         showVehicleControlMenu();
-        int choice = scanner.nextInt();
+        int choice = InputValidator.getIntForMenu();
         switch (choice) {
             case 1:
                 clearConsole();
@@ -171,7 +171,7 @@ public class UI {
 
     private void processMaintenanceChoice(Car currentCar) {
         showMaintenanceMenu();
-        int choice = scanner.nextInt();
+        int choice = InputValidator.getIntForMenu();
         switch (choice) {
             case 1: // Заправка
                 clearConsole();
@@ -202,7 +202,7 @@ public class UI {
 
     private void processGarageChoice(Car currentCar) {
         showGarageMenu();
-        int choice = scanner.nextInt();
+        int choice = InputValidator.getIntForMenu();
         switch (choice) {
             case 1: // Добавить автомобиль
                 clearConsole();

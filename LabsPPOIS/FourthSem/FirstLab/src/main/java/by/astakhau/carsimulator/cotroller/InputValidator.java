@@ -61,8 +61,50 @@ public class InputValidator {
                 int number = Integer.parseInt(input);
 
                 // Проверка диапазона
-                if (number <= 1) {
+                if (number < 1) {
                     System.out.printf("⚠ Число должно быть от %d\n", 1);
+                    continue;
+                }
+
+                return number;
+
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println("⚠ Неожиданная ошибка: " + e.getMessage());
+                return -1;
+            }
+        }
+    }
+
+    public static int getPositiveIntInput(int min, int max) {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            try {
+                String input = scanner.nextLine().trim();
+
+                // Проверка на пустой ввод
+                if (input.isEmpty()) {
+                    System.out.println("⚠ Ввод не может быть пустым!");
+                    continue;
+                }
+
+                // Проверка на числовой формат
+                if (!input.matches("\\d+")) {
+                    System.out.println("⚠ Введите только цифры!");
+                    continue;
+                }
+
+                int number = Integer.parseInt(input);
+
+                // Проверка диапазона
+                if (number < min) {
+                    System.out.printf("⚠ Число должно быть от %d\n", min);
+                    continue;
+                }
+
+                if (number > max) {
+                    System.out.printf("⚠ Число должно быть от %d\n", max);
                     continue;
                 }
 

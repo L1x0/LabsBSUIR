@@ -18,12 +18,9 @@ public class SimulatorStateMachine extends AbstractStateMachine<SimulatorStateMa
     private Driver driver;
     @Getter
     private int currentCarIndex;
-    private Scanner scanner;
     public static final StateMachineBuilder<SimulatorStateMachine, SimulatorState, SimulatorEvent, Car> BUILDER;
 
-    public SimulatorStateMachine() {
-        this.scanner = new Scanner(System.in);
-    }
+    public SimulatorStateMachine() {}
 
     public void setup(Driver driver, int currentCarIndex) {
         this.driver = driver;
@@ -45,7 +42,7 @@ public class SimulatorStateMachine extends AbstractStateMachine<SimulatorStateMa
         BUILDER.externalTransition().from(SimulatorState.WAITING)
                 .to(SimulatorState.MAINTENANCE)
                 .on(SimulatorEvent.IN_MAINTENANCE);
-        
+
         BUILDER.externalTransition().from(SimulatorState.WAITING)
                 .to(SimulatorState.GARAGE_MANAGEMENT)
                 .on(SimulatorEvent.IN_GARAGE);
@@ -346,9 +343,9 @@ public class SimulatorStateMachine extends AbstractStateMachine<SimulatorStateMa
             }
 
             System.out.println("\nВведите номер автомобиля для удаления:");
-            int carIndex = InputValidator.getPositiveIntInput() - 1;
+            int carIndex = InputValidator.getPositiveIntInput(0, driver.getCars().size()) - 1;
 
-            if (carIndex < 1 || carIndex > driver.getCars().size()) {
+            if (carIndex < 0 || carIndex > driver.getCars().size()) {
                 System.out.println("⚠ Неверный номер автомобиля!");
                 return;
             }
@@ -358,10 +355,13 @@ public class SimulatorStateMachine extends AbstractStateMachine<SimulatorStateMa
                 return;
             }
 
-            currentCarIndex = carIndex;
+            if (currentCarIndex > carIndex) {
+                currentCarIndex--;
+                driver.setCurrentCarIndex(currentCarIndex);
+            }
 
             String carName = driver.getCar(currentCarIndex).getName();
-            driver.removeCar();
+            driver.removeCar(carIndex);
             SimulatorManager.saveState(driver);
 
             System.out.println("✓ Автомобиль " + carName + " удален из гаража");
@@ -387,9 +387,9 @@ public class SimulatorStateMachine extends AbstractStateMachine<SimulatorStateMa
             }
 
             System.out.println("\nВведите номер автомобиля:");
-            int newCarIndex = InputValidator.getPositiveIntInput();
+            int newCarIndex = InputValidator.getPositiveIntInput(1, driver.getCars().size()) - 1;
 
-            if (newCarIndex < 1 || newCarIndex > driver.getCars().size()) {
+            if (newCarIndex < 0 || newCarIndex > driver.getCars().size()) {
                 System.out.println("⚠ Неверный номер автомобиля!");
                 return;
             }
@@ -399,7 +399,8 @@ public class SimulatorStateMachine extends AbstractStateMachine<SimulatorStateMa
                 return;
             }
 
-            currentCarIndex = newCarIndex - 1;
+            currentCarIndex = newCarIndex;
+            driver.setCurrentCarIndex(currentCarIndex);
             Car newCar = driver.getCar(currentCarIndex);
             System.out.println("✓ Выбран автомобиль: " + newCar.getName());
             SimulatorManager.saveState(driver);
@@ -482,7 +483,7 @@ public class SimulatorStateMachine extends AbstractStateMachine<SimulatorStateMa
             for (int i = 0; i < cars.size(); i++) {
                 Car car = cars.get(i);
                 System.out.println("\n" + (i + 1) + ". " + car.getName() +
-                        ((i + 1) == currentCarIndex ? " (Текущий)" : ""));
+                        (i == currentCarIndex ? " (Текущий)" : ""));
                 printCarDetails();
             }
         }

@@ -56,8 +56,8 @@ public class Driver {
         cars.add(car);
     }
 
-    public void removeCar() {
-        cars.remove(currentCarIndex);
+    public void removeCar(int carIndex) {
+        cars.remove(carIndex);
     }
 
     public void startVehicle() {
@@ -102,7 +102,13 @@ public class Driver {
     }
 
     public void tankUp(GasStation gasStation, FuelTypes type, int count) {
-        cars.get(currentCarIndex).tankUp(gasStation, type, count);
+        if (cars.get(currentCarIndex).getMaxFuel().getQuantity() + count > cars.get(currentCarIndex).getLocalFuel().getQuantity()) {
+            cars.get(currentCarIndex).tankUp(gasStation, type,
+                    cars.get(currentCarIndex).getMaxFuel().getQuantity() -
+                            cars.get(currentCarIndex).getLocalFuel().getQuantity());
+        } else {
+            cars.get(currentCarIndex).tankUp(gasStation, type, count);
+        }
     }
 
     public void setCar(Car car) {
