@@ -2,10 +2,13 @@ package by.astakhau.examresults;
 
 import by.astakhau.examresults.model.entity.Exam;
 import by.astakhau.examresults.model.entity.Student;
-import by.astakhau.examresults.model.servise.StudentRepository;
+import by.astakhau.examresults.model.service.StudentRepository;
 import by.astakhau.examresults.util.JPAUtil;
+import com.github.javafaker.Faker;
 
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Random;
 
 //public class HelloApplication extends Application {
 //    @Override
@@ -20,26 +23,31 @@ class Main {
 
     public static void main(String[] args) {
 //        launch();
-//        Student student = new Student();
-//        student.setFullName("Astakhau Artsiom");
-//        student.setStudentsGroup("321701");
-//        ArrayList<Exam> exams = new ArrayList<>();
-//        Exam exam = new Exam();
-//        exam.setScore(10);
-//        exam.setSubjectName("Math");
-//        exam.setStudent(student);
-//        exams.add(exam);
-//        student.setExams(exams);
-//        StudentRepository sr = new StudentRepository();
-//        sr.addStudent(student);
+//        Faker faker = new Faker(new Locale("ru"));
+//        Random random = new Random();
+//        StudentRepository studentRepository = new StudentRepository();
+//        for (int i = 0; i < 200; i++) {
+//
+//            Student student = new Student();
+//            student.setStudentsGroup(String.valueOf(random.nextInt(10)));
+//            student.setFullName(faker.name().fullName());
+//
+//            for (int j = 0; j < random.nextInt(8); j++) {
+//                Exam exam = new Exam();
+//                exam.setSubjectName(String.valueOf(random.nextInt(5)));
+//                exam.setScore(random.nextInt(10));
+//                student.getExams().add(exam);
+//                exam.setStudent(student);
+//            }
+//            studentRepository.addStudent(student);
+//        }
+//
+//
 //        JPAUtil.close();
-
-        StudentRepository studentRepository = new StudentRepository();
-        Student student = new Student();
-        ArrayList<Student> students = (ArrayList<Student>)studentRepository.getAllStudents();
-        ArrayList<Exam> exams = new ArrayList<>(students.get(0).getExams());
-        studentRepository.deleteStudent(students.get(0).getId());
-        JPAUtil.close();
-
+        StudentRepository sr = new StudentRepository();
+        sr.findByScoreAndSubject(9, 10, "4").forEach(e -> System.out.println(e.getFullName()));
+        System.out.println(sr.deleteByScoreAndSubject(9, 10, "4"));
+        System.out.println("_____________");
+        sr.findByScoreAndSubject(9, 10, "4").forEach(e -> System.out.println(e.getFullName()));
     }
 }

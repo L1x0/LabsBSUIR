@@ -5,6 +5,7 @@ module by.astakhau.examresults {
     requires javafx.controls;
     requires javafx.fxml;
     requires static lombok;
+    requires javafaker;
 
     opens by.astakhau.examresults.model.entity to org.hibernate.orm.core;
 
