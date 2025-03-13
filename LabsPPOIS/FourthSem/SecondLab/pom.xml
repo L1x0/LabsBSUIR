@@ -33,12 +33,6 @@
             <artifactId>h2</artifactId>
             <version>2.2.220</version>
         </dependency>
-        <!-- (Необязательно) Логирование для Hibernate -->
-        <dependency>
-            <groupId>org.jboss.logging</groupId>
-            <artifactId>jboss-logging</artifactId>
-            <version>3.4.3.Final</version>
-        </dependency>
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>

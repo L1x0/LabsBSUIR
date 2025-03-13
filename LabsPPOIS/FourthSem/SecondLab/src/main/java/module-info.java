@@ -8,6 +8,8 @@ module by.astakhau.examresults {
     requires javafaker;
 
     opens by.astakhau.examresults.model.entity to org.hibernate.orm.core;
+    opens by.astakhau.examresults.controller to javafx.fxml;
 
     exports by.astakhau.examresults;
+    exports by.astakhau.examresults.controller;
 }

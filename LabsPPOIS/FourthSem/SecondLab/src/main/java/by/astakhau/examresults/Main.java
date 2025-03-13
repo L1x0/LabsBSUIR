@@ -5,24 +5,31 @@ import by.astakhau.examresults.model.entity.Student;
 import by.astakhau.examresults.model.service.StudentRepository;
 import by.astakhau.examresults.util.JPAUtil;
 import com.github.javafaker.Faker;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Random;
 
-//public class HelloApplication extends Application {
-//    @Override
-//    public void start(Stage stage) throws IOException {
-//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-//        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-//        stage.setTitle("Hello!");
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-class Main {
+public class Main extends Application {
+    @Override
+    public void start(Stage stage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+        Parent root = loader.load();
+
+        stage.setTitle("Student Manager");
+        stage.setScene(new Scene(root, 1230, 400));
+        stage.show();
+    }
+
 
     public static void main(String[] args) {
-//        launch();
+        launch();
 //        Faker faker = new Faker(new Locale("ru"));
 //        Random random = new Random();
 //        StudentRepository studentRepository = new StudentRepository();
@@ -44,10 +51,10 @@ class Main {
 //
 //
 //        JPAUtil.close();
-        StudentRepository sr = new StudentRepository();
-        sr.findByScoreAndSubject(9, 10, "4").forEach(e -> System.out.println(e.getFullName()));
-        System.out.println(sr.deleteByScoreAndSubject(9, 10, "4"));
-        System.out.println("_____________");
-        sr.findByScoreAndSubject(9, 10, "4").forEach(e -> System.out.println(e.getFullName()));
+//        StudentRepository sr = new StudentRepository();
+//        sr.findByScoreAndSubject(9, 10, "3").forEach(e -> System.out.println(e.getFullName()));
+//        System.out.println(sr.deleteByScoreAndSubject(9, 10, "4"));
+//        System.out.println("_____________");
+//        sr.findByScoreAndSubject(9, 10, "3").forEach(e -> System.out.println(e.getFullName()));
     }
 }

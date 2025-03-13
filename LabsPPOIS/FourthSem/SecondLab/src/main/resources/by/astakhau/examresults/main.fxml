@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="by.astakhau.examresults.controller.MainController">
+  <!-- Верхняя панель с кнопками -->
+  <top>
+    <ToolBar>
+      <Button text="Добавить" onAction="#handleAdd"/>
+      <Button text="Редактировать" onAction="#handleEdit"/>
+      <Button text="Удалить" onAction="#handleDelete"/>
+      <Button text="Поиск" onAction="#handleSearch"/>
+      <Button text="Загрузить" onAction="#handleLoad"/>
+      <Button text="Сохранить" onAction="#handleSave"/>
+      <!-- Другие кнопки, например, для импорта/экспорта -->
+    </ToolBar>
+  </top>
+
+  <!-- Центр: область с пагинацией, внутри которой будет TableView для отображения данных -->
+  <center>
+    <VBox spacing="10">
+      <!-- Можно разместить над таблицей элемент управления постраничным выводом -->
+      <Pagination fx:id="pagination" />
+    </VBox>
+  </center>
+</BorderPane>
