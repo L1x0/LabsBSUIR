@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+    <student>
+        <fullName>Иванов Иван Иванович</fullName>
+        <studentsGroup>Гр-101</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Математика</subjectName>
+                <score>85</score>
+            </exam>
+            <exam>
+                <subjectName>Физика</subjectName>
+                <score>92</score>
+            </exam>
+        </exams>
+    </student>
+</students>

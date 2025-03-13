@@ -24,6 +24,22 @@ public class StudentRepository {
         }
     }
 
+    public void addAllStudent(List<Student> students) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            em.getTransaction().begin();
+            for (Student s : students) {
+                em.persist(s);
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
+
     // Чтение (Read) - получение всех записей
     public List<Student> getAllStudents() {
         EntityManager em = JPAUtil.getEntityManager();

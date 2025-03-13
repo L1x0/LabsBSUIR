@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+    <student>
+        <fullName>Смирнов Денис Павлович</fullName>
+        <studentsGroup>Гр-201</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Программирование</subjectName>
+                <score>90</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Федорова Екатерина Игоревна</fullName>
+        <studentsGroup>Гр-202</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Английский язык</subjectName>
+                <score>84</score>
+            </exam>
+            <exam>
+                <subjectName>Экономика</subjectName>
+                <score>76</score>
+            </exam>
+        </exams>
+    </student>
+</students>

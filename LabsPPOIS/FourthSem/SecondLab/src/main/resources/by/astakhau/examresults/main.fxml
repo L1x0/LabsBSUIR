@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Pagination?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
@@ -17,6 +16,7 @@
       <Button text="Поиск" onAction="#handleSearch"/>
       <Button text="Загрузить" onAction="#handleLoad"/>
       <Button text="Сохранить" onAction="#handleSave"/>
+      <Button text="Переключение ресурса данных" onAction="#handleTurnDataSource"/>
       <!-- Другие кнопки, например, для импорта/экспорта -->
     </ToolBar>
   </top>
