@@ -6,7 +6,7 @@
         <exams>
             <exam>
                 <subjectName>Программирование</subjectName>
-                <score>90</score>
+                <score>9</score>
             </exam>
         </exams>
     </student>
@@ -16,11 +16,11 @@
         <exams>
             <exam>
                 <subjectName>Английский язык</subjectName>
-                <score>84</score>
+                <score>8</score>
             </exam>
             <exam>
                 <subjectName>Экономика</subjectName>
-                <score>76</score>
+                <score>7</score>
             </exam>
         </exams>
     </student>

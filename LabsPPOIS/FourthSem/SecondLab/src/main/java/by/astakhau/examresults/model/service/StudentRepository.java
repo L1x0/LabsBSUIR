@@ -2,6 +2,8 @@ package by.astakhau.examresults.model.service;
 
 import by.astakhau.examresults.model.entity.Student;
 import by.astakhau.examresults.util.JPAUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -86,17 +88,18 @@ public class StudentRepository {
     }
 
     // 1. Поиск по среднему баллу и предмету
-    public List<Student> findByAverageScoreAndSubject(double lower, double upper, String subject) {
+    public ObservableList<Student> findByAverageScoreAndSubject(double lower, double upper, String subject) {
         EntityManager em = JPAUtil.getEntityManager();
-
-        return em.createQuery(
+        ObservableList<Student> result = FXCollections.observableArrayList(em.createQuery(
                         "SELECT s FROM Student s WHERE " +
                                 "(SELECT AVG(e.score) FROM s.exams e WHERE e.subjectName = :subject) " +
                                 "BETWEEN :lower AND :upper", Student.class)
                 .setParameter("lower", lower)
                 .setParameter("upper", upper)
                 .setParameter("subject", subject)
-                .getResultList();
+                .getResultList());
+
+        return result;
     }
 
     // 2. Поиск по номеру группы
@@ -109,15 +112,16 @@ public class StudentRepository {
     }
 
     // 3. Поиск по баллу и предмету
-    public List<Student> findByScoreAndSubject(int lower, int upper, String subject) {
+    public ObservableList<Student> findByScoreAndSubject(double lower, double upper, String subject) {
         EntityManager em = JPAUtil.getEntityManager();
-        return em.createQuery(
+        ObservableList<Student> result = FXCollections.observableArrayList(em.createQuery(
                         "SELECT DISTINCT s FROM Student s JOIN s.exams e " +
                                 "WHERE e.subjectName = :subject AND e.score BETWEEN :lower AND :upper", Student.class)
                 .setParameter("lower", lower)
                 .setParameter("upper", upper)
                 .setParameter("subject", subject)
-                .getResultList();
+                .getResultList());
+        return result;
     }
 
     // Методы для получения списков

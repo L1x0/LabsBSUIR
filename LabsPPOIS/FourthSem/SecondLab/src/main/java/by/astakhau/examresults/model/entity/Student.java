@@ -1,5 +1,6 @@
 package by.astakhau.examresults.model.entity;
 
+import javafx.collections.ObservableList;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,4 +32,10 @@ public class Student {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Exam> exams = new ArrayList<>();
+
+    public Student(String key, String value, ObservableList<Exam> exams) {
+        this.fullName = key;
+        this.studentsGroup = value;
+        this.exams = exams;
+    }
 }

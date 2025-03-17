@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.util.List;
 
 public class LoadData {
     public static ObservableList<Student> loadStudents(DataSourceChooser.DataSourceChoice dataSourceType) throws Exception {
@@ -29,6 +30,18 @@ public class LoadData {
 
     public static File loadNewFile() {
         return DataSourceChooser.getXmlFile(new Stage());
+    }
+
+    public static List<String> getAllGroups(DataSourceChooser.DataSourceChoice dataSourceChoice) throws Exception {
+        return dataSourceChoice.getType().equals(DataSourceChooser.DataSourceType.XML_FILE)
+                ? new XmlStudentRepository(dataSourceChoice).findAllGroups()
+                : new StudentRepository().findAllGroups();
+    }
+
+    public static List<String> getAllSubjects(DataSourceChooser.DataSourceChoice dataSourceChoice, String group) throws Exception {
+        return dataSourceChoice.getType().equals(DataSourceChooser.DataSourceType.XML_FILE)
+                ? new XmlStudentRepository(dataSourceChoice).findSubjectsByGroup(group)
+                : new StudentRepository().findSubjectsByGroup(group);
     }
 
 }

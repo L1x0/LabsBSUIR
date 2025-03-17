@@ -5,34 +5,32 @@ import by.astakhau.examresults.model.entity.Exam;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class XmlStudentRepository {
     ObservableList<Student> students;
+    DataSourceChooser.DataSourceChoice dataSource;
 
     public XmlStudentRepository(DataSourceChooser.DataSourceChoice dataSourceChoice) throws Exception {
         students = LoadData.loadStudents(dataSourceChoice);
+        this.dataSource = dataSourceChoice;
     }
 
     // Создание (Create)
-    public void addStudent(Student student) {
-        students.add(student);
+    public void addStudent(Student student) throws Exception {
+        DomStudentWriter domStudentWriter = new DomStudentWriter();
+        domStudentWriter.writeStudentsToSourceFile(List.of(student), dataSource.getFile());
     }
 
-    public void addAllStudents(ObservableList<Student> newStudents) {
-        students.addAll(newStudents);
+    public void addAllStudents(ObservableList<Student> newStudents) throws Exception {
+        DomStudentWriter domStudentWriter = new DomStudentWriter();
+        domStudentWriter.writeStudentsToSourceFile(newStudents.stream().toList(), dataSource.getFile());
     }
 
     // Чтение (Read)
     public ObservableList<Student> getAllStudents() {
         return students;
-    }
-
-    // Обновление (Update)
-    public void updateStudent(Student updatedStudent) {
-        students.replaceAll(student ->
-                student.getId().equals(updatedStudent.getId()) ? updatedStudent : student
-        );
     }
 
     // Удаление (Delete)
@@ -44,12 +42,11 @@ public class XmlStudentRepository {
 
     // Поиск по среднему баллу и предмету
     public ObservableList<Student> findByAverageScoreAndSubject(
-            ObservableList<Student> source,
-            double lower,
-            double upper,
+            int lower,
+            int upper,
             String subject
     ) {
-        return source.filtered(student -> {
+        return getAllStudents().filtered(student -> {
             double avg = student.getExams().stream()
                     .filter(e -> e.getSubjectName().equals(subject))
                     .mapToInt(Exam::getScore)
@@ -69,12 +66,11 @@ public class XmlStudentRepository {
 
     // Поиск по баллу и предмету
     public ObservableList<Student> findByScoreAndSubject(
-            ObservableList<Student> source,
             int lower,
             int upper,
             String subject
     ) {
-        return source.filtered(student ->
+        return getAllStudents().filtered(student ->
                 student.getExams().stream()
                         .anyMatch(e -> e.getSubjectName().equals(subject) &&
                                 e.getScore() >= lower &&
@@ -83,18 +79,17 @@ public class XmlStudentRepository {
     }
 
     // Методы для получения списков
-    public ObservableList<String> findAllGroups(ObservableList<Student> source) {
-        return source.stream()
+    public ObservableList<String> findAllGroups() {
+        return getAllStudents().stream()
                 .map(Student::getStudentsGroup)
                 .distinct()
                 .collect(Collectors.toCollection(FXCollections::observableArrayList));
     }
 
     public ObservableList<String> findSubjectsByGroup(
-            ObservableList<Student> source,
             String group
     ) {
-        return source.stream()
+        return getAllStudents().stream()
                 .filter(s -> s.getStudentsGroup().equals(group))
                 .flatMap(s -> s.getExams().stream())
                 .map(Exam::getSubjectName)
@@ -103,35 +98,47 @@ public class XmlStudentRepository {
     }
 
     // Методы удаления с возвратом удаленных элементов
-    public ObservableList<Student> deleteByAverageScoreAndSubject(
-            ObservableList<Student> source,
-            double lower,
-            double upper,
-            String subject
-    ) {
-        ObservableList<Student> toRemove = findByAverageScoreAndSubject(source, lower, upper, subject);
-        students.removeAll(toRemove);
-        return toRemove;
-    }
-
-    public ObservableList<Student> deleteByGroup(
-            ObservableList<Student> source,
-            String group
-    ) {
-        ObservableList<Student> toRemove = findByStudentsGroup(source, group);
-        students.removeAll(toRemove);
-        return toRemove;
-    }
-
-    public ObservableList<Student> deleteByScoreAndSubject(
-            ObservableList<Student> source,
+    public int deleteByAverageScoreAndSubject(
             int lower,
             int upper,
-            String subject
-    ) {
-        ObservableList<Student> toRemove = findByScoreAndSubject(source, lower, upper, subject);
+            String subject,
+            DataSourceChooser.DataSourceChoice dataSourceChoice
+    ) throws Exception {
+        ObservableList<Student> toRemove = findByAverageScoreAndSubject(lower, upper, subject);
+        int sizeToRemove = toRemove.size();
+
         students.removeAll(toRemove);
-        return toRemove;
+        FileSave.saveFile(dataSourceChoice.getFile(), students);
+
+        return sizeToRemove;
+    }
+
+    public int deleteByGroup(
+            String group,
+            DataSourceChooser.DataSourceChoice dataSourceChoice
+    ) throws Exception {
+        ObservableList<Student> toRemove = findByStudentsGroup(getAllStudents(), group);
+        int sizeToRemove = toRemove.size();
+
+        students.removeAll(toRemove);
+        FileSave.saveFile(dataSourceChoice.getFile(), students);
+
+        return sizeToRemove;
+    }
+
+    public int deleteByScoreAndSubject(
+            int lower,
+            int upper,
+            String subject,
+            DataSourceChooser.DataSourceChoice dataSourceChoice
+    ) throws Exception {
+        ObservableList<Student> toRemove = findByScoreAndSubject(lower, upper, subject);
+        int sizeToRemove = toRemove.size();
+
+        students.removeAll(toRemove);
+        FileSave.saveFile(dataSourceChoice.getFile(), students);
+
+        return sizeToRemove;
     }
 
 

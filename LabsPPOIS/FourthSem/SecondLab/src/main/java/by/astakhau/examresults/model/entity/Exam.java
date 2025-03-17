@@ -21,4 +21,10 @@ public class Exam {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
     private Student student;
+
+    public Exam(String subjectName, int score, Student student) {
+        this.subjectName = subjectName;
+        this.score = score;
+        this.student = student;
+    }
 }

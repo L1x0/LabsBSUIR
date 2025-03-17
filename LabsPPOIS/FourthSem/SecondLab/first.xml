@@ -6,11 +6,11 @@
         <exams>
             <exam>
                 <subjectName>Математика</subjectName>
-                <score>85</score>
+                <score>4</score>
             </exam>
             <exam>
                 <subjectName>Физика</subjectName>
-                <score>92</score>
+                <score>6</score>
             </exam>
         </exams>
     </student>

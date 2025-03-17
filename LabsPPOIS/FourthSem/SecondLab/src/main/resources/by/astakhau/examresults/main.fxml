@@ -10,12 +10,10 @@
   <!-- Верхняя панель с кнопками -->
   <top>
     <ToolBar>
-      <Button text="Добавить" onAction="#handleAdd"/>
-      <Button text="Редактировать" onAction="#handleEdit"/>
+      <Button text="Добавить студента" onAction="#handleAddStudent"/>
       <Button text="Удалить" onAction="#handleDelete"/>
       <Button text="Поиск" onAction="#handleSearch"/>
       <Button text="Загрузить" onAction="#handleLoad"/>
-      <Button text="Сохранить" onAction="#handleSave"/>
       <Button text="Переключение ресурса данных" onAction="#handleTurnDataSource"/>
       <!-- Другие кнопки, например, для импорта/экспорта -->
     </ToolBar>
