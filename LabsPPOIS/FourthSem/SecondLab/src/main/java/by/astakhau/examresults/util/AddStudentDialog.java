@@ -13,12 +13,14 @@ import javafx.util.Pair;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class AddStudentDialog {
     private ObservableList<Student> students;
 
-    public static Student AddStudentDialog() {
-        ObservableList<Student> students =  FXCollections.observableArrayList();
+    public static Student getStudentDialog() {
+        ObservableList<Student> students = FXCollections.observableArrayList();
+        AtomicBoolean anyProblem = new AtomicBoolean(true);
         // Первый диалог: основные данные
         Dialog<Pair<Pair<String, String>, Integer>> firstDialog = new Dialog<>();
         firstDialog.setTitle("Добавление студента");
@@ -38,17 +40,29 @@ public class AddStudentDialog {
         firstDialog.getDialogPane().setContent(grid);
         firstDialog.getDialogPane().getButtonTypes().addAll(ButtonType.NEXT, ButtonType.CANCEL);
 
+
         firstDialog.setResultConverter(buttonType -> {
             if (buttonType == ButtonType.NEXT) {
+                anyProblem.set(validateStudentsInputs(nameField.getText().trim(), groupField.getText().trim()));
+
                 return new Pair<>(
                         new Pair<>(nameField.getText().trim(), groupField.getText().trim()),
                         examsSpinner.getValue()
                 );
+            } else if (buttonType == ButtonType.CANCEL) {
+                anyProblem.set(false);
+                return null;
             }
             return null;
         });
 
-        Optional<Pair<Pair<String, String>, Integer>> firstResult = firstDialog.showAndWait();
+
+        Optional<Pair<Pair<String, String>, Integer>> firstResult = Optional.empty();
+
+        while (anyProblem.get()) {
+            firstResult = firstDialog.showAndWait();
+        }
+        anyProblem.set(true);
 
         firstResult.ifPresent(result -> {
             Pair<String, String> nameGroup = result.getKey();
@@ -91,11 +105,14 @@ public class AddStudentDialog {
             secondDialog.getDialogPane().setContent(scrollPane);
             secondDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
+
             secondDialog.setResultConverter(buttonType -> {
                 if (buttonType == ButtonType.OK) {
                     List<Exam> exams = new ArrayList<>();
                     for (int i = 0; i < examsCount; i++) {
                         String subject = subjectFields.get(i).getText().trim();
+                        anyProblem.set(validateExamInputs(subject));
+
                         int score = scoreSpinners.get(i).getValue();
 
                         if (subject.isEmpty()) {
@@ -103,14 +120,21 @@ public class AddStudentDialog {
                             return null;
                         }
 
-                        exams.add(new Exam(subject, score, null)); // Student устанавливается позже
+                        exams.add(new Exam(subject, score, null));
                     }
                     return exams;
+                } else if (buttonType == ButtonType.CANCEL) {
+                    anyProblem.set(false);
+                    return null;
                 }
                 return null;
             });
 
-            Optional<List<Exam>> secondResult = secondDialog.showAndWait();
+            Optional<List<Exam>> secondResult = Optional.empty();
+
+            while (anyProblem.get()) {
+                secondResult = secondDialog.showAndWait();
+            }
 
             secondResult.ifPresent(exams -> {
                 Student student = new Student();
@@ -139,6 +163,50 @@ public class AddStudentDialog {
         alert.setTitle("Ошибка");
         alert.setHeaderText(null);
         alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private static boolean validateStudentsInputs(String name, String group) {
+        if (Validator.validateFullName(name) && Validator.validateGroupNumber(group)) {
+            return false;
+        } else {
+            showStudentsValidatorErrorAlert(name, group);
+            return true;
+        }
+    }
+
+    private static void showStudentsValidatorErrorAlert(String name, String group) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        StringBuilder warningMessage = new StringBuilder();
+
+        warningMessage.append("Проверьте введённые данные\n");
+        if (!Validator.validateSubjectName(name)) {
+            warningMessage.append("Имя может состоять только из русских и латинских букв\n");
+        }
+
+        if (!Validator.validateGroupNumber(group)) {
+            warningMessage.append("Группа может состоять только из 6 цифр");
+        }
+
+        alert.setHeaderText(null);
+        alert.setContentText(warningMessage.toString());
+        alert.showAndWait();
+    }
+
+    private static boolean validateExamInputs(String subjectName) {
+        if (Validator.validateSubjectName(subjectName)) {
+            return false;
+        } else {
+            showExamsValidatorErrorAlert();
+            return true;
+        }
+    }
+
+    private static void showExamsValidatorErrorAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        alert.setHeaderText(null);
+        alert.setContentText("Проверьте названия экзаменов, они могут состоять только из букв");
         alert.showAndWait();
     }
 }

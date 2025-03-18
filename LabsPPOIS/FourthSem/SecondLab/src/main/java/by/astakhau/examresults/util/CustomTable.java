@@ -6,33 +6,54 @@ import by.astakhau.examresults.model.service.DataSourceChooser;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Pagination;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import lombok.Setter;
 
 import java.util.List;
 
 @Setter
 public class CustomTable {
-    private static final int ROWS_PER_PAGE = 20;
+    private static int ROWS_PER_PAGE = 20;
     ObservableList<Student> students;
     int maxExams;
     DataSourceChooser.DataSourceChoice dataSourceType;
     Pagination pagination;
+    ChoiceBox<Integer> pageSize;
+    Label countOfRecords;
 
     public CustomTable(
-            ObservableList<Student> students, int maxExams, DataSourceChooser.DataSourceChoice dataSourceType, Pagination pagination) {
+            ObservableList<Student> students,
+            int maxExams,
+            DataSourceChooser.DataSourceChoice dataSourceType,
+            Pagination pagination,
+            ChoiceBox<Integer> pageSize,
+            Label label) {
         this.students = students;
         this.maxExams = maxExams;
         this.dataSourceType = dataSourceType;
         this.pagination = pagination;
+        this.pageSize = pageSize;
+        this.countOfRecords = label;
     }
 
     public void createTable() {
+        setupPageSize();
         setupPagination();
+        countOfRecords.setText(getCountOfRecords());
     }
 
+    private void setupPageSize() {
+        pageSize.setItems(FXCollections.observableArrayList(20,25,30));
+        pageSize.setValue(ROWS_PER_PAGE);
+
+        pageSize.getSelectionModel().selectedItemProperty().addListener(
+                (obs, oldVal, newVal) -> {
+                    ROWS_PER_PAGE = newVal;
+                    setupPagination();
+                }
+        );
+
+    }
 
     private void setupPagination() {
         int pageCount = (int) Math.ceil((double) students.size() / ROWS_PER_PAGE);
@@ -93,5 +114,22 @@ public class CustomTable {
         int fromIndex = pageIndex * ROWS_PER_PAGE;
         int toIndex = Math.min(fromIndex + ROWS_PER_PAGE, students.size());
         tableView.setItems(FXCollections.observableArrayList(students.subList(fromIndex, toIndex)));
+    }
+
+    public void goToLast() {
+        pagination.setCurrentPageIndex(pagination.getPageCount() - 1);
+    }
+
+    public void goToFirst() {
+        pagination.setCurrentPageIndex(0);
+    }
+
+    public String getCountOfRecords() {
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("Записей в таблице: ");
+        builder.append(students.size());
+
+        return builder.toString();
     }
 }

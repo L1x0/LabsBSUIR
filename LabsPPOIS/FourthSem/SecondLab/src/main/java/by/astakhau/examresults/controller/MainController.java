@@ -11,6 +11,8 @@ import by.astakhau.examresults.util.CustomTable;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.stage.Stage;
 
@@ -21,10 +23,12 @@ public class MainController {
 
     @FXML
     private Pagination pagination;
-
-    private static final int ROWS_PER_PAGE = 20;
+    @FXML
+    private ChoiceBox<Integer> pageSize;
     private ObservableList<Student> students;
     private int maxExams;
+    @FXML
+    private Label countOfRecords;
 
     @FXML
     public void initialize() {
@@ -33,8 +37,9 @@ public class MainController {
             students = LoadData.loadStudents(dataSourceType);
             maxExams = LoadData.loadExamCount(students);
 
-            table = new CustomTable(students, maxExams, dataSourceType, pagination);
+            table = new CustomTable(students, maxExams, dataSourceType, pagination, pageSize, countOfRecords);
             table.createTable();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -45,7 +50,7 @@ public class MainController {
     @FXML
     private void handleAddStudent() {
         try {
-            Student student = AddStudentDialog.AddStudentDialog();
+            Student student = AddStudentDialog.getStudentDialog();
             students.add(student);
 
             if (dataSourceType.getType().equals(DataSourceChooser.DataSourceType.XML_FILE)) {
@@ -88,6 +93,16 @@ public class MainController {
     @FXML
     private void handleSearch() throws Exception {
         ManipulationsDialog.findDialog(new Stage(), dataSourceType);
+    }
+
+    @FXML
+    private void handleGoToLast() throws Exception {
+        table.goToLast();
+    }
+
+    @FXML
+    private void handleGoToFirst() throws Exception {
+        table.goToFirst();
     }
 
     @FXML

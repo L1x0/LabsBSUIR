@@ -25,6 +25,8 @@ public class ManipulationsDialog {
 
 
         Pagination pagination = new Pagination();
+        ChoiceBox<Integer> pageSize = new ChoiceBox<>();
+        Label countOfRecords = new Label();
         CustomTable table = null;
         List<String> groups;
         Pair<Integer, Integer> range;
@@ -38,7 +40,14 @@ public class ManipulationsDialog {
                     ObservableList<Student> foundStudents = students.filtered(s -> {
                         return s.getStudentsGroup().equals(group.get());
                     });
-                    table = new CustomTable(foundStudents, LoadData.loadExamCount(foundStudents), dataSourceChoice, pagination);
+                    table = new CustomTable(
+                            foundStudents,
+                            LoadData.loadExamCount(foundStudents),
+                            dataSourceChoice,
+                            pagination,
+                            pageSize,
+                            countOfRecords
+                            );
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText(null);
@@ -64,7 +73,13 @@ public class ManipulationsDialog {
                             .findByAverageScoreAndSubject(range.getKey(), range.getValue(), subject.get())
                             : new StudentRepository()
                             .findByAverageScoreAndSubject(range.getKey(), range.getValue(), subject.get());
-                    table = new CustomTable(foundStudents, LoadData.loadExamCount(foundStudents), dataSourceChoice, pagination);
+                    table = new CustomTable(
+                            foundStudents,
+                            LoadData.loadExamCount(foundStudents),
+                            dataSourceChoice,
+                            pagination,
+                            pageSize,
+                            countOfRecords);
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText(null);
@@ -89,7 +104,13 @@ public class ManipulationsDialog {
                             .findByScoreAndSubject(range.getKey(), range.getValue(), subject.get())
                             : new StudentRepository()
                             .findByScoreAndSubject(range.getKey(), range.getValue(), subject.get());
-                    table = new CustomTable(foundStudents, LoadData.loadExamCount(foundStudents), dataSourceChoice, pagination);
+                    table = new CustomTable(
+                            foundStudents,
+                            LoadData.loadExamCount(foundStudents),
+                            dataSourceChoice,
+                            pagination,
+                            pageSize,
+                            countOfRecords);
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText(null);
