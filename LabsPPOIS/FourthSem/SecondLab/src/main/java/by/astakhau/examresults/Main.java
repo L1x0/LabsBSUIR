@@ -19,7 +19,7 @@ import java.util.Random;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("dataManager.fxml"));
         Parent root = loader.load();
 
         stage.setTitle("Student Manager");

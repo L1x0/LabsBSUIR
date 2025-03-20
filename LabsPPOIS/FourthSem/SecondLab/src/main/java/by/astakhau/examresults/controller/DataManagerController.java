@@ -5,24 +5,32 @@ import by.astakhau.examresults.model.service.DataSourceChooser;
 import by.astakhau.examresults.model.service.LoadData;
 import by.astakhau.examresults.model.service.StudentRepository;
 import by.astakhau.examresults.model.service.XmlStudentRepository;
-import by.astakhau.examresults.util.AddStudentDialog;
-import by.astakhau.examresults.util.ManipulationsDialog;
-import by.astakhau.examresults.util.CustomTable;
+import by.astakhau.examresults.view.AddStudentDialog;
+import by.astakhau.examresults.view.CustomTree;
+import by.astakhau.examresults.view.ManipulationsDialog;
+import by.astakhau.examresults.view.CustomTable;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Pagination;
+import javafx.scene.control.*;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class MainController {
+public class DataManagerController {
 
     private DataSourceChooser.DataSourceChoice dataSourceType;
     private CustomTable table;
 
     @FXML
     private Pagination pagination;
+    @FXML
+    private VBox tableView;
+    @FXML
+    TreeView<String> treeView;
+    @FXML
+    StackPane contentPane;
+    @FXML
+    ToggleButton viewChangeToggle;
     @FXML
     private ChoiceBox<Integer> pageSize;
     private ObservableList<Student> students;
@@ -33,6 +41,23 @@ public class MainController {
     @FXML
     public void initialize() {
         try {
+            viewChangeToggle.selectedProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue) {
+                    tableView.setVisible(false);
+                    treeView.setVisible(true);
+
+                    CustomTree tree = new CustomTree(treeView, dataSourceType);
+                    tree.createTreeView();
+                } else {
+                    tableView.setVisible(true);
+                    treeView.setVisible(false);
+
+                    table.setDataSourceType(dataSourceType);
+                }
+            });
+
+            viewChangeToggle.setSelected(false);
+
             dataSourceType = DataSourceChooser.chooseDataSource(new Stage());
             students = LoadData.loadStudents(dataSourceType);
             maxExams = LoadData.loadExamCount(students);
@@ -91,17 +116,21 @@ public class MainController {
     }
 
     @FXML
-    private void handleSearch() throws Exception {
-        ManipulationsDialog.findDialog(new Stage(), dataSourceType);
+    private void handleSearch() {
+        try {
+            ManipulationsDialog.findDialog(new Stage(), dataSourceType);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    private void handleGoToLast() throws Exception {
+    private void handleGoToLast() {
         table.goToLast();
     }
 
     @FXML
-    private void handleGoToFirst() throws Exception {
+    private void handleGoToFirst() {
         table.goToFirst();
     }
 
@@ -129,7 +158,6 @@ public class MainController {
             alert.showAndWait();
         }
     }
-
 
     @FXML
     private void handleTurnDataSource() {

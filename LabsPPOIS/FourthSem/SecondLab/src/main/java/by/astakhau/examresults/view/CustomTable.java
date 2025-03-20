@@ -1,4 +1,4 @@
-package by.astakhau.examresults.util;
+package by.astakhau.examresults.view;
 
 import by.astakhau.examresults.model.entity.Exam;
 import by.astakhau.examresults.model.entity.Student;

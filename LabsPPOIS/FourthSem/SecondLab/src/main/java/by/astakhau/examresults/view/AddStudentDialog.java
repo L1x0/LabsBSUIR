@@ -1,7 +1,8 @@
-package by.astakhau.examresults.util;
+package by.astakhau.examresults.view;
 
 import by.astakhau.examresults.model.entity.Exam;
 import by.astakhau.examresults.model.entity.Student;
+import by.astakhau.examresults.util.Validator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -84,6 +85,7 @@ public class AddStudentDialog {
 
             List<TextField> subjectFields = new ArrayList<>();
             List<Spinner<Integer>> scoreSpinners = new ArrayList<>();
+
 
             for (int i = 0; i < examsCount; i++) {
                 TextField subjectField = new TextField();
