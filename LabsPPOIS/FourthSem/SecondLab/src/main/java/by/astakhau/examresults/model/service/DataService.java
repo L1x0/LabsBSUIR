@@ -4,9 +4,11 @@ import by.astakhau.examresults.model.entity.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 import java.io.File;
 import java.util.List;
+import java.util.Optional;
 
 public class LoadData {
     public static ObservableList<Student> loadStudents(DataSourceChooser.DataSourceChoice dataSourceType) throws Exception {
@@ -42,6 +44,16 @@ public class LoadData {
         return dataSourceChoice.getType().equals(DataSourceChooser.DataSourceType.XML_FILE)
                 ? new XmlStudentRepository(dataSourceChoice).findSubjectsByGroup(group)
                 : new StudentRepository().findSubjectsByGroup(group);
+    }
+    public static ObservableList<Student> getStudentsByAverageAndSubject(
+            DataSourceChooser.DataSourceChoice dataSourceChoice,
+            Pair<Integer, Integer> range,
+            Optional<String> subject) throws Exception {
+        return dataSourceChoice.getType().equals(DataSourceChooser.DataSourceType.XML_FILE)
+                ? new XmlStudentRepository(dataSourceChoice)
+                .findByAverageScoreAndSubject(range.getKey(), range.getValue(), subject.get())
+                : new StudentRepository()
+                .findByAverageScoreAndSubject(range.getKey(), range.getValue(), subject.get());
     }
 
 }
