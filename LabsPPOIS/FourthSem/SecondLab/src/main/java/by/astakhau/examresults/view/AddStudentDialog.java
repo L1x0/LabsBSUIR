@@ -2,7 +2,7 @@ package by.astakhau.examresults.view;
 
 import by.astakhau.examresults.model.entity.Exam;
 import by.astakhau.examresults.model.entity.Student;
-import by.astakhau.examresults.util.Validator;
+import by.astakhau.examresults.model.service.Validator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -22,7 +22,7 @@ public class AddStudentDialog {
     public static Student getStudentDialog() {
         ObservableList<Student> students = FXCollections.observableArrayList();
         AtomicBoolean anyProblem = new AtomicBoolean(true);
-        // Первый диалог: основные данные
+
         Dialog<Pair<Pair<String, String>, Integer>> firstDialog = new Dialog<>();
         firstDialog.setTitle("Добавление студента");
         firstDialog.setHeaderText("Введите основные данные");
@@ -119,7 +119,6 @@ public class AddStudentDialog {
 
                         if (subject.isEmpty()) {
                             showErrorAlert("Название предмета не может быть пустым!");
-                            return null;
                         }
 
                         exams.add(new Exam(subject, score, null));
@@ -143,11 +142,10 @@ public class AddStudentDialog {
                 student.setFullName(nameGroup.getKey());
                 student.setStudentsGroup(nameGroup.getValue());
 
-                // Устанавливаем двустороннюю связь
                 for (Exam exam : exams) {
-                    exam.setStudent(student); // Устанавливаем ссылку на студента
+                    exam.setStudent(student);
                 }
-                student.setExams(exams); // Добавляем экзамены студенту
+                student.setExams(exams);
 
                 if (students.stream().anyMatch(s -> s.getFullName().equals(student.getFullName()))) {
                     showErrorAlert("Студент с таким ФИО уже существует!");
@@ -157,6 +155,9 @@ public class AddStudentDialog {
                 students.add(student);
             });
         });
+        if (students.isEmpty())
+            return null;
+
         return students.get(0);
     }
 

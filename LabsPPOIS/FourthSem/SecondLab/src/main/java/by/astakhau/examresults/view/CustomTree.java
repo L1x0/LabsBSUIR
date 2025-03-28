@@ -2,8 +2,8 @@ package by.astakhau.examresults.view;
 
 import by.astakhau.examresults.model.entity.Exam;
 import by.astakhau.examresults.model.entity.Student;
+import by.astakhau.examresults.model.service.DataService;
 import by.astakhau.examresults.model.service.DataSourceChooser;
-import by.astakhau.examresults.model.service.LoadData;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
@@ -120,7 +120,7 @@ public class CustomTree {
 
     private ObservableList<Student> loadStudents() {
         try {
-            return LoadData.loadStudents(dataSource);
+            return DataService.loadStudents(dataSource);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

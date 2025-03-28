@@ -1,4 +1,4 @@
-package by.astakhau.examresults.util;
+package by.astakhau.examresults.model.service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

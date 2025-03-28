@@ -1,8 +1,8 @@
 package by.astakhau.examresults.view;
 
 import by.astakhau.examresults.model.entity.Student;
+import by.astakhau.examresults.model.service.DataService;
 import by.astakhau.examresults.model.service.DataSourceChooser;
-import by.astakhau.examresults.model.service.LoadData;
 import by.astakhau.examresults.model.service.StudentRepository;
 import by.astakhau.examresults.model.service.XmlStudentRepository;
 import javafx.collections.FXCollections;
@@ -21,7 +21,7 @@ import java.util.Optional;
 
 public class ManipulationsDialog {
     public static void findDialog(Stage stage, DataSourceChooser.DataSourceChoice dataSourceChoice) throws Exception {
-        ObservableList<Student> students = LoadData.loadStudents(dataSourceChoice);
+        ObservableList<Student> students = DataService.loadStudents(dataSourceChoice);
 
 
         Pagination pagination = new Pagination();
@@ -29,6 +29,7 @@ public class ManipulationsDialog {
         Label countOfRecords = new Label();
         CustomTable table = null;
         List<String> groups;
+        ObservableList<Student> foundStudents;
         Pair<Integer, Integer> range;
         Optional<String> subject;
 
@@ -36,96 +37,86 @@ public class ManipulationsDialog {
             case "По группе":
                 Optional<String> group = choiceGroupDialog(dataSourceChoice).describeConstable();
 
-                if (group.isPresent()) {
-                    ObservableList<Student> foundStudents = students.filtered(s -> {
-                        return s.getStudentsGroup().equals(group.get());
-                    });
-                    table = new CustomTable(
-                            foundStudents,
-                            LoadData.loadExamCount(foundStudents),
-                            dataSourceChoice,
-                            pagination,
-                            pageSize,
-                            countOfRecords
-                            );
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Не получены данные");
-                    alert.showAndWait();
-
+                if (!checkExpressionWithGroup(group)) {
                     return;
                 }
+
+                foundStudents
+                        = students.filtered(s -> s.getStudentsGroup().equals(group.get()));
+                table = new CustomTable(
+                        foundStudents,
+                        DataService.loadExamCount(foundStudents),
+                        dataSourceChoice,
+                        pagination,
+                        pageSize,
+                        countOfRecords
+                );
+
                 break;
 
             case "По среднему баллу и предмету":
-                groups = LoadData.getAllGroups(dataSourceChoice);
+                groups = DataService.getAllGroups(dataSourceChoice);
                 subject =
-                        choiceSubjectDialog(groups, LoadData.getAllSubjects(dataSourceChoice, groups.get(0)), dataSourceChoice)
+                        choiceSubjectDialog(groups, DataService.getAllSubjects(dataSourceChoice, groups.get(0)), dataSourceChoice)
                                 .getValue()
                                 .describeConstable();
-                range = getRange();
-
-                if (subject.isPresent() && range.getKey() < range.getValue()) {
-                    ObservableList<Student> foundStudents
-                            = dataSourceChoice.getType().equals(DataSourceChooser.DataSourceType.XML_FILE)
-                            ? new XmlStudentRepository(dataSourceChoice)
-                            .findByAverageScoreAndSubject(range.getKey(), range.getValue(), subject.get())
-                            : new StudentRepository()
-                            .findByAverageScoreAndSubject(range.getKey(), range.getValue(), subject.get());
-                    table = new CustomTable(
-                            foundStudents,
-                            LoadData.loadExamCount(foundStudents),
-                            dataSourceChoice,
-                            pagination,
-                            pageSize,
-                            countOfRecords);
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Не получены данные");
-                    alert.showAndWait();
-
+                if (!checkExpressionWithGroup(subject)) {
                     return;
                 }
+
+                range = getRange();
+                if (!checkExpressionWithSubject(subject, range)) {
+                    return;
+                }
+
+
+                foundStudents
+                        = DataService.getStudentsByAverageAndSubject(dataSourceChoice, range, subject);
+                table = new CustomTable(
+                        foundStudents,
+                        DataService.loadExamCount(foundStudents),
+                        dataSourceChoice,
+                        pagination,
+                        pageSize,
+                        countOfRecords);
+
                 break;
             case "По баллу и предмету":
-                groups = LoadData.getAllGroups(dataSourceChoice);
+                groups = DataService.getAllGroups(dataSourceChoice);
                 subject =
-                        choiceSubjectDialog(groups, LoadData.getAllSubjects(dataSourceChoice, groups.get(0)), dataSourceChoice)
+                        choiceSubjectDialog(groups, DataService.getAllSubjects(dataSourceChoice, groups.get(0)), dataSourceChoice)
                                 .getValue()
                                 .describeConstable();
-                range = getRange();
-
-                if (subject.isPresent() && range.getKey() < range.getValue()) {
-                    ObservableList<Student> foundStudents
-                            = dataSourceChoice.getType().equals(DataSourceChooser.DataSourceType.XML_FILE)
-                            ? new XmlStudentRepository(dataSourceChoice)
-                            .findByScoreAndSubject(range.getKey(), range.getValue(), subject.get())
-                            : new StudentRepository()
-                            .findByScoreAndSubject(range.getKey(), range.getValue(), subject.get());
-                    table = new CustomTable(
-                            foundStudents,
-                            LoadData.loadExamCount(foundStudents),
-                            dataSourceChoice,
-                            pagination,
-                            pageSize,
-                            countOfRecords);
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Не получены данные");
-                    alert.showAndWait();
-
+                if (!checkExpressionWithGroup(subject)) {
                     return;
                 }
+
+                range = getRange();
+                if (!checkExpressionWithSubject(subject, range)) {
+                    return;
+                }
+
+
+                foundStudents
+                        = DataService.getStudentsByScoreAndSubject(dataSourceChoice, range, subject);
+                table = new CustomTable(
+                        foundStudents,
+                        DataService.loadExamCount(foundStudents),
+                        dataSourceChoice,
+                        pagination,
+                        pageSize,
+                        countOfRecords);
+
+                break;
         }
 
-        table.createTable();
-        VBox vbox = new VBox(pagination);
-        Scene scene = new Scene(vbox, 800, 400);
-        stage.setScene(scene);
-        stage.showAndWait();
+        if (table != null) {
+            table.createTable();
+            VBox vbox = new VBox(pagination);
+            Scene scene = new Scene(vbox, 800, 400);
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
     }
 
     private static String setupDialog(String message) {
@@ -135,8 +126,12 @@ public class ManipulationsDialog {
         choices.add("По баллу и предмету");
 
         ChoiceDialog<String> dialog = new ChoiceDialog<>("По группе", choices);
+
         dialog.setContentText(message);
+        dialog.setHeaderText(null);
+
         Optional<String> result = dialog.showAndWait();
+
 
         return result.orElse("");
     }
@@ -144,9 +139,9 @@ public class ManipulationsDialog {
     private static String choiceGroupDialog(DataSourceChooser.DataSourceChoice dataSourceChoice) throws Exception {
         List<String> choices;
 
-        choices = LoadData.getAllGroups(dataSourceChoice);
+        choices = DataService.getAllGroups(dataSourceChoice);
 
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("№ группы", choices);
+        ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
         dialog.setContentText("Выберете группу");
         Optional<String> result = dialog.showAndWait();
 
@@ -157,16 +152,14 @@ public class ManipulationsDialog {
             List<String> groups,
             List<String> subjects,
             DataSourceChooser.DataSourceChoice dataSourceChoice) {
-        // Создаем ComboBox для групп
         ComboBox<String> groupCombo = new ComboBox<>();
         groupCombo.setItems(FXCollections.observableArrayList(groups));
         groupCombo.getSelectionModel().select(groups.get(0));
 
-        // Создаем ComboBox для предметов
         ComboBox<String> subjectCombo = new ComboBox<>();
         subjectCombo.setItems(FXCollections.observableArrayList(subjects));
+        subjectCombo.getSelectionModel().select(subjects.get(0));
 
-        // Обновляем предметы при изменении группы
         groupCombo.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newGroup) -> {
             List<String> updatedSubjects = new ArrayList<>();
 
@@ -180,9 +173,9 @@ public class ManipulationsDialog {
                 updatedSubjects = new StudentRepository().findSubjectsByGroup(newGroup);
             }
             subjectCombo.setItems(FXCollections.observableArrayList(updatedSubjects));
+            subjectCombo.getSelectionModel().select(updatedSubjects.get(0));
         });
 
-        // Настраиваем layout
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
@@ -191,18 +184,16 @@ public class ManipulationsDialog {
         grid.add(new Label("Предмет:"), 0, 1);
         grid.add(subjectCombo, 1, 1);
 
-        // Создаем диалог
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("Выбор группы и предмета");
         dialog.getDialogPane().setContent(grid);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
-        // Преобразуем результат
         dialog.setResultConverter(buttonType -> {
             if (buttonType == ButtonType.OK) {
                 return new Pair<>(groupCombo.getSelectionModel().getSelectedItem(), subjectCombo.getSelectionModel().getSelectedItem());
             }
-            return null;
+            return new Pair<>("", "");
         });
 
         return dialog.showAndWait().orElse(null);
@@ -215,18 +206,15 @@ public class ManipulationsDialog {
         fromSlider.setValue(0);
         toSlider.setValue(10);
 
-        // Лейблы для отображения текущих значений
         Label fromValue = new Label("0");
         Label toValue = new Label("10");
 
-        // Обработчики изменений с валидацией границ
         fromSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             int currentFrom = (int) newVal.doubleValue();
             int currentTo = (int) toSlider.getValue();
 
-            // Если "от" >= "до", ограничиваем "до" минимально возможным (currentFrom + 1)
             if (currentFrom > currentTo) {
-                int newTo = Math.min(currentFrom + 1, 10); // Не больше 10
+                int newTo = Math.min(currentFrom + 1, 10);
                 toSlider.setValue(newTo);
             }
 
@@ -237,9 +225,8 @@ public class ManipulationsDialog {
             int currentTo = (int) newVal.doubleValue();
             int currentFrom = (int) fromSlider.getValue();
 
-            // Если "до" <= "от", ограничиваем "от" максимально возможным (currentTo - 1)
             if (currentTo < currentFrom) {
-                int newFrom = Math.max(currentTo - 1, 0); // Не меньше 0
+                int newFrom = Math.max(currentTo - 1, 0);
                 fromSlider.setValue(newFrom);
             }
 
@@ -259,13 +246,11 @@ public class ManipulationsDialog {
         grid.add(toSlider, 1, 1);
         grid.add(toValue, 2, 1);
 
-        // Создаем диалоговое окно
         Dialog<Pair<Integer, Integer>> dialog = new Dialog<>();
         dialog.setTitle("Выбор диапазона");
         dialog.getDialogPane().setContent(grid);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
-        // Преобразуем результат
         dialog.setResultConverter(buttonType -> {
             if (buttonType == ButtonType.OK) {
                 return new Pair<>(
@@ -273,7 +258,7 @@ public class ManipulationsDialog {
                         (int) toSlider.getValue()
                 );
             }
-            return null;
+            return new Pair<>(-1, -1);
         });
 
         return dialog.showAndWait().orElse(null);
@@ -300,59 +285,56 @@ public class ManipulationsDialog {
 
                 Optional<String> group = choiceGroupDialog(dataSourceChoice).describeConstable();
 
-                if (group.isPresent()) {
-                    alert = getDeleteByGroupAlert(dataSourceChoice, group.get());
-                } else {
-                    alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText("Не получены данные");
-                    alert.showAndWait();
-
+                if (!checkExpressionWithGroup(group)) {
                     return;
                 }
 
+                alert = getDeleteByGroupAlert(dataSourceChoice, group.get());
                 alert.showAndWait();
                 break;
+
             case "По среднему баллу и предмету":
-                groups = LoadData.getAllGroups(dataSourceChoice);
+                groups = DataService.getAllGroups(dataSourceChoice);
                 subject =
-                        choiceSubjectDialog(groups, LoadData.getAllSubjects(dataSourceChoice, groups.get(0)), dataSourceChoice)
+                        choiceSubjectDialog(groups, DataService.getAllSubjects(dataSourceChoice, groups.get(0)), dataSourceChoice)
                                 .getValue()
                                 .describeConstable();
-                range = getRange();
 
-                if (subject.isPresent() && range.getKey() <= range.getValue()) {
-                    alert = getDeleteByAveregeAndSubjectAlert(dataSourceChoice, range, subject.get());
-
-                } else {
-                    alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Не получены данные");
-                    alert.showAndWait();
-
+                if (!checkExpressionWithSubject(subject)) {
                     return;
                 }
+
+                range = getRange();
+
+                if (!checkExpressionWithSubject(subject, range)) {
+                    return;
+                }
+
+
+                alert = getDeleteByAveregeAndSubjectAlert(dataSourceChoice, range, subject.get());
                 alert.showAndWait();
 
                 break;
+
             case "По баллу и предмету":
-                groups = LoadData.getAllGroups(dataSourceChoice);
+                groups = DataService.getAllGroups(dataSourceChoice);
                 subject =
-                        choiceSubjectDialog(groups, LoadData.getAllSubjects(dataSourceChoice, groups.get(0)), dataSourceChoice)
+                        choiceSubjectDialog(groups, DataService.getAllSubjects(dataSourceChoice, groups.get(0)), dataSourceChoice)
                                 .getValue()
                                 .describeConstable();
-                range = getRange();
 
-                if (subject.isPresent() && range.getKey() <= range.getValue()) {
-                    alert = getDeleteByScoreAndSubjectAlert(dataSourceChoice, range, subject.get());
-
-                } else {
-                    alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Не получены данные");
-                    alert.showAndWait();
-
+                if (!checkExpressionWithSubject(subject)) {
                     return;
                 }
+
+                range = getRange();
+
+                if (!checkExpressionWithSubject(subject, range)) {
+                    return;
+                }
+
+
+                alert = getDeleteByScoreAndSubjectAlert(dataSourceChoice, range, subject.get());
                 alert.showAndWait();
 
                 break;
@@ -365,14 +347,7 @@ public class ManipulationsDialog {
     ) throws Exception {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
-
-        if (dataSourceChoice.getType().equals(DataSourceChooser.DataSourceType.XML_FILE)) {
-            alert.setContentText("Количество удалённых записей: " +
-                    new XmlStudentRepository(dataSourceChoice).deleteByGroup(group, dataSourceChoice));
-        } else {
-            alert.setContentText("Количество удалённых записей: " +
-                    new StudentRepository().deleteByGroup(group));
-        }
+        alert.setContentText("Количество удалённых записей: " + DataService.deleteByGroup(dataSourceChoice, group));
 
         return alert;
     }
@@ -384,15 +359,8 @@ public class ManipulationsDialog {
     ) throws Exception {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
-
-        if (dataSourceChoice.getType().equals(DataSourceChooser.DataSourceType.XML_FILE)) {
-            alert.setContentText("Количество удалённых записей: " +
-                    new XmlStudentRepository(dataSourceChoice)
-                            .deleteByAverageScoreAndSubject(range.getKey(), range.getValue(), subject, dataSourceChoice));
-        } else {
-            alert.setContentText("Количество удалённых записей: " +
-                    new StudentRepository().deleteByAverageScoreAndSubject(range.getKey(), range.getValue(), subject));
-        }
+        alert.setContentText("Количество удалённых записей: " +
+                DataService.deleteByAverageAndSubject(dataSourceChoice, range, subject));
 
         return alert;
     }
@@ -405,15 +373,21 @@ public class ManipulationsDialog {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
 
-        if (dataSourceChoice.getType().equals(DataSourceChooser.DataSourceType.XML_FILE)) {
-            alert.setContentText("Количество удалённых записей: " +
-                    new XmlStudentRepository(dataSourceChoice)
-                            .deleteByScoreAndSubject(range.getKey(), range.getValue(), subject, dataSourceChoice));
-        } else {
-            alert.setContentText("Количество удалённых записей: " +
-                    new StudentRepository().deleteByScoreAndSubject(range.getKey(), range.getValue(), subject));
-        }
+        alert.setContentText("Количество удалённых записей: " +
+                DataService.deleteByScoreAndSubject(dataSourceChoice, range, subject));
 
         return alert;
+    }
+
+    private static boolean checkExpressionWithSubject(Optional<String> subject, Pair<Integer, Integer> range) {
+        return subject.isPresent() && !subject.get().isEmpty() && !range.getKey().equals(-1);
+    }
+
+    private static boolean checkExpressionWithGroup(Optional<String> group) {
+        return group.isPresent() && !group.get().isEmpty();
+    }
+
+    private static boolean checkExpressionWithSubject(Optional<String> subject) {
+        return subject.isPresent() && !subject.get().isEmpty();
     }
 }

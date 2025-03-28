@@ -13,17 +13,15 @@ import java.util.Optional;
 
 public class DataSourceChooser {
 
-    // Тип источника данных
     public enum DataSourceType {
         LOCAL_DB,
         XML_FILE
     }
 
-    // Результат выбора источника данных
     @Setter
     public static class DataSourceChoice {
         private DataSourceType type;
-        @Getter private File file; // Если выбран XML_FILE, содержит выбранный файл; иначе null
+        @Getter private File file;
 
         public DataSourceChoice(DataSourceType type, File file) {
             this.type = type;
@@ -38,7 +36,6 @@ public class DataSourceChooser {
 
 
     public static DataSourceChoice chooseDataSource(Stage stage) {
-        // Диалог выбора с вариантами "Local DB" и "XML File"
         ChoiceDialog<String> choiceDialog =
                 new ChoiceDialog<>("Локальная база данных", List.of("Локальная база данных", "XML Файл"));
         choiceDialog.setTitle("Выбор источника данных");
@@ -49,17 +46,14 @@ public class DataSourceChooser {
         if (result.isPresent()) {
             String selected = result.get();
             if (selected.equals("Локальная база данных")) {
-                // Пользователь выбрал локальную базу данных
                 return new DataSourceChoice(DataSourceType.LOCAL_DB, null);
             } else if (selected.equals("XML Файл")) {
-                // Пользователь выбрал XML-файл, открываем FileChooser
                 File xmlFile = getXmlFile(stage);
                 if (xmlFile != null) {
                     return new DataSourceChoice(DataSourceType.XML_FILE, xmlFile);
                 }
             }
         }
-        // Если пользователь отменил выбор или не выбрал файл, возвращаем null
         return null;
     }
 

@@ -43,12 +43,14 @@ public class CustomTable {
     }
 
     private void setupPageSize() {
-        pageSize.setItems(FXCollections.observableArrayList(20,25,30));
+        pageSize.setItems(FXCollections.observableArrayList(20, 25, 30));
         pageSize.setValue(ROWS_PER_PAGE);
 
         pageSize.getSelectionModel().selectedItemProperty().addListener(
                 (obs, oldVal, newVal) -> {
-                    ROWS_PER_PAGE = newVal;
+                    if (newVal != null)
+                        ROWS_PER_PAGE = newVal;
+
                     setupPagination();
                 }
         );
@@ -69,7 +71,6 @@ public class CustomTable {
     }
 
     private void createColumns(TableView<Student> tableView) {
-        // Основные колонки
         TableColumn<Student, String> fioCol = new TableColumn<>("ФИО студента");
         fioCol.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getFullName()));
@@ -78,10 +79,8 @@ public class CustomTable {
         groupCol.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getStudentsGroup()));
 
-        // Общая колонка для экзаменов
         TableColumn<Student, Void> examsCol = new TableColumn<>("Экзамены");
 
-        // Создаем подколонки для каждого экзамена
         for (int i = 0; i < maxExams; i++) {
             TableColumn<Student, Void> examNumberCol = new TableColumn<>(String.valueOf(i + 1));
 

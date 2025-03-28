@@ -6,7 +6,6 @@
 <?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="by.astakhau.examresults.controller.DataManagerController">
-    <!-- Верхняя панель с кнопками -->
     <top>
         <ToolBar>
             <ToggleButton fx:id="viewChangeToggle" text="Древовидный вывод"/>
@@ -15,11 +14,9 @@
             <Button onAction="#handleSearch" text="Поиск"/>
             <Button onAction="#handleLoad" text="Загрузить"/>
             <Button onAction="#handleTurnDataSource" text="Переключение ресурса данных"/>
-            <!-- Другие кнопки, например, для импорта/экспорта -->
         </ToolBar>
     </top>
 
-    <!-- Центр: область с пагинацией, внутри которой будет TableView для отображения данных -->
     <center>
         <StackPane fx:id="contentPane">
             <VBox fx:id="tableView" spacing="10">

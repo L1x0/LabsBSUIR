@@ -10,7 +10,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Optional;
 
-public class LoadData {
+public class DataService {
     public static ObservableList<Student> loadStudents(DataSourceChooser.DataSourceChoice dataSourceType) throws Exception {
 
         if (dataSourceType.getType().equals(DataSourceChooser.DataSourceType.XML_FILE)) {
@@ -45,15 +45,60 @@ public class LoadData {
                 ? new XmlStudentRepository(dataSourceChoice).findSubjectsByGroup(group)
                 : new StudentRepository().findSubjectsByGroup(group);
     }
+
     public static ObservableList<Student> getStudentsByAverageAndSubject(
             DataSourceChooser.DataSourceChoice dataSourceChoice,
             Pair<Integer, Integer> range,
             Optional<String> subject) throws Exception {
+
         return dataSourceChoice.getType().equals(DataSourceChooser.DataSourceType.XML_FILE)
                 ? new XmlStudentRepository(dataSourceChoice)
                 .findByAverageScoreAndSubject(range.getKey(), range.getValue(), subject.get())
+
                 : new StudentRepository()
                 .findByAverageScoreAndSubject(range.getKey(), range.getValue(), subject.get());
     }
 
+    public static ObservableList<Student> getStudentsByScoreAndSubject(
+            DataSourceChooser.DataSourceChoice dataSourceChoice,
+            Pair<Integer, Integer> range,
+            Optional<String> subject) throws Exception {
+
+        return dataSourceChoice.getType().equals(DataSourceChooser.DataSourceType.XML_FILE)
+                ? new XmlStudentRepository(dataSourceChoice)
+                .findByScoreAndSubject(range.getKey(), range.getValue(), subject.get())
+
+                : new StudentRepository()
+                .findByScoreAndSubject(range.getKey(), range.getValue(), subject.get());
+    }
+
+    public static int deleteByGroup(DataSourceChooser.DataSourceChoice dataSourceChoice, String group) throws Exception {
+        return dataSourceChoice.getType().equals(DataSourceChooser.DataSourceType.XML_FILE)
+                ? new XmlStudentRepository(dataSourceChoice).deleteByGroup(group, dataSourceChoice)
+                : new StudentRepository().deleteByGroup(group);
+    }
+
+    public static int deleteByAverageAndSubject(DataSourceChooser.DataSourceChoice dataSourceChoice,
+                                                Pair<Integer, Integer> range,
+                                                String subject) throws Exception {
+
+        return dataSourceChoice.getType().equals(DataSourceChooser.DataSourceType.XML_FILE)
+                ? new XmlStudentRepository(dataSourceChoice)
+                .deleteByAverageScoreAndSubject(range.getKey(), range.getValue(), subject, dataSourceChoice)
+
+                : new StudentRepository()
+                .deleteByAverageScoreAndSubject(range.getKey(), range.getValue(), subject);
+    }
+
+    public static int deleteByScoreAndSubject(DataSourceChooser.DataSourceChoice dataSourceChoice,
+                                                Pair<Integer, Integer> range,
+                                                String subject) throws Exception {
+
+        return dataSourceChoice.getType().equals(DataSourceChooser.DataSourceType.XML_FILE)
+                ? new XmlStudentRepository(dataSourceChoice)
+                .deleteByScoreAndSubject(range.getKey(), range.getValue(), subject, dataSourceChoice)
+
+                : new StudentRepository()
+                .deleteByScoreAndSubject(range.getKey(), range.getValue(), subject);
+    }
 }

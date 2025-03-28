@@ -1,4 +1,4 @@
-package by.astakhau.examresults.util;
+package by.astakhau.examresults.model.service;
 
 import java.util.regex.Pattern;
 

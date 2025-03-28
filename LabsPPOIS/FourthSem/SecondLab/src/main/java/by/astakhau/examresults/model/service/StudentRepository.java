@@ -1,7 +1,6 @@
 package by.astakhau.examresults.model.service;
 
 import by.astakhau.examresults.model.entity.Student;
-import by.astakhau.examresults.util.JPAUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -11,7 +10,6 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class StudentRepository {
-    // Создание (Create)
     public void addStudent(Student student) {
         EntityManager em = JPAUtil.getEntityManager();
         try {
@@ -42,7 +40,6 @@ public class StudentRepository {
         }
     }
 
-    // Чтение (Read) - получение всех записей
     public List<Student> getAllStudents() {
         EntityManager em = JPAUtil.getEntityManager();
         try {
@@ -53,7 +50,6 @@ public class StudentRepository {
         }
     }
 
-    // Обновление (Update)
     public void updateStudent(Student student) {
         EntityManager em = JPAUtil.getEntityManager();
         try {
@@ -68,7 +64,6 @@ public class StudentRepository {
         }
     }
 
-    // Удаление (Delete)
     public void deleteStudent(Long id) {
         EntityManager em = JPAUtil.getEntityManager();
         try {
@@ -87,7 +82,6 @@ public class StudentRepository {
 
     }
 
-    // 1. Поиск по среднему баллу и предмету
     public ObservableList<Student> findByAverageScoreAndSubject(double lower, double upper, String subject) {
         EntityManager em = JPAUtil.getEntityManager();
         ObservableList<Student> result = FXCollections.observableArrayList(em.createQuery(
@@ -102,7 +96,6 @@ public class StudentRepository {
         return result;
     }
 
-    // 2. Поиск по номеру группы
     public List<Student> findByStudentsGroup(String group) {
         EntityManager em = JPAUtil.getEntityManager();
         return em.createQuery(
@@ -111,7 +104,6 @@ public class StudentRepository {
                 .getResultList();
     }
 
-    // 3. Поиск по баллу и предмету
     public ObservableList<Student> findByScoreAndSubject(double lower, double upper, String subject) {
         EntityManager em = JPAUtil.getEntityManager();
         ObservableList<Student> result = FXCollections.observableArrayList(em.createQuery(
@@ -124,7 +116,6 @@ public class StudentRepository {
         return result;
     }
 
-    // Методы для получения списков
     public List<String> findAllGroups() {
         EntityManager em = JPAUtil.getEntityManager();
         return em.createQuery(
@@ -141,8 +132,6 @@ public class StudentRepository {
                 .getResultList();
     }
 
-    // Методы удаления
-    // Методы удаления с возвратом количества удаленных записей
     public int deleteByAverageScoreAndSubject(double lower, double upper, String subject) {
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction transaction = em.getTransaction();

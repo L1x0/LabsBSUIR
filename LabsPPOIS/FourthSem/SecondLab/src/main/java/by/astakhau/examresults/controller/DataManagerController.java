@@ -1,8 +1,8 @@
 package by.astakhau.examresults.controller;
 
 import by.astakhau.examresults.model.entity.Student;
+import by.astakhau.examresults.model.service.DataService;
 import by.astakhau.examresults.model.service.DataSourceChooser;
-import by.astakhau.examresults.model.service.LoadData;
 import by.astakhau.examresults.model.service.StudentRepository;
 import by.astakhau.examresults.model.service.XmlStudentRepository;
 import by.astakhau.examresults.view.AddStudentDialog;
@@ -15,6 +15,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 public class DataManagerController {
 
@@ -58,9 +60,12 @@ public class DataManagerController {
 
             viewChangeToggle.setSelected(false);
 
-            dataSourceType = DataSourceChooser.chooseDataSource(new Stage());
-            students = LoadData.loadStudents(dataSourceType);
-            maxExams = LoadData.loadExamCount(students);
+            DataSourceChooser.DataSourceChoice tempDataSourceType = DataSourceChooser.chooseDataSource(new Stage());
+            if (tempDataSourceType != null) {
+                dataSourceType = tempDataSourceType;
+                students = DataService.loadStudents(dataSourceType);
+                maxExams = DataService.loadExamCount(students);
+            }
 
             table = new CustomTable(students, maxExams, dataSourceType, pagination, pageSize, countOfRecords);
             table.createTable();
@@ -76,6 +81,9 @@ public class DataManagerController {
     private void handleAddStudent() {
         try {
             Student student = AddStudentDialog.getStudentDialog();
+            if (student == null) {
+                return;
+            }
             students.add(student);
 
             if (dataSourceType.getType().equals(DataSourceChooser.DataSourceType.XML_FILE)) {
@@ -84,8 +92,8 @@ public class DataManagerController {
                 new StudentRepository().addStudent(student);
             }
 
-            students = LoadData.loadStudents(dataSourceType);
-            maxExams = LoadData.loadExamCount(students);
+            students = DataService.loadStudents(dataSourceType);
+            maxExams = DataService.loadExamCount(students);
 
             table.setStudents(students);
             table.setMaxExams(maxExams);
@@ -102,8 +110,8 @@ public class DataManagerController {
         try {
             ManipulationsDialog.deleteDialog(dataSourceType);
 
-            students = LoadData.loadStudents(dataSourceType);
-            maxExams = LoadData.loadExamCount(students);
+            students = DataService.loadStudents(dataSourceType);
+            maxExams = DataService.loadExamCount(students);
 
             table.setStudents(students);
             table.setMaxExams(maxExams);
@@ -138,13 +146,16 @@ public class DataManagerController {
     private void handleLoad() {
         if (dataSourceType.getType().equals(DataSourceChooser.DataSourceType.XML_FILE)) {
             try {
-                dataSourceType.setFile(LoadData.loadNewFile());
-                students = LoadData.loadStudents(dataSourceType);
-                maxExams = LoadData.loadExamCount(students);
+                File file = DataService.loadNewFile();
+                if (file != null) {
+                    dataSourceType.setFile(file);
+                    students = DataService.loadStudents(dataSourceType);
+                    maxExams = DataService.loadExamCount(students);
 
-                table.setStudents(students);
-                table.setMaxExams(maxExams);
-                table.setDataSourceType(dataSourceType);
+                    table.setStudents(students);
+                    table.setMaxExams(maxExams);
+                    table.setDataSourceType(dataSourceType);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

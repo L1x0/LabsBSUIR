@@ -4,6 +4,7 @@ import by.astakhau.examresults.model.entity.Student;
 import by.astakhau.examresults.model.entity.Exam;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,11 +14,10 @@ public class XmlStudentRepository {
     DataSourceChooser.DataSourceChoice dataSource;
 
     public XmlStudentRepository(DataSourceChooser.DataSourceChoice dataSourceChoice) throws Exception {
-        students = LoadData.loadStudents(dataSourceChoice);
+        students = DataService.loadStudents(dataSourceChoice);
         this.dataSource = dataSourceChoice;
     }
 
-    // Создание (Create)
     public void addStudent(Student student) throws Exception {
         DomStudentWriter domStudentWriter = new DomStudentWriter();
         domStudentWriter.writeStudentsToSourceFile(List.of(student), dataSource.getFile());
@@ -28,19 +28,25 @@ public class XmlStudentRepository {
         domStudentWriter.writeStudentsToSourceFile(newStudents.stream().toList(), dataSource.getFile());
     }
 
-    // Чтение (Read)
     public ObservableList<Student> getAllStudents() {
+        SaxStudentReader saxStudentReader = new SaxStudentReader();
+        try {
+            ObservableList<Student> foundStudents =
+                    FXCollections.observableArrayList(saxStudentReader.readStudents(dataSource.getFile()));
+            students.addAll(foundStudents);
+        } catch (Exception e) {
+            System.out.println("не найден файл для чтения");
+            return students;
+        }
         return students;
     }
 
-    // Удаление (Delete)
     public ObservableList<Student> deleteStudent(Long id) {
         ObservableList<Student> removed = students.filtered(s -> s.getId().equals(id));
         students.removeAll(removed);
         return removed;
     }
 
-    // Поиск по среднему баллу и предмету
     public ObservableList<Student> findByAverageScoreAndSubject(
             int lower,
             int upper,
@@ -56,7 +62,6 @@ public class XmlStudentRepository {
         });
     }
 
-    // Поиск по номеру группы
     public ObservableList<Student> findByStudentsGroup(
             ObservableList<Student> source,
             String group
@@ -64,7 +69,6 @@ public class XmlStudentRepository {
         return source.filtered(s -> s.getStudentsGroup().equals(group));
     }
 
-    // Поиск по баллу и предмету
     public ObservableList<Student> findByScoreAndSubject(
             int lower,
             int upper,
@@ -78,7 +82,6 @@ public class XmlStudentRepository {
         );
     }
 
-    // Методы для получения списков
     public ObservableList<String> findAllGroups() {
         return getAllStudents().stream()
                 .map(Student::getStudentsGroup)
@@ -97,7 +100,6 @@ public class XmlStudentRepository {
                 .collect(Collectors.toCollection(FXCollections::observableArrayList));
     }
 
-    // Методы удаления с возвратом удаленных элементов
     public int deleteByAverageScoreAndSubject(
             int lower,
             int upper,

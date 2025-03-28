@@ -18,47 +18,33 @@ import java.util.List;
 
 public class DomStudentWriter {
 
-    /**
-     * Записывает список студентов в XML-файл, перезаписывая исходный файл.
-     * @param students Список студентов для записи.
-     * @param sourceFile Исходный файл, который будет перезаписан.
-     * @throws Exception Если произошла ошибка при записи.
-     */
     public void writeStudentsToSourceFile(List<Student> students, File sourceFile) throws Exception {
-        // Проверка существования файла
         if (!sourceFile.exists()) {
             throw new IllegalArgumentException("Файл не существует: " + sourceFile.getPath());
         }
 
-        // Создаем временный файл для безопасной записи
         File tempFile = File.createTempFile("temp_", ".xml", sourceFile.getParentFile());
 
         try {
-            // Создаем DOM-документ
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
             Document doc = docBuilder.newDocument();
 
-            // Корневой элемент
             Element rootElement = doc.createElement("students");
             doc.appendChild(rootElement);
 
-            // Заполняем структуру
             for (Student student : students) {
                 Element studentElement = createStudentElement(doc, student);
                 rootElement.appendChild(studentElement);
             }
 
-            // Записываем во временный файл
             writeDocumentToFile(doc, tempFile);
 
-            // Заменяем исходный файл временным
             if (!sourceFile.delete() || !tempFile.renameTo(sourceFile)) {
                 throw new IOException("Не удалось перезаписать исходный файл");
             }
 
         } finally {
-            // Удаляем временный файл в случае ошибки
             if (tempFile.exists()) {
                 tempFile.delete();
             }

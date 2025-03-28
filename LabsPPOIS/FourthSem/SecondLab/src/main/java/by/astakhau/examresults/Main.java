@@ -1,10 +1,5 @@
 package by.astakhau.examresults;
 
-import by.astakhau.examresults.model.entity.Exam;
-import by.astakhau.examresults.model.entity.Student;
-import by.astakhau.examresults.model.service.StudentRepository;
-import by.astakhau.examresults.util.JPAUtil;
-import com.github.javafaker.Faker;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,9 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Random;
 
 public class Main extends Application {
     @Override
