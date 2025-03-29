@@ -57,6 +57,10 @@ public class DataSourceChooser {
         return null;
     }
 
+    public static DataSourceChoice chooseDataSource(DataSourceType type) {
+        return new DataSourceChoice(type, null);
+    }
+
     public static File getXmlFile(Stage stage) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Выберите XML-файл для загрузки");
