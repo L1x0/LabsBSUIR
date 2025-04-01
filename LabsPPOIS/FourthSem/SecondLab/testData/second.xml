@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<students>
+    <student>
+        <fullName>Королев Максим</fullName>
+        <studentsGroup>321703</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Логика</subjectName>
+                <score>6</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Хохлов Эдуард</fullName>
+        <studentsGroup>321701</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Физика</subjectName>
+                <score>5</score>
+            </exam>
+            <exam>
+                <subjectName>Русский язык</subjectName>
+                <score>7</score>
+            </exam>
+            <exam>
+                <subjectName>Физика</subjectName>
+                <score>6</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Макар Александрович Лыткин</fullName>
+        <studentsGroup>321704</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Русский язык</subjectName>
+                <score>4</score>
+            </exam>
+            <exam>
+                <subjectName>Английский язык</subjectName>
+                <score>7</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Варвара Сафонова</fullName>
+        <studentsGroup>321701</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Математический анализ</subjectName>
+                <score>2</score>
+            </exam>
+            <exam>
+                <subjectName>Прыжки в длину</subjectName>
+                <score>8</score>
+            </exam>
+            <exam>
+                <subjectName>Физика</subjectName>
+                <score>8</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Максим Витальевич Капустин</fullName>
+        <studentsGroup>321704</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Математический анализ</subjectName>
+                <score>9</score>
+            </exam>
+            <exam>
+                <subjectName>Химия</subjectName>
+                <score>9</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Ширяева Анна</fullName>
+        <studentsGroup>321705</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Физика</subjectName>
+                <score>1</score>
+            </exam>
+            <exam>
+                <subjectName>Философия</subjectName>
+                <score>1</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Кошелева Татьяна</fullName>
+        <studentsGroup>321702</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Физика</subjectName>
+                <score>8</score>
+            </exam>
+            <exam>
+                <subjectName>Математический анализ</subjectName>
+                <score>3</score>
+            </exam>
+            <exam>
+                <subjectName>Русский язык</subjectName>
+                <score>9</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Юрий Альбертович Романов</fullName>
+        <studentsGroup>321703</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Химия</subjectName>
+                <score>2</score>
+            </exam>
+            <exam>
+                <subjectName>Химия</subjectName>
+                <score>4</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Степанова Антонина Вадимовна</fullName>
+        <studentsGroup>321702</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Философия</subjectName>
+                <score>3</score>
+            </exam>
+            <exam>
+                <subjectName>Физика</subjectName>
+                <score>3</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Лебедев Степан</fullName>
+        <studentsGroup>321703</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Логика</subjectName>
+                <score>9</score>
+            </exam>
+            <exam>
+                <subjectName>Математика</subjectName>
+                <score>4</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Якушев Валерий</fullName>
+        <studentsGroup>321703</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Философия</subjectName>
+                <score>1</score>
+            </exam>
+            <exam>
+                <subjectName>Русский язык</subjectName>
+                <score>5</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Селезнева Зинаида</fullName>
+        <studentsGroup>321705</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Русский язык</subjectName>
+                <score>7</score>
+            </exam>
+            <exam>
+                <subjectName>Гимнастика</subjectName>
+                <score>8</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Дементьев Арсений Романович</fullName>
+        <studentsGroup>321705</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Математика</subjectName>
+                <score>9</score>
+            </exam>
+            <exam>
+                <subjectName>Логика</subjectName>
+                <score>3</score>
+            </exam>
+            <exam>
+                <subjectName>Прыжки в длину</subjectName>
+                <score>8</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Зыков Григорий</fullName>
+        <studentsGroup>321705</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Математический анализ</subjectName>
+                <score>3</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Субботин Максим</fullName>
+        <studentsGroup>321705</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Химия</subjectName>
+                <score>5</score>
+            </exam>
+            <exam>
+                <subjectName>Математический анализ</subjectName>
+                <score>7</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Людмила Викторовна Орлова</fullName>
+        <studentsGroup>321704</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Английский язык</subjectName>
+                <score>7</score>
+            </exam>
+            <exam>
+                <subjectName>Русский язык</subjectName>
+                <score>7</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Валерий Дмитриевич Носков</fullName>
+        <studentsGroup>321703</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Философия</subjectName>
+                <score>5</score>
+            </exam>
+            <exam>
+                <subjectName>Математический анализ</subjectName>
+                <score>8</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Уваров Иван</fullName>
+        <studentsGroup>321703</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Математика</subjectName>
+                <score>5</score>
+            </exam>
+            <exam>
+                <subjectName>Английский язык</subjectName>
+                <score>8</score>
+            </exam>
+            <exam>
+                <subjectName>Философия</subjectName>
+                <score>8</score>
+            </exam>
+            <exam>
+                <subjectName>Логика</subjectName>
+                <score>5</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Антонова Ангелина Романовна</fullName>
+        <studentsGroup>321703</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Английский язык</subjectName>
+                <score>8</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Кузнецова Юлия</fullName>
+        <studentsGroup>321701</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Прыжки в длину</subjectName>
+                <score>6</score>
+            </exam>
+            <exam>
+                <subjectName>Логика</subjectName>
+                <score>4</score>
+            </exam>
+            <exam>
+                <subjectName>Физика</subjectName>
+                <score>7</score>
+            </exam>
+            <exam>
+                <subjectName>Русский язык</subjectName>
+                <score>8</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Маслов Игнатий Александрович</fullName>
+        <studentsGroup>321701</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Прыжки в длину</subjectName>
+                <score>3</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Виталий Буров</fullName>
+        <studentsGroup>321702</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Логика</subjectName>
+                <score>5</score>
+            </exam>
+            <exam>
+                <subjectName>Математический анализ</subjectName>
+                <score>4</score>
+            </exam>
+            <exam>
+                <subjectName>Логика</subjectName>
+                <score>3</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Михаил Владимиров</fullName>
+        <studentsGroup>321702</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Химия</subjectName>
+                <score>1</score>
+            </exam>
+            <exam>
+                <subjectName>Прыжки в длину</subjectName>
+                <score>4</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Александр Трофимов</fullName>
+        <studentsGroup>321701</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Математический анализ</subjectName>
+                <score>1</score>
+            </exam>
+            <exam>
+                <subjectName>Математика</subjectName>
+                <score>4</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Илья Лобанов</fullName>
+        <studentsGroup>321705</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Прыжки в длину</subjectName>
+                <score>3</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Егор Анатольевич Корнилов</fullName>
+        <studentsGroup>321702</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Химия</subjectName>
+                <score>9</score>
+            </exam>
+            <exam>
+                <subjectName>Математика</subjectName>
+                <score>1</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Суханова Римма Юрьевна</fullName>
+        <studentsGroup>321701</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Философия</subjectName>
+                <score>4</score>
+            </exam>
+            <exam>
+                <subjectName>Математика</subjectName>
+                <score>3</score>
+            </exam>
+            <exam>
+                <subjectName>Математика</subjectName>
+                <score>1</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Колобова Алина</fullName>
+        <studentsGroup>321704</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Прыжки в длину</subjectName>
+                <score>7</score>
+            </exam>
+            <exam>
+                <subjectName>Прыжки в длину</subjectName>
+                <score>8</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Орехов Роман Валерьевич</fullName>
+        <studentsGroup>321705</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Математика</subjectName>
+                <score>8</score>
+            </exam>
+            <exam>
+                <subjectName>Философия</subjectName>
+                <score>8</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Авдеева Василиса</fullName>
+        <studentsGroup>321705</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Философия</subjectName>
+                <score>8</score>
+            </exam>
+            <exam>
+                <subjectName>Английский язык</subjectName>
+                <score>3</score>
+            </exam>
+            <exam>
+                <subjectName>Логика</subjectName>
+                <score>6</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Сергей Евгеньевич Горбачев</fullName>
+        <studentsGroup>321705</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Математический анализ</subjectName>
+                <score>8</score>
+            </exam>
+            <exam>
+                <subjectName>Математика</subjectName>
+                <score>2</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Никифоров Семён</fullName>
+        <studentsGroup>321703</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Математический анализ</subjectName>
+                <score>9</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Беляев Антон Валентинович</fullName>
+        <studentsGroup>321703</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Прыжки в длину</subjectName>
+                <score>1</score>
+            </exam>
+            <exam>
+                <subjectName>Гимнастика</subjectName>
+                <score>8</score>
+            </exam>
+            <exam>
+                <subjectName>Русский язык</subjectName>
+                <score>4</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Носкова Оксана</fullName>
+        <studentsGroup>321702</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Русский язык</subjectName>
+                <score>7</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Ирина Семёновна Макарова</fullName>
+        <studentsGroup>321705</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Философия</subjectName>
+                <score>5</score>
+            </exam>
+            <exam>
+                <subjectName>Математика</subjectName>
+                <score>9</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Анфиса Эдуардовна Антонова</fullName>
+        <studentsGroup>321704</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Математика</subjectName>
+                <score>2</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Варвара Никифорова</fullName>
+        <studentsGroup>321701</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Химия</subjectName>
+                <score>2</score>
+            </exam>
+            <exam>
+                <subjectName>Прыжки в длину</subjectName>
+                <score>6</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Белоусова Римма</fullName>
+        <studentsGroup>321704</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Прыжки в длину</subjectName>
+                <score>9</score>
+            </exam>
+            <exam>
+                <subjectName>Математический анализ</subjectName>
+                <score>6</score>
+            </exam>
+            <exam>
+                <subjectName>Прыжки в длину</subjectName>
+                <score>1</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Сазонов Алексей Ильич</fullName>
+        <studentsGroup>321705</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Физика</subjectName>
+                <score>9</score>
+            </exam>
+            <exam>
+                <subjectName>Английский язык</subjectName>
+                <score>5</score>
+            </exam>
+            <exam>
+                <subjectName>Математический анализ</subjectName>
+                <score>5</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Александр Семенов</fullName>
+        <studentsGroup>321703</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Химия</subjectName>
+                <score>1</score>
+            </exam>
+            <exam>
+                <subjectName>Гимнастика</subjectName>
+                <score>3</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Ангелина Носова</fullName>
+        <studentsGroup>321705</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Английский язык</subjectName>
+                <score>7</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Данилов Виталий Лукич</fullName>
+        <studentsGroup>321703</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Логика</subjectName>
+                <score>8</score>
+            </exam>
+            <exam>
+                <subjectName>Физика</subjectName>
+                <score>7</score>
+            </exam>
+            <exam>
+                <subjectName>Гимнастика</subjectName>
+                <score>2</score>
+            </exam>
+            <exam>
+                <subjectName>Физика</subjectName>
+                <score>1</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Емельянова Кира</fullName>
+        <studentsGroup>321701</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Философия</subjectName>
+                <score>2</score>
+            </exam>
+            <exam>
+                <subjectName>Математический анализ</subjectName>
+                <score>8</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Белова Александра</fullName>
+        <studentsGroup>321703</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Гимнастика</subjectName>
+                <score>9</score>
+            </exam>
+            <exam>
+                <subjectName>Философия</subjectName>
+                <score>9</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Клавдия Егоровна Куликова</fullName>
+        <studentsGroup>321702</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Логика</subjectName>
+                <score>9</score>
+            </exam>
+            <exam>
+                <subjectName>Русский язык</subjectName>
+                <score>2</score>
+            </exam>
+            <exam>
+                <subjectName>Русский язык</subjectName>
+                <score>1</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Фомин Валентин Александрович</fullName>
+        <studentsGroup>321705</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Английский язык</subjectName>
+                <score>4</score>
+            </exam>
+            <exam>
+                <subjectName>Математика</subjectName>
+                <score>6</score>
+            </exam>
+            <exam>
+                <subjectName>Прыжки в длину</subjectName>
+                <score>8</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Журавлев Владислав</fullName>
+        <studentsGroup>321703</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Русский язык</subjectName>
+                <score>8</score>
+            </exam>
+            <exam>
+                <subjectName>Прыжки в длину</subjectName>
+                <score>4</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Юрий Игнатов</fullName>
+        <studentsGroup>321702</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Логика</subjectName>
+                <score>1</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Захарова Светлана</fullName>
+        <studentsGroup>321703</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Физика</subjectName>
+                <score>7</score>
+            </exam>
+            <exam>
+                <subjectName>Математический анализ</subjectName>
+                <score>4</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Кабанов Даниил Альбертович</fullName>
+        <studentsGroup>321701</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Гимнастика</subjectName>
+                <score>8</score>
+            </exam>
+            <exam>
+                <subjectName>Физика</subjectName>
+                <score>2</score>
+            </exam>
+            <exam>
+                <subjectName>Философия</subjectName>
+                <score>7</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Смирнов Денис Павлович</fullName>
+        <studentsGroup>Гр-201</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Программирование</subjectName>
+                <score>9</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Федорова Екатерина Игоревна</fullName>
+        <studentsGroup>Гр-202</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>Английский язык</subjectName>
+                <score>8</score>
+            </exam>
+            <exam>
+                <subjectName>Экономика</subjectName>
+                <score>7</score>
+            </exam>
+        </exams>
+    </student>
+    <student>
+        <fullName>Астахов Артём Сергеевич</fullName>
+        <studentsGroup>321701</studentsGroup>
+        <exams>
+            <exam>
+                <subjectName>ОАиП</subjectName>
+                <score>10</score>
+            </exam>
+        </exams>
+    </student>
+</students>

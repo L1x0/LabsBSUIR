@@ -4,7 +4,6 @@ import by.astakhau.examresults.model.entity.Student;
 import by.astakhau.examresults.model.entity.Exam;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,11 +19,14 @@ public class XmlStudentRepository {
 
     public void addStudent(Student student) throws Exception {
         DomStudentWriter domStudentWriter = new DomStudentWriter();
-        domStudentWriter.writeStudentsToSourceFile(List.of(student), dataSource.getFile());
+        students.add(student);
+        domStudentWriter.writeStudentsToSourceFile(students.stream().toList(), dataSource.getFile());
     }
 
     public void addAllStudents(ObservableList<Student> newStudents) throws Exception {
         DomStudentWriter domStudentWriter = new DomStudentWriter();
+        newStudents.addAll(students);
+        students = newStudents;
         domStudentWriter.writeStudentsToSourceFile(newStudents.stream().toList(), dataSource.getFile());
     }
 

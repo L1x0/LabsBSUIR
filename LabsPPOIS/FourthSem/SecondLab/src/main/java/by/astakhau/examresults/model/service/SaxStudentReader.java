@@ -18,6 +18,9 @@ public class SaxStudentReader {
     private StringBuilder currentValue;
 
     public List<Student> readStudents(File file) throws Exception {
+        if (file.length() == 0) {
+            return new ArrayList<>();
+        }
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser saxParser = factory.newSAXParser();
 

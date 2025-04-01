@@ -1,5 +1,7 @@
 package by.astakhau.examresults;
 
+import by.astakhau.examresults.model.service.XmlStudentRepository;
+import com.github.javafaker.Faker;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,32 +23,10 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+  //      launch();
+        String[] subjects = new String[] {"Математика", "Русский язык", "Математический анализ", "Логика", "Химия",
+        "Физика", "Английский язык" , "Философия", "Гимнастика", "Прыжки в длину"};
+        Faker faker = new Faker();
         launch();
-//        Faker faker = new Faker(new Locale("ru"));
-//        Random random = new Random();
-//        StudentRepository studentRepository = new StudentRepository();
-//        for (int i = 0; i < 200; i++) {
-//
-//            Student student = new Student();
-//            student.setStudentsGroup(String.valueOf(random.nextInt(10)));
-//            student.setFullName(faker.name().fullName());
-//
-//            for (int j = 0; j < random.nextInt(8); j++) {
-//                Exam exam = new Exam();
-//                exam.setSubjectName(String.valueOf(random.nextInt(5)));
-//                exam.setScore(random.nextInt(10));
-//                student.getExams().add(exam);
-//                exam.setStudent(student);
-//            }
-//            studentRepository.addStudent(student);
-//        }
-//
-//
-//        JPAUtil.close();
-//        StudentRepository sr = new StudentRepository();
-//        sr.findByScoreAndSubject(9, 10, "3").forEach(e -> System.out.println(e.getFullName()));
-//        System.out.println(sr.deleteByScoreAndSubject(9, 10, "4"));
-//        System.out.println("_____________");
-//        sr.findByScoreAndSubject(9, 10, "3").forEach(e -> System.out.println(e.getFullName()));
     }
 }
