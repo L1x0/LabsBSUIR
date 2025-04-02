@@ -124,11 +124,7 @@ public class CustomTable {
     }
 
     public String getCountOfRecords() {
-        StringBuilder builder = new StringBuilder();
-
-        builder.append("Записей в таблице: ");
-        builder.append(students.size());
-
-        return builder.toString();
+        return "Записей в таблице: " +
+                students.size();
     }
 }

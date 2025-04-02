@@ -5,7 +5,6 @@ import by.astakhau.examresults.model.entity.Exam;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class XmlStudentRepository {

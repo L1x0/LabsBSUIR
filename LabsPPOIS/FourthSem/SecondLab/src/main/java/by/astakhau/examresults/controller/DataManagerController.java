@@ -1,6 +1,5 @@
 package by.astakhau.examresults.controller;
 
-import by.astakhau.examresults.model.entity.Exam;
 import by.astakhau.examresults.model.entity.Student;
 import by.astakhau.examresults.model.service.DataService;
 import by.astakhau.examresults.model.service.DataSourceChooser;
@@ -10,8 +9,6 @@ import by.astakhau.examresults.view.AddStudentDialog;
 import by.astakhau.examresults.view.CustomTree;
 import by.astakhau.examresults.view.ManipulationsDialog;
 import by.astakhau.examresults.view.CustomTable;
-import com.github.javafaker.Faker;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -20,10 +17,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Random;
 
 public class DataManagerController {
 

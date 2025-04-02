@@ -22,7 +22,6 @@ public class CustomTree {
     }
 
     private void configureTreeView() {
-        // Настраиваем кастомные ячейки для управления отображением
         treeView.setCellFactory(tv -> new TreeCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -32,7 +31,6 @@ public class CustomTree {
                     setGraphic(null);
                 } else {
                     setText(item);
-                    // Скрываем стрелку для листовых узлов
                     if (getTreeItem() != null && getTreeItem().isLeaf()) {
                         setDisclosureNode(null);
                     }
@@ -62,11 +60,10 @@ public class CustomTree {
     }
 
     private TreeItem<String> createStudentItem(Student student) {
-        // Узел студента с кастомной логикой
         TreeItem<String> studentItem = new TreeItem<String>(student.getFullName()) {
             @Override
             public boolean isLeaf() {
-                return false; // Всегда показывать стрелку для студентов
+                return false;
             }
         };
 
@@ -74,16 +71,15 @@ public class CustomTree {
         TreeItem<String> groupItem = new TreeItem<>("Группа: " + student.getStudentsGroup()) {
             @Override
             public boolean isLeaf() {
-                return true; // Убираем стрелку для группы
+                return true;
             }
         };
 
-        // Узел экзаменов (только если есть экзамены)
         if (!student.getExams().isEmpty()) {
             TreeItem<String> examsItem = new TreeItem<>("Экзамены") {
                 @Override
                 public boolean isLeaf() {
-                    return false; // Показывать стрелку если есть экзамены
+                    return false;
                 }
             };
 
@@ -99,18 +95,17 @@ public class CustomTree {
     }
 
     private TreeItem<String> createExamItem(Exam exam) {
-        // Узел экзамена с оценкой (лист)
         TreeItem<String> examItem = new TreeItem<String>(exam.getSubjectName()) {
             @Override
             public boolean isLeaf() {
-                return false; // Показывать стрелку для экзамена
+                return false;
             }
         };
 
         TreeItem<String> scoreItem = new TreeItem<>("Оценка: " + exam.getScore()) {
             @Override
             public boolean isLeaf() {
-                return true; // Убираем стрелку для оценки
+                return true;
             }
         };
 

@@ -1,6 +1,5 @@
 package by.astakhau.examresults;
 
-import by.astakhau.examresults.model.service.XmlStudentRepository;
 import com.github.javafaker.Faker;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,10 +22,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-  //      launch();
-        String[] subjects = new String[] {"Математика", "Русский язык", "Математический анализ", "Логика", "Химия",
-        "Физика", "Английский язык" , "Философия", "Гимнастика", "Прыжки в длину"};
-        Faker faker = new Faker();
         launch();
     }
 }
