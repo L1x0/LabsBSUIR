@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+
+<VBox fx:id="box" alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="by.astakhau.arkanoid.controller.MainMenuController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="10.0"/>
+    </padding>
+
+    <Label fx:id="Arkanoid"/>
+    <Button text="Начать игру" minWidth="120" onAction="#onStartGame"/>
+    <Button text="Таблица рекордов" minWidth="120" onAction="#onShowRecords"/>
+    <Button text="Справка" minWidth="120" onAction="#onShowRules"/>
+    <Button text="Выход" minWidth="120" onAction="#onExit"/>
+</VBox>

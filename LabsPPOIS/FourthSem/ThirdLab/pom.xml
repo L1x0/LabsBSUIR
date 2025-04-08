@@ -80,7 +80,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>by.astakhau.arkanoid.thirdlab/by.astakhau.arkanoid.thirdlab.HelloApplication
+                            <mainClass>by.astakhau.arkanoid.thirdlab/by.astakhau.arkanoid.Arkanoid
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
