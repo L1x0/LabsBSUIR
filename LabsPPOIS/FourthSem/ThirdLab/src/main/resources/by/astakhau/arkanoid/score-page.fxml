@@ -3,15 +3,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="box" alignment="CENTER" prefHeight="400" prefWidth="600" spacing="10"
-      xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="by.astakhau.arkanoid.controller.ScoreController">
-    <Button text="назад" onAction="#onGoBack"/>
-    <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Таблица лидеров" textFill="#ede711" />
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="by.astakhau.arkanoid.controller.menu.ScoreController">
+    <AnchorPane fx:id="backgroundPane" prefWidth="600" prefHeight="600"
+                style="-fx-background-image: url('background.jpg');
+                       -fx-background-repeat: stretch;
+                       -fx-background-size: 600 600;
+                       -fx-background-position: center center;"/>
 
-    <TableView fx:id="leaderboardTable" prefHeight="350" prefWidth="580" styleClass="leaderboard">
-        <columns>
-            <TableColumn fx:id="nameColumn" prefWidth="290" text="Игрок"/>
-            <TableColumn fx:id="scoreColumn" prefWidth="290" text="Очки" />
-        </columns>
-    </TableView>
-</VBox>
+    <VBox fx:id="box" alignment="CENTER" prefHeight="400" prefWidth="600" spacing="10"
+          xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12">
+        <Button text="назад" onAction="#onGoBack"/>
+        <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Таблица лидеров" textFill="#ede711"/>
+
+        <TableView fx:id="leaderboardTable" prefHeight="350" prefWidth="580" styleClass="leaderboard">
+            <columns>
+                <TableColumn fx:id="nameColumn" prefWidth="290" text="Игрок"/>
+                <TableColumn fx:id="scoreColumn" prefWidth="290" text="Очки"/>
+            </columns>
+        </TableView>
+    </VBox>
+</StackPane>

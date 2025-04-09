@@ -1,27 +1,47 @@
 package by.astakhau.arkanoid;
 
-import javafx.application.Application;
+import by.astakhau.arkanoid.controller.SceneUpdater;
+import com.almasb.fxgl.app.GameApplication;
+import com.almasb.fxgl.app.GameSettings;
+import com.almasb.fxgl.dsl.FXGL;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
+import java.util.Objects;
 
-public class Arkanoid extends Application {
+import static com.almasb.fxgl.dsl.FXGLForKtKt.getSettings;
+
+
+public class Arkanoid extends GameApplication {
+    SceneUpdater sceneUpdater = new SceneUpdater();
+
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Arkanoid.class.getResource("main-menu.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 600);
+    protected void initUI() {
+//        Image backgroundImage = FXGL.image(Objects.requireNonNull(Arkanoid.class.getResource("background.jpg")));
+//        ImageView backgroundView = new ImageView(backgroundImage);
+//
+//        backgroundView.setFitWidth(getSettings().getWidth());
+//        backgroundView.setFitHeight(getSettings().getHeight());
+//        backgroundView.setPreserveRatio(false);
+//        backgroundView.setId("background");
+//
+//        FXGL.getGameScene().addUINode(backgroundView);
+        sceneUpdater.uploadResource("main-menu.fxml");
+    }
 
-        scene.getStylesheets()
-                .addAll(this.getClass().getResource("/by/astakhau/arkanoid/style.css").toExternalForm());
-
-        stage.setTitle("Arkanoid");
-        stage.setScene(scene);
-        stage.show();
+    @Override
+    protected void initSettings(GameSettings settings) {
+        settings.setTitle("Arkanoid");
+        settings.setWidth(600);
+        settings.setHeight(600);
+        settings.setVersion("0.1");
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }

@@ -3,10 +3,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-<VBox fx:id="rulesVBox" fx:controller="by.astakhau.arkanoid.controller.RulesController" xmlns:fx="http://javafx.com/fxml"
-      prefHeight="400" prefWidth="600" spacing="10">
-    <Button text="назад" onAction="#onGoBack"/>
-    <TextArea text="Arkanoid — видеоигра для игровых автоматов,
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="by.astakhau.arkanoid.controller.menu.RulesController">
+    <!-- Фоновый контейнер. Он заполнит всё окно -->
+    <AnchorPane fx:id="backgroundPane" prefWidth="600" prefHeight="600"
+                style="-fx-background-image: url('background.jpg');
+                       -fx-background-repeat: stretch;
+                       -fx-background-size: 600 600;
+                       -fx-background-position: center center;"/>
+
+    <VBox fx:id="rulesVBox" xmlns:fx="http://javafx.com/fxml"
+          prefHeight="400" prefWidth="600" spacing="10">
+        <Button text="назад" onAction="#onGoBack"/>
+        <TextArea text="Arkanoid — видеоигра для игровых автоматов,
          разработанная компанией Taito в 1986 году. Игра основана на играх серии Breakout фирмы Atari.
         Именно её название стало нарицательным для класса подобных игр. Игрок управляет небольшой платформой-ракеткой,
         которую можно передвигать горизонтально от одной стенки до другой.
@@ -17,11 +27,12 @@
         иногда появляются летающие враги, от которых отталкивается шарик;
         удар по некоторым кирпичам приводит к выпадению из них капсул-призов — приз активируется,
         если поймать такую капсулу ракеткой." maxWidth="500" fx:id="myTextArea" layoutX="10.0" layoutY="10.0"
-              prefHeight="380.0" prefWidth="580.0"
-              wrapText="true">
+                  prefHeight="380.0" prefWidth="580.0"
+                  wrapText="true">
 
-    </TextArea>
-    <padding>
-        <Insets bottom="10" left="50"/>
-    </padding>
-</VBox>
+        </TextArea>
+        <padding>
+            <Insets bottom="10" left="50"/>
+        </padding>
+    </VBox>
+</StackPane>
