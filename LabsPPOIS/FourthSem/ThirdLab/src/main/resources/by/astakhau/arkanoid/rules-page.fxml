@@ -6,14 +6,13 @@
 
 <StackPane xmlns:fx="http://javafx.com/fxml"
            fx:controller="by.astakhau.arkanoid.controller.menu.RulesController">
-    <!-- Фоновый контейнер. Он заполнит всё окно -->
-    <AnchorPane fx:id="backgroundPane" prefWidth="600" prefHeight="600"
+    <AnchorPane prefWidth="600" prefHeight="600"
                 style="-fx-background-image: url('background.jpg');
                        -fx-background-repeat: stretch;
                        -fx-background-size: 600 600;
                        -fx-background-position: center center;"/>
 
-    <VBox fx:id="rulesVBox" xmlns:fx="http://javafx.com/fxml"
+    <VBox xmlns:fx="http://javafx.com/fxml"
           prefHeight="400" prefWidth="600" spacing="10">
         <Button text="назад" onAction="#onGoBack"/>
         <TextArea text="Arkanoid — видеоигра для игровых автоматов,

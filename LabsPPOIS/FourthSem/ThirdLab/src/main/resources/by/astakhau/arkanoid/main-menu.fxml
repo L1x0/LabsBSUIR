@@ -8,14 +8,14 @@
 
 <StackPane xmlns:fx="http://javafx.com/fxml"
            fx:controller="by.astakhau.arkanoid.controller.menu.MainMenuController">
-    <AnchorPane fx:id="backgroundPane" prefWidth="600" prefHeight="600"
+    <AnchorPane prefWidth="600" prefHeight="600"
                 style="-fx-background-image: url('background.jpg');
                        -fx-background-repeat: stretch;
     -fx-background-size: 600 600;
     -fx-background-position: center center;" />
 
 
-    <VBox fx:id="box" spacing="20.0" alignment="CENTER"
+    <VBox spacing="20.0" alignment="CENTER"
           style="-fx-padding: 30;">
         <Label fx:id="Arkanoid" text="ARKANOID"
                style="-fx-font-size: 36px;

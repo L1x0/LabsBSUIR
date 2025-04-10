@@ -1,13 +1,15 @@
 package by.astakhau.arkanoid.controller.menu;
 
 import by.astakhau.arkanoid.controller.SceneUpdater;
+import com.almasb.fxgl.dsl.FXGL;
 import javafx.fxml.FXML;
 
 public class MainMenuController {
     SceneUpdater sceneUpdater = new SceneUpdater();
 
     @FXML
-    protected void onStartGame() {
+    private void onStartGame() {
+        FXGL.getGameController().startNewGame();
     }
 
     @FXML
@@ -24,6 +26,4 @@ public class MainMenuController {
     protected void onExit() {
         System.exit(0);
     }
-
-
 }

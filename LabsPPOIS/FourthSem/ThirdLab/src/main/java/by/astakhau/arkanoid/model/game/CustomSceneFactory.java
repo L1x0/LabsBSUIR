@@ -1,0 +1,18 @@
+package by.astakhau.arkanoid.model.game;
+
+import by.astakhau.arkanoid.model.MainMenu;
+import com.almasb.fxgl.app.scene.FXGLMenu;
+import com.almasb.fxgl.app.scene.MenuType;
+import com.almasb.fxgl.app.scene.SceneFactory;
+
+public class CustomSceneFactory extends SceneFactory {
+    @Override
+    public FXGLMenu newMainMenu() {
+        return new MainMenu(MenuType.MAIN_MENU);
+    }
+
+    @Override
+    public FXGLMenu newGameMenu() {
+        return new MainMenu(MenuType.GAME_MENU);
+    }
+}
