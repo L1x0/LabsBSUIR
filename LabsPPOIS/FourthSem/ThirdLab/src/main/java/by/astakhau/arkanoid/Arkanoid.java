@@ -16,21 +16,16 @@ import javafx.scene.input.KeyCode;
 
 
 public class Arkanoid extends GameApplication {
-    Entity puddle;
+    Entity paddle;
+    Entity background;
 
     @Override
     protected void initGame() {
-        ImageView background = new ImageView(new Image("background.jpg"));
-
-        background.setFitWidth(600);
-        background.setFitHeight(600);
-
-        FXGL.getGameScene().addUINode(background);
-
         ArkanoidEntityFactory arkanoidEntityFactory = new ArkanoidEntityFactory();
-        puddle = arkanoidEntityFactory.newPaddle(new SpawnData(350, 350));
+        paddle = arkanoidEntityFactory.newPaddle(new SpawnData(350, 500));
+        background = arkanoidEntityFactory.background();
 
-        FXGL.getGameWorld().addEntity(puddle);
+        FXGL.getGameWorld().addEntities(paddle, background);
     }
 
     @Override
@@ -38,24 +33,24 @@ public class Arkanoid extends GameApplication {
         FXGL.getInput().addAction(new UserAction("Move Left") {
             @Override
             protected void onActionBegin() {
-                puddle.getProperties().setValue("direction", MovementComponent.Direction.LEFT);
+                paddle.getProperties().setValue("direction", MovementComponent.Direction.LEFT);
             }
 
             @Override
             protected void onActionEnd() {
-                puddle.getProperties().setValue("direction", MovementComponent.Direction.NONE);
+                paddle.getProperties().setValue("direction", MovementComponent.Direction.NONE);
             }
         }, KeyCode.LEFT);
 
         FXGL.getInput().addAction(new UserAction("Move Right") {
             @Override
             protected void onActionBegin() {
-                puddle.getProperties().setValue("direction", MovementComponent.Direction.RIGHT);
+                paddle.getProperties().setValue("direction", MovementComponent.Direction.RIGHT);
             }
 
             @Override
             protected void onActionEnd() {
-                puddle.getProperties().setValue("direction", MovementComponent.Direction.NONE);
+                paddle.getProperties().setValue("direction", MovementComponent.Direction.NONE);
             }
         }, KeyCode.RIGHT);
     }

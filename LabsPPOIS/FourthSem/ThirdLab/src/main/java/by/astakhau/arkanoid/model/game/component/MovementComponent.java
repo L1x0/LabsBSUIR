@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class MovementComponent extends Component {
-    private final double speed = 100;
+    private final double speed = 300;
     @Setter Direction direction = Direction.NONE;
 
     @Getter
@@ -24,7 +24,9 @@ public class MovementComponent extends Component {
 
     @Override
     public void onUpdate(double tpf) {
-        direction = entity.getProperties().getValue("direction");
-        entity.translateX(speed * tpf * direction.getValue());
+        if (entity.getProperties().exists("direction")) {
+            direction = entity.getProperties().getValue("direction");
+            entity.translateX(speed * tpf * direction.getValue());
+        }
     }
 }
