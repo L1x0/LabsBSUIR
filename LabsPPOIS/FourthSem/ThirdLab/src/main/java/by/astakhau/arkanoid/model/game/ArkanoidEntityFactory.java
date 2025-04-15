@@ -8,12 +8,14 @@ import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
+import com.almasb.fxgl.texture.Texture;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import org.jetbrains.annotations.NotNull;
+
 
 public class ArkanoidEntityFactory implements EntityFactory {
     double appWidth = FXGL.getAppWidth();
@@ -28,7 +30,7 @@ public class ArkanoidEntityFactory implements EntityFactory {
                 .type(EntityType.PADDLE)
                 .at(data.getX(), data.getY())
                 .with(physics)
-                .viewWithBBox(new Rectangle(80, 15, Color.WHITESMOKE))
+                .viewWithBBox(FXGL.texture("paddle.png"))
                 .build();
     }
 
@@ -130,14 +132,13 @@ public class ArkanoidEntityFactory implements EntityFactory {
         return FXGL.entityBuilder(data)
                 .type(EntityType.BRICK)
                 .at(data.getX(), data.getY())
-                .viewWithBBox(new Rectangle(50, 15))
+                .viewWithBBox("brick.png")
                 .with(new CollidableComponent(true))
                 .with(getPhysicsComponent())
                 .with(new BrickHealthComponent(health))
                 .build();
     }
 
-    @NotNull
     private static PhysicsComponent getPhysicsComponent() {
         PhysicsComponent physics = new PhysicsComponent();
 

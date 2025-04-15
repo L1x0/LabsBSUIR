@@ -1,8 +1,10 @@
 package by.astakhau.arkanoid.model.game.component;
 
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.component.Component;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.ImageView;
+
 
 public class BrickHealthComponent extends Component {
     private int health;
@@ -17,35 +19,23 @@ public class BrickHealthComponent extends Component {
     }
 
     private void updateColor() {
-        switch (health) {
-            case 0:  {
-                entity.removeFromWorld();
-                break;
-            }
-            case 1:  {
-                Rectangle BBox = (Rectangle) entity.getViewComponent().getChildren().get(0);
-                BBox.setFill(Color.GREEN);
-                break;
-            }
-            case 2:  {
-                Rectangle BBox = (Rectangle) entity.getViewComponent().getChildren().get(0);
-                BBox.setFill(Color.RED);
-                break;
-            }
-            case 3:  {
-                Rectangle BBox = (Rectangle) entity.getViewComponent().getChildren().get(0);
-                BBox.setFill(Color.PURPLE);
-                break;
-            }
-        }
-    }
+        String color = "";
 
-    @Override
-    public void onUpdate(double tpf) {
-        updateColor();
+        switch (health) {
+            case 0 -> {
+                entity.removeFromWorld();
+                return;
+            }
+            case 1 -> color = "brick_green.png";    // Синий
+            case 2 -> color = "brick_red.png";   // Оранжевый
+            case 3 -> color = "brick_purple.png";  // Красный
+        }
+        entity.getViewComponent().clearChildren();
+        entity.getViewComponent().addChild(FXGL.texture(color));
     }
 
     public void reduceHealth() {
         health--;
+        updateColor();
     }
 }
