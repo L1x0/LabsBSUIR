@@ -1,7 +1,5 @@
 package by.astakhau.arkanoid.controller.menu;
 
-
-
 import by.astakhau.arkanoid.controller.SceneUpdater;
 import javafx.fxml.FXML;
 

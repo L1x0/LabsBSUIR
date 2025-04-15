@@ -5,6 +5,9 @@ import com.almasb.fxgl.dsl.FXGL;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import lombok.NoArgsConstructor;
 
 import java.io.IOException;
@@ -20,11 +23,15 @@ public class SceneUpdater {
             Parent root = fxmlLoader.load();
             FXGL.getSceneService().getCurrentScene().getContentRoot().getChildren().add(root);
         } catch (IOException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Не найден макет главного меню");
-            alert.showAndWait();
+            VBox box = new VBox();
+
+            Button exitButton = new Button("Exit");
+            exitButton.setOnAction(event -> System.exit(0));
+
+            TextField message = new TextField();
+            message.setText("макет не найден,\n" + e.getMessage());
+
+            box.getChildren().add(exitButton);
         }
     }
 }
