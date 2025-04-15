@@ -1,9 +1,8 @@
-package by.astakhau.arkanoid.model;
+package by.astakhau.arkanoid.view;
 
 import by.astakhau.arkanoid.Arkanoid;
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.MenuType;
-import com.almasb.fxgl.dsl.FXGL;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;

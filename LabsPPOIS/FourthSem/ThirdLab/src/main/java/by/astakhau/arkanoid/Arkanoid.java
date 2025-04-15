@@ -1,7 +1,9 @@
 package by.astakhau.arkanoid;
 
 import by.astakhau.arkanoid.model.game.ArkanoidEntityFactory;
-import by.astakhau.arkanoid.model.game.CustomSceneFactory;
+import by.astakhau.arkanoid.model.game.EntityType;
+import by.astakhau.arkanoid.model.game.component.BrickHealthComponent;
+import by.astakhau.arkanoid.view.CustomSceneFactory;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
@@ -9,6 +11,7 @@ import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.input.UserAction;
+import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import javafx.scene.Cursor;
 import javafx.scene.input.KeyCode;
@@ -25,6 +28,13 @@ public class Arkanoid extends GameApplication {
     }
 
     @Override
+    protected void initPhysics() {
+        FXGL.onCollision(EntityType.BALL, EntityType.BRICK, (ball, brick) -> {
+            brick.getComponent(BrickHealthComponent.class).reduceHealth();
+        });
+    }
+
+    @Override
     protected void initGame() {
         ArkanoidEntityFactory arkanoidEntityFactory = new ArkanoidEntityFactory();
         paddle = arkanoidEntityFactory.newPaddle(new SpawnData(350, 500));
@@ -32,7 +42,9 @@ public class Arkanoid extends GameApplication {
         background = arkanoidEntityFactory.background();
         arkanoidEntityFactory.createBoundaryWalls();
 
-        FXGL.getGameWorld().addEntities(ball, paddle, background);
+        var Brick = arkanoidEntityFactory.createBrick(new SpawnData(30, 30), 3);
+
+        FXGL.getGameWorld().addEntities(ball, paddle, background, Brick);
     }
 
     @Override

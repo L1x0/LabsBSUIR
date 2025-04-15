@@ -1,6 +1,5 @@
-package by.astakhau.arkanoid.model.game;
+package by.astakhau.arkanoid.view;
 
-import by.astakhau.arkanoid.model.MainMenu;
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.MenuType;
 import com.almasb.fxgl.app.scene.SceneFactory;

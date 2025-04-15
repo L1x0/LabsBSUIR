@@ -1,6 +1,7 @@
 package by.astakhau.arkanoid.model.game;
 
 import by.astakhau.arkanoid.model.game.component.BallMovementComponent;
+import by.astakhau.arkanoid.model.game.component.BrickHealthComponent;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.*;
 import com.almasb.fxgl.entity.components.CollidableComponent;
@@ -70,19 +71,6 @@ public class ArkanoidEntityFactory implements EntityFactory {
                 .buildAndAttach();
     }
 
-    @NotNull
-    private static PhysicsComponent getPhysicsComponent() {
-        PhysicsComponent physics = new PhysicsComponent();
-
-        physics.setBodyType(BodyType.STATIC);
-        physics.setFixtureDef(new FixtureDef()
-                .density(0.0f)
-                .restitution(1.0f)
-                .friction(0.0f)
-        );
-        return physics;
-    }
-
     public void createBoundaryWalls() {
         TopWallEntity();
         RightWallEntity();
@@ -135,5 +123,30 @@ public class ArkanoidEntityFactory implements EntityFactory {
                 .zIndex(-1)
                 .buildAndAttach();
 
+    }
+
+    @Spawns("brick")
+    public Entity createBrick(SpawnData data, int health) {
+        return FXGL.entityBuilder(data)
+                .type(EntityType.BRICK)
+                .at(data.getX(), data.getY())
+                .viewWithBBox(new Rectangle(50, 15))
+                .with(new CollidableComponent(true))
+                .with(getPhysicsComponent())
+                .with(new BrickHealthComponent(health))
+                .build();
+    }
+
+    @NotNull
+    private static PhysicsComponent getPhysicsComponent() {
+        PhysicsComponent physics = new PhysicsComponent();
+
+        physics.setBodyType(BodyType.STATIC);
+        physics.setFixtureDef(new FixtureDef()
+                .density(0.0f)
+                .restitution(1.0f)
+                .friction(0.0f)
+        );
+        return physics;
     }
 }
