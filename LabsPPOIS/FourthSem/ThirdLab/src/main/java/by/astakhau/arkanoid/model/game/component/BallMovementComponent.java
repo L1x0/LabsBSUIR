@@ -1,10 +1,15 @@
 package by.astakhau.arkanoid.model.game.component;
 
 import com.almasb.fxgl.core.math.Vec2;
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
+import javafx.util.Duration;
 
 public class BallMovementComponent extends Component {
+    float minAxisSpeed = 3;
+    float targetSpeed = 10;
+    float maxAxisSpeed = 15;
 
     @Override
     public void onUpdate(double tpf) {
@@ -13,10 +18,6 @@ public class BallMovementComponent extends Component {
         physics.setAngularVelocity(0);
 
         Vec2 velocity = physics.getBody().getLinearVelocity();
-
-        float minAxisSpeed = 3;
-        float targetSpeed = 10;
-        float maxAxisSpeed = 15;
 
         boolean needAdjust = false;
 
@@ -45,5 +46,17 @@ public class BallMovementComponent extends Component {
         }
 
         physics.getBody().setLinearVelocity(velocity);
+    }
+
+    public void timeFreeze() {
+        minAxisSpeed = 2;
+        targetSpeed = 4;
+        maxAxisSpeed = 7;
+
+        FXGL.runOnce(() -> {
+            minAxisSpeed = 3;
+            targetSpeed = 10;
+            maxAxisSpeed = 15;
+        }, Duration.seconds(8));
     }
 }

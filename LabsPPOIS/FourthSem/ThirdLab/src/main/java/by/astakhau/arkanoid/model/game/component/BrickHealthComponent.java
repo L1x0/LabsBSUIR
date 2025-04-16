@@ -1,9 +1,9 @@
 package by.astakhau.arkanoid.model.game.component;
 
+import by.astakhau.arkanoid.model.game.ArkanoidEntityFactory;
 import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.component.Component;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.ImageView;
 
 
 public class BrickHealthComponent extends Component {
@@ -23,12 +23,18 @@ public class BrickHealthComponent extends Component {
 
         switch (health) {
             case 0 -> {
+                var spawnData = new SpawnData(entity.getX(),entity.getY());
                 entity.removeFromWorld();
+
+                if (FXGL.random(0, 10) <= 11) {
+                    ArkanoidEntityFactory arkanoidEntityFactory = new ArkanoidEntityFactory();
+                    FXGL.getGameWorld().addEntity(arkanoidEntityFactory.createBuff(spawnData));
+                }
                 return;
             }
-            case 1 -> color = "brick_green.png";    // Синий
-            case 2 -> color = "brick_red.png";   // Оранжевый
-            case 3 -> color = "brick_purple.png";  // Красный
+            case 1 -> color = "brick_green.png";
+            case 2 -> color = "brick_red.png";
+            case 3 -> color = "brick_purple.png";
         }
         entity.getViewComponent().clearChildren();
         entity.getViewComponent().addChild(FXGL.texture(color));

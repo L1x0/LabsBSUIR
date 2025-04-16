@@ -3,6 +3,7 @@ package by.astakhau.arkanoid;
 import by.astakhau.arkanoid.model.game.ArkanoidEntityFactory;
 import by.astakhau.arkanoid.model.game.EntityType;
 import by.astakhau.arkanoid.model.game.component.BrickHealthComponent;
+import by.astakhau.arkanoid.model.game.component.BuffComponent;
 import by.astakhau.arkanoid.view.CustomSceneFactory;
 
 import com.almasb.fxgl.app.GameApplication;
@@ -17,12 +18,14 @@ import javafx.scene.input.KeyCode;
 
 
 public class Arkanoid extends GameApplication {
+    ArkanoidEntityFactory arkanoidEntityFactory;
     Entity paddle;
     Entity background;
     Entity ball;
 
     @Override
     protected void onPreInit() {
+        arkanoidEntityFactory = new ArkanoidEntityFactory();
         FXGL.getGameScene().getContentRoot().setCursor(Cursor.DEFAULT);
     }
 
@@ -31,19 +34,26 @@ public class Arkanoid extends GameApplication {
         FXGL.onCollision(EntityType.BALL, EntityType.BRICK, (ball, brick) -> {
             brick.getComponent(BrickHealthComponent.class).reduceHealth();
         });
+
+        FXGL.onCollision(EntityType.PADDLE, EntityType.BUFF, (paddle, buff) -> {
+            buff.getComponent(BuffComponent.class).voidSpecialEffect();
+        });
     }
 
     @Override
     protected void initGame() {
-        ArkanoidEntityFactory arkanoidEntityFactory = new ArkanoidEntityFactory();
-        paddle = arkanoidEntityFactory.newPaddle(new SpawnData(350, 500));
-        ball = arkanoidEntityFactory.newBall(new SpawnData(350, 400));
+        paddle = arkanoidEntityFactory.createPaddle(new SpawnData(350, 500));
+        ball = arkanoidEntityFactory.createBall(new SpawnData(350, 400));
         background = arkanoidEntityFactory.background();
         arkanoidEntityFactory.createBoundaryWalls();
+        int x = 30;
 
-        var Brick = arkanoidEntityFactory.createBrick(new SpawnData(30, 30), 3);
+        for (int i = 0; i < 9; i++) {
+            FXGL.getGameWorld().addEntity(arkanoidEntityFactory.createBrick(new SpawnData(x, 30), 1));
+            x += 60;
+        }
 
-        FXGL.getGameWorld().addEntities(ball, paddle, background, Brick);
+        FXGL.getGameWorld().addEntities(ball, paddle, background);
     }
 
     @Override

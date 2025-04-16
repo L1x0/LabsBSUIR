@@ -6,5 +6,7 @@ public enum EntityType {
     BRICK,
     WALL_LEFT,
     WALL_RIGHT,
-    WALL_TOP
+    WALL_TOP,
+    WALL_BOTTOM,
+    BUFF
 }

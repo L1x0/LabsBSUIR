@@ -1,15 +1,12 @@
 package by.astakhau.arkanoid.model.game;
 
-import by.astakhau.arkanoid.model.game.component.BallMovementComponent;
-import by.astakhau.arkanoid.model.game.component.BrickHealthComponent;
+import by.astakhau.arkanoid.model.game.component.*;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.*;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
-import com.almasb.fxgl.texture.Texture;
-import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -22,20 +19,21 @@ public class ArkanoidEntityFactory implements EntityFactory {
     double appHeight = FXGL.getAppHeight();
 
     @Spawns("Paddle")
-    public Entity newPaddle(SpawnData data) {
+    public Entity createPaddle(SpawnData data) {
         var physics = new PhysicsComponent();
         physics.setBodyType(BodyType.KINEMATIC);
 
         return FXGL.entityBuilder(data)
                 .type(EntityType.PADDLE)
                 .at(data.getX(), data.getY())
+                .with(new CollidableComponent(true))
                 .with(physics)
                 .viewWithBBox(FXGL.texture("paddle.png"))
                 .build();
     }
 
     @Spawns("Right Wall")
-    public void RightWallEntity() {
+    public void createRightWallEntity() {
         PhysicsComponent physics = getPhysicsComponent();
 
         FXGL.entityBuilder()
@@ -48,7 +46,7 @@ public class ArkanoidEntityFactory implements EntityFactory {
     }
 
     @Spawns("Left Wall")
-    public void LeftWallEntity() {
+    public void createLeftWallEntity() {
         PhysicsComponent physics = getPhysicsComponent();
 
         FXGL.entityBuilder()
@@ -61,7 +59,7 @@ public class ArkanoidEntityFactory implements EntityFactory {
     }
 
     @Spawns("Top Wall")
-    public void TopWallEntity() {
+    public void createTopWallEntity() {
         PhysicsComponent physics = getPhysicsComponent();
 
         FXGL.entityBuilder()
@@ -73,14 +71,27 @@ public class ArkanoidEntityFactory implements EntityFactory {
                 .buildAndAttach();
     }
 
+    @Spawns("Bottom Wall")
+    public void createBottomWallEntity() {
+        var physics = getPhysicsComponent();
+
+        FXGL.entityBuilder()
+                .type(EntityType.WALL_BOTTOM)
+                .at(0, appHeight - 30)
+                .viewWithBBox(new Rectangle(appWidth, 10))
+                .with(new CollidableComponent(true))
+                .with(physics)
+                .buildAndAttach();
+    }
+
     public void createBoundaryWalls() {
-        TopWallEntity();
-        RightWallEntity();
-        LeftWallEntity();
+        createTopWallEntity();
+        createRightWallEntity();
+        createLeftWallEntity();
     }
 
     @Spawns("Ball")
-    public Entity newBall(SpawnData data) {
+    public Entity createBall(SpawnData data) {
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(BodyType.DYNAMIC);
 
@@ -127,7 +138,7 @@ public class ArkanoidEntityFactory implements EntityFactory {
 
     }
 
-    @Spawns("brick")
+    @Spawns("Brick")
     public Entity createBrick(SpawnData data, int health) {
         return FXGL.entityBuilder(data)
                 .type(EntityType.BRICK)
@@ -136,7 +147,34 @@ public class ArkanoidEntityFactory implements EntityFactory {
                 .with(new CollidableComponent(true))
                 .with(getPhysicsComponent())
                 .with(new BrickHealthComponent(health))
+                .with(new OutOfBoundsComponent())
                 .build();
+    }
+
+    @Spawns("Buff")
+    public Entity createBuff(SpawnData data) {
+        var randomNum = FXGL.random(1, 5);
+
+        String textureURL = switch (randomNum) {
+            case 1 -> "paddleWidth.png";
+            case 2 -> "pow.png";
+            case 3 -> "hitEverything.png";
+            case 4 -> "timeFreeze.png";
+            case 5 -> "wall.png";
+            default -> throw new IllegalStateException("Unexpected value: " + randomNum);
+        };
+
+        return FXGL.entityBuilder()
+                .type(EntityType.BUFF)
+                .viewWithBBox(FXGL.texture(textureURL))
+                .at(data.getX(), data.getY())
+                .scale(0.5, 0.5)
+                .with(new CollidableComponent(true))
+                .with(new OutOfBoundsComponent())
+                .with(new BuffComponent(randomNum))
+                .with(new BuffMovementComponent(100))
+                .build();
+
     }
 
     private static PhysicsComponent getPhysicsComponent() {
