@@ -1,0 +1,337 @@
+[
+  {
+    "levelNumber": 1,
+    "bricks": [
+      {
+        "health": 1,
+        "xPos": 50,
+        "yPos": 100
+      },
+      {
+        "health": 1,
+        "xPos": 150,
+        "yPos": 100
+      },
+      {
+        "health": 1,
+        "xPos": 250,
+        "yPos": 100
+      },
+      {
+        "health": 1,
+        "xPos": 350,
+        "yPos": 100
+      },
+      {
+        "health": 1,
+        "xPos": 450,
+        "yPos": 100
+      },
+      {
+        "health": 1,
+        "xPos": 550,
+        "yPos": 100
+      }
+    ]
+  },
+  {
+    "levelNumber": 2,
+    "bricks": [
+      {
+        "health": 2,
+        "xPos": 100,
+        "yPos": 80
+      },
+      {
+        "health": 1,
+        "xPos": 200,
+        "yPos": 80
+      },
+      {
+        "health": 2,
+        "xPos": 300,
+        "yPos": 80
+      },
+      {
+        "health": 1,
+        "xPos": 400,
+        "yPos": 80
+      },
+      {
+        "health": 2,
+        "xPos": 500,
+        "yPos": 80
+      }
+    ]
+  },
+  {
+    "levelNumber": 3,
+    "bricks": [
+      {
+        "health": 3,
+        "xPos": 50,
+        "yPos": 120
+      },
+      {
+        "health": 3,
+        "xPos": 550,
+        "yPos": 120
+      },
+      {
+        "health": 2,
+        "xPos": 150,
+        "yPos": 160
+      },
+      {
+        "health": 2,
+        "xPos": 450,
+        "yPos": 160
+      },
+      {
+        "health": 1,
+        "xPos": 250,
+        "yPos": 200
+      },
+      {
+        "health": 1,
+        "xPos": 350,
+        "yPos": 200
+      }
+    ]
+  },
+  {
+    "levelNumber": 4,
+    "bricks": [
+      {
+        "health": 1,
+        "xPos": 50,
+        "yPos": 100
+      },
+      {
+        "health": 1,
+        "xPos": 150,
+        "yPos": 100
+      },
+      {
+        "health": 1,
+        "xPos": 250,
+        "yPos": 100
+      },
+      {
+        "health": 3,
+        "xPos": 350,
+        "yPos": 100
+      },
+      {
+        "health": 1,
+        "xPos": 450,
+        "yPos": 100
+      },
+      {
+        "health": 1,
+        "xPos": 550,
+        "yPos": 100
+      }
+    ]
+  },
+  {
+    "levelNumber": 5,
+    "bricks": [
+      {
+        "health": 2,
+        "xPos": 100,
+        "yPos": 80
+      },
+      {
+        "health": 2,
+        "xPos": 200,
+        "yPos": 80
+      },
+      {
+        "health": 2,
+        "xPos": 300,
+        "yPos": 80
+      },
+      {
+        "health": 2,
+        "xPos": 400,
+        "yPos": 80
+      },
+      {
+        "health": 2,
+        "xPos": 500,
+        "yPos": 80
+      }
+    ]
+  },
+  {
+    "levelNumber": 6,
+    "bricks": [
+      {
+        "health": 3,
+        "xPos": 50,
+        "yPos": 120
+      },
+      {
+        "health": 3,
+        "xPos": 550,
+        "yPos": 120
+      },
+      {
+        "health": 3,
+        "xPos": 150,
+        "yPos": 160
+      },
+      {
+        "health": 3,
+        "xPos": 450,
+        "yPos": 160
+      },
+      {
+        "health": 3,
+        "xPos": 250,
+        "yPos": 200
+      },
+      {
+        "health": 3,
+        "xPos": 350,
+        "yPos": 200
+      }
+    ]
+  },
+  {
+    "levelNumber": 7,
+    "bricks": [
+      {
+        "health": 1,
+        "xPos": 50,
+        "yPos": 100
+      },
+      {
+        "health": 2,
+        "xPos": 150,
+        "yPos": 100
+      },
+      {
+        "health": 3,
+        "xPos": 250,
+        "yPos": 100
+      },
+      {
+        "health": 3,
+        "xPos": 350,
+        "yPos": 100
+      },
+      {
+        "health": 2,
+        "xPos": 450,
+        "yPos": 100
+      },
+      {
+        "health": 1,
+        "xPos": 550,
+        "yPos": 100
+      }
+    ]
+  },
+  {
+    "levelNumber": 8,
+    "bricks": [
+      {
+        "health": 2,
+        "xPos": 100,
+        "yPos": 80
+      },
+      {
+        "health": 2,
+        "xPos": 200,
+        "yPos": 80
+      },
+      {
+        "health": 2,
+        "xPos": 300,
+        "yPos": 80
+      },
+      {
+        "health": 2,
+        "xPos": 400,
+        "yPos": 80
+      },
+      {
+        "health": 2,
+        "xPos": 500,
+        "yPos": 80
+      }
+    ]
+  },
+  {
+    "levelNumber": 9,
+    "bricks": [
+      {
+        "health": 3,
+        "xPos": 50,
+        "yPos": 120
+      },
+      {
+        "health": 1,
+        "xPos": 550,
+        "yPos": 120
+      },
+      {
+        "health": 2,
+        "xPos": 150,
+        "yPos": 160
+      },
+      {
+        "health": 2,
+        "xPos": 450,
+        "yPos": 160
+      },
+      {
+        "health": 1,
+        "xPos": 250,
+        "yPos": 200
+      },
+      {
+        "health": 3,
+        "xPos": 350,
+        "yPos": 200
+      }
+    ]
+  },
+  {
+    "levelNumber": 10,
+    "bricks": [
+      {
+        "health": 3,
+        "xPos": 50,
+        "yPos": 100
+      },
+      {
+        "health": 3,
+        "xPos": 550,
+        "yPos": 100
+      },
+      {
+        "health": 3,
+        "xPos": 150,
+        "yPos": 140
+      },
+      {
+        "health": 3,
+        "xPos": 450,
+        "yPos": 140
+      },
+      {
+        "health": 3,
+        "xPos": 250,
+        "yPos": 180
+      },
+      {
+        "health": 3,
+        "xPos": 350,
+        "yPos": 180
+      }
+    ]
+  }
+]

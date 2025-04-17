@@ -4,7 +4,6 @@ import by.astakhau.arkanoid.Arkanoid;
 import com.almasb.fxgl.dsl.FXGL;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -13,7 +12,7 @@ import lombok.NoArgsConstructor;
 import java.io.IOException;
 
 @NoArgsConstructor
-public class SceneUpdater {
+public class SceneUpdater implements SceneService {
 
 
     public void uploadResource(String fileName) {
@@ -32,6 +31,8 @@ public class SceneUpdater {
             message.setText("макет не найден,\n" + e.getMessage());
 
             box.getChildren().add(exitButton);
+
+            FXGL.getSceneService().getCurrentScene().getContentRoot().getChildren().add(box);
         }
     }
 }

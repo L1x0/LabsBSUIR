@@ -1,11 +1,12 @@
 package by.astakhau.arkanoid.controller.menu;
 
+import by.astakhau.arkanoid.controller.SceneService;
 import by.astakhau.arkanoid.controller.SceneUpdater;
 import com.almasb.fxgl.dsl.FXGL;
 import javafx.fxml.FXML;
 
 public class MainMenuController {
-    SceneUpdater sceneUpdater = new SceneUpdater();
+    SceneService sceneUpdater = new SceneUpdater();
 
     @FXML
     private void onStartGame() {

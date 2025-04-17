@@ -25,7 +25,7 @@ public class BrickHealthComponent extends Component {
                 var spawnData = new SpawnData(entity.getX(),entity.getY());
                 entity.removeFromWorld();
 
-                if (FXGL.random(0, 10) <= 11) {
+                if (FXGL.random(0, 10) <= 3) {
                     ArkanoidEntityFactory arkanoidEntityFactory = new ArkanoidEntityFactory();
                     FXGL.getGameWorld().addEntity(arkanoidEntityFactory.createBuff(spawnData));
                 }

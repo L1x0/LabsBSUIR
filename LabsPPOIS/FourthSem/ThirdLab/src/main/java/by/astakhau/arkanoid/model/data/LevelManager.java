@@ -1,0 +1,62 @@
+package by.astakhau.arkanoid.model.data;
+
+import by.astakhau.arkanoid.model.game.ArkanoidEntityFactory;
+import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.entity.SpawnData;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import lombok.NoArgsConstructor;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+@NoArgsConstructor
+public class LevelManager implements LevelService{
+    List<Level> levels;
+
+    public void init() {
+        levels = new ArrayList<>();
+        loadLevels();
+    }
+
+    private void loadLevels() {
+        DataReader<Level> reader = new LevelReader();
+        try {
+            levels = reader.readFile();
+        } catch (IOException e) {
+            VBox box = new VBox();
+
+            Button exitButton = new Button("Exit");
+            exitButton.setOnAction(event -> System.exit(0));
+
+            TextField message = new TextField();
+            message.setText("уровни не найдены,\n" + e.getMessage());
+
+            box.getChildren().add(exitButton);
+
+            //FXGL.getSceneService().getCurrentScene().getContentRoot().getChildren().add(box);
+        }
+    }
+
+    @Override
+    public Level getLevelById(int id) {
+        if (levels.size() < id) throw new IllegalArgumentException("Level id out of bounds");
+        else return levels.get(id);
+    }
+
+    @Override
+    public void drawLevelById(int id) {
+        ArkanoidEntityFactory factory = new ArkanoidEntityFactory();
+        if (levels.isEmpty()) throw new IllegalArgumentException("Level id out of bounds");
+        if (levels.size() < id) throw new IllegalArgumentException("Level id out of bounds");
+
+        Level level = levels.get(id);
+
+        for (int i = 0; i < level.getBricks().size(); i++) {
+            Brick brick = level.getBricks().get(i);
+            FXGL.getGameWorld().addEntity(factory.createBrick(new SpawnData(brick.xPos, brick.yPos), brick.health));
+        }
+    }
+}

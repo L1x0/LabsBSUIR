@@ -124,7 +124,7 @@ public class ArkanoidEntityFactory implements EntityFactory {
                 .build();
     }
 
-    @Spawns("background")
+    @Spawns("Background")
     public Entity background() {
         ImageView background = new ImageView(new Image("background.jpg"));
 
