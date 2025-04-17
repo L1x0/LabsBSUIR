@@ -72,10 +72,10 @@ public class ArkanoidEntityFactory implements EntityFactory {
     }
 
     @Spawns("Bottom Wall")
-    public void createBottomWallEntity() {
+    public Entity createBottomWallEntity() {
         var physics = getPhysicsComponent();
 
-        FXGL.entityBuilder()
+        return FXGL.entityBuilder()
                 .type(EntityType.WALL_BOTTOM)
                 .at(0, appHeight - 30)
                 .viewWithBBox(new Rectangle(appWidth, 10))
@@ -159,7 +159,7 @@ public class ArkanoidEntityFactory implements EntityFactory {
             case 1 -> "paddleWidth.png";
             case 2 -> "pow.png";
             case 3 -> "hitEverything.png";
-            case 4 -> "timeFreeze.png";
+            case 4 -> "death.png";
             case 5 -> "wall.png";
             default -> throw new IllegalStateException("Unexpected value: " + randomNum);
         };

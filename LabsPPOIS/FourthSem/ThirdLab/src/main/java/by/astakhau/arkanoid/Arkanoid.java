@@ -50,7 +50,7 @@ public class Arkanoid extends GameApplication {
         int x = 30;
 
         for (int i = 0; i < 9; i++) {
-            FXGL.getGameWorld().addEntity(arkanoidEntityFactory.createBrick(new SpawnData(x, 30), 3));
+            FXGL.getGameWorld().addEntity(arkanoidEntityFactory.createBrick(new SpawnData(x, 30), 1));
             x += 60;
         }
     }
@@ -84,7 +84,7 @@ public class Arkanoid extends GameApplication {
 
             @Override
             protected void onAction() {
-                if (paddle.getX() + paddle.getViewComponent().getChildren().get(0).getBoundsInParent().getWidth() >= 590) {
+                if (paddle.getRightX() >= 585) {
                     paddle.getComponent(PhysicsComponent.class).setVelocityX(0);
                 }
             }

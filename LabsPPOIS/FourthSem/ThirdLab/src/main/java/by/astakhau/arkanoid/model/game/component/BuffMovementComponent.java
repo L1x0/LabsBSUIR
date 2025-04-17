@@ -4,12 +4,14 @@ import com.almasb.fxgl.entity.component.Component;
 import lombok.Getter;
 import lombok.Setter;
 
+@Setter
 @Getter
 public class BuffMovementComponent extends Component {
-    @Setter
     private double speed;
+    private double absolutSpeed;
     public BuffMovementComponent(double speed) {
         this.speed = speed;
+        this.absolutSpeed = speed;
     }
 
     @Override

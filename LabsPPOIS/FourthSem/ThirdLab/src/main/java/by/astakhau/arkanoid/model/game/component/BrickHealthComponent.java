@@ -20,7 +20,6 @@ public class BrickHealthComponent extends Component {
 
     private void updateColor() {
         String color = "";
-
         switch (health) {
             case 0 -> {
                 var spawnData = new SpawnData(entity.getX(),entity.getY());
