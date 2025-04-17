@@ -20,8 +20,7 @@ import javafx.scene.input.KeyCode;
 public class Arkanoid extends GameApplication {
     ArkanoidEntityFactory arkanoidEntityFactory;
     Entity paddle;
-    Entity background;
-    Entity ball;
+
 
     @Override
     protected void onPreInit() {
@@ -43,26 +42,32 @@ public class Arkanoid extends GameApplication {
     @Override
     protected void initGame() {
         paddle = arkanoidEntityFactory.createPaddle(new SpawnData(350, 500));
-        ball = arkanoidEntityFactory.createBall(new SpawnData(350, 400));
-        background = arkanoidEntityFactory.background();
+        FXGL.getGameWorld().addEntity(paddle);
+
+        FXGL.getGameWorld().addEntity(arkanoidEntityFactory.createBall(new SpawnData(350, 400)));
+        FXGL.getGameWorld().addEntity(arkanoidEntityFactory.background());
         arkanoidEntityFactory.createBoundaryWalls();
         int x = 30;
 
         for (int i = 0; i < 9; i++) {
-            FXGL.getGameWorld().addEntity(arkanoidEntityFactory.createBrick(new SpawnData(x, 30), 1));
+            FXGL.getGameWorld().addEntity(arkanoidEntityFactory.createBrick(new SpawnData(x, 30), 3));
             x += 60;
         }
-
-        FXGL.getGameWorld().addEntities(ball, paddle, background);
     }
 
     @Override
     protected void initInput() {
-
         FXGL.getInput().addAction(new UserAction("Move Left") {
             @Override
             protected void onActionBegin() {
                 paddle.getComponent(PhysicsComponent.class).setVelocityX(-300);
+            }
+
+            @Override
+            protected void onAction() {
+                if (paddle.getX() <= 10) {
+                    paddle.getComponent(PhysicsComponent.class).setVelocityX(0);
+                }
             }
 
             @Override
@@ -75,6 +80,13 @@ public class Arkanoid extends GameApplication {
             @Override
             protected void onActionBegin() {
                 paddle.getComponent(PhysicsComponent.class).setVelocityX(300);
+            }
+
+            @Override
+            protected void onAction() {
+                if (paddle.getX() + paddle.getViewComponent().getChildren().get(0).getBoundsInParent().getWidth() >= 590) {
+                    paddle.getComponent(PhysicsComponent.class).setVelocityX(0);
+                }
             }
 
             @Override
