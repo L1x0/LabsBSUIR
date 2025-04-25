@@ -18,4 +18,8 @@ module by.astakhau.arkanoid.thirdlab {
 
     exports by.astakhau.arkanoid.controller.menu;
     opens by.astakhau.arkanoid.controller.menu to javafx.fxml;
+    exports by.astakhau.arkanoid.model.data.config;
+    opens by.astakhau.arkanoid.model.data.config;
+    exports by.astakhau.arkanoid.model.data.level;
+    opens by.astakhau.arkanoid.model.data.level;
 }

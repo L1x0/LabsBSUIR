@@ -1,4 +1,4 @@
-package by.astakhau.arkanoid.model.data;
+package by.astakhau.arkanoid.model.data.level;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.util.Pair;

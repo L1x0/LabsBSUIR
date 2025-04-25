@@ -1,5 +1,6 @@
-package by.astakhau.arkanoid.model.data;
+package by.astakhau.arkanoid.model.data.level;
 
+import by.astakhau.arkanoid.model.data.DataReader;
 import by.astakhau.arkanoid.model.game.ArkanoidEntityFactory;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.SpawnData;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
-public class LevelManager implements LevelService{
+public class LevelManager implements LevelService {
     List<Level> levels;
 
     public void init() {
@@ -22,7 +23,7 @@ public class LevelManager implements LevelService{
     }
 
     private void loadLevels() {
-        DataReader<Level> reader = new LevelReader();
+        DataReader<List<Level>> reader = new LevelReader();
         try {
             levels = reader.readFile();
         } catch (IOException e) {

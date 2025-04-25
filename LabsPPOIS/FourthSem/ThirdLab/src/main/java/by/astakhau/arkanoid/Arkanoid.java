@@ -1,6 +1,8 @@
 package by.astakhau.arkanoid;
 
-import by.astakhau.arkanoid.model.data.LevelManager;
+import by.astakhau.arkanoid.model.data.config.AppConfig;
+import by.astakhau.arkanoid.model.data.config.ConfigManager;
+import by.astakhau.arkanoid.model.data.level.LevelManager;
 import by.astakhau.arkanoid.model.game.ArkanoidEntityFactory;
 import by.astakhau.arkanoid.model.game.EntityType;
 import by.astakhau.arkanoid.model.game.component.BrickHealthComponent;
@@ -73,7 +75,7 @@ public class Arkanoid extends GameApplication {
             int x = 30;
 
             for (int i = 0; i < 9; i++) {
-                FXGL.getGameWorld().addEntity(arkanoidEntityFactory.createBrick(new SpawnData(x, 30), 1));
+                FXGL.getGameWorld().addEntity(arkanoidEntityFactory.createBrick(new SpawnData(x, 30), 3));
                 x += 60;
             }
         }
@@ -122,13 +124,18 @@ public class Arkanoid extends GameApplication {
 
     @Override
     protected void initSettings(GameSettings settings) {
-        settings.setTitle("Arkanoid");
-        settings.setWidth(600);
-        settings.setHeight(600);
-        settings.setVersion("0.3");
+        ConfigManager configManager = new ConfigManager();
+        configManager.init();
+
+        AppConfig appConfig = configManager.getAppConfig();
+
+        settings.setTitle(appConfig.getAppName());
+        settings.setWidth(appConfig.getWidth());
+        settings.setHeight(appConfig.getHeight());
+        settings.setVersion(appConfig.getAppVersion());
         settings.setSceneFactory(new CustomSceneFactory());
         settings.setMainMenuEnabled(true);
-        settings.setPixelsPerMeter(32);
+        settings.setPixelsPerMeter(appConfig.getPixelsPerMeter());
     }
 
     public static void main(String[] args) {

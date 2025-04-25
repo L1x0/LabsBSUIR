@@ -1,4 +1,4 @@
-package by.astakhau.arkanoid.model.data;
+package by.astakhau.arkanoid.model.data.level;
 
 public interface LevelService {
     Level getLevelById(int id);

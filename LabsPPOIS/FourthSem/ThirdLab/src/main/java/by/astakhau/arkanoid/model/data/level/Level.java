@@ -1,4 +1,4 @@
-package by.astakhau.arkanoid.model.data;
+package by.astakhau.arkanoid.model.data.level;
 
 import lombok.Getter;
 import lombok.Setter;
