@@ -19,14 +19,12 @@ import com.almasb.fxgl.entity.EntityWorldListener;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.PhysicsComponent;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
+import lombok.Getter;
 
 import java.util.List;
 
@@ -35,6 +33,8 @@ import static com.almasb.fxgl.dsl.FXGLForKtKt.getAudioPlayer;
 
 
 public class Arkanoid extends GameApplication {
+    @Getter
+    private static int levelNum = 8;
     SceneUpdater sceneUpdater = new SceneUpdater();
     LevelManager levelManager;
     ArkanoidEntityFactory arkanoidEntityFactory;
@@ -84,7 +84,7 @@ public class Arkanoid extends GameApplication {
         arkanoidEntityFactory.createBoundaryWalls();
 
         try {
-            levelManager.drawLevelById(4);
+            levelManager.drawLevelById(levelNum);
         } catch (IllegalArgumentException e) {
             VBox box = new VBox();
 
@@ -114,8 +114,13 @@ public class Arkanoid extends GameApplication {
             @Override
             public void onEntityRemoved(Entity entity) {
                 if (FXGL.getGameWorld().getEntitiesByType(EntityType.BALL).isEmpty()) {
-                    FXGL.getGameController().pauseEngine();
+                    FXGL.getGameController().gotoMainMenu();
                     sceneUpdater.uploadResource("death-screen.fxml");
+                }
+
+                if (FXGL.getGameWorld().getEntitiesByType(EntityType.BRICK).isEmpty()) {
+                    FXGL.getGameController().gotoMainMenu();
+                    sceneUpdater.uploadResource("level-complete.fxml");
                 }
             }
         };
@@ -187,6 +192,14 @@ public class Arkanoid extends GameApplication {
         settings.setPixelsPerMeter(appConfig.getPixelsPerMeter());
 
 
+    }
+
+    public static void nextLevel() {
+        levelNum++;
+    }
+
+    public static void levelReset() {
+        levelNum = 0;
     }
 
     public static void main(String[] args) {

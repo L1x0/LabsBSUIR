@@ -7,28 +7,30 @@
 <?import javafx.scene.control.Label?>
 
 <StackPane xmlns:fx="http://javafx.com/fxml"
-           fx:controller="by.astakhau.arkanoid.controller.menu.DeathScreenController"
+           fx:controller="by.astakhau.arkanoid.controller.menu.LevelCompleteController"
            prefWidth="600" prefHeight="600">
 
+    <!-- Фон -->
     <AnchorPane prefWidth="600" prefHeight="600"
                 style="-fx-background-image: url('background.jpg');
                        -fx-background-repeat: stretch;
                        -fx-background-size: 600 600;
                        -fx-background-position: center center;" />
 
-    <VBox spacing="20" alignment="CENTER"
+    <!-- Основная панель -->
+    <VBox fx:id="box" spacing="20" alignment="CENTER"
           style="-fx-padding: 40;">
-        <Label text="Вы погибли!"
+        <Label text="Уровень пройден!"
                style="-fx-font-size: 48px;
-                      -fx-text-fill: #FF4444;
+                      -fx-text-fill: #44FF44;
                       -fx-font-weight: bold;
                       -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 4,0,2,2);" />
+
+        <Button fx:id="nextLevel" text="Следующий уровень"
+                onAction="#onNextLevel"
+                minWidth="200"/>
         <Button text="В главное меню"
                 onAction="#onMainMenu"
                 minWidth="200"/>
-        <Button text="Выйти"
-                onAction="#onExit"
-                minWidth="200"/>
     </VBox>
 </StackPane>
-

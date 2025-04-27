@@ -1,11 +1,11 @@
 package by.astakhau.arkanoid.controller.menu;
 
-import com.almasb.fxgl.dsl.FXGL;
+import by.astakhau.arkanoid.controller.SceneUpdater;
 import javafx.event.ActionEvent;
 
 public class DeathScreenController {
     public void onMainMenu(ActionEvent actionEvent) {
-        FXGL.getGameController().gotoMainMenu();
+        new SceneUpdater().uploadResource("main-menu.fxml");
     }
 
     public void onExit(ActionEvent actionEvent) {

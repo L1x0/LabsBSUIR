@@ -1,5 +1,6 @@
 package by.astakhau.arkanoid.controller.menu;
 
+import by.astakhau.arkanoid.Arkanoid;
 import by.astakhau.arkanoid.controller.SceneService;
 import by.astakhau.arkanoid.controller.SceneUpdater;
 import com.almasb.fxgl.dsl.FXGL;
@@ -10,6 +11,7 @@ public class MainMenuController {
 
     @FXML
     private void onStartGame() {
+        Arkanoid.levelReset();
         FXGL.getGameController().startNewGame();
     }
 
