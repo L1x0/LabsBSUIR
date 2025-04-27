@@ -12,6 +12,6 @@ public class CustomSceneFactory extends SceneFactory {
 
     @Override
     public FXGLMenu newGameMenu() {
-        return new MainMenu(MenuType.GAME_MENU);
+        return new GameMenu(MenuType.GAME_MENU);
     }
 }

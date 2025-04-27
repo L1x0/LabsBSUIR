@@ -37,6 +37,7 @@ public class Arkanoid extends GameApplication {
 
     @Override
     protected void onPreInit() {
+        FXGL.loopBGM("background_music.mp3");
         arkanoidEntityFactory = new ArkanoidEntityFactory();
         FXGL.getGameScene().getContentRoot().setCursor(Cursor.DEFAULT);
         levelManager = new LevelManager();
@@ -69,8 +70,6 @@ public class Arkanoid extends GameApplication {
 
     @Override
     protected void initGame() {
-        FXGL.loopBGM("background_music.mp3");
-
         paddle = arkanoidEntityFactory.createPaddle(new SpawnData(350, 500));
         FXGL.getGameWorld().addEntity(paddle);
 

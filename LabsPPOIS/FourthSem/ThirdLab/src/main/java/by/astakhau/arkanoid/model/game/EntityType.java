@@ -8,5 +8,6 @@ public enum EntityType {
     WALL_RIGHT,
     WALL_TOP,
     WALL_BOTTOM,
-    BUFF
+    BUFF,
+    EXPLOSION
 }

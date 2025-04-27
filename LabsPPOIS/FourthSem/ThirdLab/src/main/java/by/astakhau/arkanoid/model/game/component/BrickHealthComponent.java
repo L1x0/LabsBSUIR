@@ -22,11 +22,12 @@ public class BrickHealthComponent extends Component {
         String color = "";
         switch (health) {
             case 0 -> {
+                ArkanoidEntityFactory arkanoidEntityFactory = new ArkanoidEntityFactory();
+
                 var spawnData = new SpawnData(entity.getX(),entity.getY());
                 entity.removeFromWorld();
 
                 if (FXGL.random(0, 10) <= 3) {
-                    ArkanoidEntityFactory arkanoidEntityFactory = new ArkanoidEntityFactory();
                     FXGL.getGameWorld().addEntity(arkanoidEntityFactory.createBuff(spawnData));
                 }
                 return;
