@@ -7,17 +7,19 @@ import com.almasb.fxgl.entity.SpawnData;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import lombok.NoArgsConstructor;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
 public class LevelManager implements LevelService {
     List<Level> levels;
 
-    public void init() {
+    public LevelManager() {
+        init();
+    }
+
+    private void init() {
         levels = new ArrayList<>();
         loadLevels();
     }

@@ -7,11 +7,14 @@ module by.astakhau.arkanoid.thirdlab {
     requires static lombok;
     requires annotations;
     requires com.fasterxml.jackson.databind;
+    requires javafx.media;
 
     opens by.astakhau.arkanoid to javafx.fxml;
     exports by.astakhau.arkanoid;
 
     opens assets.textures;
+    opens assets.music;
+    opens assets.sounds;
 
     opens by.astakhau.arkanoid.model.data;
     exports by.astakhau.arkanoid.model.data;

@@ -5,7 +5,11 @@ import java.io.IOException;
 public class ConfigManager implements ConfigService{
    private AppConfig appConfig;
 
-    public void init() {
+   public ConfigManager() {
+       init();
+   }
+
+    private void init() {
         ConfigReader configReader = new ConfigReader();
         try {
             appConfig = configReader.readFile();
