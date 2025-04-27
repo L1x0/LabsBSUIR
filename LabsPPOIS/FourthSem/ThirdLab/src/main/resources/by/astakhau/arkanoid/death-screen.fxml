@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="by.astakhau.arkanoid.controller.menu.DeathScreenController"
+           prefWidth="600" prefHeight="600">
+
+    <!-- Фон -->
+    <AnchorPane prefWidth="600" prefHeight="600"
+                style="-fx-background-image: url('background.jpg');
+                       -fx-background-repeat: stretch;
+                       -fx-background-size: 600 600;
+                       -fx-background-position: center center;" />
+
+    <!-- Основная панель с сообщением и кнопками -->
+    <VBox spacing="20" alignment="CENTER"
+          style="-fx-padding: 40;">
+        <Label text="Вы погибли!"
+               style="-fx-font-size: 48px;
+                      -fx-text-fill: #FF4444;
+                      -fx-font-weight: bold;
+                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 4,0,2,2);" />
+        <Button text="В главное меню"
+                onAction="#onMainMenu"
+                minWidth="200"/>
+        <Button text="Выйти"
+                onAction="#onExit"
+                minWidth="200"/>
+    </VBox>
+</StackPane>
+

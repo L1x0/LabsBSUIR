@@ -43,5 +43,9 @@ public class BallMovementComponent extends Component {
         }
 
         physics.getBody().setLinearVelocity(velocity);
+
+        if (entity.getY() > 600) {
+            entity.removeFromWorld();
+        }
     }
 }

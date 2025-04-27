@@ -1,5 +1,6 @@
 package by.astakhau.arkanoid;
 
+import by.astakhau.arkanoid.controller.SceneUpdater;
 import by.astakhau.arkanoid.model.data.config.AppConfig;
 import by.astakhau.arkanoid.model.data.config.ConfigManager;
 import by.astakhau.arkanoid.model.data.level.LevelManager;
@@ -14,9 +15,13 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.audio.Sound;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.EntityWorldListener;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.PhysicsComponent;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -30,6 +35,7 @@ import static com.almasb.fxgl.dsl.FXGLForKtKt.getAudioPlayer;
 
 
 public class Arkanoid extends GameApplication {
+    SceneUpdater sceneUpdater = new SceneUpdater();
     LevelManager levelManager;
     ArkanoidEntityFactory arkanoidEntityFactory;
     Entity paddle;
@@ -99,7 +105,31 @@ public class Arkanoid extends GameApplication {
                 x += 60;
             }
         }
+        var worldListener = new EntityWorldListener() {
+            @Override
+            public void onEntityAdded(Entity entity) {
+
+            }
+
+            @Override
+            public void onEntityRemoved(Entity entity) {
+                if (FXGL.getGameWorld().getEntitiesByType(EntityType.BALL).isEmpty()) {
+                    FXGL.getGameController().pauseEngine();
+                    sceneUpdater.uploadResource("death-screen.fxml");
+                }
+            }
+        };
+
+        FXGL.getGameWorld().addWorldListener(worldListener);
     }
+
+//    @Override
+//    protected void onUpdate(double tpf) {
+//        if (FXGL.getGameWorld().getEntitiesByType(EntityType.BALL).isEmpty()) {
+//            FXGL.getGameController().pauseEngine();
+//            sceneUpdater.uploadResource("death-menu.fxml");
+//        }
+//    }
 
     @Override
     protected void initInput() {
