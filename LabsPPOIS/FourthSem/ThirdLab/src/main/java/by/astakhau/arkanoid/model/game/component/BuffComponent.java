@@ -1,5 +1,6 @@
 package by.astakhau.arkanoid.model.game.component;
 
+import by.astakhau.arkanoid.Arkanoid;
 import by.astakhau.arkanoid.model.game.ArkanoidEntityFactory;
 import by.astakhau.arkanoid.model.game.EntityType;
 import com.almasb.fxgl.core.math.Vec2;
@@ -33,9 +34,20 @@ public class BuffComponent extends Component {
             case 2:
                 var paddle = FXGL.getGameWorld().getEntitiesByType(EntityType.PADDLE).get(0);
                 FXGL.getGameWorld().addEntities(
-                        arkanoidEntityFactory.createBall(new SpawnData(paddle.getX() - 20, paddle.getY() - 40)),
-                        arkanoidEntityFactory.createBall(new SpawnData(paddle.getX() + 40, paddle.getY() - 40)),
-                        arkanoidEntityFactory.createBall(new SpawnData(paddle.getX() + 90, paddle.getY() - 40)));
+                        arkanoidEntityFactory.createBall(new SpawnData(
+                                paddle.getX() - 20,
+                                paddle.getY() - 40),
+                                Arkanoid.getAppConfig().getBallSpeed()),
+
+                        arkanoidEntityFactory.createBall(new SpawnData(
+                                paddle.getX() + 40,
+                                paddle.getY() - 40),
+                                Arkanoid.getAppConfig().getBallSpeed()),
+                        
+                        arkanoidEntityFactory.createBall(new SpawnData(
+                                paddle.getX() + 90,
+                                paddle.getY() - 40),
+                                Arkanoid.getAppConfig().getBallSpeed()));
 
                 return;
             case 3:

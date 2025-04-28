@@ -14,4 +14,6 @@ public class AppConfig {
     private int width;
     private int height;
     private int pixelsPerMeter;
+    private float ballSpeed;
+    private double paddleSpeed;
 }

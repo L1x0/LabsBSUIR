@@ -91,7 +91,7 @@ public class ArkanoidEntityFactory implements EntityFactory {
     }
 
     @Spawns("Ball")
-    public Entity createBall(SpawnData data) {
+    public Entity createBall(SpawnData data, float speedPx) {
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(BodyType.DYNAMIC);
 
@@ -104,7 +104,6 @@ public class ArkanoidEntityFactory implements EntityFactory {
         physics.setOnPhysicsInitialized(() -> {
             FXGL.getPhysicsWorld().setGravity(0, 0);
 
-            float speedPx = 300;
             float speedM = (float) (speedPx / FXGL.getSettings().getPixelsPerMeter());
 
             physics.setLinearVelocity(speedM, -speedM);

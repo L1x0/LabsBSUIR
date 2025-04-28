@@ -49,6 +49,8 @@ public class Arkanoid extends GameApplication {
     private  LevelManager levelManager;
     private ArkanoidEntityFactory arkanoidEntityFactory;
     private Entity paddle;
+    @Getter
+    private static AppConfig appConfig;
 
 
 
@@ -94,7 +96,9 @@ public class Arkanoid extends GameApplication {
         paddle = arkanoidEntityFactory.createPaddle(new SpawnData(350, 500));
         FXGL.getGameWorld().addEntity(paddle);
 
-        FXGL.getGameWorld().addEntity(arkanoidEntityFactory.createBall(new SpawnData(350, 400)));
+        FXGL.getGameWorld().addEntity(arkanoidEntityFactory.createBall(
+                new SpawnData(350, 400), appConfig.getBallSpeed()));
+
         FXGL.getGameWorld().addEntity(arkanoidEntityFactory.background());
         arkanoidEntityFactory.createBoundaryWalls();
 
@@ -159,7 +163,7 @@ public class Arkanoid extends GameApplication {
         FXGL.getInput().addAction(new UserAction("Move Left") {
             @Override
             protected void onActionBegin() {
-                paddle.getComponent(PhysicsComponent.class).setVelocityX(-300);
+                paddle.getComponent(PhysicsComponent.class).setVelocityX(-appConfig.getPaddleSpeed());
             }
 
             @Override
@@ -178,7 +182,7 @@ public class Arkanoid extends GameApplication {
         FXGL.getInput().addAction(new UserAction("Move Right") {
             @Override
             protected void onActionBegin() {
-                paddle.getComponent(PhysicsComponent.class).setVelocityX(300);
+                paddle.getComponent(PhysicsComponent.class).setVelocityX(appConfig.getPaddleSpeed());
             }
 
             @Override
@@ -199,7 +203,7 @@ public class Arkanoid extends GameApplication {
     protected void initSettings(GameSettings settings) {
         ConfigManager configManager = new ConfigManager();
 
-        AppConfig appConfig = configManager.getConfig();
+        appConfig = configManager.getConfig();
 
         settings.setTitle(appConfig.getAppName());
         settings.setWidth(appConfig.getWidth());

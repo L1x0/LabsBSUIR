@@ -3,5 +3,7 @@
   "appVersion": "0.4",
   "width": 600,
   "height": 600,
-  "pixelsPerMeter": 32
+  "pixelsPerMeter": 32,
+  "ballSpeed": 300.0,
+  "paddleSpeed": 300.0
 }
