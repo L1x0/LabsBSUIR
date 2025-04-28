@@ -2,36 +2,57 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
 <StackPane xmlns:fx="http://javafx.com/fxml"
            fx:controller="by.astakhau.arkanoid.controller.menu.RulesController">
+
+    <!-- фон -->
     <AnchorPane prefWidth="600" prefHeight="600"
                 style="-fx-background-image: url('background.jpg');
                        -fx-background-repeat: stretch;
                        -fx-background-size: 600 600;
-                       -fx-background-position: center center;"/>
+                       -fx-background-position: center center;" />
 
-    <VBox
-          prefHeight="400" prefWidth="600" spacing="10">
-        <Button text="назад" onAction="#onGoBack"/>
-        <TextArea text="Arkanoid — видеоигра для игровых автоматов,
-         разработанная компанией Taito в 1986 году. Игра основана на играх серии Breakout фирмы Atari.
-        Именно её название стало нарицательным для класса подобных игр. Игрок управляет небольшой платформой-ракеткой,
-        которую можно передвигать горизонтально от одной стенки до другой.
-        Ракетку следует подставлять под летящий шарик и отбивать, чтобы тот не упал вниз.
-        Удар шарика по кирпичу приводит к разрушению кирпича. После того как все кирпичи на данном уровне разбиты,
-        происходит переход на следующий уровень с новым набором кирпичей.
-        Есть и некоторое разнообразие: определённые кирпичи нужно ударять несколько раз для разрушения;
-        иногда появляются летающие враги, от которых отталкивается шарик;
-        удар по некоторым кирпичам приводит к выпадению из них капсул-призов — приз активируется,
-        если поймать такую капсулу ракеткой." maxWidth="500" fx:id="myTextArea" layoutX="10.0" layoutY="10.0"
-                  prefHeight="380.0" prefWidth="580.0"
-                  wrapText="true">
+    <!-- полупрозрачная панель для контента -->
+    <VBox alignment="TOP_CENTER" spacing="15"
+          style="-fx-background-color: rgba(0,0,0,0.3);
+                 -fx-padding: 30;">
 
-        </TextArea>
-        <padding>
-            <Insets bottom="10" left="50"/>
-        </padding>
+        <!-- кнопка Назад -->
+        <Button text="Назад" onAction="#onGoBack"
+                style="-fx-background-color: rgba(0,0,0,0.6);
+                       -fx-text-fill: #ede711;
+                       -fx-font-size: 16px;
+                       -fx-background-radius: 5;
+                       -fx-padding: 8 16;" />
+
+        <!-- обёртка с рамкой и тенью -->
+        <StackPane style="-fx-background-color: rgba(255,255,255,0.8);
+                          -fx-background-radius: 10;
+                          -fx-border-radius: 10;
+                          -fx-border-color: #ede711;
+                          -fx-border-width: 2;
+                          -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10,0,0,2);">
+            <TextArea fx:id="myTextArea"
+                      wrapText="true"
+                      prefWidth="550" prefHeight="380"
+                      style="-fx-background-color: transparent;
+                             -fx-font-size: 14px;
+                             -fx-text-fill: #222;
+                             -fx-padding: 10;">
+                <!-- Ваш исходный текст правил -->
+                Arkanoid — видеоигра для игровых автоматов,
+                разработанная компанией Taito в 1986 году. Игра основана на играх серии Breakout фирмы Atari.
+                Именно её название стало нарицательным для класса подобных игр. Игрок управляет небольшой платформой-ракеткой,
+                которую можно передвигать горизонтально от одной стенки до другой.
+                Ракетку следует подставлять под летящий шарик и отбивать, чтобы тот не упал вниз.
+                Удар шарика по кирпичу приводит к разрушению кирпича. После того как все кирпичи на данном уровне разбиты,
+                происходит переход на следующий уровень с новым набором кирпичей.
+                Есть и некоторое разнообразие: определённые кирпичи нужно ударять несколько раз для разрушения;
+                иногда появляются летающие враги, от которых отталкивается шарик;
+                удар по некоторым кирпичам приводит к выпадению из них капсул-призов — приз активируется,
+                если поймать такую капсулу ракеткой.
+            </TextArea>
+        </StackPane>
     </VBox>
 </StackPane>

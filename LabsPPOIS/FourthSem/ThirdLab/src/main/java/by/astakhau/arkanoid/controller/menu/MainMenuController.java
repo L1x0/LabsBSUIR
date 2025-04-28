@@ -11,8 +11,12 @@ public class MainMenuController {
 
     @FXML
     private void onStartGame() {
-        Arkanoid.levelReset();
-        FXGL.getGameController().startNewGame();
+        if (!Arkanoid.isPlayerRegistered()) {
+            sceneUpdater.uploadResource("name-page.fxml");
+        } else {
+            Arkanoid.levelReset();
+            FXGL.getGameController().startNewGame();
+        }
     }
 
     @FXML

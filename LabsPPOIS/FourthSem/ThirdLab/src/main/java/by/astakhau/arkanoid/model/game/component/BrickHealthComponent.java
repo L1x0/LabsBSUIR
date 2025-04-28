@@ -1,5 +1,6 @@
 package by.astakhau.arkanoid.model.game.component;
 
+import by.astakhau.arkanoid.Arkanoid;
 import by.astakhau.arkanoid.model.game.ArkanoidEntityFactory;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.SpawnData;
@@ -43,5 +44,7 @@ public class BrickHealthComponent extends Component {
     public void reduceHealth() {
         health--;
         updateColor();
+
+        Arkanoid.addPlayerScore();
     }
 }

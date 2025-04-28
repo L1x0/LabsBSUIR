@@ -19,6 +19,9 @@ module by.astakhau.arkanoid.thirdlab {
     opens by.astakhau.arkanoid.model.data;
     exports by.astakhau.arkanoid.model.data;
 
+    opens by.astakhau.arkanoid.model.data.score;
+    exports by.astakhau.arkanoid.model.data.score;
+
     exports by.astakhau.arkanoid.controller.menu;
     opens by.astakhau.arkanoid.controller.menu to javafx.fxml;
     exports by.astakhau.arkanoid.model.data.config;

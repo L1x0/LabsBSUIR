@@ -4,6 +4,9 @@ import by.astakhau.arkanoid.controller.SceneUpdater;
 import by.astakhau.arkanoid.model.data.config.AppConfig;
 import by.astakhau.arkanoid.model.data.config.ConfigManager;
 import by.astakhau.arkanoid.model.data.level.LevelManager;
+import by.astakhau.arkanoid.model.data.score.Player;
+import by.astakhau.arkanoid.model.data.score.ScoreTable;
+import by.astakhau.arkanoid.model.data.score.ScoreTableManager;
 import by.astakhau.arkanoid.model.game.ArkanoidEntityFactory;
 import by.astakhau.arkanoid.model.game.EntityType;
 import by.astakhau.arkanoid.model.game.component.BrickHealthComponent;
@@ -24,7 +27,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -34,19 +39,29 @@ import static com.almasb.fxgl.dsl.FXGLForKtKt.getAudioPlayer;
 
 public class Arkanoid extends GameApplication {
     @Getter
-    private static int levelNum = 8;
-    SceneUpdater sceneUpdater = new SceneUpdater();
-    LevelManager levelManager;
-    ArkanoidEntityFactory arkanoidEntityFactory;
-    Entity paddle;
+    private static int levelNum = 0;
+    @Getter @Setter
+    private static Player player;
+    @Getter @Setter
+    private static ScoreTable scoreTable;
+    private int timer = 0;
+    private final SceneUpdater sceneUpdater = new SceneUpdater();
+    private  LevelManager levelManager;
+    private ArkanoidEntityFactory arkanoidEntityFactory;
+    private Entity paddle;
+
 
 
     @Override
     protected void onPreInit() {
         FXGL.loopBGM("background_music.mp3");
+
         arkanoidEntityFactory = new ArkanoidEntityFactory();
+
         FXGL.getGameScene().getContentRoot().setCursor(Cursor.DEFAULT);
+
         levelManager = new LevelManager();
+        scoreTable = new ScoreTableManager().getScoreTable();
     }
 
     @Override
@@ -116,25 +131,27 @@ public class Arkanoid extends GameApplication {
                 if (FXGL.getGameWorld().getEntitiesByType(EntityType.BALL).isEmpty()) {
                     FXGL.getGameController().gotoMainMenu();
                     sceneUpdater.uploadResource("death-screen.fxml");
+
+                    player.setScore(player.getScore() / timer);
+                    scoreTable.addPlayer(player);
                 }
 
                 if (FXGL.getGameWorld().getEntitiesByType(EntityType.BRICK).isEmpty()) {
                     FXGL.getGameController().gotoMainMenu();
                     sceneUpdater.uploadResource("level-complete.fxml");
+
+                    player.setScore(player.getScore() / timer);
+                    scoreTable.addPlayer(player);
                 }
             }
         };
 
         FXGL.getGameWorld().addWorldListener(worldListener);
-    }
 
-//    @Override
-//    protected void onUpdate(double tpf) {
-//        if (FXGL.getGameWorld().getEntitiesByType(EntityType.BALL).isEmpty()) {
-//            FXGL.getGameController().pauseEngine();
-//            sceneUpdater.uploadResource("death-menu.fxml");
-//        }
-//    }
+        FXGL.getGameTimer().runAtInterval(() -> {
+            timer++;
+        }, Duration.seconds(1));
+    }
 
     @Override
     protected void initInput() {
@@ -200,6 +217,14 @@ public class Arkanoid extends GameApplication {
 
     public static void levelReset() {
         levelNum = 0;
+    }
+
+    public static boolean isPlayerRegistered() {
+        return player != null;
+    }
+
+    public static void addPlayerScore() {
+        player.setScore(player.getScore() + 10);
     }
 
     public static void main(String[] args) {
