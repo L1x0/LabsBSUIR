@@ -6,6 +6,7 @@ import com.almasb.fxgl.dsl.FXGL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 public class LevelCompleteController {
@@ -13,6 +14,8 @@ public class LevelCompleteController {
     public VBox box;
     @FXML
     public Button nextLevel;
+    @FXML
+    public Label score;
 
     public void onNextLevel(ActionEvent actionEvent) {
         Arkanoid.nextLevel();
@@ -25,6 +28,13 @@ public class LevelCompleteController {
 
     @FXML
     public void initialize() {
+        if (Arkanoid.getPlayer().getScore() < Arkanoid.getScoreTable().getPlayers().get(0).getScore()) {
+            score.setVisible(false);
+        } else if (Arkanoid.getPlayer().getScore() > Arkanoid.getScoreTable().getPlayers().get(0).getScore()) {
+            score.setVisible(true);
+        }
+
+
         if (Arkanoid.getLevelNum() == 9) {
             box.getChildren().remove(nextLevel);
         }

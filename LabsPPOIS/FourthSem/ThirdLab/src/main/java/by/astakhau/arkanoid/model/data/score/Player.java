@@ -10,4 +10,12 @@ import lombok.Setter;
 public class Player {
     private String name;
     private int score;
+
+    @Override
+    public Player clone() {
+        Player clone = new Player();
+        clone.setName(name);
+        clone.setScore(score);
+        return clone;
+    }
 }

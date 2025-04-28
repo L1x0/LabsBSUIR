@@ -31,7 +31,7 @@ public class ScoreTable {
 
         if (existing.isPresent()) {
             if (existing.get().getScore() < player.getScore()) {
-                players.remove(existing.get());
+                players.removeIf(p -> p.getName().equals(player.getName()));
                 players.add(player);
             }
         } else {

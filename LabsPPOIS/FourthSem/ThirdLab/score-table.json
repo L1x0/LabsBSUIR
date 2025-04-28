@@ -1,48 +1,45 @@
 {
   "players" : [ {
-    "name" : "Alice",
-    "score" : 1500
+    "name" : "134123514351243513514341234123",
+    "score" : 12
   }, {
-    "name" : "Bob",
-    "score" : 1400
+    "name" : "Unknown_Player439100",
+    "score" : 5
   }, {
-    "name" : "Charlie",
-    "score" : 1300
+    "name" : "Unknown_Player336100",
+    "score" : 5
   }, {
-    "name" : "Dana",
-    "score" : 1200
+    "name" : "1341325452",
+    "score" : 5
   }, {
-    "name" : "Eve",
-    "score" : 1100
-  }, {
-    "name" : "Frank",
-    "score" : 1000
-  }, {
-    "name" : "Grace",
-    "score" : 900
-  }, {
-    "name" : "Heidi",
-    "score" : 800
-  }, {
-    "name" : "Ivan",
-    "score" : 700
-  }, {
-    "name" : "Judy",
-    "score" : 600
-  }, {
-    "name" : "Unknown_Player219100",
-    "score" : 6
-  }, {
-    "name" : "1",
-    "score" : 6
-  }, {
-    "name" : "bimbimbombom",
-    "score" : 6
-  }, {
-    "name" : "L1x0",
+    "name" : "овощ",
     "score" : 5
   }, {
     "name" : "Артём",
     "score" : 4
+  }, {
+    "name" : "1",
+    "score" : 4
+  }, {
+    "name" : "qer",
+    "score" : 3
+  }, {
+    "name" : "pasha technik",
+    "score" : 3
+  }, {
+    "name" : "final",
+    "score" : 3
+  }, {
+    "name" : "12",
+    "score" : 2
+  }, {
+    "name" : "tralalero tralala",
+    "score" : 2
+  }, {
+    "name" : "biba",
+    "score" : 2
+  }, {
+    "name" : "1234",
+    "score" : 1
   } ]
 }

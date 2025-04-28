@@ -32,5 +32,11 @@
         <Button text="В главное меню"
                 onAction="#onMainMenu"
                 minWidth="200"/>
+
+        <Label fx:id="score" text="Вы установили новый рекорд!!!"
+               style="-fx-font-size: 24px;
+                      -fx-text-fill: #44FF44;
+                      -fx-font-weight: bold;
+                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 4,0,2,2);" />
     </VBox>
 </StackPane>
