@@ -137,12 +137,12 @@ public class Arkanoid extends GameApplication {
 
                 if (FXGL.getGameWorld().getEntitiesByType(EntityType.BRICK).isEmpty()) {
                     FXGL.getGameController().gotoMainMenu();
-                    sceneUpdater.uploadResource("level-complete.fxml");
 
-                    player.setScore(0);
                     player.setScore(player.getScore() / timer);
-
                     scoreTable.addPlayer(player.clone());
+
+                    sceneUpdater.uploadResource("level-complete.fxml");
+                    player.setScore(0);
                 }
             }
         };

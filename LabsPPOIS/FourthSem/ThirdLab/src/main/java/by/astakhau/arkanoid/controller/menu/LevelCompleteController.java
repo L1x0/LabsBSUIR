@@ -28,10 +28,10 @@ public class LevelCompleteController {
 
     @FXML
     public void initialize() {
-        if (Arkanoid.getPlayer().getScore() < Arkanoid.getScoreTable().getPlayers().get(0).getScore()) {
-            score.setVisible(false);
-        } else if (Arkanoid.getPlayer().getScore() > Arkanoid.getScoreTable().getPlayers().get(0).getScore()) {
+        if (Arkanoid.getPlayer().getScore() > Arkanoid.getScoreTable().getPlayers().get(0).getScore()) {
             score.setVisible(true);
+        } else {
+            score.setVisible(false);
         }
 
 
