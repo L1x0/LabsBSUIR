@@ -22,17 +22,7 @@ public class SceneUpdater implements SceneService {
             Parent root = fxmlLoader.load();
             FXGL.getSceneService().getCurrentScene().getContentRoot().getChildren().add(root);
         } catch (IOException e) {
-            VBox box = new VBox();
-
-            Button exitButton = new Button("Exit");
-            exitButton.setOnAction(event -> System.exit(0));
-
-            TextField message = new TextField();
-            message.setText("макет не найден,\n" + e.getMessage());
-
-            box.getChildren().add(exitButton);
-
-            FXGL.getSceneService().getCurrentScene().getContentRoot().getChildren().add(box);
+            FXGL.getNotificationService().pushNotification("");
         }
     }
 }

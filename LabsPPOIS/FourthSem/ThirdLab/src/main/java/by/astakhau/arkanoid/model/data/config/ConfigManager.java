@@ -1,5 +1,7 @@
 package by.astakhau.arkanoid.model.data.config;
 
+import com.almasb.fxgl.dsl.FXGL;
+
 import java.io.IOException;
 
 public class ConfigManager implements ConfigService{
@@ -14,6 +16,7 @@ public class ConfigManager implements ConfigService{
         try {
             appConfig = configReader.readFile();
         } catch (IOException e) {
+            FXGL.getNotificationService().pushNotification("конфиг не найден");
             appConfig = new AppConfig();
 
             appConfig.setAppName("Arkanoid");

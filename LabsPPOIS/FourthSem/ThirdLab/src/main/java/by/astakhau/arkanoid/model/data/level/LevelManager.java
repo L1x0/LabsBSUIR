@@ -29,17 +29,7 @@ public class LevelManager implements LevelService {
         try {
             levels = reader.readFile();
         } catch (IOException e) {
-            VBox box = new VBox();
-
-            Button exitButton = new Button("Exit");
-            exitButton.setOnAction(event -> System.exit(0));
-
-            TextField message = new TextField();
-            message.setText("уровни не найдены,\n" + e.getMessage());
-
-            box.getChildren().add(exitButton);
-
-            //FXGL.getSceneService().getCurrentScene().getContentRoot().getChildren().add(box);
+            FXGL.getNotificationService().pushNotification("Уровни не найдены");
         }
     }
 

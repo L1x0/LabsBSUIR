@@ -25,7 +25,6 @@ public class ScoreData implements DataService<ScoreTable> {
         } catch (IOException e) {
             FXGL.getNotificationService().pushNotification("Чтение таблицы лидеров не удалось");
             scoreTable = new ScoreTable(List.of());
-            e.printStackTrace();
         }
         return scoreTable;
     }
@@ -36,7 +35,6 @@ public class ScoreData implements DataService<ScoreTable> {
             writer.writeData(data);
         } catch (IOException e) {
             FXGL.getNotificationService().pushNotification("не удалось записать таблицу");
-            e.printStackTrace();
         }
     }
 }
