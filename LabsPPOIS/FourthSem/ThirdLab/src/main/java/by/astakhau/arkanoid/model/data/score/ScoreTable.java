@@ -1,5 +1,6 @@
 package by.astakhau.arkanoid.model.data.score;
 
+import by.astakhau.arkanoid.Arkanoid;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
@@ -43,7 +44,8 @@ public class ScoreTable {
     }
 
     private String generateName() {
-        return "Unknown_Player" + new Random().nextInt(900) + 100;
+        Arkanoid.getPlayer().setName("Unknown_Player" + new Random().nextInt(900) + 100);
+        return Arkanoid.getPlayer().getName();
     }
 
     private void saveChanges() {
