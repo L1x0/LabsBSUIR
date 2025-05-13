@@ -3,13 +3,8 @@ package by.astakhau.subformulcounter;
 import java.util.*;
 
 public class Validation {
-    private static final Set<Character> LOGIC_CONSTS = Set.of('0', '1');
-    private static final Set<Character> LITERALS = Set.of(
-            'A','B','C','D','E','F','G','H','I','J','K','L','M',
-            'N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
-    );
     private static final Set<Character> BINARY_OPERANDS = Set.of('&', '|', '<', '~');
-    private static final Set<Character> ALL_OPERANDS = Set.of('&', '|', '<', '~', '!');
+    public static final Set<Character> ALL_OPERANDS = Set.of('&', '|', '<', '~', '!');
     private static final Set<Character> ARGUMENTS = Set.of(
             'A','B','C','D','E','F','G','H','I','J','K','L','M',
             'N','O','P','Q','R','S','T','U','V','W','X','Y','Z','1','0'
