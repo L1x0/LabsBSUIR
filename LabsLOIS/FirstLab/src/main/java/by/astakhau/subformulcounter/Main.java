@@ -32,7 +32,9 @@ public class Main {
             System.out.println("Логическая эквиваленция: ~");
             System.out.println("Логическое отрицание: !");
 
-            if (isTestChoose()) {
+            boolean choice = isTestChoose();
+
+            if (choice) {
                 var test = new Test();
                 test.start();
 

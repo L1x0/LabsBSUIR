@@ -29,7 +29,7 @@ public class Counter {
 
     public Counter(String formula) {
         this.processedFormula = preprocessFormula(formula);
-        countElements();
+        getAbsCount();
     }
 
     private String preprocessFormula(String input) {
@@ -38,7 +38,7 @@ public class Counter {
                 .replace("/\\", "&");
     }
 
-    private void countElements() {
+    public int getAbsCount() {
         operatorsCount = 0;
         variables.clear();
 
@@ -49,21 +49,7 @@ public class Counter {
                 variables.add(c);
             }
         }
-    }
 
-    public int getOperatorsCount() {
-        return operatorsCount;
-    }
-
-    public int getUniqueVariablesCount() {
-        return variables.size();
-    }
-
-    public int getAbsCount() {
         return operatorsCount + variables.size();
-    }
-
-    public Set<Character> getVariablesSet() {
-        return new HashSet<>(variables);
     }
 }
