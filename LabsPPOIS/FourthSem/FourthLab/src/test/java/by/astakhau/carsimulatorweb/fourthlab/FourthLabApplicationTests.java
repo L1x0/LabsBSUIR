@@ -1,4 +1,4 @@
-package by.astakhau.cardriving.fourthlab;
+package by.astakhau.carsimulatorweb.fourthlab;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

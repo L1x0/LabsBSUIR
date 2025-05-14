@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Симулятор вождения</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .car-status {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .menu-button {
+            margin-bottom: 10px;
+            background-color: #673AB7;
+        }
+        .menu-button:hover {
+            background-color: #5E35B1;
+        }
+        .engine-controls button {
+            background-color: #2196F3;
+        }
+        .engine-controls button:hover {
+            background-color: #0b7dda;
+        }
+        .repair-button {
+            background-color: #f44336;
+        }
+        .repair-button:hover {
+            background-color: #d32f2f;
+        }
+        .section {
+            display: none;
+            margin-top: 20px;
+        }
+        .section.active {
+            display: block;
+        }
+        .car-card {
+            background-color: #e1f5fe;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        .car-card.current {
+            background-color: #b3e5fc;
+            border: 2px solid #03a9f4;
+        }
+        .car-card-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .car-input {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-right: 10px;
+        }
+        .maintenance-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+        .progress-bar-fill {
+            height: 20px;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+        }
+        .low {
+            background-color: #f44336;
+        }
+        .medium {
+            background-color: #ff9800;
+        }
+        .main-menu {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .car-type-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .car-type-buttons button:nth-child(1) {
+            background-color: #4CAF50;
+        }
+        
+        .car-type-buttons button:nth-child(2) {
+            background-color: #f44336;
+        }
+        
+        .car-type-buttons button:nth-child(3) {
+            background-color: #2196F3;
+        }
+        
+        .car-type-selection {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Симулятор вождения автомобиля</h1>
+
+    <div class="car-status" id="status">
+        <h2>Состояние автомобиля</h2>
+        <p>Загрузка данных...</p>
+    </div>
+
+    <!-- Главное меню -->
+    <div class="main-menu">
+        <button class="menu-button" onclick="showSection('vehicle-control')">Управление автомобилем</button>
+        <button class="menu-button" onclick="showSection('maintenance')">Обслуживание</button>
+        <button class="menu-button" onclick="showSection('garage')">Гараж</button>
+    </div>
+
+    <!-- Секция управления автомобилем -->
+    <div id="vehicle-control" class="section">
+        <h2>Управление автомобилем</h2>
+        <div class="engine-controls">
+            <button onclick="startEngine()">Запустить двигатель</button>
+            <button onclick="stopEngine()">Остановить двигатель</button>
+        </div>
+
+        <h3>Управление движением</h3>
+        <div class="controls">
+            <button onclick="turn('left')">Повернуть налево</button>
+            <button onclick="move('forward')">Вперед</button>
+            <button onclick="turn('right')">Повернуть направо</button>
+            <button onclick="move('backward')">Назад</button>
+            <button onclick="turn('straight')">Выровнять руль</button>
+            <button onclick="move('stop')">Остановиться</button>
+        </div>
+    </div>
+
+    <!-- Секция обслуживания -->
+    <div id="maintenance" class="section">
+        <h2>Обслуживание автомобиля</h2>
+        <div id="maintenance-status"></div>
+        
+        <div class="maintenance-controls">
+            <div>
+                <h3>Заправка</h3>
+                <input type="number" id="fuel-amount" class="car-input" placeholder="Количество топлива" min="1" max="100" value="10">
+                <button onclick="refuel()">Заправить</button>
+            </div>
+            
+            <div>
+                <h3>Проверка масла</h3>
+                <button onclick="checkOil()">Проверить масло</button>
+                <div id="oil-status"></div>
+            </div>
+            
+            <div>
+                <h3>Ремонт</h3>
+                <button class="repair-button" onclick="repair()">Отремонтировать</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Секция гаража -->
+    <div id="garage" class="section">
+        <h2>Управление гаражом</h2>
+        
+        <div class="car-type-selection">
+            <h3>Добавить автомобиль</h3>
+            <input type="text" id="car-name" class="car-input" placeholder="Название автомобиля">
+            <div class="car-type-buttons">
+                <button onclick="addCar('standard')">Стандартный</button>
+                <button onclick="addCar('sports')">Спортивный</button>
+                <button onclick="addCar('full-tank')">С полным баком</button>
+            </div>
+        </div>
+        
+        <h3>Автомобили в гараже</h3>
+        <div id="cars-list"></div>
+    </div>
+
+    <script>
+        let currentSection = null;
+        
+        // Отображение выбранной секции
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            document.getElementById(sectionId).classList.add('active');
+            currentSection = sectionId;
+            
+            if (sectionId === 'garage') {
+                loadGarage();
+            } else if (sectionId === 'maintenance') {
+                updateMaintenanceStatus();
+            }
+        }
+        
+        // Обновление статуса автомобиля
+        function updateStatus() {
+            fetch('/api/car-simulator/status')
+                .then(response => response.json())
+                .then(data => {
+                    const fuelPercentage = Math.round((data.fuelLevel / data.maxFuel) * 100);
+                    const oilPercentage = Math.round((data.oilLevel / data.maxOilLevel) * 100);
+                    
+                    const fuelClass = fuelPercentage < 20 ? 'low' : (fuelPercentage < 50 ? 'medium' : '');
+                    const oilClass = oilPercentage < 20 ? 'low' : (oilPercentage < 50 ? 'medium' : '');
+                    
+                    const statusHtml = `
+                        <h2>Состояние автомобиля</h2>
+                        <p><strong>Водитель:</strong> ${data.driverName}</p>
+                        <p><strong>Автомобиль:</strong> ${data.carName}</p>
+                        <p><strong>Двигатель:</strong> ${data.isRunning ? 'Работает' : 'Выключен'}</p>
+                        <p><strong>Движение:</strong> ${translateMovementState(data.movementState)}</p>
+                        <p><strong>Поворот:</strong> ${translateTurnState(data.turnState)}</p>
+                        
+                        <p><strong>Топливо:</strong> ${data.fuelLevel}/${data.maxFuel} л</p>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill ${fuelClass}" style="width: ${fuelPercentage}%">
+                                ${fuelPercentage}%
+                            </div>
+                        </div>
+                        
+                        <p><strong>Масло:</strong> ${data.oilLevel}/${data.maxOilLevel} л</p>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill ${oilClass}" style="width: ${oilPercentage}%">
+                                ${oilPercentage}%
+                            </div>
+                        </div>
+                        
+                        <p><strong>Техническое состояние:</strong> ${data.needsRepair ? '⚠️ Требуется ремонт' : '✅ В порядке'}</p>
+                    `;
+                    document.getElementById('status').innerHTML = statusHtml;
+                    
+                    if (currentSection === 'maintenance') {
+                        updateMaintenanceStatus();
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка при получении статуса:', error);
+                    document.getElementById('status').innerHTML = '<p>Ошибка при получении данных</p>';
+                });
+        }
+        
+        function updateMaintenanceStatus() {
+            fetch('/api/car-simulator/status')
+                .then(response => response.json())
+                .then(data => {
+                    const fuelPercentage = Math.round((data.fuelLevel / data.maxFuel) * 100);
+                    const oilPercentage = Math.round((data.oilLevel / data.maxOilLevel) * 100);
+                    
+                    const fuelClass = fuelPercentage < 20 ? 'low' : (fuelPercentage < 50 ? 'medium' : '');
+                    const oilClass = oilPercentage < 20 ? 'low' : (oilPercentage < 50 ? 'medium' : '');
+                    
+                    const statusHtml = `
+                        <div>
+                            <p><strong>Топливо:</strong> ${data.fuelLevel}/${data.maxFuel} л</p>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill ${fuelClass}" style="width: ${fuelPercentage}%">
+                                    ${fuelPercentage}%
+                                </div>
+                            </div>
+                            
+                            <p><strong>Масло:</strong> ${data.oilLevel}/${data.maxOilLevel} л</p>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill ${oilClass}" style="width: ${oilPercentage}%">
+                                    ${oilPercentage}%
+                                </div>
+                            </div>
+                            
+                            <p><strong>Техническое состояние:</strong> ${data.needsRepair ? '⚠️ Требуется ремонт' : '✅ В порядке'}</p>
+                        </div>
+                    `;
+                    document.getElementById('maintenance-status').innerHTML = statusHtml;
+                })
+                .catch(error => {
+                    console.error('Ошибка при получении статуса обслуживания:', error);
+                });
+        }
+
+        function translateMovementState(state) {
+            const states = {
+                'STOP': 'Стоит',
+                'FORWARD': 'Движется вперед',
+                'BACK': 'Движется назад'
+            };
+            return states[state] || state;
+        }
+
+        function translateTurnState(state) {
+            const states = {
+                'RIGHT': 'Вправо',
+                'LEFT': 'Влево',
+                'STRAIGHT': 'Прямо'
+            };
+            return states[state] || state;
+        }
+
+        // Управление двигателем
+        function startEngine() {
+            fetch('/api/car-simulator/start-engine', { method: 'POST' })
+                .then(response => response.text())
+                .then(message => {
+                    alert(message);
+                    updateStatus();
+                })
+                .catch(error => console.error('Ошибка при запуске двигателя:', error));
+        }
+
+        function stopEngine() {
+            fetch('/api/car-simulator/stop-engine', { method: 'POST' })
+                .then(response => response.text())
+                .then(message => {
+                    alert(message);
+                    updateStatus();
+                })
+                .catch(error => console.error('Ошибка при остановке двигателя:', error));
+        }
+
+        // Управление движением
+        function move(direction) {
+            fetch(`/api/car-simulator/move/${direction}`, { method: 'POST' })
+                .then(response => response.text())
+                .then(message => {
+                    alert(message);
+                    updateStatus();
+                })
+                .catch(error => console.error('Ошибка при движении:', error));
+        }
+
+        function turn(direction) {
+            fetch(`/api/car-simulator/turn/${direction}`, { method: 'POST' })
+                .then(response => response.text())
+                .then(message => {
+                    alert(message);
+                    updateStatus();
+                })
+                .catch(error => console.error('Ошибка при повороте:', error));
+        }
+
+        // Обслуживание
+        function repair() {
+            fetch('/api/car-simulator/repair', { method: 'POST' })
+                .then(response => response.text())
+                .then(message => {
+                    alert(message);
+                    updateStatus();
+                })
+                .catch(error => console.error('Ошибка при ремонте:', error));
+        }
+        
+        function refuel() {
+            const amount = document.getElementById('fuel-amount').value;
+            
+            fetch(`/api/car-simulator/refuel?amount=${amount}`, { method: 'POST' })
+                .then(response => response.text())
+                .then(message => {
+                    alert(message);
+                    updateStatus();
+                })
+                .catch(error => console.error('Ошибка при заправке:', error));
+        }
+        
+        function checkOil() {
+            fetch('/api/car-simulator/check-oil')
+                .then(response => response.json())
+                .then(data => {
+                    const status = data.isOilOk ? 
+                        '<p style="color: green;">✅ Уровень масла в норме</p>' : 
+                        '<p style="color: red;">⚠️ Необходимо проверить уровень масла</p>';
+                    
+                    document.getElementById('oil-status').innerHTML = status;
+                    updateStatus();
+                })
+                .catch(error => console.error('Ошибка при проверке масла:', error));
+        }
+        
+        // Управление гаражом
+        function loadGarage() {
+            fetch('/api/car-simulator/garage')
+                .then(response => response.json())
+                .then(cars => {
+                    if (cars.length === 0) {
+                        document.getElementById('cars-list').innerHTML = '<p>Гараж пуст</p>';
+                        return;
+                    }
+                    
+                    let html = '';
+                    cars.forEach(car => {
+                        const fuelPercentage = Math.round((car.fuelLevel / car.maxFuel) * 100);
+                        const cardClass = car.isCurrent ? 'car-card current' : 'car-card';
+                        
+                        html += `
+                            <div class="${cardClass}">
+                                <h3>${car.name} ${car.isCurrent ? '(Текущий)' : ''}</h3>
+                                <p>Двигатель: ${car.isRunning ? 'Работает' : 'Выключен'}</p>
+                                <p>Топливо: ${car.fuelLevel}/${car.maxFuel} (${fuelPercentage}%)</p>
+                                <div class="progress-bar">
+                                    <div class="progress-bar-fill ${fuelPercentage < 20 ? 'low' : 
+                                                                    (fuelPercentage < 50 ? 'medium' : '')}" 
+                                         style="width: ${fuelPercentage}%">
+                                        ${fuelPercentage}%
+                                    </div>
+                                </div>
+                                <p>Масло: ${car.oilLevel.toFixed(1)}/${car.maxOilLevel.toFixed(1)} л</p>
+                                <p>Состояние: ${car.needsRepair ? '⚠️ Требуется ремонт' : '✅ В порядке'}</p>
+                                
+                                <div class="car-card-buttons">
+                                    ${!car.isCurrent ? `<button onclick="switchCar(${car.id})">Выбрать</button>` : ''}
+                                    ${cars.length > 1 && !car.isCurrent ? `<button class="repair-button" onclick="removeCar(${car.id})">Удалить</button>` : ''}
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    document.getElementById('cars-list').innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Ошибка при загрузке гаража:', error);
+                    document.getElementById('cars-list').innerHTML = '<p>Ошибка при загрузке данных</p>';
+                });
+        }
+        
+        function addCar(type) {
+            const carName = document.getElementById('car-name').value;
+            
+            if (!carName) {
+                alert('Введите название автомобиля');
+                return;
+            }
+            
+            let endpoint = '/api/car-simulator/garage/add';
+            
+            switch(type) {
+                case 'sports':
+                    endpoint = '/api/car-simulator/garage/add-sports';
+                    break;
+                case 'full-tank':
+                    endpoint = '/api/car-simulator/garage/add-full-tank';
+                    break;
+            }
+            
+            fetch(`${endpoint}?name=${encodeURIComponent(carName)}`, { method: 'POST' })
+                .then(response => response.text())
+                .then(message => {
+                    alert(message);
+                    loadGarage();
+                    updateStatus();
+                    document.getElementById('car-name').value = '';
+                })
+                .catch(error => console.error('Ошибка при добавлении автомобиля:', error));
+        }
+        
+        function removeCar(carId) {
+            if (confirm('Вы уверены, что хотите удалить этот автомобиль?')) {
+                fetch(`/api/car-simulator/garage/${carId}`, { method: 'DELETE' })
+                    .then(response => response.text())
+                    .then(message => {
+                        alert(message);
+                        loadGarage();
+                        updateStatus();
+                    })
+                    .catch(error => console.error('Ошибка при удалении автомобиля:', error));
+            }
+        }
+        
+        function switchCar(carId) {
+            fetch(`/api/car-simulator/garage/switch/${carId}`, { method: 'POST' })
+                .then(response => response.text())
+                .then(message => {
+                    alert(message);
+                    loadGarage();
+                    updateStatus();
+                })
+                .catch(error => console.error('Ошибка при смене автомобиля:', error));
+        }
+
+        // Загрузка статуса при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            updateStatus();
+            showSection('vehicle-control');
+        });
+    </script>
+</body>
+</html> 

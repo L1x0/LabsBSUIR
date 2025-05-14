@@ -1,4 +1,4 @@
-package by.astakhau.cardriving.fourthlab;
+package by.astakhau.carsimulatorweb;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,4 +10,4 @@ public class FourthLabApplication {
         SpringApplication.run(FourthLabApplication.class, args);
     }
 
-}
+} 
