@@ -91,20 +91,22 @@ public class CarSimulatorController {
         if (!currentCar.isRunning()) {
             return ResponseEntity.badRequest().body("Сначала запустите двигатель");
         }
-        
-        switch (direction.toLowerCase()) {
-            case "forward":
+
+        return switch (direction.toLowerCase()) {
+            case "forward" -> {
                 carControlService.moveForward();
-                return ResponseEntity.ok("Машина движется вперед");
-            case "backward":
+                yield ResponseEntity.ok("Машина движется вперед");
+            }
+            case "backward" -> {
                 carControlService.moveBackward();
-                return ResponseEntity.ok("Машина движется назад");
-            case "stop":
+                yield ResponseEntity.ok("Машина движется назад");
+            }
+            case "stop" -> {
                 carControlService.stopCar();
-                return ResponseEntity.ok("Машина остановлена");
-            default:
-                return ResponseEntity.badRequest().body("Неизвестное направление");
-        }
+                yield ResponseEntity.ok("Машина остановлена");
+            }
+            default -> ResponseEntity.badRequest().body("Неизвестное направление");
+        };
     }
 
     @PostMapping("/turn/{direction}")
