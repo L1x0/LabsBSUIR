@@ -75,6 +75,10 @@ public class CarSimulatorController {
     @PostMapping("/stop-engine")
     public ResponseEntity<String> stopEngine() {
         Car currentCar = carControlService.getCurrentCar();
+
+        if (currentCar.getMovementState() != Car.MovementState.STOP) {
+            return ResponseEntity.badRequest().body("Чтобы заглушить двигатель, нужно остановить автомобиль");
+        }
         
         if (currentCar.isRunning()) {
             carControlService.stopEngine();
@@ -111,6 +115,12 @@ public class CarSimulatorController {
 
     @PostMapping("/turn/{direction}")
     public ResponseEntity<String> turn(@PathVariable String direction) {
+        var currentCar = carControlService.getCurrentCar();
+
+        if (!currentCar.isRunning()) {
+            return ResponseEntity.badRequest().body("Сначала запустите двигатель");
+        }
+
         return switch (direction.toLowerCase()) {
             case "left" -> {
                 carControlService.turnLeft();
