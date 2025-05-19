@@ -9,7 +9,7 @@
 
 Источники:
 -Учебно-методическое пособие по ЛОИС
--Шилдт, Герберт Java. Полное руководство. 10-е издание / Герберт Шилдт. – Москва : Компьютерное издательство "Диалектика", 2018. – 1500 с.
+-Шилдт, Герберт Java. Полное руководство. 10-е издание / Герберт Шилдт. – Москва: Компьютерное издательство "Диалектика", 2018. – 1500 с.
 */
 
 package by.astakhau.subformulcounter;
@@ -69,7 +69,7 @@ public class Main {
         boolean test = false;
         boolean program = false;
 
-        System.out.println("Вы хотите перейти в режим тестирования (да/нет)?");
+        System.out.println("Вы хотите перейти в режим тестирования знаний пользователя (да/нет)?");
         input = scanner.nextLine().toLowerCase();
 
         if (input.equals("да") || input.equals("yes") || input.contains("y") || input.contains("д")) {
