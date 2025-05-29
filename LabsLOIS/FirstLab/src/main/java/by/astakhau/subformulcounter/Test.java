@@ -23,12 +23,12 @@ public class Test {
     public void start() {
         score = 0;
 
-        System.out.println("Сколько из выражений являются корректными формулами языка логики высказываний?");
+        System.out.println("Сколько из выражений являются корректными формулами сокращённого языка логики высказываний?");
         System.out.println("(A(!B)");
-        System.out.println("(1 /\\ (A /\\ B)");
-        System.out.println(" /\\ (A /\\ B)");
-        System.out.println("(A -> B)");
-        System.out.println("A123");
+        System.out.println("(1/\\(A/\\B)");
+        System.out.println("/\\(A/\\B)");
+        System.out.println("(A->B)");
+        System.out.println("A");
 
         if (scanner.nextInt() == 2)
             score++;
@@ -36,43 +36,42 @@ public class Test {
         System.out.println("Сколько из выражений являются корректными формулами языка логики высказываний?");
         System.out.println("(!(B))");
         System.out.println("(B)");
-        System.out.println("(A /\\ B)");
-        System.out.println("(.L /\\ .L)");
-        System.out.println("(A <- B)");
+        System.out.println("(A/\\B)");
+        System.out.println("(.L/\\.L)");
+        System.out.println("(A<-B)");
 
         if (scanner.nextInt() == 2)
             score++;
 
         System.out.println("Сколько из выражений являются корректными формулами языка логики высказываний?");
         System.out.println("(A(!B)");
-        System.out.println("(A -> (Z0 -> B))");
-        System.out.println("(A ~ (C -> D)");
-        System.out.println("(A -> (B)");
-        System.out.println("A0");
+        System.out.println("(A->(Z->B))");
+        System.out.println("(A~(C->D)");
+        System.out.println("(A->(B)");
 
         if (scanner.nextInt() == 0)
             score++;
 
         System.out.println("Сколько атомарных и неатомарных подформул в выражении?");
-        System.out.println("(((((!P) /\\ Q) ~ R) \\/ ((S -> P) /\\ Q))");
+        System.out.println("(((((!P)/\\Q)~R)\\/((S->P)/\\Q))");
 
         if (scanner.nextInt() == 10)
             score++;
 
         System.out.println("Сколько атомарных и неатомарных подформул в выражении?");
-        System.out.println("(R ~ (((!P) \\/ (Q /\\ R)) ~ (S -> (S -> P))))");
+        System.out.println("(R~(((!P)\\/(Q/\\R))~(S->(S->P))))");
 
         if (scanner.nextInt() == 11)
             score++;
 
         System.out.println("Сколько атомарных и неатомарных подформул в выражении?");
-        System.out.println("((((P /\\ (!Q)) -> R) ~ P) \\/ (P /\\ Q))");
+        System.out.println("((((P/\\(!Q))->R)~P)\\/(P/\\Q))");
 
         if (scanner.nextInt() == 9)
             score++;
 
         System.out.println("Сколько атомарных и неатомарных подформул в выражении?");
-        System.out.println("(((P ~ Q) ~ ((((P /\\ R) /\\ P) \\/ (!P)) -> Q)) \\/ Q)");
+        System.out.println("(((P~Q)~((((P/\\R)/\\P)\\/(!P))->Q))\\/Q)");
 
         if (scanner.nextInt() == 11)
             score++;
@@ -85,13 +84,13 @@ public class Test {
 
 
         System.out.println("Сколько атомарных и неатомарных подформул в выражении?");
-        System.out.println("(A /\\ (!B))");
+        System.out.println("(A/\\(!B))");
 
         if (scanner.nextInt() == 4)
             score++;
 
         System.out.println("Сколько атомарных и неатомарных подформул в выражении?");
-        System.out.println("A -> A");
+        System.out.println("(A->A)");
 
         if (scanner.nextInt() == 2)
             score++;

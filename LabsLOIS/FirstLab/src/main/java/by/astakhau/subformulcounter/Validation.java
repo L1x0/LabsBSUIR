@@ -26,6 +26,7 @@ public class Validation {
 
     public static boolean validateInput(StringBuilder input) {
         if (!validateUnchanged(input.toString())) return false;
+        if (input.toString().contains(" ")) return false;
         String converted = change(input.toString());
         input.setLength(0);
         input.append(converted);
