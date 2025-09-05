@@ -1,0 +1,388 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.2 Chrome/134.0.6998.205 Electron/35.3.0 Safari/537.36" version="27.0.2">
+  <diagram name="Страница — 1" id="iVnDaM9ACvPsBAiB7s7v">
+    <mxGraphModel dx="949" dy="605" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="WvPHuzHP9HOkveimRuRi-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-2" target="WvPHuzHP9HOkveimRuRi-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="110" />
+              <mxPoint x="490" y="110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-2" target="WvPHuzHP9HOkveimRuRi-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="110" />
+              <mxPoint x="630" y="110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-2" target="WvPHuzHP9HOkveimRuRi-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="110" />
+              <mxPoint x="760" y="110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-2" target="WvPHuzHP9HOkveimRuRi-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="110" />
+              <mxPoint x="350" y="110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-2" target="WvPHuzHP9HOkveimRuRi-7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="110" />
+              <mxPoint x="210" y="110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-2" target="WvPHuzHP9HOkveimRuRi-9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="110" />
+              <mxPoint x="70" y="110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-2" value="левый: 5 муж, 5 жен&lt;br&gt;правый:" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="360" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-3" value="нач. состояние" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="375" y="10" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-4" value="левый: 4 муж, 5 жен&lt;br&gt;правый: 1 муж" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="710" y="130" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-5" value="левый: 3 муж, 5 жен&lt;br&gt;правый: 2 муж" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="300" y="130" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-6" target="WvPHuzHP9HOkveimRuRi-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-6" target="WvPHuzHP9HOkveimRuRi-11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="190" />
+              <mxPoint x="630" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-6" value="левый: 3 муж, 4 жен&lt;br&gt;правый: 2 муж, 1 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="440" y="130" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-7" value="левый: 4 муж, 3 жен&lt;br&gt;правый: 1 муж, 2 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="160" y="130" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-8" value="левый: 4 муж, 4 жен&lt;br&gt;правый: 1 муж, 1 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="580" y="130" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-9" value="левый: 2 муж, 5 жен&lt;br&gt;правый: 3 муж" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="20" y="130" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-11" value="левый: 4 муж, 5 жен&lt;br&gt;правый: 1 муж" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="580" y="210" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-12" target="WvPHuzHP9HOkveimRuRi-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-12" target="WvPHuzHP9HOkveimRuRi-14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="270" />
+              <mxPoint x="350" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-12" target="WvPHuzHP9HOkveimRuRi-17">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="270" />
+              <mxPoint x="630" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-12" target="WvPHuzHP9HOkveimRuRi-13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="270" />
+              <mxPoint x="760" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-12" target="WvPHuzHP9HOkveimRuRi-16">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="270" />
+              <mxPoint x="210" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-12" target="WvPHuzHP9HOkveimRuRi-18">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="270" />
+              <mxPoint x="70" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-12" value="левый: 4 муж, 4 жен&lt;br&gt;правый: 1 муж, 1 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="440" y="210" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-13" value="левый: 3 муж, 4 жен&lt;br&gt;правый: 2 муж, 1 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="710" y="290" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-14" value="левый: 2 муж, 4 жен&lt;br&gt;правый: 3 муж, 1 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="300" y="290" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-15" value="левый: 3 муж, 3 жен&lt;br&gt;правый: 2 муж, 2 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="440" y="290" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-16" value="левый: 2 муж, 3 жен&lt;br&gt;правый: 3 муж, 2 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="160" y="290" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-17" target="WvPHuzHP9HOkveimRuRi-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-17" target="WvPHuzHP9HOkveimRuRi-19">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="350" />
+              <mxPoint x="490" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-62" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-17" target="WvPHuzHP9HOkveimRuRi-21">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="350" />
+              <mxPoint x="760" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-17" value="левый: 3 муж, 2 жен&lt;br&gt;правый: 2 муж, 3 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="580" y="290" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-18" value="левый: 1 муж, 4 жен&lt;br&gt;правый: 4 муж, 1 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="20" y="290" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-19" value="левый: 4 муж, 4 жен&lt;br&gt;правый: 1 муж, 1 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="440" y="370" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-20" target="WvPHuzHP9HOkveimRuRi-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-64" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-20" target="WvPHuzHP9HOkveimRuRi-22">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="430" />
+              <mxPoint x="760" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-20" target="WvPHuzHP9HOkveimRuRi-24">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="430" />
+              <mxPoint x="490" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-20" target="WvPHuzHP9HOkveimRuRi-23">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="430" />
+              <mxPoint x="350" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-67" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-20" target="WvPHuzHP9HOkveimRuRi-25">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="430" />
+              <mxPoint x="210" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-68" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-20" target="WvPHuzHP9HOkveimRuRi-27">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="430" />
+              <mxPoint x="70" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-20" value="левый: 4 муж, 2 жен&lt;br&gt;правый: 1 муж, 3 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="580" y="370" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-21" value="левый: 4 муж, 3 жен&lt;br&gt;правый: 1 муж, 2 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="710" y="370" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-22" value="левый: 3 муж, 2 жен&lt;br&gt;правый: 2 муж, 3 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="710" y="450" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-23" value="левый: 2 муж, 2 жен&lt;br&gt;правый: 3 муж, 3 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="300" y="450" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-69" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-24" target="WvPHuzHP9HOkveimRuRi-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-24" target="WvPHuzHP9HOkveimRuRi-28">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="510" />
+              <mxPoint x="350" y="510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-71" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-24" target="WvPHuzHP9HOkveimRuRi-30">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="510" />
+              <mxPoint x="630" y="510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-24" value="левый: 3 муж&lt;br&gt;правый: 2 муж, 5 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="440" y="450" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-25" value="левый: 2 муж, 1 жен&lt;br&gt;правый: 3 муж, 4 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="160" y="450" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-26" value="левый: 3 муж, 1 жен&lt;br&gt;правый: 2 муж, 4 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="580" y="450" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-27" value="левый: 1 муж, 2 жен&lt;br&gt;правый: 4 муж, 3 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="20" y="450" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-28" value="левый: 4 муж, 1 жен&lt;br&gt;правый: 1 муж, 4 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="300" y="535" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-72" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-29" target="WvPHuzHP9HOkveimRuRi-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-73" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-29" target="WvPHuzHP9HOkveimRuRi-31">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="590" />
+              <mxPoint x="350" y="590" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-74" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-29" target="WvPHuzHP9HOkveimRuRi-33">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="590" />
+              <mxPoint x="630" y="590" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-29" value="левый: 4 муж&lt;br&gt;правый: 1 муж, 5 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="440" y="535" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-30" value="левый: 4 муж, 2 жен&lt;br&gt;правый: 1 муж, 3 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="580" y="535" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-31" value="левый: 1 муж&lt;br&gt;правый: 4 муж, 5 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="300" y="610" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-32" target="WvPHuzHP9HOkveimRuRi-37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-78" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-32" target="WvPHuzHP9HOkveimRuRi-39">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="670" />
+              <mxPoint x="629" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-32" target="WvPHuzHP9HOkveimRuRi-35">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="670" />
+              <mxPoint x="759" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-80" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-32">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="349" y="690" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="490" y="670" />
+              <mxPoint x="349" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-81" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-32">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="209" y="690" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="490" y="670" />
+              <mxPoint x="209" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-82" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-32" target="WvPHuzHP9HOkveimRuRi-40">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="670" />
+              <mxPoint x="69" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-32" value="левый: 2 муж&lt;br&gt;правый: 3 муж, 5 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="440" y="610" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-33" value="левый: 4 муж, 2 жен&lt;br&gt;правый: 1 муж, 3 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="580" y="610" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=10;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-33" target="WvPHuzHP9HOkveimRuRi-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-35" value="левый: 2 муж, 1 жен&lt;br&gt;правый: 3 муж, 4 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="709" y="690" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-37" target="WvPHuzHP9HOkveimRuRi-41">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-77" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WvPHuzHP9HOkveimRuRi-37" target="WvPHuzHP9HOkveimRuRi-42">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="489" y="750" />
+              <mxPoint x="629" y="750" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-37" value="левый: 2 муж&lt;br&gt;правый: 3 муж, 5 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="439" y="690" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-39" value="левый: 3 муж&lt;br&gt;правый: 2 муж, 5 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="579" y="690" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-40" value="левый: 4 муж&lt;br&gt;правый: 1 муж, 5 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="19" y="690" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-41" value="левый: 1 муж&lt;br&gt;правый: 4 муж, 5 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="439" y="770" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-42" value="левый:&lt;br&gt;правый: 5 муж, 5 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="579" y="770" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-83" value="левый: 3 муж, 1 жен&lt;br&gt;правый: 2 муж, 4 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="160" y="690" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WvPHuzHP9HOkveimRuRi-84" value="левый: 2 муж, 2 жен&lt;br&gt;правый: 3 муж, 3 жен" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="300" y="690" width="100" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
