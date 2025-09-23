@@ -4,3 +4,7 @@ driver_state.json
 TMOIS/
 db/
 logs/
+.venv
+venv/
+.venv/
+RR_PPOIS/

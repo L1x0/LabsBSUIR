@@ -5,9 +5,15 @@ import by.astakhau.passwordgen.password.PasswordGeneration;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(new PasswordGeneration().generatePassword(20));
-        System.out.println(new PasswordAnalyzer(new PasswordGeneration()).symbolDistribution());
+        System.out.println("Пример генерации паролей:");
+        PasswordGeneration passwordGeneration = new PasswordGeneration();
+        for (int i = 0; i < 10; i++) {
+            System.out.println(passwordGeneration.generatePassword(10));
+        }
 
-        new PasswordAnalyzer(new PasswordGeneration()).averageBrutTime();
+        PasswordAnalyzer passwordAnalyzer = new PasswordAnalyzer(passwordGeneration);
+
+        System.out.println("Подбор пароля из 5 символов...");
+        passwordAnalyzer.fullAnalyze();
     }
 }

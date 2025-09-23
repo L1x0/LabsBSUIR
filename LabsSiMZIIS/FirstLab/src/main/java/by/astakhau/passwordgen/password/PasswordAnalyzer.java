@@ -24,11 +24,12 @@ public class PasswordAnalyzer {
     }
 
     public void fullAnalyze() {
-
+        symbolDistribution();
+        averageBrutTime();
     }
 
     public String symbolDistribution() {
-        int size = 1000;
+        int size = 80000;
         String password = pwg.generatePassword(size);
 
         Map<Character, Integer> map = new HashMap<>();
@@ -58,7 +59,7 @@ public class PasswordAnalyzer {
     }
 
     public void averageBrutTime() {
-        String password = pwg.generatePassword(7);
+        String password = pwg.generatePassword(5);
         StringBuilder sb = new StringBuilder();
 
         List<String> alphabet = new ArrayList<>();
@@ -70,7 +71,7 @@ public class PasswordAnalyzer {
         long start = System.nanoTime();
 
         Optional<String> found = Generator
-                .cartesianProduct(alphabet, alphabet, alphabet, alphabet, alphabet, alphabet, alphabet)
+                .cartesianProduct(alphabet, alphabet, alphabet, alphabet, alphabet)
                 .stream()
                 .map(tuple -> String.join("", tuple))
                 .filter(password::equals)
