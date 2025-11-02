@@ -12,7 +12,7 @@
            prefWidth="600" prefHeight="600">
 
     <AnchorPane prefWidth="600" prefHeight="600"
-                style="-fx-background-image: url('background.jpg');
+                style="-fx-background-image: url('background.png');
                        -fx-background-repeat: stretch;
                        -fx-background-size: 600 600;
                        -fx-background-position: center center;" />

@@ -4,6 +4,8 @@ import by.astakhau.arkanoid.model.game.component.*;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.*;
 import com.almasb.fxgl.entity.components.CollidableComponent;
+import com.almasb.fxgl.physics.BoundingShape;
+import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
@@ -113,19 +115,28 @@ public class ArkanoidEntityFactory implements EntityFactory {
             physics.getBody().setAngularDamping(9999);
         });
 
+        var texture = FXGL.texture("ball.png");
+        texture.setFitHeight(300);
+        texture.setFitWidth(150);
+        texture.setPreserveRatio(true);
+
+        texture.setTranslateX(-texture.getFitWidth() / 2.0);
+        texture.setTranslateY(-texture.getFitHeight() / 2.0);
+
         return FXGL.entityBuilder(data)
                 .type(EntityType.BALL)
                 .at(data.getX(), data.getY())
                 .with(physics)
                 .with(new BallMovementComponent())
-                .viewWithBBox(new Circle(10, Color.WHITESMOKE))
+                .view(texture)
+                .bbox(new HitBox(BoundingShape.circle(0)))
                 .collidable()
                 .build();
     }
 
     @Spawns("Background")
     public Entity background() {
-        ImageView background = new ImageView(new Image("background.jpg"));
+        ImageView background = new ImageView(new Image("background.png"));
 
         background.setFitWidth(600);
         background.setFitHeight(600);

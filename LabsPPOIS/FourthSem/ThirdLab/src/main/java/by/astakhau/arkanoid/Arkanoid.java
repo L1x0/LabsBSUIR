@@ -30,28 +30,30 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+
 
 import java.util.List;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.getAssetLoader;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.getAudioPlayer;
 
-
 public class Arkanoid extends GameApplication {
     @Getter
     private static int levelNum = 0;
-    @Getter @Setter
+    @Getter
+    @Setter
     private static Player player;
-    @Getter @Setter
+    @Getter
+    @Setter
     private static ScoreTable scoreTable;
     private int timer = 0;
     private final SceneUpdater sceneUpdater = new SceneUpdater();
-    private  LevelManager levelManager;
+    private LevelManager levelManager;
     private ArkanoidEntityFactory arkanoidEntityFactory;
     private Entity paddle;
     @Getter
     private static AppConfig appConfig;
-
 
 
     @Override
@@ -80,15 +82,24 @@ public class Arkanoid extends GameApplication {
                 EntityType.WALL_RIGHT,
                 EntityType.WALL_TOP);
 
-        for (EntityType type : targetTypes) {
-            FXGL.onCollision(EntityType.BALL, type, (ball, obj) -> {
-                if (type == EntityType.BRICK) {
-                    obj.getComponent(BrickHealthComponent.class).reduceHealth();
-                }
-                Sound winSound = getAssetLoader().loadSound("kick_sound.mp3");
-                getAudioPlayer().playSound(winSound);
-            });
-        }
+
+        FXGL.onCollision(EntityType.BALL, EntityType.BRICK, (ball, obj) -> {
+
+            obj.getComponent(BrickHealthComponent.class).reduceHealth();
+
+            Sound winSound;
+
+            var random = FXGL.random(1,2);
+            System.out.println(random);
+
+            if (FXGL.random(1,2) == 1) {
+                winSound = getAssetLoader().loadSound("kick_sound.mp3");
+            } else {
+                winSound = getAssetLoader().loadSound("kick_sound_1.mp3");
+            }
+            getAudioPlayer().playSound(winSound);
+        });
+
     }
 
     @Override
@@ -124,6 +135,8 @@ public class Arkanoid extends GameApplication {
                 x += 60;
             }
         }
+
+
         var worldListener = new EntityWorldListener() {
             @Override
             public void onEntityAdded(Entity entity) {
