@@ -1,0 +1,112 @@
+[
+  {
+    "website_id": 1,
+    "optimization_type": "seo",
+    "title": "SEO-оптимизация",
+    "description": "Добавить мета-теги, улучшить структуру заголовков и добавить alt-атрибуты",
+    "priority": 5,
+    "estimated_impact": "Высокое влияние на поисковую видимость",
+    "applied": false,
+    "id": 1
+  },
+  {
+    "website_id": 1,
+    "optimization_type": "general",
+    "title": "AI-рекомендация",
+    "description": "Улучшите оптимизацию ключевых слов в мета-тегах и контенте.",
+    "priority": 3,
+    "estimated_impact": "Требует оценки",
+    "applied": false,
+    "id": 2
+  },
+  {
+    "website_id": 1,
+    "optimization_type": "general",
+    "title": "AI-рекомендация",
+    "description": "Оптимизируйте структуру URL-адресов для лучшего SEO.",
+    "priority": 3,
+    "estimated_impact": "Требует оценки",
+    "applied": false,
+    "id": 3
+  },
+  {
+    "website_id": 1,
+    "optimization_type": "seo",
+    "title": "SEO-оптимизация",
+    "description": "Добавить мета-теги, улучшить структуру заголовков и добавить alt-атрибуты",
+    "priority": 5,
+    "estimated_impact": "Высокое влияние на поисковую видимость",
+    "applied": false,
+    "id": 4
+  },
+  {
+    "website_id": 1,
+    "optimization_type": "general",
+    "title": "AI-рекомендация",
+    "description": "Оптимизировать ключевые слова и контент для повышения рейтинга в поисковых системах.",
+    "priority": 3,
+    "estimated_impact": "Требует оценки",
+    "applied": false,
+    "id": 5
+  },
+  {
+    "website_id": 1,
+    "optimization_type": "seo",
+    "title": "SEO-оптимизация",
+    "description": "Добавить мета-теги, улучшить структуру заголовков и добавить alt-атрибуты",
+    "priority": 5,
+    "estimated_impact": "Высокое влияние на поисковую видимость",
+    "applied": false,
+    "id": 6
+  },
+  {
+    "website_id": 1,
+    "optimization_type": "general",
+    "title": "AI-рекомендация",
+    "description": "Оптимизировать мета-теги для ключевых запросов.",
+    "priority": 3,
+    "estimated_impact": "Требует оценки",
+    "applied": false,
+    "id": 7
+  },
+  {
+    "website_id": 1,
+    "optimization_type": "general",
+    "title": "AI-рекомендация",
+    "description": "Улучшить внутреннюю перелинковку, направляя пользователей к целевым страницам.",
+    "priority": 3,
+    "estimated_impact": "Требует оценки",
+    "applied": false,
+    "id": 8
+  },
+  {
+    "website_id": 1,
+    "optimization_type": "seo",
+    "title": "SEO-оптимизация",
+    "description": "Добавить мета-теги, улучшить структуру заголовков и добавить alt-атрибуты",
+    "priority": 5,
+    "estimated_impact": "Высокое влияние на поисковую видимость",
+    "applied": false,
+    "id": 9
+  },
+  {
+    "website_id": 1,
+    "optimization_type": "general",
+    "title": "AI-рекомендация",
+    "description": "Оптимизировать контент для ключевых слов, которые пользователь ищет.",
+    "priority": 3,
+    "estimated_impact": "Требует оценки",
+    "applied": false,
+    "id": 10
+  },
+  {
+    "website_id": 1,
+    "optimization_type": "general",
+    "title": "AI-рекомендация",
+    "description": "Улучшить структуру заголовков и мета-описаний для повышения видимости в поисковых системах.",
+    "priority": 3,
+    "estimated_impact": "Требует оценки",
+    "applied": false,
+    "id": 11
+  }
+]

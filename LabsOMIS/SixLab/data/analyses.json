@@ -1,0 +1,62 @@
+[
+  {
+    "website_id": 1,
+    "analysis_date": "2025-12-06T23:22:59.533437",
+    "performance_score": 100.0,
+    "ux_score": 100.0,
+    "seo_score": 50.0,
+    "conversion_score": 85.0,
+    "issues": [],
+    "recommendations": [
+      "Добавить мета-теги (description, keywords)",
+      "Улучшить структуру заголовков (H1-H6)",
+      "Добавить alt-атрибуты к изображениям"
+    ],
+    "id": 1
+  },
+  {
+    "website_id": 1,
+    "analysis_date": "2025-12-06T23:23:00.885844",
+    "performance_score": 100.0,
+    "ux_score": 100.0,
+    "seo_score": 50.0,
+    "conversion_score": 85.0,
+    "issues": [],
+    "recommendations": [
+      "Добавить мета-теги (description, keywords)",
+      "Улучшить структуру заголовков (H1-H6)",
+      "Добавить alt-атрибуты к изображениям"
+    ],
+    "id": 2
+  },
+  {
+    "website_id": 1,
+    "analysis_date": "2025-12-06T23:23:04.009760",
+    "performance_score": 100.0,
+    "ux_score": 100.0,
+    "seo_score": 50.0,
+    "conversion_score": 85.0,
+    "issues": [],
+    "recommendations": [
+      "Добавить мета-теги (description, keywords)",
+      "Улучшить структуру заголовков (H1-H6)",
+      "Добавить alt-атрибуты к изображениям"
+    ],
+    "id": 3
+  },
+  {
+    "website_id": 1,
+    "analysis_date": "2025-12-06T23:23:07.094003",
+    "performance_score": 100.0,
+    "ux_score": 100.0,
+    "seo_score": 50.0,
+    "conversion_score": 85.0,
+    "issues": [],
+    "recommendations": [
+      "Добавить мета-теги (description, keywords)",
+      "Улучшить структуру заголовков (H1-H6)",
+      "Добавить alt-атрибуты к изображениям"
+    ],
+    "id": 4
+  }
+]

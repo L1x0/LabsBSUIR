@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}A/B тестирование - {{ website.name }}{% endblock %}
+
+{% block content %}
+<div class="ab-testing-page">
+    <div class="page-header">
+        <h1>A/B тестирование: {{ website.name }}</h1>
+        <a href="{{ url_for('website_detail', website_id=website.id) }}" class="btn btn-secondary">Назад</a>
+    </div>
+
+    <div class="ab-form-section">
+        <h2>Предложить A/B тест</h2>
+        <form id="abTestForm" class="ab-form">
+            <div class="form-group">
+                <label for="element">Элемент для тестирования</label>
+                <input type="text" id="element" name="element" 
+                       placeholder="Например: заголовок, кнопка, форма" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Получить предложение</button>
+        </form>
+    </div>
+
+    <div id="abResult" class="ab-result" style="display: none;">
+        <h2>Предложение A/B теста</h2>
+        <div class="ab-suggestion-card">
+            <p><strong>Элемент:</strong> <span id="result-element"></span></p>
+            <p><strong>Вариант A:</strong> <span id="result-variant-a"></span></p>
+            <p><strong>Вариант B:</strong> <span id="result-variant-b"></span></p>
+            <p><strong>Описание:</strong> <span id="result-description"></span></p>
+            <p><strong>Ожидаемое улучшение:</strong> <span id="result-improvement"></span></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('abTestForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const element = document.getElementById('element').value;
+    
+    fetch(`/ab-testing/{{ website.id }}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({element: element})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const suggestion = data.suggestion;
+            document.getElementById('result-element').textContent = suggestion.element;
+            document.getElementById('result-variant-a').textContent = suggestion.variant_a;
+            document.getElementById('result-variant-b').textContent = suggestion.variant_b;
+            document.getElementById('result-description').textContent = suggestion.description;
+            document.getElementById('result-improvement').textContent = suggestion.estimated_improvement;
+            document.getElementById('abResult').style.display = 'block';
+        } else {
+            alert('Ошибка: ' + data.error);
+        }
+    })
+    .catch(error => {
+        alert('Ошибка при создании A/B теста');
+        console.error(error);
+    });
+});
+</script>
+{% endblock %}
+

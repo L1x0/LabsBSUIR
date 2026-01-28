@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}{{ website.name }}{% endblock %}
+
+{% block content %}
+<div class="website-detail-page">
+    <div class="page-header">
+        <h1>{{ website.name }}</h1>
+        <div class="header-actions">
+            <a href="{{ url_for('preview_website', website_id=website.id) }}" target="_blank" class="btn btn-primary">Предпросмотр</a>
+            <button onclick="analyzeWebsite({{ website.id }})" class="btn btn-primary">Анализировать</button>
+            <button onclick="exportWebsite({{ website.id }})" class="btn btn-secondary">Экспортировать</button>
+        </div>
+    </div>
+
+    <div class="website-info">
+        <div class="info-card">
+            <h3>Информация о сайте</h3>
+            <p><strong>Тип:</strong> {{ website.website_type }}</p>
+            <p><strong>URL:</strong> {{ website.url }}</p>
+            <p><strong>Описание:</strong> {{ website.description or "Не указано" }}</p>
+            <p><strong>Целевая аудитория:</strong> {{ website.target_audience or "Не указано" }}</p>
+            <p><strong>Создан:</strong> {{ website.created_at[:10] if website.created_at else "Неизвестно" }}</p>
+        </div>
+    </div>
+
+    {% if analyses %}
+    <div class="analyses-section">
+        <h2>Результаты анализов</h2>
+        {% for analysis in analyses[-3:]|reverse %}
+        <div class="analysis-card">
+            <div class="analysis-header">
+                <span class="analysis-date">{{ analysis.analysis_date[:10] if analysis.analysis_date else "Неизвестно" }}</span>
+            </div>
+            <div class="analysis-scores">
+                <div class="score-item">
+                    <span>Производительность:</span>
+                    <strong>{{ "%.1f"|format(analysis.performance_score) }}/100</strong>
+                </div>
+                <div class="score-item">
+                    <span>UX:</span>
+                    <strong>{{ "%.1f"|format(analysis.ux_score) }}/100</strong>
+                </div>
+                <div class="score-item">
+                    <span>SEO:</span>
+                    <strong>{{ "%.1f"|format(analysis.seo_score) }}/100</strong>
+                </div>
+                <div class="score-item">
+                    <span>Конверсия:</span>
+                    <strong>{{ "%.1f"|format(analysis.conversion_score) }}/100</strong>
+                </div>
+            </div>
+            {% if analysis.issues %}
+            <div class="analysis-issues">
+                <strong>Выявленные проблемы:</strong>
+                <ul>
+                    {% for issue in analysis.issues %}
+                    <li>{{ issue }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if recommendations %}
+    <div class="recommendations-section">
+        <h2>Рекомендации по оптимизации</h2>
+        {% for rec in recommendations %}
+        <div class="recommendation-card">
+            <div class="rec-header">
+                <h3>{{ rec.title }}</h3>
+                <span class="rec-type">{{ rec.optimization_type }}</span>
+                <span class="rec-priority">Приоритет: {{ rec.priority }}/5</span>
+            </div>
+            <p>{{ rec.description }}</p>
+            <p class="rec-impact"><strong>Влияние:</strong> {{ rec.estimated_impact }}</p>
+            <button onclick="applyRecommendation({{ rec.id }})" class="btn btn-primary btn-sm">Применить</button>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <p>Нет рекомендаций. Выполните анализ сайта для получения рекомендаций.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function analyzeWebsite(websiteId) {
+    fetch(`/websites/${websiteId}/analyze`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Анализ выполнен успешно! Создано рекомендаций: ' + data.recommendations_count);
+            location.reload();
+        } else {
+            alert('Ошибка: ' + data.error);
+        }
+    })
+    .catch(error => {
+        alert('Ошибка при выполнении анализа');
+        console.error(error);
+    });
+}
+
+function applyRecommendation(recId) {
+    if (!confirm('Применить эту рекомендацию?')) return;
+    
+    fetch(`/recommendations/${recId}/apply`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Рекомендация успешно применена!');
+            location.reload();
+        } else {
+            alert('Ошибка: ' + data.error);
+        }
+    })
+    .catch(error => {
+        alert('Ошибка при применении рекомендации');
+        console.error(error);
+    });
+}
+
+function exportWebsite(websiteId) {
+    fetch(`/websites/${websiteId}/export`)
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Веб-сайт экспортирован: ' + data.message);
+        } else {
+            alert('Ошибка при экспорте');
+        }
+    })
+    .catch(error => {
+        alert('Ошибка при экспорте');
+        console.error(error);
+    });
+}
+</script>
+{% endblock %}
+

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Рекомендации - {{ website.name }}{% endblock %}
+
+{% block content %}
+<div class="recommendations-page">
+    <div class="page-header">
+        <h1>Рекомендации для: {{ website.name }}</h1>
+        <a href="{{ url_for('website_detail', website_id=website.id) }}" class="btn btn-secondary">Назад к сайту</a>
+    </div>
+
+    {% if recommendations %}
+    <div class="recommendations-list">
+        {% for rec in recommendations %}
+        <div class="recommendation-card">
+            <div class="rec-header">
+                <h3>{{ rec.title }}</h3>
+                <div class="rec-badges">
+                    <span class="rec-type">{{ rec.optimization_type }}</span>
+                    <span class="rec-priority">Приоритет: {{ rec.priority }}/5</span>
+                </div>
+            </div>
+            <p class="rec-description">{{ rec.description }}</p>
+            <p class="rec-impact"><strong>Ожидаемое влияние:</strong> {{ rec.estimated_impact }}</p>
+            <button onclick="applyRecommendation({{ rec.id }})" class="btn btn-primary">Применить рекомендацию</button>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <p>Нет доступных рекомендаций для этого сайта.</p>
+        <a href="{{ url_for('website_detail', website_id=website.id) }}" class="btn btn-primary">Выполнить анализ</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function applyRecommendation(recId) {
+    if (!confirm('Применить эту рекомендацию?')) return;
+    
+    fetch(`/recommendations/${recId}/apply`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Рекомендация успешно применена!');
+            location.reload();
+        } else {
+            alert('Ошибка: ' + data.error);
+        }
+    })
+    .catch(error => {
+        alert('Ошибка при применении рекомендации');
+        console.error(error);
+    });
+}
+</script>
+{% endblock %}
+

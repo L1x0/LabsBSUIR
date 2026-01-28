@@ -1,0 +1,15 @@
+[google]   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+[google]                                  Dload  Upload   Total   Spent    Left  Speed
+[google]   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1:8888...
+[google] * Connected to 127.0.0.1 (127.0.0.1) port 8888
+[google] > GET http://127.0.0.1:9001/slow HTTP/1.1
+[google] > Host: 127.0.0.1:9001
+[google] > User-Agent: curl/8.7.1
+[google] > Accept: */*
+[google] > Proxy-Connection: Keep-Alive
+[google] > 
+[google] * Request completely sent off
+[google]   0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0* Empty reply from server
+[google]   0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0
+[google] * Closing connection
+[google] curl: (52) Empty reply from server

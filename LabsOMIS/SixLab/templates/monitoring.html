@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Мониторинг и аналитика{% endblock %}
+
+{% block content %}
+<div class="monitoring-page">
+    <h1>Мониторинг и аналитика</h1>
+
+    <div class="monitoring-stats">
+        <div class="stat-card large">
+            <h3>Общая статистика</h3>
+            <div class="stat-row">
+                <span>Всего веб-сайтов:</span>
+                <strong>{{ report.total_websites }}</strong>
+            </div>
+            <div class="stat-row">
+                <span>Всего анализов:</span>
+                <strong>{{ report.total_analyses }}</strong>
+            </div>
+            <div class="stat-row">
+                <span>Применено рекомендаций:</span>
+                <strong>{{ report.applied_recommendations }}</strong>
+            </div>
+            <div class="stat-row">
+                <span>Ожидают применения:</span>
+                <strong>{{ report.pending_recommendations }}</strong>
+            </div>
+        </div>
+
+        <div class="stat-card large">
+            <h3>Средние показатели</h3>
+            <div class="score-item">
+                <span>Производительность:</span>
+                <div class="score-bar">
+                    <div class="score-fill" style="width: {{ report.average_scores.performance }}%"></div>
+                    <span class="score-value">{{ "%.1f"|format(report.average_scores.performance) }}/100</span>
+                </div>
+            </div>
+            <div class="score-item">
+                <span>UX:</span>
+                <div class="score-bar">
+                    <div class="score-fill" style="width: {{ report.average_scores.ux }}%"></div>
+                    <span class="score-value">{{ "%.1f"|format(report.average_scores.ux) }}/100</span>
+                </div>
+            </div>
+            <div class="score-item">
+                <span>SEO:</span>
+                <div class="score-bar">
+                    <div class="score-fill" style="width: {{ report.average_scores.seo }}%"></div>
+                    <span class="score-value">{{ "%.1f"|format(report.average_scores.seo) }}/100</span>
+                </div>
+            </div>
+            <div class="score-item">
+                <span>Конверсия:</span>
+                <div class="score-bar">
+                    <div class="score-fill" style="width: {{ report.average_scores.conversion }}%"></div>
+                    <span class="score-value">{{ "%.1f"|format(report.average_scores.conversion) }}/100</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if websites_metrics %}
+    <div class="websites-metrics">
+        <h2>Метрики веб-сайтов</h2>
+        <div class="metrics-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Тип</th>
+                        <th>Анализов</th>
+                        <th>Рекомендаций</th>
+                        <th>Производительность</th>
+                        <th>UX</th>
+                        <th>SEO</th>
+                        <th>Конверсия</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for metrics in websites_metrics %}
+                    <tr>
+                        <td>{{ metrics.website.name }}</td>
+                        <td>{{ metrics.website.type }}</td>
+                        <td>{{ metrics.total_analyses }}</td>
+                        <td>{{ metrics.total_recommendations }}</td>
+                        {% if metrics.latest_analysis %}
+                        <td>{{ "%.1f"|format(metrics.latest_analysis.performance_score) }}</td>
+                        <td>{{ "%.1f"|format(metrics.latest_analysis.ux_score) }}</td>
+                        <td>{{ "%.1f"|format(metrics.latest_analysis.seo_score) }}</td>
+                        <td>{{ "%.1f"|format(metrics.latest_analysis.conversion_score) }}</td>
+                        {% else %}
+                        <td colspan="4" class="no-data">Нет данных</td>
+                        {% endif %}
+                        <td>
+                            <a href="{{ url_for('website_detail', website_id=metrics.website.id) }}" class="btn btn-sm">Открыть</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+

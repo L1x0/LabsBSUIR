@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Мои веб-сайты{% endblock %}
+
+{% block content %}
+<div class="websites-page">
+    <div class="page-header">
+        <h1>Мои веб-сайты</h1>
+        <a href="{{ url_for('create_website') }}" class="btn btn-primary">+ Создать новый</a>
+    </div>
+
+    {% if websites %}
+    <div class="websites-grid">
+        {% for website in websites %}
+        <div class="website-card">
+            <div class="website-header">
+                <h3>{{ website.name }}</h3>
+                <span class="website-type-badge">{{ website.website_type }}</span>
+            </div>
+            <p class="website-description">
+                {{ website.description[:150] if website.description else "Без описания" }}
+            </p>
+            <div class="website-meta">
+                <span>Создан: {{ website.created_at[:10] if website.created_at else "Неизвестно" }}</span>
+            </div>
+            <div class="website-actions">
+                <a href="{{ url_for('website_detail', website_id=website.id) }}" class="btn btn-primary btn-sm">Открыть</a>
+                <a href="{{ url_for('preview_website', website_id=website.id) }}" target="_blank" class="btn btn-secondary btn-sm">Предпросмотр</a>
+                <button onclick="analyzeWebsite({{ website.id }})" class="btn btn-secondary btn-sm">Анализировать</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <p>У вас пока нет веб-сайтов</p>
+        <a href="{{ url_for('create_website') }}" class="btn btn-primary">Создать первый веб-сайт</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function analyzeWebsite(websiteId) {
+    fetch(`/websites/${websiteId}/analyze`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Анализ выполнен успешно! Создано рекомендаций: ' + data.recommendations_count);
+            window.location.href = `/websites/${websiteId}`;
+        } else {
+            alert('Ошибка: ' + data.error);
+        }
+    })
+    .catch(error => {
+        alert('Ошибка при выполнении анализа');
+        console.error(error);
+    });
+}
+</script>
+{% endblock %}
+

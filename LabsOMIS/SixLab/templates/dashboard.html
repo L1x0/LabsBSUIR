@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Главная - WebSite Builder{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h1>Добро пожаловать, {{ username }}!</h1>
+    
+    <div class="dashboard-stats">
+        <div class="stat-card">
+            <div class="stat-value">{{ analytics.total_websites }}</div>
+            <div class="stat-label">Веб-сайтов</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">{{ analytics.total_analyses }}</div>
+            <div class="stat-label">Анализов</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">{{ analytics.pending_recommendations }}</div>
+            <div class="stat-label">Рекомендаций</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">{{ "%.1f"|format(analytics.average_scores.performance) }}</div>
+            <div class="stat-label">Средняя производительность</div>
+        </div>
+    </div>
+
+    <div class="dashboard-actions">
+        <a href="{{ url_for('create_website') }}" class="btn btn-primary btn-large">
+            <span class="icon">+</span>
+            Создать новый веб-сайт
+        </a>
+        <a href="{{ url_for('websites_list') }}" class="btn btn-secondary btn-large">
+            Мои веб-сайты
+        </a>
+        <a href="{{ url_for('monitoring_page') }}" class="btn btn-secondary btn-large">
+            Мониторинг и аналитика
+        </a>
+    </div>
+
+    {% if websites %}
+    <div class="recent-websites">
+        <h2>Последние веб-сайты</h2>
+        <div class="websites-grid">
+            {% for website in websites[:6] %}
+            <div class="website-card">
+                <h3>{{ website.name }}</h3>
+                <p class="website-type">{{ website.website_type }}</p>
+                <p class="website-description">{{ website.description[:100] if website.description else "Без описания" }}...</p>
+                <div class="website-actions">
+                    <a href="{{ url_for('website_detail', website_id=website.id) }}" class="btn btn-sm">Открыть</a>
+                    <a href="{{ url_for('preview_website', website_id=website.id) }}" target="_blank" class="btn btn-sm btn-secondary">Предпросмотр</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
