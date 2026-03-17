@@ -8,3 +8,5 @@ logs/
 venv/
 .venv/
 RR_PPOIS/
+data/*
+data/
